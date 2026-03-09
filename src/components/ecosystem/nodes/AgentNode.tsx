@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Bot, Cpu, Shield, Sparkles, Wrench } from "lucide-react";
 import type { AgentDef } from "../data/agents";
+import { DanAvatar } from "@/components/avatars";
 
 interface AgentNodeProps {
   agent: AgentDef;
@@ -18,6 +20,83 @@ const sizeMap = {
   channel: { outer: 52, inner: 42, text: "text-xs", ring: 56 },
   slack: { outer: 48, inner: 38, text: "text-xs", ring: 52 },
 };
+
+function ClawGlyph({
+  color,
+  label,
+}: {
+  color: string;
+  label: string;
+}) {
+  return (
+    <svg viewBox="0 0 64 64" className="h-9 w-9">
+      <path
+        d="M20 39c-6-1-11 2-12 8 6 2 11 1 16-2M44 39c6-1 11 2 12 8-6 2-11 1-16-2M24 23c-3 3-5 7-5 12 0 7 6 12 13 12s13-5 13-12c0-5-2-9-5-12"
+        fill="none"
+        stroke={color}
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="26" cy="28" r="2" fill={color} />
+      <circle cx="38" cy="28" r="2" fill={color} />
+      <text
+        x="32"
+        y="42"
+        textAnchor="middle"
+        fontSize="12"
+        fontWeight="700"
+        fill={color}
+      >
+        {label}
+      </text>
+    </svg>
+  );
+}
+
+function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
+  if (agent.id === "dan") {
+    return <DanAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  }
+
+  if (agent.id === "david") {
+    return (
+      <div className="relative flex h-11 w-11 items-center justify-center">
+        <Cpu size={30} color={agent.color} strokeWidth={1.8} />
+        <div className="absolute inset-0 rounded-full border border-white/10" />
+      </div>
+    );
+  }
+
+  if (agent.id === "mac-studio") {
+    return <Bot size={30} color={agent.color} strokeWidth={1.8} />;
+  }
+
+  if (agent.id.startsWith("openclaw-")) {
+    return <ClawGlyph color={agent.color} label={agent.initials} />;
+  }
+
+  if (agent.id === "kimiclaw") {
+    return <Sparkles size={24} color={agent.color} strokeWidth={2} />;
+  }
+
+  if (agent.id === "kiloclaw") {
+    return <Shield size={24} color={agent.color} strokeWidth={2} />;
+  }
+
+  if (agent.id === "manusclaw") {
+    return <Wrench size={24} color={agent.color} strokeWidth={2} />;
+  }
+
+  return (
+    <span
+      className={`${sizeMap[agent.type].text} font-mono`}
+      style={{ color: agent.color }}
+    >
+      {agent.initials}
+    </span>
+  );
+}
 
 export default function AgentNode({
   agent,
@@ -83,12 +162,13 @@ export default function AgentNode({
           transition: "box-shadow 0.3s ease",
         }}
       >
-        <span
-          className={`${size.text} font-mono`}
-          style={{ color: agent.color }}
+        <div
+          className={`flex items-center justify-center transition-transform ${
+            isHighlighted ? "scale-105" : ""
+          }`}
         >
-          {agent.initials}
-        </span>
+          {renderGlyph(agent, isHighlighted)}
+        </div>
       </div>
 
       {/* Label */}

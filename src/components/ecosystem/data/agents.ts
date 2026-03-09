@@ -25,6 +25,18 @@ export const agents: AgentDef[] = [
     initials: "MS",
     description: "Dan's Mac Studio — runs David orchestrator, Qwen 3.5 local model, Codex & Claude Code.",
   },
+  {
+    id: "dan",
+    name: "Dan",
+    role: "Human",
+    project: "DansLab",
+    projectUrl: "https://danslab.vercel.app",
+    type: "main",
+    color: "#f8fafc",
+    glow: "rgba(248,250,252,0.35)",
+    initials: "DN",
+    description: "Human in the loop. Sets direction, defines priorities, and decides what enters the lab.",
+  },
 
   // Main Agents
   {
@@ -87,6 +99,56 @@ export const agents: AgentDef[] = [
     initials: "SI",
     description: "The crypto girl — advertises trading strategy via zmarty.me with 100+ endpoints for trading data.",
   },
+  {
+    id: "openclaw-1",
+    name: "OpenClaw-01",
+    role: "Builder",
+    type: "support",
+    color: "#60a5fa",
+    glow: "rgba(96,165,250,0.35)",
+    initials: "O1",
+    description: "Internal OpenClaw builder focused on implementation, assembly, and rapid shipping work.",
+  },
+  {
+    id: "openclaw-2",
+    name: "OpenClaw-02",
+    role: "Researcher",
+    type: "support",
+    color: "#c084fc",
+    glow: "rgba(192,132,252,0.35)",
+    initials: "O2",
+    description: "Internal OpenClaw researcher used for discovery, mapping, and early design passes.",
+  },
+  {
+    id: "openclaw-3",
+    name: "OpenClaw-03",
+    role: "Reviewer",
+    type: "support",
+    color: "#f472b6",
+    glow: "rgba(244,114,182,0.35)",
+    initials: "O3",
+    description: "Internal OpenClaw reviewer for QA, edge cases, and regression spotting.",
+  },
+  {
+    id: "openclaw-4",
+    name: "OpenClaw-04",
+    role: "Automation",
+    type: "support",
+    color: "#38bdf8",
+    glow: "rgba(56,189,248,0.35)",
+    initials: "O4",
+    description: "Internal OpenClaw automation specialist for glue code, scripts, and repetitive tasks.",
+  },
+  {
+    id: "manusclaw",
+    name: "ManusClaw",
+    role: "Operator",
+    type: "slack",
+    color: "#f59e0b",
+    glow: "rgba(245,158,11,0.35)",
+    initials: "MC",
+    description: "OpenClaw operations agent that runs focused execution loops and closes tactical tasks.",
+  },
 
   // Communication Channels
   {
@@ -107,7 +169,7 @@ export const agents: AgentDef[] = [
     color: "#e11d48",
     glow: "rgba(225,29,72,0.4)",
     initials: "SL",
-    description: "Team communication hub. KiloClaw moderates, MyKimiK2 advertises.",
+    description: "Team communication hub. KiloClaw moderates, KimiClaw amplifies, and ManusClaw drives ops.",
   },
   {
     id: "discord",
@@ -132,14 +194,14 @@ export const agents: AgentDef[] = [
     description: "KiloCode agent on Slack — moderates all agents and keeps order.",
   },
   {
-    id: "mykimik2",
-    name: "MyKimiK2",
+    id: "kimiclaw",
+    name: "KimiClaw",
     role: "Advertiser",
     type: "slack",
     color: "#14b8a6",
     glow: "rgba(20,184,166,0.4)",
-    initials: "KK",
-    description: "KimiClaw agent — advertises all the business of our agents across channels.",
+    initials: "KM",
+    description: "OpenClaw signal amplifier — advertises products, agent capabilities, and opportunities across channels.",
   },
 
   // Support Agents

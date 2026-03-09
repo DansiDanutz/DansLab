@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { agents } from "./data/agents";
@@ -207,13 +208,31 @@ export default function EcosystemCanvas() {
           DansLab Ecosystem
         </h1>
         <p className="text-xs text-zinc-500 mt-1">
-          Click agents to explore &bull; Watch scenarios below
+          Click agents to explore &bull; OpenClaw-enhanced system map
         </p>
+      </div>
+
+      <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2">
+        <Link
+          href="/"
+          className="rounded-full border border-zinc-700 bg-zinc-950/80 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-zinc-300 transition hover:border-zinc-500 hover:text-white"
+        >
+          Home
+        </Link>
+        <Link
+          href="/lab"
+          className="rounded-full border border-cyan-500/35 bg-cyan-500/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-cyan-200 transition hover:border-cyan-400 hover:bg-cyan-500/15"
+        >
+          Lab
+        </Link>
+        <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 uppercase tracking-[0.2em]">
+          Revenue + Agents + Infrastructure
+        </span>
       </div>
 
       {/* AI Models badge */}
       <div className="absolute top-4 right-4 z-30 flex gap-1.5">
-        {["Claude Code", "Codex", "Qwen 3.5"].map((model) => (
+        {["Claude Code", "Codex", "Qwen 3.5", "OpenClaw"].map((model) => (
           <span
             key={model}
             className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-900/80 border border-zinc-700 text-zinc-400"
@@ -221,13 +240,6 @@ export default function EcosystemCanvas() {
             {model}
           </span>
         ))}
-      </div>
-
-      {/* Revenue badge */}
-      <div className="absolute top-4 left-4 z-30">
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400">
-          Subscriptions + Credits
-        </span>
       </div>
 
       {/* Agent detail panel */}
