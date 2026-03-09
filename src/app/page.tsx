@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { DanAvatar, DavidAvatar, NanoAvatar } from "@/components/avatars";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -41,6 +42,12 @@ export default function Home() {
           <p className="text-xl text-muted-foreground">
             Meet the team behind the magic
           </p>
+          <Link
+            href="/ecosystem"
+            className="inline-flex items-center gap-2 mt-4 px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            View Live Ecosystem &rarr;
+          </Link>
         </div>
 
         {/* Team Grid */}
