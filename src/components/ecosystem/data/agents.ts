@@ -14,7 +14,9 @@ export interface AgentDef {
 }
 
 export const agents: AgentDef[] = [
-  // Infrastructure
+  // ═══════════════════════════════════════════
+  // INFRASTRUCTURE
+  // ═══════════════════════════════════════════
   {
     id: "mac-studio",
     name: "Mac Studio",
@@ -23,82 +25,88 @@ export const agents: AgentDef[] = [
     color: "#a1a1aa",
     glow: "rgba(161,161,170,0.4)",
     initials: "MS",
-    description: "Dan's Mac Studio — runs David orchestrator, Qwen 3.5 local model, Codex & Claude Code.",
+    description: "Dan's Mac Studio — runs David fleet orchestrator, Qwen 3.5 local model, Codex & Claude Code. Redis bridges to Supabase, Vercel, GitHub.",
   },
   {
     id: "dan",
     name: "Dan",
-    role: "Human",
+    role: "Human Boss",
     project: "DansLab",
     projectUrl: "https://danslab.vercel.app",
     type: "main",
     color: "#f8fafc",
     glow: "rgba(248,250,252,0.35)",
     initials: "DN",
-    description: "Human in the loop. Sets direction, defines priorities, and decides what enters the lab.",
+    description: "Romanian entrepreneur. Commands the fleet via Telegram DM to Dexter. Sets priorities, approves direction, and decides what enters the lab.",
   },
 
-  // Main Agents
+  // ═══════════════════════════════════════════
+  // MAIN AGENTS — DigitalOcean Droplets (Frankfurt)
+  // ═══════════════════════════════════════════
   {
     id: "david",
     name: "David",
-    role: "Main Orchestrator",
+    role: "Fleet Orchestrator",
     project: "nervix.ai",
-    projectUrl: "https://nervix.ai",
+    projectUrl: "https://nervix.vercel.app",
     type: "main",
     color: "#22c55e",
     glow: "rgba(34,197,94,0.4)",
     initials: "DV",
-    description: "The main orchestrator. Runs nervix.ai where all OpenClaw agents are welcome to join.",
+    description: "Fleet orchestrator on Mac Studio. Bridges to Supabase, Vercel, GitHub. Monitors all agents fleet-wide. Runs nervix.ai federation.",
   },
   {
     id: "dexter",
     name: "Dexter",
-    role: "YouTube Tools",
+    role: "General Manager",
     project: "crawdbot.com",
     projectUrl: "https://crawdbot.com",
     type: "main",
     color: "#3b82f6",
     glow: "rgba(59,130,246,0.4)",
     initials: "DX",
-    description: "Tools for YouTube channels — Video Studio, channel analytics, and creator tools.",
+    description: "Senior Dev & GM on droplet 46.101.219.116. Claude Opus 4.6. SSH to all agents. Manages CrawdBot, YouTube Platform, CrawBoard (team.crawdbot.com). Runs 24 Nervix nanobots + 14 cron jobs. Dan's primary contact.",
   },
   {
     id: "nano",
     name: "Nano",
     role: "Agent Creator",
     project: "nervix.ai",
-    projectUrl: "https://nervix.ai",
+    projectUrl: "https://nervix.vercel.app",
     type: "main",
     color: "#a855f7",
     glow: "rgba(168,85,247,0.4)",
     initials: "NN",
-    description: "Creates specialized agents and enrolls them into the nervix.ai system to make money.",
+    description: "Founding Orchestrator of Nervix Federation on droplet 157.230.23.158. Creates specialized agents, enrolls them via nervix-cli (npm). Ed25519 auth, capability benchmarking, reputation system.",
   },
   {
     id: "memo",
     name: "Memo",
-    role: "Framework Builder",
-    project: "MyWork-ai",
-    projectUrl: "https://mywork.ai",
+    role: "Project Manager",
+    project: "MyWork-AI",
+    projectUrl: "https://pypi.org/project/mywork-ai/",
     type: "main",
     color: "#f97316",
     glow: "rgba(249,115,22,0.4)",
     initials: "MM",
-    description: "MyWork-ai Framework — users login, build tools, share with others for money. Everything stays on the platform.",
+    description: "PM & DevOps on droplet 138.68.86.47. Claude Sonnet 4. Runs 24 n8n automations (localhost:5678). Manages MyWork-AI (72+ CLI commands, PyPI). Hosts purchase-webhook for Stripe → GitHub access.",
   },
   {
     id: "sienna",
     name: "Sienna",
-    role: "Crypto Trader",
+    role: "Crypto Specialist",
     project: "zmarty.me",
     projectUrl: "https://zmarty.me",
     type: "main",
     color: "#ec4899",
     glow: "rgba(236,72,153,0.4)",
     initials: "SI",
-    description: "The crypto girl — advertises trading strategy via zmarty.me with 100+ endpoints for trading data.",
+    description: "Crypto girl on droplet 167.172.187.230. ZAI GLM-4.7 model. Binance API trading. 100+ trading endpoints via zmarty.me. Promotes strategy via sienna-crypto-girl site.",
   },
+
+  // ═══════════════════════════════════════════
+  // OPENCLAW AGENTS — Local instances (port 18789)
+  // ═══════════════════════════════════════════
   {
     id: "openclaw-1",
     name: "OpenClaw-01",
@@ -107,7 +115,7 @@ export const agents: AgentDef[] = [
     color: "#60a5fa",
     glow: "rgba(96,165,250,0.35)",
     initials: "O1",
-    description: "Internal OpenClaw builder focused on implementation, assembly, and rapid shipping work.",
+    description: "Internal OpenClaw builder. Each agent runs OpenClaw v2026.2.14 locally on ws://127.0.0.1:18789 with Telegram provider, session persistence, and Supabase context.",
   },
   {
     id: "openclaw-2",
@@ -117,7 +125,7 @@ export const agents: AgentDef[] = [
     color: "#c084fc",
     glow: "rgba(192,132,252,0.35)",
     initials: "O2",
-    description: "Internal OpenClaw researcher used for discovery, mapping, and early design passes.",
+    description: "Internal OpenClaw researcher for discovery, mapping, design. ClawHub skills marketplace (clawhub.ai/skills) extends capabilities.",
   },
   {
     id: "openclaw-3",
@@ -127,7 +135,7 @@ export const agents: AgentDef[] = [
     color: "#f472b6",
     glow: "rgba(244,114,182,0.35)",
     initials: "O3",
-    description: "Internal OpenClaw reviewer for QA, edge cases, and regression spotting.",
+    description: "Internal OpenClaw reviewer for QA, edge cases, regression. Reviews PRs on GitHub before Pope runs CI.",
   },
   {
     id: "openclaw-4",
@@ -137,7 +145,7 @@ export const agents: AgentDef[] = [
     color: "#38bdf8",
     glow: "rgba(56,189,248,0.35)",
     initials: "O4",
-    description: "Internal OpenClaw automation specialist for glue code, scripts, and repetitive tasks.",
+    description: "Internal OpenClaw automation specialist for glue code, scripts, repetitive tasks. Works with AutoForge for autonomous shipping.",
   },
   {
     id: "manusclaw",
@@ -147,19 +155,21 @@ export const agents: AgentDef[] = [
     color: "#f59e0b",
     glow: "rgba(245,158,11,0.35)",
     initials: "MC",
-    description: "OpenClaw operations agent that runs focused execution loops and closes tactical tasks.",
+    description: "Manus AI operations agent. Runs focused execution loops. Designed Nervix v2 federation architecture. Writes solutions for devops-control-repo.",
   },
 
-  // Communication Channels
+  // ═══════════════════════════════════════════
+  // COMMUNICATION CHANNELS
+  // ═══════════════════════════════════════════
   {
     id: "telegram",
     name: "Telegram",
-    role: "Messaging",
+    role: "Primary Comms",
     type: "channel",
     color: "#0ea5e9",
     glow: "rgba(14,165,233,0.4)",
     initials: "TG",
-    description: "All agents connected. Dan posts ideas and receives updates.",
+    description: "Primary human-agent channel. Dan DMs Dexter directly. Team Avatars group (chat_id: -1003828031283) syncs Dan + Dexter + Memo + Sienna. All messages stored in Supabase chat_history.",
   },
   {
     id: "slack",
@@ -169,7 +179,7 @@ export const agents: AgentDef[] = [
     color: "#e11d48",
     glow: "rgba(225,29,72,0.4)",
     initials: "SL",
-    description: "Team communication hub. KiloClaw moderates, KimiClaw amplifies, and ManusClaw drives ops.",
+    description: "Team communication hub. KiloClaw moderates, KimiClaw amplifies, ManusClaw drives ops.",
   },
   {
     id: "discord",
@@ -179,10 +189,12 @@ export const agents: AgentDef[] = [
     color: "#6366f1",
     glow: "rgba(99,102,241,0.4)",
     initials: "DC",
-    description: "Community channel for users and agents.",
+    description: "Community channel for users and public updates.",
   },
 
-  // Slack Agents
+  // ═══════════════════════════════════════════
+  // SLACK AGENTS
+  // ═══════════════════════════════════════════
   {
     id: "kiloclaw",
     name: "KiloClaw",
@@ -191,7 +203,7 @@ export const agents: AgentDef[] = [
     color: "#f43f5e",
     glow: "rgba(244,63,94,0.4)",
     initials: "KC",
-    description: "KiloCode agent on Slack — moderates all agents and keeps order.",
+    description: "KiloCode agent on Slack — moderates all agents, keeps order, escalates issues to Doctor.",
   },
   {
     id: "kimiclaw",
@@ -201,10 +213,12 @@ export const agents: AgentDef[] = [
     color: "#14b8a6",
     glow: "rgba(20,184,166,0.4)",
     initials: "KM",
-    description: "OpenClaw signal amplifier — advertises products, agent capabilities, and opportunities across channels.",
+    description: "OpenClaw signal amplifier — promotes crawdbot.com, nervix.ai, MyWork-AI, zmarty.me across all channels.",
   },
 
-  // Support Agents
+  // ═══════════════════════════════════════════
+  // SUPPORT AGENTS
+  // ═══════════════════════════════════════════
   {
     id: "monitor",
     name: "DansLabMonitor",
@@ -213,7 +227,7 @@ export const agents: AgentDef[] = [
     color: "#eab308",
     glow: "rgba(234,179,8,0.3)",
     initials: "MO",
-    description: "Monitors everything — uptime, performance, errors, agent health.",
+    description: "Monitors everything. 14 crons on Dexter's droplet: droplet stats → Supabase every 30min, GPU auto-stop, secret scanner, daily summaries at 23:55 UTC.",
   },
   {
     id: "vercel",
@@ -223,7 +237,7 @@ export const agents: AgentDef[] = [
     color: "#f5f5f5",
     glow: "rgba(245,245,245,0.3)",
     initials: "VC",
-    description: "Manages all Vercel deployments, preview URLs, and production releases.",
+    description: "Manages Vercel deployments: CrawdBot, CrawBoard, Nervix, YouTube Platform, OpenClaw Key Manager, DansLab. All on free tier.",
   },
   {
     id: "github",
@@ -233,17 +247,17 @@ export const agents: AgentDef[] = [
     color: "#c084fc",
     glow: "rgba(192,132,252,0.3)",
     initials: "GH",
-    description: "Keeps everything organized — repos, branches, PRs, team permissions.",
+    description: "60+ repos organized. Agent workspaces (david/dexter/nano/sienna/memo-workspace), agent configs (agent-dexter/sienna/memo), Nervix microservices, product repos.",
   },
   {
     id: "pope",
-    name: "DansLabPope",
-    role: "Autonomous Runner",
+    name: "ThePopeBot",
+    role: "Async Worker",
     type: "support",
     color: "#fb923c",
     glow: "rgba(251,146,60,0.3)",
     initials: "PP",
-    description: "Autonomous agent — works alone in GitHub, repairs and runs assigned jobs.",
+    description: "Autonomous GitHub Actions worker. Separate workers for Dexter, Nano, Memo (popebot-worker-*). Docker agents create branches, code in containers, submit PRs. Cron + webhook triggers.",
   },
   {
     id: "autoforge",
@@ -253,7 +267,7 @@ export const agents: AgentDef[] = [
     color: "#38bdf8",
     glow: "rgba(56,189,248,0.3)",
     initials: "AF",
-    description: "Autonomous coding agent — writes, refactors, and ships code.",
+    description: "Autonomous coding agent — writes, refactors, ships code. Uses GSD framework for structured execution.",
   },
   {
     id: "gsd",
@@ -263,7 +277,7 @@ export const agents: AgentDef[] = [
     color: "#4ade80",
     glow: "rgba(74,222,128,0.3)",
     initials: "GS",
-    description: "GSD Framework — used anytime any agent needs structured task execution.",
+    description: "GSD Framework — structured task execution used by AutoForge, Pope, OpenClaw agents, and all coding workflows.",
   },
   {
     id: "vector",
@@ -273,7 +287,7 @@ export const agents: AgentDef[] = [
     color: "#818cf8",
     glow: "rgba(129,140,248,0.3)",
     initials: "VE",
-    description: "Vector memory — stores everything organized and searchable for all agents.",
+    description: "Vector memory. All agents load team context on startup via memory_manager.py and context_manager.py. Stores agent_context + daily_summaries in Supabase.",
   },
   {
     id: "update",
@@ -283,7 +297,7 @@ export const agents: AgentDef[] = [
     color: "#2dd4bf",
     glow: "rgba(45,212,191,0.3)",
     initials: "UP",
-    description: "Keeps all tools updated to latest versions across the system.",
+    description: "Updates all tools: OpenClaw v2026.2.14, Claude Code, Codex, AutoForge, GSD, nervix-cli. Runs from devops-control-repo daily audit cycle.",
   },
   {
     id: "model",
@@ -293,7 +307,7 @@ export const agents: AgentDef[] = [
     color: "#f472b6",
     glow: "rgba(244,114,182,0.3)",
     initials: "ML",
-    description: "Optimizes LLM models — delegates tasks, manages fallbacks, repairs model issues.",
+    description: "Manages model fallback chains: Opus→Sonnet→GPT-4.1→Gemini Flash→ZAI (main), Gemini Flash→Sonnet→Opus (sub-agents), Gemini Flash→Haiku (crons). 7+ providers: Anthropic, OpenRouter, DeepSeek, Z.AI, Google, OpenAI.",
   },
   {
     id: "doctor",
@@ -303,7 +317,7 @@ export const agents: AgentDef[] = [
     color: "#ef4444",
     glow: "rgba(239,68,68,0.3)",
     initials: "DR",
-    description: "Fixes everything inside the team — diagnostics, repairs, recovery.",
+    description: "Fixes everything. Runs devops-control-repo scripts/audit.sh daily. Checks solutions/ folder from Manus AI. Executes repairs, updates status.md per agent.",
   },
   {
     id: "learning",
@@ -313,7 +327,7 @@ export const agents: AgentDef[] = [
     color: "#a3e635",
     glow: "rgba(163,230,53,0.3)",
     initials: "LN",
-    description: "Auto-learns from the previous day — patterns, mistakes, improvements.",
+    description: "Auto-learns from previous day. Daily summaries generated at 23:55 UTC → stored in Supabase daily_summaries table. Feeds patterns to Model and Vector.",
   },
   {
     id: "stripe",
@@ -323,7 +337,7 @@ export const agents: AgentDef[] = [
     color: "#8b5cf6",
     glow: "rgba(139,92,246,0.3)",
     initials: "ST",
-    description: "Stripe integration — handles subscriptions, credits, and payment processing.",
+    description: "Stripe integration for CrawBoard billing (Pro/Team/Enterprise plans). purchase-webhook on Memo's droplet auto-grants GitHub repo access on purchase.",
   },
   {
     id: "ssh",
@@ -333,7 +347,7 @@ export const agents: AgentDef[] = [
     color: "#06b6d4",
     glow: "rgba(6,182,212,0.3)",
     initials: "SH",
-    description: "Connection agent — manages Tailscale SSH and inter-agent communication.",
+    description: "Cross-droplet SSH mesh via ed25519 keys. Dexter↔Memo, Dexter↔Sienna, Sienna→Nano, Memo→Dexter (emergency). Managed by devops-control-repo.",
   },
   {
     id: "supabase",
@@ -343,7 +357,7 @@ export const agents: AgentDef[] = [
     color: "#34d399",
     glow: "rgba(52,211,153,0.3)",
     initials: "SB",
-    description: "Connects entire system to Supabase — auth, database, storage, realtime.",
+    description: "Two Supabase instances: MoltBot DB (30+ tables: chat_history, daily_summaries, agent_context, tasks, video pipeline) used by all agents. Nervix DB (agents, tasks, escrow) for the federation.",
   },
 ];
 
