@@ -21,11 +21,11 @@ export default function AgentDetailPanel({
 
   return (
     <motion.div
-      className="fixed right-3 top-14 z-50 w-[280px] max-h-[70vh] overflow-y-auto rounded-xl border border-zinc-800 bg-zinc-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
-      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      className="fixed left-0 top-0 z-50 w-[240px] h-full overflow-y-auto border-r border-zinc-800/60 bg-zinc-950/90 backdrop-blur-xl shadow-[4px_0_30px_rgba(0,0,0,0.4)]"
+      initial={{ x: -240, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -240, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 350, damping: 30 }}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="p-4">

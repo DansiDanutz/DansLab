@@ -237,29 +237,20 @@ export default function EcosystemCanvas() {
         </div>
       </div>
 
-      {/* ===== CONNECTION LEGEND ===== */}
+      {/* ===== BOTTOM-RIGHT: LEGEND + STATS ===== */}
       <motion.div
-        className="absolute bottom-16 left-3 z-30 hidden sm:flex flex-col gap-1 rounded-lg border border-zinc-800/60 bg-zinc-950/70 px-3 py-2 backdrop-blur-md"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="absolute bottom-16 right-3 z-30 hidden sm:flex items-center gap-3 rounded-lg border border-zinc-800/60 bg-zinc-950/70 px-3 py-2 backdrop-blur-md"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
       >
-        <span className="text-[8px] uppercase tracking-[0.2em] text-zinc-600 mb-0.5">Connections</span>
         {connectionLegend.map((c) => (
-          <div key={c.type} className="flex items-center gap-1.5">
-            <div className="h-[2px] w-4 rounded-full" style={{ background: c.color }} />
-            <span className="text-[9px] text-zinc-500">{c.label}</span>
+          <div key={c.type} className="flex items-center gap-1">
+            <div className="h-[2px] w-3 rounded-full" style={{ background: c.color }} />
+            <span className="text-[8px] text-zinc-500">{c.label}</span>
           </div>
         ))}
-      </motion.div>
-
-      {/* ===== STATS ===== */}
-      <motion.div
-        className="absolute bottom-16 right-3 z-30 hidden sm:flex items-center gap-2 rounded-lg border border-zinc-800/60 bg-zinc-950/70 px-3 py-2 backdrop-blur-md"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.5 }}
-      >
+        <span className="text-zinc-800">|</span>
         <span className="text-[9px] text-zinc-500">
           <span className="text-zinc-300 font-semibold">{agents.length}</span> agents
         </span>
