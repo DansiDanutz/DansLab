@@ -4,53 +4,54 @@ export interface NodePosition {
 }
 
 // Positions as percentages of container width/height
-// Layout: channels top, main agents middle ring, mac studio center, support agents bottom ring
+// Better spread with visual zones: Comms top, Orchestration middle, Infrastructure bottom
 export const positions: Record<string, NodePosition> = {
-  // Human entry
-  dan: { x: 50, y: 12 },
+  // === ZONE: Human + Channels (top) ===
+  dan: { x: 50, y: 8 },
 
-  // Communication Channels — top row
-  telegram: { x: 30, y: 5 },
-  slack: { x: 50, y: 5 },
-  discord: { x: 70, y: 5 },
+  telegram: { x: 28, y: 8 },
+  slack: { x: 50, y: 17 },
+  discord: { x: 72, y: 8 },
 
   // Slack agents — flanking slack
-  kiloclaw: { x: 38, y: 14 },
-  kimiclaw: { x: 62, y: 14 },
-  manusclaw: { x: 74, y: 16 },
+  kiloclaw: { x: 36, y: 20 },
+  kimiclaw: { x: 64, y: 20 },
+  manusclaw: { x: 80, y: 22 },
 
-  // David — top center orchestrator
-  david: { x: 50, y: 24 },
+  // === ZONE: Orchestration (middle) ===
+  david: { x: 50, y: 30 },
 
-  // Main agents — middle ring
-  dexter: { x: 20, y: 34 },
-  sienna: { x: 80, y: 34 },
+  // Main agents — wide ring
+  dexter: { x: 15, y: 36 },
+  sienna: { x: 85, y: 36 },
 
-  // Mac Studio — CENTER
-  "mac-studio": { x: 50, y: 44 },
+  // Mac Studio — CENTER HUB
+  "mac-studio": { x: 50, y: 46 },
 
-  nano: { x: 20, y: 54 },
-  memo: { x: 80, y: 54 },
+  nano: { x: 15, y: 56 },
+  memo: { x: 85, y: 56 },
 
-  // Support agents — bottom arc
-  monitor: { x: 10, y: 68 },
-  doctor: { x: 22, y: 68 },
-  learning: { x: 34, y: 68 },
-  vector: { x: 40, y: 68 },
-  "openclaw-1": { x: 52, y: 66 },
-  "openclaw-2": { x: 64, y: 66 },
-  model: { x: 76, y: 68 },
-  gsd: { x: 86, y: 68 },
-  ssh: { x: 94, y: 68 },
+  // === ZONE: OpenClaw Mesh ===
+  "openclaw-1": { x: 35, y: 58 },
+  "openclaw-2": { x: 65, y: 58 },
+  "openclaw-3": { x: 35, y: 70 },
+  "openclaw-4": { x: 65, y: 70 },
 
-  // Bottom row
-  autoforge: { x: 10, y: 82 },
-  github: { x: 25, y: 82 },
-  pope: { x: 36, y: 82 },
-  "openclaw-3": { x: 48, y: 82 },
-  "openclaw-4": { x: 60, y: 82 },
-  vercel: { x: 70, y: 82 },
-  stripe: { x: 82, y: 82 },
-  supabase: { x: 92, y: 82 },
-  update: { x: 98, y: 82 },
+  // === ZONE: Support Layer ===
+  vector: { x: 50, y: 64 },
+  monitor: { x: 6, y: 72 },
+  doctor: { x: 16, y: 72 },
+  learning: { x: 26, y: 72 },
+  model: { x: 74, y: 72 },
+  gsd: { x: 84, y: 72 },
+  ssh: { x: 94, y: 72 },
+
+  // === ZONE: Infrastructure (bottom) ===
+  autoforge: { x: 6, y: 87 },
+  github: { x: 18, y: 87 },
+  pope: { x: 30, y: 87 },
+  vercel: { x: 42, y: 87 },
+  stripe: { x: 58, y: 87 },
+  supabase: { x: 70, y: 87 },
+  update: { x: 82, y: 87 },
 };

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { agents } from "./data/agents";
 import { connections } from "./data/connections";
 import { positions } from "./data/positions";
@@ -14,6 +14,14 @@ import ScenarioPanel from "./panels/ScenarioPanel";
 import { useScenario } from "./scenarios/useScenario";
 import { agentMap } from "./data/agents";
 
+const connectionLegend = [
+  { type: "data", color: "#3b82f6", label: "Data" },
+  { type: "ssh", color: "#22c55e", label: "SSH" },
+  { type: "deploy", color: "#f97316", label: "Deploy" },
+  { type: "monitor", color: "#eab308", label: "Monitor" },
+  { type: "comms", color: "#6366f1", label: "Comms" },
+];
+
 export default function EcosystemCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 1200, height: 900 });
@@ -22,7 +30,6 @@ export default function EcosystemCanvas() {
 
   const scenario = useScenario();
 
-  // Track container size
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
@@ -37,7 +44,6 @@ export default function EcosystemCanvas() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Idle autoplay
   const resetIdleTimer = useCallback(() => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     if (!scenario.isPlaying) {
@@ -74,23 +80,18 @@ export default function EcosystemCanvas() {
     scenario.play(id);
   };
 
-  // Determine which nodes/connections to highlight
   const hasSelection = selectedAgent !== null;
   const selectedConnections = hasSelection
     ? new Set(
         connections
-          .filter(
-            (c) => c.from === selectedAgent || c.to === selectedAgent
-          )
+          .filter((c) => c.from === selectedAgent || c.to === selectedAgent)
           .map((c) => c.id)
       )
     : new Set<string>();
   const selectedNeighbors = hasSelection
     ? new Set(
         connections
-          .filter(
-            (c) => c.from === selectedAgent || c.to === selectedAgent
-          )
+          .filter((c) => c.from === selectedAgent || c.to === selectedAgent)
           .flatMap((c) => [c.from, c.to])
       )
     : new Set<string>();
@@ -107,14 +108,18 @@ export default function EcosystemCanvas() {
     >
       {/* Animated grid background */}
       <div
-        className="absolute inset-0 opacity-[0.07]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage:
-            "radial-gradient(circle, #3b82f6 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          animation: "gridDrift 20s linear infinite",
+          backgroundImage: "radial-gradient(circle, #6366f1 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          animation: "gridDrift 25s linear infinite",
         }}
       />
+
+      {/* Zone glows */}
+      <div className="absolute left-1/2 top-[14%] h-16 w-[50%] -translate-x-1/2 rounded-full bg-indigo-500/4 blur-[60px]" />
+      <div className="absolute left-1/2 top-[44%] h-24 w-[30%] -translate-x-1/2 rounded-full bg-blue-500/5 blur-[80px]" />
+      <div className="absolute left-1/2 top-[68%] h-20 w-[60%] -translate-x-1/2 rounded-full bg-emerald-500/3 blur-[60px]" />
 
       {/* SVG connections layer */}
       <svg
@@ -127,18 +132,8 @@ export default function EcosystemCanvas() {
           const toPos = positions[conn.to];
           if (!fromPos || !toPos) return null;
 
-          const from = getNodeCenter(
-            fromPos.x,
-            fromPos.y,
-            dimensions.width,
-            dimensions.height
-          );
-          const to = getNodeCenter(
-            toPos.x,
-            toPos.y,
-            dimensions.width,
-            dimensions.height
-          );
+          const from = getNodeCenter(fromPos.x, fromPos.y, dimensions.width, dimensions.height);
+          const to = getNodeCenter(toPos.x, toPos.y, dimensions.width, dimensions.height);
 
           const isScenarioActive = scenario.activeConnections.has(conn.id);
           const isSelectionActive = selectedConnections.has(conn.id);
@@ -182,65 +177,97 @@ export default function EcosystemCanvas() {
             <div
               key={agent.id}
               className="absolute"
-              style={{
-                left: `${pos.x}%`,
-                top: `${pos.y}%`,
-              }}
+              style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
             >
               <AgentNode
                 agent={agent}
                 isActive={isActive}
                 isHighlighted={isHighlighted}
                 isDimmed={isDimmed}
-                onClick={() => {
-                  // Stop propagation handled inside
-                  handleAgentClick(agent.id);
-                }}
+                onClick={() => handleAgentClick(agent.id)}
               />
             </div>
           );
         })}
       </div>
 
-      {/* Title overlay */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-center z-30 pointer-events-none">
-        <h1 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-          DansLab Ecosystem
-        </h1>
-        <p className="text-xs text-zinc-500 mt-1">
-          Click agents to explore &bull; OpenClaw-enhanced system map
-        </p>
-      </div>
-
-      <div className="absolute top-4 left-4 z-30 flex flex-wrap gap-2">
-        <Link
-          href="/"
-          className="rounded-full border border-zinc-700 bg-zinc-950/80 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-zinc-300 transition hover:border-zinc-500 hover:text-white"
-        >
-          Home
-        </Link>
-        <Link
-          href="/lab"
-          className="rounded-full border border-cyan-500/35 bg-cyan-500/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-cyan-200 transition hover:border-cyan-400 hover:bg-cyan-500/15"
-        >
-          Lab
-        </Link>
-        <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-400 uppercase tracking-[0.2em]">
-          Revenue + Agents + Infrastructure
-        </span>
-      </div>
-
-      {/* AI Models badge */}
-      <div className="absolute top-4 right-4 z-30 flex gap-1.5">
-        {["Claude Code", "Codex", "Qwen 3.5", "OpenClaw"].map((model) => (
-          <span
-            key={model}
-            className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-900/80 border border-zinc-700 text-zinc-400"
+      {/* ===== TOP BAR ===== */}
+      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 py-3 pointer-events-none">
+        {/* Left nav */}
+        <div className="flex items-center gap-2 pointer-events-auto">
+          <Link
+            href="/"
+            className="rounded-full border border-zinc-800 bg-zinc-950/80 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-zinc-400 transition hover:border-zinc-600 hover:text-white backdrop-blur-md"
           >
-            {model}
+            Home
+          </Link>
+          <Link
+            href="/lab"
+            className="rounded-full border border-cyan-500/30 bg-cyan-500/8 px-3 py-1.5 text-[10px] uppercase tracking-[0.22em] text-cyan-300 transition hover:border-cyan-400 hover:bg-cyan-500/15 backdrop-blur-md"
+          >
+            Lab
+          </Link>
+        </div>
+
+        {/* Center title */}
+        <div className="text-center">
+          <h1 className="text-lg sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            DansLab Ecosystem
+          </h1>
+          <p className="text-[9px] text-zinc-600 mt-0.5 hidden sm:block">
+            Click agents to explore &bull; Play scenarios below
+          </p>
+        </div>
+
+        {/* Right badges */}
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          <div className="hidden sm:flex gap-1">
+            {["Claude", "Codex", "Qwen", "OpenClaw"].map((m) => (
+              <span
+                key={m}
+                className="text-[9px] px-1.5 py-0.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-500 backdrop-blur-md"
+              >
+                {m}
+              </span>
+            ))}
+          </div>
+          <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-950/70 border border-emerald-800/60 text-emerald-400 backdrop-blur-md">
+            Revenue
           </span>
-        ))}
+        </div>
       </div>
+
+      {/* ===== CONNECTION LEGEND ===== */}
+      <motion.div
+        className="absolute bottom-16 left-3 z-30 hidden sm:flex flex-col gap-1 rounded-lg border border-zinc-800/60 bg-zinc-950/70 px-3 py-2 backdrop-blur-md"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.5 }}
+      >
+        <span className="text-[8px] uppercase tracking-[0.2em] text-zinc-600 mb-0.5">Connections</span>
+        {connectionLegend.map((c) => (
+          <div key={c.type} className="flex items-center gap-1.5">
+            <div className="h-[2px] w-4 rounded-full" style={{ background: c.color }} />
+            <span className="text-[9px] text-zinc-500">{c.label}</span>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* ===== STATS ===== */}
+      <motion.div
+        className="absolute bottom-16 right-3 z-30 hidden sm:flex items-center gap-2 rounded-lg border border-zinc-800/60 bg-zinc-950/70 px-3 py-2 backdrop-blur-md"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.5 }}
+      >
+        <span className="text-[9px] text-zinc-500">
+          <span className="text-zinc-300 font-semibold">{agents.length}</span> agents
+        </span>
+        <span className="text-zinc-700">&middot;</span>
+        <span className="text-[9px] text-zinc-500">
+          <span className="text-zinc-300 font-semibold">{connections.length}</span> connections
+        </span>
+      </motion.div>
 
       {/* Agent detail panel */}
       <AnimatePresence>
@@ -261,7 +288,6 @@ export default function EcosystemCanvas() {
         onPlay={handleScenarioPlay}
         onStop={scenario.stop}
       />
-
     </div>
   );
 }
