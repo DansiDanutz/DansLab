@@ -21,38 +21,39 @@ export default function AgentDetailPanel({
 
   return (
     <motion.div
-      className="fixed right-0 top-0 h-full w-[380px] max-w-[90vw] z-50 bg-zinc-950/95 backdrop-blur-xl border-l border-zinc-800 overflow-y-auto"
-      initial={{ x: 400, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 400, opacity: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="fixed right-3 top-14 z-50 w-[280px] max-h-[70vh] overflow-y-auto rounded-xl border border-zinc-800 bg-zinc-950/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
+      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      onClick={(e) => e.stopPropagation()}
     >
-      <div className="p-6">
+      <div className="p-4">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 transition-colors"
+          className="absolute top-3 right-3 text-zinc-600 hover:text-zinc-300 transition-colors"
         >
-          <X size={20} />
+          <X size={14} />
         </button>
 
         {/* Agent header */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-3 mb-3">
           <div
-            className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold font-mono"
+            className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold font-mono shrink-0"
             style={{
               border: `2px solid ${agent.color}`,
-              boxShadow: `0 0 20px ${agent.glow}`,
+              boxShadow: `0 0 12px ${agent.glow}`,
               color: agent.color,
               background: `${agent.color}15`,
             }}
           >
             {agent.initials}
           </div>
-          <div>
-            <h2 className="text-xl font-bold text-zinc-100">{agent.name}</h2>
+          <div className="min-w-0">
+            <h2 className="text-sm font-bold text-zinc-100 truncate">{agent.name}</h2>
             <span
-              className="text-sm font-medium"
+              className="text-xs font-medium"
               style={{ color: agent.color }}
             >
               {agent.role}
@@ -61,15 +62,15 @@ export default function AgentDetailPanel({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+        <p className="text-xs text-zinc-400 leading-relaxed mb-3">
           {agent.description}
         </p>
 
         {/* Project link */}
         {agent.project && (
-          <div className="mb-6 p-3 rounded-lg bg-zinc-900 border border-zinc-800">
-            <div className="flex items-center gap-2 text-sm">
-              <Zap size={14} style={{ color: agent.color }} />
+          <div className="mb-3 p-2 rounded-lg bg-zinc-900 border border-zinc-800">
+            <div className="flex items-center gap-2 text-xs">
+              <Zap size={11} style={{ color: agent.color }} />
               <span className="text-zinc-300 font-medium">{agent.project}</span>
               {agent.projectUrl && (
                 <a
@@ -78,7 +79,7 @@ export default function AgentDetailPanel({
                   rel="noopener noreferrer"
                   className="ml-auto text-zinc-500 hover:text-zinc-300 transition-colors"
                 >
-                  <ExternalLink size={14} />
+                  <ExternalLink size={11} />
                 </a>
               )}
             </div>
@@ -87,10 +88,10 @@ export default function AgentDetailPanel({
 
         {/* Connections */}
         <div>
-          <h3 className="text-sm font-semibold text-zinc-300 mb-3 uppercase tracking-wider">
+          <h3 className="text-[10px] font-semibold text-zinc-500 mb-2 uppercase tracking-wider">
             Connections
           </h3>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {relatedConnections.map((conn) => {
               const otherId =
                 conn.from === agent.id ? conn.to : conn.from;
@@ -100,10 +101,10 @@ export default function AgentDetailPanel({
               return (
                 <div
                   key={conn.id}
-                  className="flex items-center gap-2 text-sm p-2 rounded bg-zinc-900/50"
+                  className="flex items-center gap-1.5 text-xs px-2 py-1 rounded bg-zinc-900/50"
                 >
                   <span
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-mono font-bold"
+                    className="w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-mono font-bold shrink-0"
                     style={{
                       border: `1px solid ${other.color}`,
                       color: other.color,
@@ -111,10 +112,10 @@ export default function AgentDetailPanel({
                   >
                     {other.initials}
                   </span>
-                  <span className="text-zinc-500">{direction}</span>
-                  <span className="text-zinc-300">{other.name}</span>
+                  <span className="text-zinc-600 text-[10px]">{direction}</span>
+                  <span className="text-zinc-300 truncate">{other.name}</span>
                   {conn.label && (
-                    <span className="ml-auto text-xs text-zinc-600">
+                    <span className="ml-auto text-[9px] text-zinc-600 shrink-0">
                       {conn.label}
                     </span>
                   )}
@@ -125,11 +126,11 @@ export default function AgentDetailPanel({
         </div>
 
         {/* Type badge */}
-        <div className="mt-6 pt-4 border-t border-zinc-800">
+        <div className="mt-3 pt-2 border-t border-zinc-800/60">
           <div className="flex items-center gap-2">
-            <span className="text-xs text-zinc-600 uppercase tracking-wider">Type</span>
+            <span className="text-[9px] text-zinc-600 uppercase tracking-wider">Type</span>
             <span
-              className="text-xs px-2 py-0.5 rounded-full font-medium"
+              className="text-[9px] px-1.5 py-0.5 rounded-full font-medium"
               style={{
                 border: `1px solid ${agent.color}40`,
                 color: agent.color,
