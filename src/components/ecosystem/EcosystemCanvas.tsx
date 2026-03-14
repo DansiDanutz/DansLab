@@ -127,10 +127,10 @@ export default function EcosystemCanvas() {
             <ConnectionLine
               key={conn.id}
               id={conn.id}
-              x1={from.x}
-              y1={from.y}
-              x2={to.x}
-              y2={to.y}
+              x1={from.cx}
+              y1={from.cy}
+              x2={to.cx}
+              y2={to.cy}
               type={conn.type}
               isActive={isActive}
               isDimmed={isDimmed}
