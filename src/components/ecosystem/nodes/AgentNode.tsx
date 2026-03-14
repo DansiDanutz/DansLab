@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Bot, Cpu, Shield, Sparkles, Wrench } from "lucide-react";
 import type { AgentDef } from "../data/agents";
-import { DanAvatar } from "@/components/avatars";
+import { DanAvatar, DavidAvatar, NanoAvatar, DexterAvatar, SiennaAvatar, MemoAvatar } from "@/components/avatars";
 
 interface AgentNodeProps {
   agent: AgentDef;
@@ -59,13 +59,24 @@ function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
     return <DanAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
   }
 
-  if (agent.id === "david") {
-    return (
-      <div className="relative flex h-11 w-11 items-center justify-center">
-        <Cpu size={30} color={agent.color} strokeWidth={1.8} />
-        <div className="absolute inset-0 rounded-full border border-white/10" />
-      </div>
-    );
+    if (agent.id === "david") {
+    return <DavidAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  }
+
+  if (agent.id === "nano") {
+    return <NanoAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  }
+
+  if (agent.id === "dexter") {
+    return <DexterAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  }
+
+  if (agent.id === "sienna") {
+    return <SiennaAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  }
+
+  if (agent.id === "memo") {
+    return <MemoAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
   }
 
   if (agent.id === "mac-studio") {
