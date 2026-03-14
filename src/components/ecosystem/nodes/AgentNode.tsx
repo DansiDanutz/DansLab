@@ -20,10 +20,9 @@ const sizeMap = {
   infra: { outer: 88, inner: 74, text: "text-xl", ring: 92 },
   channel: { outer: 52, inner: 42, text: "text-xs", ring: 56 },
   slack: { outer: 48, inner: 38, text: "text-xs", ring: 52 },
-};
+/* Agents with avatar images in /public/avatars/ — maps id to file extension */
+const avatarAgents: Record<string, string> = { dan: "jpg", david: "jpg", dexter: "jpg", nano: "png", sienna: "jpg", memo: "jpg" };
 
-/* Agents that have real avatar images in /public/avatars/ */
-const avatarAgents = ["dan", "david", "dexter", "nano", "sienna", "memo"];
 
 function AvatarImage({
   agentId,
@@ -48,7 +47,7 @@ function AvatarImage({
 
   return (
     <Image
-      src={`/avatars/${agentId}.png`}
+            src={`/avatars/${agentId}.${avatarAgents[agentId]}`}
       alt={agentId}
       width={size}
       height={size}
@@ -88,7 +87,7 @@ function ClawGlyph({ color, label }: { color: string; label: string }) {
 
 function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
   /* Main team agents: show avatar image */
-  if (avatarAgents.includes(agent.id)) {
+    if (agent.id in avatarAgents) {
     const imgSize = agent.type === "main" || agent.id === "dan" ? 54 : 36;
     return (
       <AvatarImage
