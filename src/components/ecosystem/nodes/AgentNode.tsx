@@ -21,10 +21,14 @@ const sizeMap = {
   slack: { outer: 48, inner: 38, text: "text-xs", ring: 52 },
 };
 
-/* Maps agent id to avatar file extension in /public/avatars/ */
-const avatarAgents: Record<string, string> = {
-  dan: "jpg", david: "jpg", dexter: "jpg",
-  nano: "png", sienna: "jpg", memo: "jpg",
+/* Maps agent id to actual filename in /public/avatars/ */
+const avatarFiles: Record<string, string> = {
+  dan: "dan.jpg",
+  david: "David.jpeg",
+  dexter: "dexter.jpg",
+  nano: "nano.png",
+  sienna: "sienna.jpg",
+  memo: "memo.jpg",
 };
 
 function AgentAvatar({
@@ -33,9 +37,9 @@ function AgentAvatar({
   agentId: string; size: number; color: string; initials: string;
 }) {
   const [imgError, setImgError] = useState(false);
-  const ext = avatarAgents[agentId] || "png";
+  const file = avatarFiles[agentId];
 
-  if (imgError) {
+  if (imgError || !file) {
     return (
       <span className="text-sm font-bold" style={{ color }}>
         {initials}
@@ -46,7 +50,7 @@ function AgentAvatar({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/avatars/${agentId}.${ext}`}
+      src={`/avatars/${file}`}
       alt={agentId}
       width={size}
       height={size}
@@ -78,7 +82,7 @@ function ClawGlyph({ color, label }: { color: string; label: string }) {
 }
 
 function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
-  if (agent.id in avatarAgents) {
+  if (agent.id in avatarFiles) {
     const imgSize = agent.type === "main" || agent.id === "dan" ? 54 : 36;
     return (
       <AgentAvatar
