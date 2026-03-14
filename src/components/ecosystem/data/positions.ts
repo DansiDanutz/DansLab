@@ -4,33 +4,33 @@ export interface NodePosition {
 }
 
 // Positions as percentages of container width/height
-// Spread vertically with clear zones to avoid label overlap
-// Top zone: 6-12%, Channels: 16-22%, Middle: 28-48%, Support: 56-68%, Infra: 76-84%
+// Vertical zones with breathing room between each layer
+// Dan+Channels: 6-10%, Slack+Claws: 20-24%, Orchestration: 30-45%, Support: 55-68%, Infra: 78-82%
 export const positions: Record<string, NodePosition> = {
-  // === ZONE: Human + Channels (top) ===
-  dan: { x: 50, y: 6 },
+  // === ZONE: Human Boss + Channels (top) ===
+  dan: { x: 50, y: 7 },
 
-  telegram: { x: 28, y: 6 },
-  slack: { x: 50, y: 16 },
-  discord: { x: 72, y: 6 },
+  telegram: { x: 28, y: 7 },
+  discord: { x: 72, y: 7 },
 
-  // Slack agents — flanking slack
-  kiloclaw: { x: 36, y: 19 },
-  kimiclaw: { x: 64, y: 19 },
-  manusclaw: { x: 80, y: 21 },
+  // Slack + flanking claws - pushed down to avoid Dan's labels
+  slack: { x: 50, y: 20 },
+  kiloclaw: { x: 36, y: 22 },
+  kimiclaw: { x: 64, y: 22 },
+  manusclaw: { x: 80, y: 24 },
 
   // === ZONE: Orchestration (middle) ===
-  david: { x: 50, y: 28 },
+  david: { x: 50, y: 32 },
 
-  // Main agents — wide ring
-  dexter: { x: 15, y: 34 },
-  sienna: { x: 85, y: 34 },
+  // Main agents - wide ring
+  dexter: { x: 15, y: 37 },
+  sienna: { x: 85, y: 37 },
 
-  // Mac Studio — CENTER HUB
-  "mac-studio": { x: 50, y: 43 },
+  // Mac Studio - CENTER HUB
+  "mac-studio": { x: 50, y: 45 },
 
-  nano: { x: 15, y: 52 },
-  memo: { x: 85, y: 52 },
+  nano: { x: 15, y: 53 },
+  memo: { x: 85, y: 53 },
 
   // === ZONE: OpenClaw Mesh ===
   "openclaw-1": { x: 35, y: 53 },
