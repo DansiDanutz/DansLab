@@ -24,7 +24,7 @@ const sizeMap = {
 /* Maps agent id to actual filename in /public/avatars/ */
 const avatarFiles: Record<string, string> = {
   dan: "dan.jpg",
-  david: "David.jpeg",
+  david: "David-good.png",
   dexter: "dexter.jpg",
   nano: "nano.png",
   sienna: "sienna.jpg",
