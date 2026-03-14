@@ -1,6 +1,12 @@
 export { DanAvatar } from "./dan-avatar";
 export { DavidAvatar } from "./david-avatar";
 export { NanoAvatar } from "./nano-avatar";
+export { DexterAvatar } from "./dexter-avatar";
+export { SiennaAvatar } from "./sienna-avatar";
+export { MemoAvatar } from "./memo-avatar";
 export { default as DanAvatarDefault } from "./dan-avatar";
 export { default as DavidAvatarDefault } from "./david-avatar";
 export { default as NanoAvatarDefault } from "./nano-avatar";
+export { default as DexterAvatarDefault } from "./dexter-avatar";
+export { default as SiennaAvatarDefault } from "./sienna-avatar";
+export { default as MemoAvatarDefault } from "./memo-avatar";
