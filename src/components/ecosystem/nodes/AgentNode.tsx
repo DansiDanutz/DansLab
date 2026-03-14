@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Bot, Cpu, Shield, Sparkles, Wrench } from "lucide-react";
+import { Bot, Sparkles, Shield, Wrench } from "lucide-react";
+import Image from "next/image";
 import type { AgentDef } from "../data/agents";
-import { DanAvatar, DavidAvatar, NanoAvatar, DexterAvatar, SiennaAvatar, MemoAvatar } from "@/components/avatars";
 
 interface AgentNodeProps {
   agent: AgentDef;
@@ -21,13 +22,44 @@ const sizeMap = {
   slack: { outer: 48, inner: 38, text: "text-xs", ring: 52 },
 };
 
-function ClawGlyph({
+/* Agents that have real avatar images in /public/avatars/ */
+const avatarAgents = ["dan", "david", "dexter", "nano", "sienna", "memo"];
+
+function AvatarImage({
+  agentId,
+  size,
   color,
-  label,
+  initials,
 }: {
+  agentId: string;
+  size: number;
   color: string;
-  label: string;
+  initials: string;
 }) {
+  const [imgError, setImgError] = useState(false);
+
+  if (imgError) {
+    return (
+      <span className="text-sm font-bold" style={{ color }}>
+        {initials}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={`/avatars/${agentId}.png`}
+      alt={agentId}
+      width={size}
+      height={size}
+      className="rounded-full object-cover"
+      onError={() => setImgError(true)}
+      unoptimized
+    />
+  );
+}
+
+function ClawGlyph({ color, label }: { color: string; label: string }) {
   return (
     <svg viewBox="0 0 64 64" className="h-9 w-9">
       <path
@@ -55,28 +87,17 @@ function ClawGlyph({
 }
 
 function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
-  if (agent.id === "dan") {
-    return <DanAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
-  }
-
-    if (agent.id === "david") {
-    return <DavidAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
-  }
-
-  if (agent.id === "nano") {
-    return <NanoAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
-  }
-
-  if (agent.id === "dexter") {
-    return <DexterAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
-  }
-
-  if (agent.id === "sienna") {
-    return <SiennaAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
-  }
-
-  if (agent.id === "memo") {
-    return <MemoAvatar size="xl" className="h-10 w-10 ring-2 ring-white/10" />;
+  /* Main team agents: show avatar image */
+  if (avatarAgents.includes(agent.id)) {
+    const imgSize = agent.type === "main" || agent.id === "dan" ? 54 : 36;
+    return (
+      <AvatarImage
+        agentId={agent.id}
+        size={imgSize}
+        color={agent.color}
+        initials={agent.initials}
+      />
+    );
   }
 
   if (agent.id === "mac-studio") {
@@ -90,11 +111,9 @@ function renderGlyph(agent: AgentDef, isHighlighted: boolean) {
   if (agent.id === "kimiclaw") {
     return <Sparkles size={24} color={agent.color} strokeWidth={2} />;
   }
-
   if (agent.id === "kiloclaw") {
     return <Shield size={24} color={agent.color} strokeWidth={2} />;
   }
-
   if (agent.id === "manusclaw") {
     return <Wrench size={24} color={agent.color} strokeWidth={2} />;
   }
@@ -116,7 +135,14 @@ export default function AgentNode({
   isDimmed,
   onClick,
 }: AgentNodeProps) {
-  const size = sizeMap[agent.type];
+  const isOpenClaw = agent.id.startsWith("openclaw-");
+
+  /* OpenClaw agents get bigger rounded-square nodes */
+  const size = isOpenClaw
+    ? { outer: 64, inner: 52, text: "text-sm" as const, ring: 68 }
+    : sizeMap[agent.type];
+
+  const borderRadius = isOpenClaw ? "30%" : "50%";
 
   return (
     <motion.div
@@ -140,11 +166,12 @@ export default function AgentNode({
       {/* Pulse ring */}
       {(isActive || isHighlighted) && (
         <motion.div
-          className="absolute rounded-full"
+          className="absolute"
           style={{
-            width: size.ring,
-            height: size.ring,
+            width: size.ring ?? size.outer + 4,
+            height: size.ring ?? size.outer + 4,
             border: `2px solid ${agent.color}`,
+            borderRadius,
             opacity: 0.5,
           }}
           animate={{
@@ -159,17 +186,19 @@ export default function AgentNode({
         />
       )}
 
-      {/* Node circle */}
+      {/* Node shape */}
       <div
-        className="rounded-full flex items-center justify-center font-bold relative"
+        className="flex items-center justify-center font-bold relative overflow-hidden"
         style={{
           width: size.outer,
           height: size.outer,
+          borderRadius,
           background: `radial-gradient(circle at 30% 30%, ${agent.color}33, ${agent.color}11)`,
           border: `2px solid ${agent.color}`,
-          boxShadow: isActive || isHighlighted
-            ? `0 0 20px ${agent.glow}, 0 0 40px ${agent.glow}`
-            : `0 0 8px ${agent.glow}`,
+          boxShadow:
+            isActive || isHighlighted
+              ? `0 0 20px ${agent.glow}, 0 0 40px ${agent.glow}`
+              : `0 0 8px ${agent.glow}`,
           transition: "box-shadow 0.3s ease",
         }}
       >
