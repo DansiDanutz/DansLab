@@ -1,0 +1,28 @@
+{
+  "name": "@openclaw/logger",
+  "version": "1.0.0",
+  "description": "Comprehensive logging system for OpenClaw team infrastructure",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "openclaw-log": "dist/cli.js",
+    "openclaw-collector": "dist/collector-daemon.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start:collector": "node dist/collector-daemon.js",
+    "start:cli": "node dist/cli.js",
+    "test": "node --test dist/**/*.test.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.93.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
