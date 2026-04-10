@@ -25,7 +25,7 @@ export const agents: AgentDef[] = [
     color: "#a1a1aa",
     glow: "rgba(161,161,170,0.4)",
     initials: "MS",
-    description: "Dan's Mac Studio — runs David fleet orchestrator, Qwen 3.5 local model, Codex & Claude Code. Redis bridges to Supabase, Vercel, GitHub.",
+    description: "Dan's Mac Studio — runs David fleet orchestrator plus local-first model serving via Ollama and LM Studio. Default local lanes use qwen3:8b and qwen3-fast, with larger local Qwen 30B and cloud escalation only when tasks genuinely need more depth.",
   },
   {
     id: "dan",
@@ -307,7 +307,7 @@ export const agents: AgentDef[] = [
     color: "#f472b6",
     glow: "rgba(244,114,182,0.3)",
     initials: "ML",
-    description: "Manages model fallback chains: Opus→Sonnet→GPT-4.1→Gemini Flash→ZAI (main), Gemini Flash→Sonnet→Opus (sub-agents), Gemini Flash→Haiku (crons). 7+ providers: Anthropic, OpenRouter, DeepSeek, Z.AI, Google, OpenAI.",
+    description: "Optimizes model routing with strong local defaults. Main and standard lanes stay on local qwen3:8b unless a task explicitly needs a bigger model; fast lanes use qwen3-fast only for throughput-sensitive work; coding prefers local qwen2.5-coder; larger local Qwen 30B or cloud models are used only as escalation, not as silent downgrade/fallback noise.",
   },
   {
     id: "doctor",

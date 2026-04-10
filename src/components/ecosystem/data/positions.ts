@@ -7,51 +7,51 @@ export interface NodePosition {
 // Better spread with visual zones: Comms top, Orchestration middle, Infrastructure bottom
 export const positions: Record<string, NodePosition> = {
   // === ZONE: Human + Channels (top) ===
-  dan: { x: 50, y: 8 },
+  dan: { x: 50, y: 10 },
 
-  telegram: { x: 28, y: 8 },
-  slack: { x: 50, y: 17 },
-  discord: { x: 72, y: 8 },
+  telegram: { x: 28, y: 10 },
+  slack: { x: 50, y: 18.5 },
+  discord: { x: 72, y: 10 },
 
   // Slack agents — flanking slack
-  kiloclaw: { x: 36, y: 20 },
-  kimiclaw: { x: 64, y: 20 },
-  manusclaw: { x: 80, y: 22 },
+  kiloclaw: { x: 36, y: 23 },
+  kimiclaw: { x: 64, y: 23 },
+  manusclaw: { x: 80, y: 25 },
 
   // === ZONE: Orchestration (middle) ===
-  david: { x: 50, y: 30 },
+  david: { x: 50, y: 31 },
 
   // Main agents — wide ring
   dexter: { x: 15, y: 36 },
   sienna: { x: 85, y: 36 },
 
   // Mac Studio — CENTER HUB
-  "mac-studio": { x: 50, y: 46 },
+  "mac-studio": { x: 50, y: 47 },
 
-  nano: { x: 15, y: 56 },
-  memo: { x: 85, y: 56 },
+  nano: { x: 15, y: 54.5 },
+  memo: { x: 85, y: 54.5 },
 
   // === ZONE: OpenClaw Mesh ===
-  "openclaw-1": { x: 35, y: 58 },
-  "openclaw-2": { x: 65, y: 58 },
-  "openclaw-3": { x: 35, y: 70 },
-  "openclaw-4": { x: 65, y: 70 },
+  "openclaw-1": { x: 35, y: 57.5 },
+  "openclaw-2": { x: 65, y: 57.5 },
+  "openclaw-3": { x: 35, y: 67 },
+  "openclaw-4": { x: 65, y: 67 },
 
   // === ZONE: Support Layer ===
-  vector: { x: 50, y: 64 },
-  monitor: { x: 6, y: 72 },
-  doctor: { x: 16, y: 72 },
-  learning: { x: 26, y: 72 },
-  model: { x: 74, y: 72 },
-  gsd: { x: 84, y: 72 },
-  ssh: { x: 94, y: 72 },
+  vector: { x: 50, y: 63.5 },
+  monitor: { x: 8, y: 72 },
+  doctor: { x: 18, y: 72 },
+  learning: { x: 28, y: 72 },
+  model: { x: 72, y: 72 },
+  gsd: { x: 82, y: 72 },
+  ssh: { x: 92, y: 72 },
 
   // === ZONE: Infrastructure (bottom) ===
-  autoforge: { x: 6, y: 87 },
-  github: { x: 18, y: 87 },
-  pope: { x: 30, y: 87 },
-  vercel: { x: 42, y: 87 },
-  stripe: { x: 58, y: 87 },
-  supabase: { x: 70, y: 87 },
-  update: { x: 82, y: 87 },
+  autoforge: { x: 8, y: 82.5 },
+  github: { x: 20, y: 82.5 },
+  pope: { x: 32, y: 82.5 },
+  vercel: { x: 44, y: 82.5 },
+  stripe: { x: 56, y: 82.5 },
+  supabase: { x: 68, y: 82.5 },
+  update: { x: 80, y: 82.5 },
 };

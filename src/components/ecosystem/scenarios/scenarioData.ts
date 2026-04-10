@@ -73,7 +73,7 @@ export const scenarios: Scenario[] = [
       {
         activeAgents: ["vector", "model", "learning"],
         activeConnections: ["learning-model", "vector-model"],
-        narration: "Model optimizes fallback chains: Opus→Sonnet→GPT-4.1→Gemini→ZAI...",
+        narration: "Model rebalances routing: strong local qwen3 stays default, qwen3-fast handles throughput, and cloud escalation is used only for genuinely hard tasks...",
         duration: 2500,
       },
       {
