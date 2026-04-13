@@ -21,7 +21,7 @@
 export { OpenClawLogger, type LogMeta } from './logger';
 export { SupabaseTransport } from './transport';
 export { collectMetrics, getSystemInfo } from './system-info';
-export {
+export type {
   LogEntry,
   LogLevel,
   LogCategory,
@@ -33,6 +33,8 @@ export {
   LogQueryParams,
   LogSource,
   LogSession,
+} from './types';
+export {
   LOG_LEVEL_PRIORITY,
   LOG_LEVEL_COLORS,
   RESET_COLOR,
