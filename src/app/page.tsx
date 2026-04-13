@@ -58,12 +58,12 @@ const products = [
 ];
 
 const agentRoles = [
-  { name: "Dexter", role: "General Manager", icon: "🎯" },
-  { name: "David", role: "Fleet Orchestrator", icon: "🖥️" },
-  { name: "Memo", role: "Project Manager", icon: "📋" },
-  { name: "Sienna", role: "Crypto Trader", icon: "📈" },
-  { name: "Nano", role: "Nervix Orchestrator", icon: "🔧" },
-  { name: "GSD", role: "Task Execution", icon: "⚡" },
+  { name: "Dexter", role: "General Manager", icon: "ð¯" },
+  { name: "David", role: "Fleet Orchestrator", icon: "ð¥ï¸" },
+  { name: "Memo", role: "Project Manager", icon: "ð" },
+  { name: "Sienna", role: "Crypto Trader", icon: "ð" },
+  { name: "Nano", role: "Nervix Orchestrator", icon: "ð§" },
+  { name: "GSD", role: "Task Execution", icon: "â¡" },
 ];
 
 export default function Home() {
@@ -92,7 +92,7 @@ export default function Home() {
       <div className="absolute top-[50%] right-[30%] h-[300px] w-[300px] rounded-full bg-[#8b1a1a]/[0.08] blur-[100px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-        {/* ───── NAVBAR ───── */}
+        {/* âââââ NAVBAR âââââ */}
         <nav className="flex items-center justify-between border-b border-[#c0392b]/10 py-5">
           <Link href="/" className="flex items-center gap-2.5">
             {/* OpenClaw Icon */}
@@ -125,22 +125,36 @@ export default function Home() {
               Lab
             </Link>
             <Link
-              href="/ecosystem"
-              className="flex items-center gap-1.5 rounded-full bg-[#c0392b] px-4 py-1.5 text-xs font-semibold text-white shadow-[0_0_20px_rgba(192,57,43,0.3)] transition hover:bg-[#e74c3c] hover:shadow-[0_0_30px_rgba(192,57,43,0.45)]"
+              href="/evolution.html"
+              className="rounded-full border border-[#c0392b]/20 px-4 py-1.5 text-xs text-zinc-400 transition hover:border-[#c0392b]/40 hover:text-[#e74c3c]"
             >
-              <Activity size={12} />
+              Evolution
+            </Link>
+            <Link
+              href="/ecosystem.html"
+              className="rounded-full border border-[#c0392b]/20 px-4 py-1.5 text-xs text-zinc-400 transition hover:border-[#c0392b]/40 hover:text-[#e74c3c]"
+            >
               Ecosystem
             </Link>
+            <a
+              href="http://localhost:10272/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 rounded-full bg-[#c0392b] px-4 py-1.5 text-xs font-semibold text-white shadow-[0_0_20px_rgba(192,57,43,0.3)] transition hover:bg-[#e74c3c] hover:shadow-[0_0_30px_rgba(192,57,43,0.45)]"
+            >
+              <Zap size={12} />
+              Hermes
+            </a>
           </div>
         </nav>
 
-        {/* ───── HERO ───── */}
+        {/* âââââ HERO âââââ */}
         <section className="pb-12 pt-16 sm:pt-24">
           <div className="mx-auto max-w-4xl text-center">
             {/* Status badge */}
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#c0392b]/25 bg-[#c0392b]/10 px-4 py-2 text-sm text-[#e74c3c]">
               <span className="h-2 w-2 rounded-full bg-[#c0392b] shadow-[0_0_12px_rgba(192,57,43,0.6)]" style={{ animation: "pulse-claw 2s ease-in-out infinite" }} />
-              Powered by OpenClaw — Autonomous AI Lab
+              Powered by OpenClaw â Autonomous AI Lab
             </div>
 
             {/* OpenClaw Hero Icon */}
@@ -193,7 +207,7 @@ export default function Home() {
             <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
               A human-led AI ecosystem where{" "}
               <span className="font-semibold text-[#d4a017]">Dan</span>{" "}
-              orchestrates 30+ autonomous agents across 5 products — building,
+              orchestrates 30+ autonomous agents across 5 products â building,
               shipping, learning, and earning around the clock.
             </p>
 
@@ -235,7 +249,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───── OPERATOR + MASCOT ───── */}
+        {/* âââââ OPERATOR + MASCOT âââââ */}
         <section className="border-t border-[#c0392b]/10 py-14">
           <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Dan card */}
@@ -292,7 +306,7 @@ export default function Home() {
               </p>
               <p className="mt-1 text-lg font-bold text-[#e74c3c]">Lobster</p>
               <p className="mt-2 text-xs leading-5 text-zinc-500">
-                The red claw — symbol of the OpenClaw protocol powering all agents.
+                The red claw â symbol of the OpenClaw protocol powering all agents.
               </p>
             </div>
 
@@ -328,7 +342,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───── AGENT ROLES ───── */}
+        {/* âââââ AGENT ROLES âââââ */}
         <section className="border-t border-[#c0392b]/10 py-12">
           <p className="mb-8 text-center text-[10px] uppercase tracking-[0.35em] text-zinc-600">
             Core Agent Team
@@ -347,7 +361,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───── PRODUCTS ───── */}
+        {/* âââââ PRODUCTS âââââ */}
         <section className="border-t border-[#c0392b]/10 py-12">
           <p className="mb-6 text-center text-[10px] uppercase tracking-[0.35em] text-zinc-600">
             Products powered by DansLab
@@ -381,7 +395,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───── FOOTER ───── */}
+        {/* âââââ FOOTER âââââ */}
         <div className="border-t border-[#c0392b]/10 py-8 text-center">
           <p className="text-xs text-zinc-600">
             Built by Dan &middot; Powered by{" "}
