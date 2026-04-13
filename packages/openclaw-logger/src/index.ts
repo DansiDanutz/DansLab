@@ -18,7 +18,7 @@
 //   botLog.info('Message received');
 // ============================================================================
 
-export { OpenClawLogger, LogMeta } from './logger';
+export { OpenClawLogger, type LogMeta } from './logger';
 export { SupabaseTransport } from './transport';
 export { collectMetrics, getSystemInfo } from './system-info';
 export {
