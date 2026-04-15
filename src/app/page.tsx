@@ -136,6 +136,12 @@ export default function Home() {
             >
               Ecosystem
             </Link>
+            <Link
+              href="/semeclaw"
+              className="rounded-full border border-[#c0392b]/20 px-4 py-1.5 text-xs text-zinc-400 transition hover:border-[#c0392b]/40 hover:text-[#e74c3c]"
+            >
+              SemeClaw
+            </Link>
             <a
               href="http://localhost:10272/"
               target="_blank"
