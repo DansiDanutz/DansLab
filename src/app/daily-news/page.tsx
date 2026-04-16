@@ -1,4 +1,17 @@
-import { getSupabase } from "@/lib/supabase";
+import { createClient } from "@supabase/supabase-js";
+
+export const dynamic = "force-dynamic";
+
+function getDiscoveryClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
+}
 
 interface Discovery {
   id: string;
@@ -63,7 +76,10 @@ async function getDiscoveries(): Promise<{
   date: string;
   total: number;
 }> {
-  const supabase = getSupabase();
+  const supabase = getDiscoveryClient();
+  if (!supabase) {
+    return { grouped: {}, date: "", total: 0 };
+  }
 
   const { data, error } = await supabase
     .from("daily_discoveries")
@@ -90,8 +106,6 @@ async function getDiscoveries(): Promise<{
 
   return { grouped, date: latestDate, total: todayDiscoveries.length };
 }
-
-export const revalidate = 300;
 
 export default async function DailyNewsPage() {
   const { grouped, date, total } = await getDiscoveries();
