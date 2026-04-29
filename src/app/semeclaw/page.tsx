@@ -6,26 +6,33 @@ import PageWrapper from "@/components/PageWrapper";
 
 const WAR_ROOM_URL = "http://127.0.0.1:8765";
 
+type ProbeStatus = "checking" | "ready" | "unreachable";
+
 export default function SemeClawPage() {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [iframeError, setIframeError] = useState(false);
+  const [status, setStatus] = useState<ProbeStatus>("checking");
 
   useEffect(() => {
-    const checkServer = async () => {
-      try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 3000);
-        await fetch(`${WAR_ROOM_URL}/api/state`, {
-          signal: controller.signal,
-          mode: "no-cors",
-        });
-        clearTimeout(timeout);
-        setIframeLoaded(true);
-      } catch {
-        setIframeError(true);
-      }
+    let cancelled = false;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+
+    fetch(`${WAR_ROOM_URL}/api/state`, {
+      signal: controller.signal,
+      mode: "no-cors",
+    })
+      .then(() => {
+        if (!cancelled) setStatus("ready");
+      })
+      .catch(() => {
+        if (!cancelled) setStatus("unreachable");
+      })
+      .finally(() => clearTimeout(timeout));
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+      clearTimeout(timeout);
     };
-    checkServer();
   }, []);
 
   return (
@@ -68,7 +75,26 @@ export default function SemeClawPage() {
         </div>
 
         {/* Dashboard iframe or placeholder */}
-        {iframeError ? (
+        {status === "checking" ? (
+          <div
+            role="status"
+            aria-live="polite"
+            className="card-base p-8 text-center sm:p-12"
+          >
+            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#c0392b]/30 bg-gradient-to-br from-[#1a0a0a] to-[#0a0505]">
+              <Terminal
+                size={28}
+                className="text-[#c0392b] motion-safe:animate-pulse"
+              />
+            </div>
+            <h2 className="text-lg font-bold text-white">
+              Probing War Room…
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-sm text-zinc-500">
+              Checking {WAR_ROOM_URL} (3s timeout).
+            </p>
+          </div>
+        ) : status === "unreachable" ? (
           <div className="card-base p-8 text-center sm:p-12">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#c0392b]/30 bg-gradient-to-br from-[#1a0a0a] to-[#0a0505] shadow-[0_0_30px_rgba(192,57,43,0.15)]">
               <Terminal size={28} className="text-[#c0392b]" />

@@ -11,6 +11,8 @@ const NAV_ITEMS = [
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "SemeClaw", href: "/semeclaw" },
   { label: "Daily News", href: "/daily-news" },
+  { label: "Learning", href: "/learning" },
+  { label: "n8n", href: "/n8n" },
 ];
 
 export default function Navbar() {
