@@ -121,15 +121,13 @@ Hermes, GSD, Discovery, Doctor, DoctorLocal, Monitor, Finance, Growth, Vector, A
 ### Non-speaking but visible (8)
 SSH, N8N, Obsidian, OpenClaw-01, OpenClaw-02, OpenClaw-03, OpenClaw-04, channel-as-character renders for Telegram / Slack / Discord
 
-## Style status — pending pivot lock
+## Style status — V2 LOCKED
 
-The five locked references are bright Pixar-cartoon style with a cyber-lab background. For a serious mystery thriller they need a tone pivot. We have not yet locked which direction:
+**Direction: Grounded Cinematic Realism.** Mr. Robot / Severance / Black Mirror. Hyper-real CG synthetic-human agents in a real photographic AI lab. Dan stays in his GTA-illustrated style as the human pivot; everyone else is re-rendered photoreal.
 
-- **A — Grounded Cinematic Realism** (Mr. Robot / Severance / Black Mirror): hyper-real CG agents in real photographic plates. Drops the cartoon entirely.
-- **B — Stylized Cinematic** (Spider-Verse / Arcane / Love Death + Robots): keeps the animated framework but darker, more painterly, more cinematic. The five existing references would be re-rendered, not discarded.
-- **C — Tonal Hybrid**: agents start in the bright cartoon style and drift toward Style B as the season's mystery deepens (visual representation of The Drift). Bold but technically demanding.
+The five Pixar-cartoon V1 references plus the in-session generations (Hermes, Nano) are now **legacy** and will be re-rendered in V2 once credits are topped up. Full V2 prompt fills for every character live in `CHARACTER_PROMPT_TEMPLATE.md`.
 
-Once the user picks a direction we generate hero shots for the 24 speaking roles still on the list above and update `public/series/characters/<id>.jpg` for each.
+**Render order when credits arrive:** David → Hermes → 4 capitals → 12 council → 7 channel → 9 optional cameos. ~50–70 credits for the speaking-role batch.
 
 ## How this roster connects to the running system
 

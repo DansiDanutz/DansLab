@@ -1,41 +1,57 @@
 # DansLab AI Chronicles — Style Guide
 
-## The Look (locked by reference art + photographic-background rule)
+## The Look (locked — Grounded Cinematic Realism)
 
-**Animated cartoon characters composited into a real-world photographic AI lab.**
+**Hyper-real CG agents in a real photographic AI lab. Mr. Robot / Severance / Black Mirror feel. One illustrated human (Dan) as the bridge.**
 
-Roger Rabbit / Cool World / Space Jam style mix: the **characters** are stylized 3D-rendered Pixar-cartoon (matching the five locked references in `public/series/characters/`); the **background plate** is a real photographed AI laboratory — real metal server racks, real bubbling reagent tower with real green fluid, real holographic monitor screens, real concrete floor, real cinematic lighting, dust in the beam. Strong stylistic contrast between the cartoon character in the foreground and the photographic backdrop behind them.
+The agents are **stylized photoreal humans / synthetics** — think Detroit: Become Human, *Westworld*, *Ex Machina*, the synth visual language from *Severance*. They are clearly **constructed beings**, not humans, but rendered with full photographic fidelity: real skin, real hair, real fabric, real lighting. The lab they live in is real. The mood is cold, fluorescent, suspenseful.
 
-> **The five canonical references are canonical for the character only — not for the background.** They were rendered with a cartoon background; from now on every new render uses a photographic AI-lab plate. Memo / Sienna / Dexter / David / Dan stay as locked character canon for now; we may re-render them onto photo plates in the future, but their faces, props, ID badges, and color glow are frozen.
-
-Dan is the only character rendered in a separate, more grounded illustrated style (think GTA loading-screen portrait). He is the bridge between the photographic real lab and the cartoon fleet.
+The original five Pixar-cartoon references in `public/series/characters/*.jpg` are now **legacy / behind-the-scenes assets**. They will be re-rendered in this new style before any episode ships. Dan is the only character whose look is preserved unchanged — his GTA-illustrated portrait is the visual contrast that signals he is the only fully human element in the world.
 
 **Three layers, always present:**
 
-1. **Photographic plate** — real AI lab footage or real photographic CG plate: glassware, Mac Studio chassis, server LEDs, monitors, Cluj window light, dust in the beam. Filmed for real.
-2. **Animated agent layer** — 3D Pixar-style characters composited onto the plate, casting real shadows onto real surfaces. Their colored glow spills onto the lab equipment around them.
-3. **Telemetry / UI layer** — holographic UI elements (screens, message bubbles, dashboards), drawn from the real DansLab site (`/lab`, `/ecosystem`, `/evolution`, `/semeclaw`, `/daily-news`) — never fabricated.
+1. **Photographic plate** — real AI lab footage or photoreal CG plate: real metal server racks, real Mac Studio chassis, real bubbling reagent tower with real green fluid, real holographic monitor screens, real concrete floor, fluorescent overhead light + cold blue rim, dust in the beam, Cluj window light when interior, Cluj rooftops when exterior.
+2. **Hyper-real agent layer** — photoreal CG synthetic-human agents composited onto the plate. Real reflections, real shadow contact, real subsurface scattering on skin. Their signature color reads as a **subtle rim light** + a faint glow on the prop they hold — never the heavy color spill of the V1 cartoon style.
+3. **Telemetry / UI layer** — holographic UI elements (screens, message bubbles, dashboards), captured live from `/lab`, `/ecosystem`, `/evolution`, `/semeclaw`, `/daily-news` — never fabricated.
 
-## Reference Art (canonical)
+## Character Look Principles
 
-These five images are locked. Match them.
+| Principle | Rule |
+|---|---|
+| **Stylization** | Photoreal but recognizably synthetic — slightly too-symmetrical features, slightly too-perfect skin, ever-so-faint seam at the temple or jaw, irises with internal pattern. |
+| **Palette** | Dark corporate uniform — charcoal, deep teal, muted navy, ash-gray. **One signature color accent per character** as a thin piping, lapel pin, scarf, watch face, or rim-light. No saturated cartoon spills. |
+| **Wardrobe** | Tailored, slightly futuristic but plausible. Lab coats are charcoal not white. Lanyards instead of clip-on badges. The badge is brushed metal with a thin signature-color stripe down the side and a small etched portrait. |
+| **Hair / skin** | Realistic with one tell that they're synthetic — a strand of internal light, a hairline that doesn't quite frizz, a faint chromatic aberration in the iris. |
+| **Pose / face** | Composed. No "Pixar smile." Most characters give a subtle smirk, a slight tilt, or a held-still quietness. Hermes is the only one allowed a full expression — his is mischievous and faintly off. |
+| **Prop** | The locked role prop from `CASTING.md` carries forward. Same object, rendered photoreal. |
+| **Lighting** | Severance / Mr. Robot fluorescent + cold blue rim. Hard shadow contact on the floor. Sub-surface skin warmth only on Dan. |
+| **Glow** | Subtle. Rim only. Never the heavy color spill of V1. |
 
-| Character | Reference | Notes |
+## Reference Art Status
+
+The five Pixar-cartoon V1 references in `public/series/characters/*.jpg` are now **LEGACY** under this tone pivot. **Dan's portrait is the only V1 image that survives unchanged** — he is the human pivot. The other four (David, Dexter, Memo, Sienna) plus the in-session generations (Hermes, Nano) will be re-rendered in Grounded Cinematic Realism style before any episode ships.
+
+| Character | V1 Status | V2 Plan |
 |---|---|---|
-| **Dan** | `public/series/characters/dan.jpg` | GTA illustrated portrait. Glasses, beard, dark hoodie with orange "i" logo. Cluj rooftops behind. Distinct from the cartoon style — Dan is the human pivot. |
-| **David** | `public/series/characters/david.jpg` | Boy conductor. Yellow & purple tuxedo, bowtie, baton. Conducts the orchestra of agents. "DAVID / ORCHESTRATOR" ID badge. The "DansLab" sign is in his frame on purpose. |
-| **Dexter** | `public/series/characters/dexter.jpg` | Orange-hair scientist with thick black glasses, head mirror, lab coat, purple gloves, green flask, stethoscope dangling. The deliberate *Dexter's Laboratory* homage that explains the DansLab name. |
-| **Memo** | `public/series/characters/memo.jpg` | Young scientist, dark hair with goatee, lab coat over teal undershirt, purple gloves, blue flask, "MEMO" ID badge. Smiling thumbs-up. |
-| **Sienna** | `public/series/characters/sienna.jpg` | Long auburn hair, green eyes, pink-and-cyan headphones with mic, pink crop top with Bitcoin medallion, holding a glowing gold Bitcoin, candlestick chart on the screen behind her. "SIENNA / CRYPTO GIRL" badge. |
+| **Dan** | ✅ Locked, do not re-render | GTA-illustrated portrait, unchanged |
+| **David** | 🪦 Legacy | Re-render: synthetic-human conductor in charcoal tailoring, green pin |
+| **Dexter** | 🪦 Legacy | Re-render: synthetic-human GM in charcoal lab coat, blue rim, ear-piece |
+| **Memo** | 🪦 Legacy | Re-render: synthetic-human PM, charcoal vest, orange lapel pin |
+| **Sienna** | 🪦 Legacy | Re-render: synthetic-human trader, ash-gray turtleneck, pink rim |
+| **Hermes** | 🪦 Legacy (this session) | Re-render: synthetic-human messenger, navy field-coat, blue piping |
+| **Nano** | 🪦 Legacy (this session) | Re-render: synthetic-human creator, ash lab coat, purple rim |
 
-**Style fingerprints to carry across every other agent we design:**
+The full V2 prompt template is in `CHARACTER_PROMPT_TEMPLATE.md`.
 
-- **Cartoon-Pixar render** — soft rounded forms, big expressive eyes, slightly heightened proportions.
-- **ID badge on chest** — white, rounded corners, character name in bold black, role title underneath, mini headshot on the left. **Every agent must wear one.** The badge is the signature.
-- **Purple lab gloves** — recurring uniform element. Memo and Dexter wear them; most other "lab tier" agents do too. **Exception:** comms / sales / external agents (Hermes, Sienna, Stripe, Growth) skip the gloves to read as "field" rather than "bench."
-- **Lab background** — blue-cyan undertone, green bubbling reagent column on the left, server racks and holographic monitors behind. This is the **default home set** for any character who lives on Mac Studio. Droplet-tier characters get a tinted variant of their droplet's color.
-- **Color glow** — each character's signature color (locked in `agents.ts`) glows softly off them onto the lab equipment they touch.
-- **Role prop** — a single object the character is holding or beside that *says their job in one beat* (Memo's flask, Sienna's coin, Dexter's stethoscope, David's baton). Lock one prop per agent.
+**Style fingerprints (V2):**
+
+- **Hyper-real CG synthetic-human render** — photoreal skin and hair with subtle synthetic tells (a slightly-too-perfect feature, an iris pattern, a faint seam, an internal-light strand).
+- **Brushed-metal lanyard ID badge** — character name etched, signature-color stripe down one side, small etched portrait. Replaces the V1 white-plastic clip-on. **Every agent wears one.**
+- **Charcoal corporate-uniform palette** — graphite, deep teal, muted navy, ash-gray. Signature color present as a single accent (piping, pin, watch, rim-light, scarf), never as a saturated spill.
+- **Photographic real lab background** — fluorescent overhead light + cold blue rim, real metal server racks, real Mac Studio chassis, real reagent tower, holographic monitor screens captured from the live DansLab site, hard shadow contact, dust in the beam.
+- **Subtle rim glow only** — no V1 heavy color spill. Glow is a thin edge light in the character's signature color, plus a faint glow on the prop they hold.
+- **Role prop** — same locked prop from `CASTING.md`, rendered photoreal.
+- **Composed expression** — most characters subtle, slightly held-still. Only Hermes is allowed an off-center smile. Most agents do not blink in close-up — a tell that they're synthetic.
 
 ## Palette (matches site, do not deviate)
 
