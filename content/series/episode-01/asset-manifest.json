@@ -28,7 +28,7 @@
       "media_seed": "public/series/characters/memo.jpg",
       "prompt": "Pixar-style 3D-rendered cartoon character of NANO the agent creator composited into a REAL PHOTOGRAPHIC AI LABORATORY BACKGROUND. Character: quiet monastic young woman, soft serious smile, gentle violet eyes, dark hair pulled back, white lab coat over a deep purple undershirt, PURPLE LAB GLOVES. Cradling in two hands a glowing soft orb of purple light containing a half-formed agent silhouette inside it. Large white plastic ID badge on chest reading 'NANO' in bold black letters with 'AGENT CREATOR' below in smaller caps with a portrait inset. Purple glow spilling onto her face and onto the lab equipment around her. BACKGROUND IS PHOTOREALISTIC: real server racks with real blinking LEDs, real bubbling reagent tower with real green fluid, real holographic monitor screens showing data, real concrete floor, real cinematic lighting, real dust motes. Strong stylistic contrast between cartoon character and real photographic backdrop. Cinematic three-quarter portrait, light from camera-right, shallow depth of field. Match the rendering quality of the reference image for the character only. Funny mysterious tone — soft, warm, slightly otherworldly.",
       "delivery_path": "public/series/characters/nano.jpg",
-      "status": "queued"
+      "status": "draft-rendered-cartoon-bg-needs-rerun"
     },
     {
       "character_id": "doctor",

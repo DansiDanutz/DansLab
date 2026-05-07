@@ -88,7 +88,7 @@ export const seriesCast: SeriesCastEntry[] = [
     voiceId: "",
     voiceName: "Glinda (quiet)",
     prop: "Half-formed agent cradled in two hands",
-    artUrl: "",
+    artUrl: "/series/characters/nano.jpg",
     tier: "capital",
     firstAppearance: 2,
     bio: "Founding orchestrator of Nervix Federation on her droplet. Speaks softly, grows new agents like seedlings. Episode 5 is hers.",
