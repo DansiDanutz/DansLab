@@ -42,10 +42,10 @@ export const seriesCast: SeriesCastEntry[] = [
     voiceId: "",
     voiceName: "Sage (calm baritone)",
     prop: "Conductor's baton · animated score",
-    artUrl: "/series/characters/david.jpg",
+    artUrl: "/series/characters/david-v2.jpg",
     tier: "council",
     firstAppearance: 1,
-    bio: "Conducts the entire fleet from Mac Studio. Never raises his voice. Routes 39 agents like a young maestro routing an orchestra. Wears yellow and purple because Dan does.",
+    bio: "Conducts the entire fleet from Mac Studio. Never raises his voice. Routes the whole agency through a charcoal three-piece. Adult professional, locked V2 anchor.",
   },
 
   // Capitals — droplets
