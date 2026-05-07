@@ -11,6 +11,12 @@ export interface AgentDef {
   glow: string;
   initials: string;
   description: string;
+  // Series fields (optional — only set for characters appearing in DansLab AI Chronicles).
+  archetype?: string;
+  voiceId?: string;
+  seriesBio?: string;
+  seriesArtUrl?: string;
+  prop?: string;
 }
 
 export const agents: AgentDef[] = [
