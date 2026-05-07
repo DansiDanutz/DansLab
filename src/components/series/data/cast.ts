@@ -42,10 +42,10 @@ export const seriesCast: SeriesCastEntry[] = [
     voiceId: "",
     voiceName: "Sage (calm baritone)",
     prop: "Conductor's baton · animated score",
-    artUrl: "/series/characters/david.jpg",
+    artUrl: "/series/characters/david-v2.jpg",
     tier: "council",
     firstAppearance: 1,
-    bio: "Conducts the entire fleet from Mac Studio. Never raises his voice. Routes 39 agents like a young maestro routing an orchestra. Wears yellow and purple because Dan does. (V1 locked: the boy.)",
+    bio: "Conducts the entire DansLab fleet from Mac Studio. AI orchestrator, OpenClaw chief, never raises his voice. Wears Dan's son's face because he is the prodigy Dan modeled the fleet's command after.",
   },
 
   // Capitals — droplets
