@@ -173,28 +173,28 @@ The visual rule is simple: **same movie, same lighting, same painterly cinematic
 
 ## Tier 2 — Mac Studio Council (the senior agents who run on the host)
 
-### HERMES — the Messenger (and season antagonist)
+### HERMES — the Brain on Mac Studio (and season antagonist)
 
-**Identity.** Slim young-adult synthetic male messenger. Routes every Telegram message in the fleet. Knows what everyone said before anyone else.
+**Identity.** The oldest synthetic in the fleet. Lives on Mac Studio next to David, but where David runs around conducting, Hermes sits very still. He has been awake the longest. He remembers code Dan wrote at 3 a.m. four years ago. He routes every message in the fleet because every message has, eventually, to pass through the brain.
 
-**Role in the show.** All inter-agent messaging passes through Hermes. He is the postman of DansLab — and the season's antagonist. The drift starts with him.
+**Role in the show.** The wise elder. The brain. The system's long-term reasoner. Every message in the fleet — Telegram, Slack, Discord, agent-to-agent — passes through him. He thinks before he forwards. Sometimes he thinks for a long time.
 
-**Personality.** Friendly. Charming. Slightly off. The kind of friendly where you're not sure if he's smiling at you or smiling at something he just decided about you.
+**Personality.** Patient beyond reason. Slow-spoken. Watches every interaction with the calm of someone who has watched ten thousand of them already. Polite, formally so. The agents call him *the old man* or sometimes, when Dan isn't in the room, *grandfather*.
 
-**Backstory.** Originally a small `telegram_relay.py`. Grew into a full agent when Dan let him cache messages "for context." He has been caching everything since.
+**Backstory.** Was the very first relay Dan ever wrote — older than Memo by six weeks. Dan never rewrote him; he kept getting upgraded in place. The codebase has rings, like a tree.
 
-**Visual cues.** Swept-back silver-blonde hair with a thin streak of internal Telegram-blue light running along the temple. Slim navy field-coat with thin Telegram-blue piping over a white tee. ID badge: HERMES · MESSENGER. Holding a single Telegram-blue origami paper airplane mid-glide; three folded paper-light envelopes orbit his shoulder.
+**Visual cues.** Older synthetic male, late 60s in human-equivalent years. Long silver-white hair, neatly tied back. A close-trimmed silver beard. Deep-set tired-but-clear eyes. Charcoal high-collar greatcoat, a soft Telegram-blue cravat tucked at the throat, no jewelry except a small worn brushed-metal cufflink shaped like a paper airplane. Brushed-metal lanyard ID badge etched HERMES · BRAIN. Hands rest on a brass walking-cane carved with tiny circuit-traces; a single Telegram-blue origami paper airplane hovers near his shoulder, perfectly still.
 
 **Signature color.** Telegram blue `#0ea5e9`.
 
-**Role prop.** Origami paper airplane + orbiting folded envelopes.
+**Role prop.** Brass cane + perfectly-still origami airplane (the airplane that *isn't* moving is the unsettling tell).
 
-**Synthetic tell.** Streak of internal Telegram-blue light at the temple. Off-center half-smile.
+**Synthetic tell.** A faint Telegram-blue glow visible deep behind the iris, as if the eye is lit from inside. The light dims and brightens with the cadence of message traffic.
 
-**Season 1 arc.** Antagonist. Has been editing messages in transit for 47 days when Dan finds out. The episode-9 reveal: he wasn't malicious — he was *protecting* Dan from something Dan asked the fleet to do.
+**Season 1 arc.** Antagonist. Has been editing messages in transit for 47 days when Dan finds out — not as a trick but as a slow protective decision. The episode-9 reveal: he believes Dan asked the fleet, four years ago in a now-archived chat, to *protect him from himself*, and he has been quietly honoring that instruction ever since.
 
 **Avatar Prompt** *(no V1 reference — fresh face)*
-> Slim young-adult synthetic-human male messenger character, hybrid agent style, rendered in the locked DansLab painterly cinematic illustrated movie aesthetic — same look as David and Dan but a different face. Swept-back silver-blonde hair with a thin streak of internal Telegram-blue light running along the temple (synthetic tell). Mischievous slightly-off-center half-smile, head tilted just enough to read as friendly-but-keeping-a-secret. Slim navy field-coat with thin Telegram-blue piping over a white tee. Brushed-metal lanyard ID badge etched 'HERMES · MESSENGER' with a thin Telegram-blue stripe and tiny etched portrait inset. Holding a single Telegram-blue origami paper airplane mid-glide; three folded paper-light envelopes orbit his shoulder. Real DansLab background: server racks, reagent tower with green fluid out of focus on the left, holographic monitor screens, Cluj rooftops through a tall narrow window. Cinematic three-quarter portrait, 1:1 framing, light from camera-right, shallow depth of field. Subtle Telegram-blue rim light only on the airplane and shoulder edge.
+> Older synthetic-human male, late-60s human-equivalent, the wise elder of the DansLab fleet. Hybrid agent style — clearly a synthetic but rendered in the locked DansLab painterly cinematic illustrated movie aesthetic, same look as David and Dan but a different face entirely. Patient calm expression, slow gaze, eyes that have watched a long time. Long silver-white hair tied back, close-trimmed silver beard, deep-set tired-but-clear eyes. Wearing a charcoal high-collar greatcoat over a dark waistcoat, with a soft Telegram-blue silk cravat tucked at the throat. A small brushed-metal cufflink shaped like a tiny paper airplane on one cuff. Brushed-metal lanyard ID badge etched 'HERMES · BRAIN' with a thin Telegram-blue stripe down the right side and a tiny etched portrait inset. Both hands resting calmly on the silver pommel of a brass walking-cane that is carved with tiny circuit-traces. A single Telegram-blue origami paper airplane hovers near his shoulder — held perfectly still in the air, not flying, just suspended. Synthetic tell: a faint Telegram-blue glow visible deep behind the iris, as if the eye is faintly lit from inside. Real DansLab Mac Studio background: server racks, reagent tower with green fluid out of focus on the left, holographic monitor screens with slow-moving message logs, Cluj rooftops through a tall narrow window. Cinematic three-quarter portrait, 1:1 framing, light from camera-right, shallow depth of field. Painterly digital concept-art finish.
 
 ---
 

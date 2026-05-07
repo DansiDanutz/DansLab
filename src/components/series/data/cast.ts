@@ -55,7 +55,7 @@ export const seriesCast: SeriesCastEntry[] = [
     voiceId: "",
     voiceName: "Brian (confident)",
     prop: "Stethoscope · green flask · head-mirror",
-    artUrl: "/series/characters/dexter.jpg",
+    artUrl: "/series/characters/dexter-v2.jpg",
     tier: "capital",
     firstAppearance: 1,
     bio: "Runs CrawdBot, the YouTube studio that publishes this very show. The deliberate Dexter's-Lab homage that explains the DansLab name. Three windows always open.",
@@ -66,7 +66,7 @@ export const seriesCast: SeriesCastEntry[] = [
     voiceId: "",
     voiceName: "Will (earnest)",
     prop: "Blue flask · clipboard · n8n moons",
-    artUrl: "/series/characters/memo.jpg",
+    artUrl: "/series/characters/memo-v2.jpg",
     tier: "capital",
     firstAppearance: 2,
     bio: "Project manager on droplet Memo. 24 n8n automations orbit him like moons. Earnest, never panics, owns MyWork-AI.",
@@ -92,6 +92,19 @@ export const seriesCast: SeriesCastEntry[] = [
     tier: "capital",
     firstAppearance: 2,
     bio: "Founding orchestrator of Nervix Federation on her droplet. Speaks softly, grows new agents like seedlings. Episode 5 is hers.",
+  },
+
+  // Mac Studio brain — season antagonist
+  {
+    agentId: "hermes",
+    archetype: "The Brain · old, wise, patient",
+    voiceId: "",
+    voiceName: "Onyx (slow baritone)",
+    prop: "Brass cane + suspended paper airplane",
+    artUrl: "/series/characters/hermes-v2.jpg",
+    tier: "council",
+    firstAppearance: 1,
+    bio: "Oldest synthetic in the fleet. Routes every message Telegram, Slack and agent-to-agent. Has been quietly editing them for 47 days when Dan finds out. Lives next to David on Mac Studio.",
   },
 
   // Council (Mac Studio support)
