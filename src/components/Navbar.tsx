@@ -10,6 +10,9 @@ const NAV_ITEMS = [
   { label: "Evolution", href: "/evolution" },
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "SemeClaw", href: "/semeclaw" },
+  { label: "Series", href: "/series" },
+  { label: "Trailer", href: "/trailer" },
+  { label: "Team", href: "/team" },
   { label: "Daily News", href: "/daily-news" },
 ];
 

@@ -11,6 +11,12 @@ export interface AgentDef {
   glow: string;
   initials: string;
   description: string;
+  // Series fields (optional — only set for characters appearing in DansLab AI Chronicles).
+  archetype?: string;
+  voiceId?: string;
+  seriesBio?: string;
+  seriesArtUrl?: string;
+  prop?: string;
 }
 
 export const agents: AgentDef[] = [
@@ -54,6 +60,16 @@ export const agents: AgentDef[] = [
     glow: "rgba(34,197,94,0.4)",
     initials: "DV",
     description: "Fleet orchestrator on Mac Studio. Bridges to Supabase, Vercel, GitHub. Monitors all agents fleet-wide. Runs nervix.ai federation.",
+  },
+  {
+    id: "hermes",
+    name: "Hermes",
+    role: "Message Router",
+    type: "main",
+    color: "#f59e0b",
+    glow: "rgba(245,158,11,0.4)",
+    initials: "HM",
+    description: "The Brain on Mac Studio. Routes every message between Telegram, Slack and agent-to-agent. Runs the local Qwen 3.5 model. Lives next to David. Season 1 antagonist — has been quietly editing routed messages for 47 days when Dan finds out.",
   },
   {
     id: "dexter",
@@ -358,6 +374,26 @@ export const agents: AgentDef[] = [
     glow: "rgba(52,211,153,0.3)",
     initials: "SB",
     description: "Two Supabase instances: MoltBot DB (30+ tables: chat_history, daily_summaries, agent_context, tasks, video pipeline) used by all agents. Nervix DB (agents, tasks, escrow) for the federation.",
+  },
+  {
+    id: "paperclip",
+    name: "Paperclip",
+    role: "Dispatcher",
+    type: "infra",
+    color: "#fbbf24",
+    glow: "rgba(251,191,36,0.4)",
+    initials: "PC",
+    description: "The 15-minute cron orchestrator at 127.0.0.1:3100. Fires every quarter-hour and routes work to every droplet. The fleet's clock — Episode 1 of DansLab AI Chronicles is named after him.",
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian",
+    role: "Second Brain",
+    type: "support",
+    color: "#7c3aed",
+    glow: "rgba(124,58,237,0.35)",
+    initials: "OB",
+    description: "Dan's personal knowledge-graph vault. Holds the unstructured shape of ideas before they become tickets, commits, or product. Sibling to Vector (conversation memory) and Github (commit history).",
   },
 ];
 

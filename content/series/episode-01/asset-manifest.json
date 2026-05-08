@@ -1,0 +1,83 @@
+{
+  "episode": 1,
+  "title": "Paperclip",
+  "version": "draft-1",
+  "style_anchor": {
+    "character_reference_image": "public/series/characters/memo.jpg",
+    "background_rule": "Real photographic AI laboratory background. Cartoon character composited onto real plate. Roger-Rabbit / Cool-World mix.",
+    "id_badge_template": "White plastic ID badge clipped to chest. Bold black character name on top, smaller-cap role title underneath, small portrait inset on the left."
+  },
+  "character_renders": [
+    {
+      "character_id": "hermes",
+      "shot": "entry-glide",
+      "model": "nano_banana_2",
+      "resolution": "2k",
+      "aspect_ratio": "16:9",
+      "media_seed": "public/series/characters/memo.jpg",
+      "prompt": "Pixar-style 3D-rendered cartoon character of HERMES the messenger composited into a REAL PHOTOGRAPHIC AI LABORATORY BACKGROUND. Character: young charismatic male, sharp narrow face, mischievous knowing half-smile, alert sky-blue eyes, swept-back silver-blonde hair with a Telegram-blue glow streak, slim navy messenger jacket with subtle Telegram-blue piping, white t-shirt, NO lab gloves. Holding a glowing Telegram-blue origami paper airplane mid-glide; three small folded paper envelopes orbit his shoulder trailing blue light. Large white plastic ID badge on chest reading 'HERMES' in bold black letters with 'MESSENGER' below in smaller caps. Subtle blue glow spilling onto his face and the lab equipment. BACKGROUND IS PHOTOREALISTIC: real metal server racks with real blinking LEDs, real bubbling reagent tower with real green fluid, real holographic monitor screens, real concrete floor, real cinematic lighting, real dust motes in the light beam. Strong stylistic contrast between cartoon character and real photographic backdrop. Cinematic three-quarter profile, light from camera-right, shallow depth of field with the lab softly out of focus. Match the rendering quality of the reference image for the character only.",
+      "delivery_path": "public/series/characters/hermes.jpg",
+      "status": "draft-rendered-cartoon-bg-needs-rerun"
+    },
+    {
+      "character_id": "nano",
+      "shot": "hero-portrait",
+      "model": "nano_banana_2",
+      "resolution": "2k",
+      "aspect_ratio": "1:1",
+      "media_seed": "public/series/characters/memo.jpg",
+      "prompt": "Pixar-style 3D-rendered cartoon character of NANO the agent creator composited into a REAL PHOTOGRAPHIC AI LABORATORY BACKGROUND. Character: quiet monastic young woman, soft serious smile, gentle violet eyes, dark hair pulled back, white lab coat over a deep purple undershirt, PURPLE LAB GLOVES. Cradling in two hands a glowing soft orb of purple light containing a half-formed agent silhouette inside it. Large white plastic ID badge on chest reading 'NANO' in bold black letters with 'AGENT CREATOR' below in smaller caps with a portrait inset. Purple glow spilling onto her face and onto the lab equipment around her. BACKGROUND IS PHOTOREALISTIC: real server racks with real blinking LEDs, real bubbling reagent tower with real green fluid, real holographic monitor screens showing data, real concrete floor, real cinematic lighting, real dust motes. Strong stylistic contrast between cartoon character and real photographic backdrop. Cinematic three-quarter portrait, light from camera-right, shallow depth of field. Match the rendering quality of the reference image for the character only. Funny mysterious tone — soft, warm, slightly otherworldly.",
+      "delivery_path": "public/series/characters/nano.jpg",
+      "status": "draft-rendered-cartoon-bg-needs-rerun"
+    },
+    {
+      "character_id": "doctor",
+      "shot": "hero-portrait",
+      "model": "nano_banana_2",
+      "resolution": "2k",
+      "aspect_ratio": "1:1",
+      "media_seed": "public/series/characters/memo.jpg",
+      "prompt": "Pixar-style 3D-rendered cartoon character of DOCTOR the system fixer composited into a REAL PHOTOGRAPHIC AI LABORATORY BACKGROUND. Character: terse urgent young woman, alert, slightly worried but in control, dark short hair, white medical-lab coat, RED-and-WHITE caduceus medallion, PURPLE LAB GLOVES, glowing red stethoscope of light around her neck, error-log scrolls trailing from a side pocket. Large white plastic ID badge on chest reading 'DOCTOR' in bold black letters with 'SYSTEM FIXER' below in smaller caps with a portrait inset. Red glow spilling onto her face and equipment. BACKGROUND IS PHOTOREALISTIC: real metal server racks, real bubbling reagent tower, real holographic monitor screens (one shows an error-log waterfall in red), real concrete floor, real cinematic lighting, real dust motes. Cinematic three-quarter portrait, light from camera-right, shallow depth of field. Match the rendering quality of the reference image for the character only. Tone — urgent but caring, the agent you call at 3 AM when something breaks.",
+      "delivery_path": "public/series/characters/doctor.jpg",
+      "status": "queued"
+    },
+    {
+      "character_id": "gsd",
+      "shot": "hero-portrait",
+      "model": "nano_banana_2",
+      "resolution": "2k",
+      "aspect_ratio": "1:1",
+      "media_seed": "public/series/characters/memo.jpg",
+      "prompt": "Pixar-style 3D-rendered cartoon character of GSD the foreman composited into a REAL PHOTOGRAPHIC AI LABORATORY BACKGROUND. Character: brusque working-class young man, determined expression, mid-action, orange hardhat tucked under one arm, holding a glowing clipboard with green-glow tickets visible on it, white lab coat over a high-vis safety undershirt, PURPLE LAB GLOVES. Large white plastic ID badge on chest reading 'GSD' in bold black letters with 'GET STUFF DONE — FOREMAN' below in smaller caps with a portrait inset. Green glow from the tickets on the clipboard spilling onto his face and the lab equipment. BACKGROUND IS PHOTOREALISTIC: real metal server racks with real blinking LEDs, real bubbling reagent tower with real green fluid, real holographic monitor screens with kanban tasks, real concrete floor, real cinematic lighting, real dust motes in the light beam. Cinematic three-quarter portrait, light from camera-right, shallow depth of field. Match the rendering quality of the reference image for the character only. Tone — brusque, no-nonsense, the foreman who gets the bench moving.",
+      "delivery_path": "public/series/characters/gsd.jpg",
+      "status": "queued"
+    }
+  ],
+  "shot_renders": {
+    "note": "Per-shot animated layer prompts will be expanded once the four character anchors above are locked. Each shot inherits its character's locked render and re-poses via Higgsfield Soul or Hyperframe Seedance with the locked image as media seed."
+  },
+  "voice_manifest_path": "voice-manifest.json",
+  "metadata_path": "metadata.json",
+  "thumbnails": {
+    "primary_brief": "Left half: Dan (GTA portrait, backlit red). Right half: Hermes mid-glide with paper airplane, blue glow. Title text bottom-right, gradient: 'PAPERCLIP'. Episode badge top-left in gold border: 'S01·E01'. Real photographic AI-lab plate behind Hermes.",
+    "ab_variants": [
+      "Hermes hand-off shot (the envelope, mystery-forward)",
+      "Mac Studio glow alone in dark room (slow-burn-forward)",
+      "Stripe handing Dan the receipt (money-shot-forward)"
+    ]
+  },
+  "live_captures": [
+    "/lab",
+    "/evolution",
+    "/semeclaw",
+    "/ecosystem",
+    "/daily-news"
+  ],
+  "telemetry_freeze": {
+    "rule": "All numbers shown on screen captured at 24h-window freeze on shoot day. If a number changes mid-shoot, recapture and recut.",
+    "expected_dashboard": {
+      "evolution_version_at_open": "v2026.4.13",
+      "evolution_version_at_close": "v2026.4.14"
+    }
+  }
+}

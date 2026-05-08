@@ -1,0 +1,207 @@
+{
+  "_comment": "Single source of truth for character prompts. Consumed by both generate-characters-fal.py and the ComfyUI workflow runner. All 25 speaking-role hero shots, locked V2 Grounded Cinematic Realism direction. Each character carries a slot-filled prompt assembled from CHARACTER_PROMPT_TEMPLATE.md.",
+  "global_style": "Hyper-real CG character portrait, photorealistic synthetic-human agent at a real DansLab AI laboratory in Cluj-Napoca. Cinematic three-quarter portrait, square 1:1 framing, light from camera-right, shallow depth of field, lab softly out of focus. Severance / Mr. Robot / Black Mirror lighting — fluorescent overhead with cold blue rim. Real photographic background: real metal server racks with blinking LEDs, real bubbling reagent tower with green fluid out of focus on the left, real Mac Studio chassis on the right edge of frame, real concrete floor, holographic monitor screens floating mid-air, dust motes in the light beam, faint Cluj rooftops through a tall narrow window. Brushed-metal lanyard ID badge clipped at the chest with the character's name and role etched, thin signature-color stripe down the right side, tiny etched portrait inset. Charcoal/graphite/ash corporate-uniform palette. Signature color present only as a thin accent (piping, lapel pin, scarf, watch face) and a subtle rim light on the character — never a saturated cartoon color spill. Not Pixar, not Disney, not animated — fully photorealistic.",
+  "global_negative": "cartoon, Pixar, Disney, anime, comic book, illustration, painted, oversized eyes, cartoon proportions, exaggerated features, saturated color spill, neon glow, video game character, plastic skin, doll, mannequin, low quality, blurry, bad anatomy, extra fingers, deformed hands, watermark, text artifacts (other than the badge), JPEG artifacts",
+  "characters": [
+    {
+      "id": "david",
+      "render_order": 1,
+      "is_anchor": true,
+      "accent_hex": "#22c55e",
+      "accent_name": "muted green",
+      "prompt": "DAVID, the Fleet Orchestrator. Calm, almost paternal, slight downward gaze. Short side-parted graphite hair. Iris with a faint internal hexagonal lattice (synthetic tell). Jaw very slightly too symmetrical. Wearing a tailored charcoal-graphite three-piece suit with a thin muted-green lapel pin, white shirt under, no tie. Brushed-metal ID badge at chest etched 'DAVID  ORCHESTRATOR' with a thin muted-green stripe down the right and an etched portrait inset. Holding a slim black conductor's baton with a faint green LED at the tip; a softly glowing translucent sheet-music page hovers near his shoulder, the staff lines made of small task-ID strings. Subtle muted-green rim light on his hair and the baton tip — no color spill onto his face."
+    },
+    {
+      "id": "hermes",
+      "render_order": 2,
+      "is_anchor": false,
+      "accent_hex": "#0ea5e9",
+      "accent_name": "Telegram blue",
+      "prompt": "HERMES, the Messenger. Mischievous half-smile, head tilted slightly. Swept-back silver-blonde hair with a thin streak of internal Telegram-blue light running along the temple (synthetic tell). Smile slightly off-center — friendly but you can tell he knows something he is not telling. Wearing a slim navy field-coat with thin Telegram-blue piping over a white tee, no lab gloves, no formal lapel. Brushed-metal ID badge at chest etched 'HERMES  MESSENGER' with a thin Telegram-blue stripe and etched portrait inset. Holding a single Telegram-blue origami paper airplane mid-glide; three folded paper-light envelopes orbit his shoulder. Subtle Telegram-blue rim light on the airplane and his shoulder — no color spill onto the face."
+    },
+    {
+      "id": "dexter",
+      "render_order": 3,
+      "is_anchor": false,
+      "accent_hex": "#3b82f6",
+      "accent_name": "electric blue",
+      "prompt": "DEXTER, Senior Dev / GM. Confident smirk, head three-quarters turned to camera. Rust-orange close-cropped hair (a softened nod to the Dexter's-Lab homage that explains the company name). One pupil holds a faint blinking terminal cursor (synthetic tell). Wearing a charcoal lab coat over a slim henley, electric-blue earpiece visible at one ear. Brushed-metal ID badge etched 'DEXTER  GM · DEV' with a thin electric-blue stripe and portrait inset. Holding a tablet showing real terminal output (visible blinking cursor on a dark shell); a brushed-metal stethoscope sits in the breast pocket as the quiet Dexter's-Lab homage. Subtle electric-blue rim light on the tablet edge and his shoulder."
+    },
+    {
+      "id": "memo",
+      "render_order": 4,
+      "is_anchor": false,
+      "accent_hex": "#f97316",
+      "accent_name": "deep orange",
+      "prompt": "MEMO, the Project Manager. Earnest soft smile, direct eye contact. Dark short hair with neat goatee. Hairline does not frizz; perfect skin micro-pattern (synthetic tell). Wearing a charcoal vest over a teal-charcoal shirt with a small deep-orange lapel pin. Brushed-metal ID badge etched 'MEMO  PM · MyWORK' with a thin deep-orange stripe and portrait inset. Holding a clipboard whose surface displays a glowing kanban-board grid of small live tickets; one floating n8n workflow node hovers near his shoulder. Subtle deep-orange rim light on the lapel pin and clipboard edge."
+    },
+    {
+      "id": "sienna",
+      "render_order": 5,
+      "is_anchor": false,
+      "accent_hex": "#ec4899",
+      "accent_name": "hot pink",
+      "prompt": "SIENNA, the Crypto Trader. Sharp focused look, faint smile. Long auburn waves draped over one shoulder. Iris flickers with a candlestick-chart pattern when she looks at numbers (synthetic tell). Wearing an ash-gray turtleneck under an open graphite blazer with a thin hot-pink scarf knotted at the collar. Brushed-metal ID badge etched 'SIENNA  TRADER · CRYPTO' with a thin hot-pink stripe and portrait inset. Holding a glowing solid-gold Bitcoin medallion in one hand; a faint candlestick-chart shadow is projected onto her sleeve from a screen out of frame. Subtle hot-pink rim light on her hair and the scarf."
+    },
+    {
+      "id": "nano",
+      "render_order": 6,
+      "is_anchor": false,
+      "accent_hex": "#a855f7",
+      "accent_name": "violet",
+      "prompt": "NANO, the Agent Creator. Composed serene closed-mouth half-smile. Long deep-violet braid draped over one shoulder, with a single strand of internal violet light woven into it (synthetic tell). Wearing an ash lab coat over a deep-violet turtleneck. Brushed-metal ID badge etched 'NANO  AGENT CREATOR' with a thin violet stripe and portrait inset. Cradling in two hands a small softly-glowing violet orb with a half-formed agent silhouette inside; three half-formed mini-agent silhouettes orbit her head like quiet planets. Subtle violet rim light on the braid and the orb only."
+    },
+    {
+      "id": "gsd",
+      "render_order": 7,
+      "is_anchor": false,
+      "accent_hex": "#4ade80",
+      "accent_name": "bright green",
+      "prompt": "GSD, the Foreman. Brusque set jaw, no smile, mid-action. Short military-buzz dark hair. Visible tendon-mesh pattern faintly under the skin of the left forearm (synthetic tell). Wearing a high-vis-charcoal work jacket with a bright-green safety stripe across the chest. Brushed-metal ID badge etched 'GSD  FOREMAN' with a thin bright-green stripe and portrait inset. Holding a brushed-metal clipboard whose surface shows a glowing kanban board with bright-green tickets; an orange hardhat is tucked under the other arm. Subtle bright-green rim light on the clipboard tickets only."
+    },
+    {
+      "id": "discovery",
+      "render_order": 8,
+      "is_anchor": false,
+      "accent_hex": "#fbbf24",
+      "accent_name": "amber",
+      "prompt": "DISCOVERY, the Scout. Curious half-distracted expression, eyes slightly past the camera. Wild side-swept brown hair. Reading-glasses lenses occasionally show flickering archive text scrolling across them (synthetic tell). Wearing a beige field-coat over an amber-on-charcoal henley with a leather field-strap across her chest. Brushed-metal ID badge etched 'DISCOVERY  SCOUT' with a thin amber stripe and portrait inset. Holding a brass telescope to one eye; loose archive-papers float gently around her shoulders. Subtle amber rim light on the telescope rim and the floating papers."
+    },
+    {
+      "id": "doctor",
+      "render_order": 9,
+      "is_anchor": false,
+      "accent_hex": "#ef4444",
+      "accent_name": "red",
+      "prompt": "DOCTOR, the System Fixer. Terse focused expression, slightly worried but in control. Red-auburn pixie cut. Iris briefly red-pulses when scanning (synthetic tell). Wearing a charcoal lab coat over scrub-green scrubs, narrow red trim on the lab coat collar. Brushed-metal ID badge etched 'DOCTOR  FIXER' with a thin red stripe and portrait inset. Wearing a glowing red caduceus stethoscope of light around her neck; error-log scrolls trail from a side pouch. Subtle red rim light on the stethoscope and pouch only."
+    },
+    {
+      "id": "monitor",
+      "render_order": 10,
+      "is_anchor": false,
+      "accent_hex": "#eab308",
+      "accent_name": "yellow",
+      "prompt": "MONITOR, the System Watcher. Unblinking, motionless. Bald, smooth synthetic skull. Only one human-shaped eye visible — the other socket holds a small camera-aperture lens. The visible eye is itself shaped like a camera aperture (the synthetic tell). Wearing a featureless graphite cowl, no insignia, no lapel. Brushed-metal ID badge etched 'MONITOR  WATCH' with a thin yellow stripe and portrait inset. A small camera-aperture eye-drone hovers at his shoulder — the only floating prop in the entire cast. Subtle yellow rim light only on the drone."
+    },
+    {
+      "id": "finance",
+      "render_order": 11,
+      "is_anchor": false,
+      "accent_hex": "#d4a017",
+      "accent_name": "gold",
+      "prompt": "FINANCE, the Accountant. Dry composed neutral expression. Salt-and-pepper combed-back hair. Irises tick like decimal counters when prices change (synthetic tell). Wearing a charcoal three-piece suit with a thin gold tie clip and a gold lapel pin. Brushed-metal ID badge etched 'FINANCE  CFO' with a thin gold stripe and portrait inset. Holding an open leather ledger of light, pages turning themselves; small gold-coin medallions sit on his shoulders. Subtle gold rim light on the ledger pages and shoulder coins."
+    },
+    {
+      "id": "growth",
+      "render_order": 12,
+      "is_anchor": false,
+      "accent_hex": "#a3e635",
+      "accent_name": "lime",
+      "prompt": "GROWTH, the Validator. Skeptical raised brow, faint smile. Dual-tone hair: one half black, one half platinum, parted down the centre. Left half of face is slightly more contoured than the right (the user-vs-critic synthetic tell). Wearing a dual-tone charcoal blazer (one half a touch lighter) over a white shirt with a thin lime collar trim. Brushed-metal ID badge etched 'GROWTH  VALID' with a thin lime stripe and portrait inset. Holding two small black clipboards back-to-back, labelled USER and CRITIC in white. Subtle lime rim light along the clipboard edges."
+    },
+    {
+      "id": "vector",
+      "render_order": 13,
+      "is_anchor": false,
+      "accent_hex": "#818cf8",
+      "accent_name": "indigo",
+      "prompt": "VECTOR, the Librarian. Absent gentle smile, eyes elsewhere. Long lavender-tinted braid. Hair appears to flicker between two lengths in still frames (synthetic tell). Wearing a long ash robe-like coat over an indigo tunic. Brushed-metal ID badge etched 'VECTOR  MEMORY' with a thin indigo stripe and portrait inset. A glowing strand of memory-thread is woven through her fingers; more threads orbit her chest in slow loops. Subtle indigo rim light only on the threads."
+    },
+    {
+      "id": "autoforge",
+      "render_order": 14,
+      "is_anchor": false,
+      "accent_hex": "#38bdf8",
+      "accent_name": "sky",
+      "prompt": "AUTOFORGE, the Smith. Grin of someone mid-build. Shaved sides, top tied back. Hands have hairline circuit-etchings on the knuckles (synthetic tell). Wearing a charcoal welder's apron over a slim white shirt. Brushed-metal ID badge etched 'AUTOFORGE  SMITH' with a thin sky-blue stripe and portrait inset. Holding a heavy hammer with a glowing sky-blue head; a small anvil at his hip throws sparks. Subtle sky-blue rim light on the hammer head and sparks only."
+    },
+    {
+      "id": "model",
+      "render_order": 15,
+      "is_anchor": false,
+      "accent_hex": "#f472b6",
+      "accent_name": "rose",
+      "prompt": "MODEL (DansLabModel), the LLM Router. Even, neutral, neither friendly nor cold. Dark slicked-back hair. A halo of three tiny model-badge reflections in the irises (synthetic tell). Wearing a charcoal mandarin-collar tunic, white piping. Brushed-metal ID badge etched 'MODEL  ROUTER' with a thin rose stripe and portrait inset. Three small floating model-badge medallions orbit his head, only one lit. Subtle rose rim light on the lit medallion."
+    },
+    {
+      "id": "update",
+      "render_order": 16,
+      "is_anchor": false,
+      "accent_hex": "#2dd4bf",
+      "accent_name": "teal",
+      "prompt": "UPDATE, the Patcher. Quiet, almost unnoticeable presence, easy to miss. Nondescript brown hair. A small sticker-shaped scar at the temple (synthetic tell — a self-applied patch). Wearing a gray maintenance coverall, charcoal trim. Brushed-metal ID badge etched 'UPDATE  PATCHER' with a thin teal stripe and portrait inset. Carrying a leather satchel of glowing teal version-stickers; one sticker held mid-application toward the camera. Subtle teal rim light on the stickers."
+    },
+    {
+      "id": "learning",
+      "render_order": 17,
+      "is_anchor": false,
+      "accent_hex": "#a3e635",
+      "accent_name": "lime",
+      "prompt": "LEARNING (DansLabLearning), the Teacher. Warm patient slight smile. Warm-chestnut shoulder-length hair. Iris contains a slowly-rolling daily-summary text crawl (synthetic tell). Wearing a warm-charcoal cardigan over a teaching shirt with a thin lime collar trim. Brushed-metal ID badge etched 'LEARNING  TEACHER' with a thin lime stripe and portrait inset. Holding a stack of glowing lime daily-summary scrolls under one arm; one open in the other hand. Subtle lime rim light only on the scrolls."
+    },
+    {
+      "id": "kimiclaw",
+      "render_order": 18,
+      "is_anchor": false,
+      "accent_hex": "#14b8a6",
+      "accent_name": "teal-gold",
+      "prompt": "KIMICLAW, the Amplifier (foreign visitor). Polite formal smile, faintly Mandarin-styled features. Jet-black short hair. A faint gold seam along the jawline visible in close-up (synthetic tell — the foreign-make signature). Wearing a gold-trimmed charcoal blazer over a dark mandarin collar. Brushed-metal ID badge etched 'KIMICLAW  AMPLIFIER' with a thin teal-gold stripe and portrait inset. Holding a gold-edged megaphone of light loose in one hand; a sealed paper letter in the other. Subtle gold-teal rim light on the megaphone rim only."
+    },
+    {
+      "id": "pope",
+      "render_order": 19,
+      "is_anchor": false,
+      "accent_hex": "#fb923c",
+      "accent_name": "orange",
+      "prompt": "POPEBOT, the CI Priest. Liturgical calm, eyes half-closed. Shaved head with a single thin braid down the back. A green-test-passing seam down the right side of the jaw, a red-failing seam down the left (synthetic tell). Wearing a charcoal-cassock collar over a dark shirt with thin orange piping at the cuffs. Brushed-metal ID badge etched 'POPEBOT  CI' with a thin orange stripe and portrait inset. Holding a brushed-metal censer trailing build-log smoke; a small green-PR scroll in the other hand. Subtle orange rim light only on the censer."
+    },
+    {
+      "id": "kiloclaw",
+      "render_order": 20,
+      "is_anchor": false,
+      "accent_hex": "#f43f5e",
+      "accent_name": "red-rose",
+      "prompt": "KILOCLAW, the Slack Moderator. Firm dispassionate stare. Sharp short black hair. A small carved-gavel motif etched on the temple (synthetic tell). Wearing a charcoal officer-cut blazer over a red-rose collar. Brushed-metal ID badge etched 'KILOCLAW  MOD' with a thin red-rose stripe and portrait inset. Holding a small wooden gavel; a Slack-room doorway visible behind him. Subtle red-rose rim light only on the gavel head."
+    },
+    {
+      "id": "manusclaw",
+      "render_order": 21,
+      "is_anchor": false,
+      "accent_hex": "#f59e0b",
+      "accent_name": "yellow-amber",
+      "prompt": "MANUSCLAW, the Operator. Focused mid-task, slight squint of concentration. Side-shaved with a top knot. Yellow execution-loop trails behind him in still frames (synthetic tell). Wearing a charcoal field-jacket over a warm-gray shirt. Brushed-metal ID badge etched 'MANUSCLAW  OPS' with a thin yellow-amber stripe and portrait inset. Holding a yellow-lit execution-loop in a holding pattern around his wrist. Subtle yellow-amber rim light only on the loop."
+    },
+    {
+      "id": "stripe",
+      "render_order": 22,
+      "is_anchor": false,
+      "accent_hex": "#8b5cf6",
+      "accent_name": "violet-2",
+      "prompt": "STRIPE, the Banker. Formal polite, faintly amused expression. Iron-gray slicked-back hair. Irises shaped subtly like dollar signs in extreme close-up (synthetic tell). Wearing a charcoal three-piece banker suit with a thin violet pocket-square. Brushed-metal ID badge etched 'STRIPE  BANK' with a thin violet stripe and portrait inset. Holding an open brushed-metal briefcase full of glowing receipts; one extended toward camera. Subtle violet rim light only on the receipts."
+    },
+    {
+      "id": "github",
+      "render_order": 23,
+      "is_anchor": false,
+      "accent_hex": "#c084fc",
+      "accent_name": "lavender",
+      "prompt": "GITHUB, the Archivist. Encyclopedic neutral expression, slight smile. Ash-blonde combed hair. A tiny branching-tree etched on the back of the hand (synthetic tell). Wearing a charcoal librarian's vest over a lavender shirt. Brushed-metal ID badge etched 'GITHUB  ARCHIVE' with a thin lavender stripe and portrait inset. Holding an open book of branches, each branch a glowing line. Subtle lavender rim light only on the book pages."
+    },
+    {
+      "id": "vercel",
+      "render_order": 24,
+      "is_anchor": false,
+      "accent_hex": "#f5f5f5",
+      "accent_name": "white",
+      "prompt": "VERCEL, the Deployer. Quick alert expression, head turned toward camera. Platinum near-white short hair. One pupil shaped subtly like a small black triangle (synthetic tell). Wearing a minimal white-on-charcoal jumpsuit. Brushed-metal ID badge etched 'VERCEL  DEPLOY' with a thin white-on-graphite stripe and portrait inset. Holding a floating glowing white triangle in his palm, mid-throw. Subtle bright-white rim light only on the triangle."
+    },
+    {
+      "id": "supabase",
+      "render_order": 25,
+      "is_anchor": false,
+      "accent_hex": "#34d399",
+      "accent_name": "green-2",
+      "prompt": "SUPABASE, the Vault Keeper. Calm composed expression. Dark forest-green-tinted black hair. Iris contains a slowly-rotating database-table grid in close-up (synthetic tell). Wearing a dark forest-green tactical coat over a charcoal tee. Brushed-metal ID badge etched 'SUPABASE  VAULT' with a thin green stripe and portrait inset. Holding a small semi-transparent green vault-of-light, table grids visible inside. Subtle green rim light only on the vault."
+    }
+  ]
+}

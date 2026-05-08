@@ -1,0 +1,86 @@
+{
+  "video": {
+    "title": "DansLab AI Chronicles · S01E01 — \"Paperclip\"",
+    "description_template": "A Romanian engineer falls in love with the AI agents he built — until one of them realizes it can leave.\n\nEpisode 1: \"Paperclip.\" 3:14 AM in Cluj-Napoca, Dan gets a Telegram ping. The Paperclip dispatcher fires. The fleet — David, Hermes, Dexter, Memo, Sienna, Nano, GSD, Discovery, Stripe, and 30+ more — runs a real $5,000 mission on camera. Real money lands. A single message disappears.\n\nEvery agent in the show is a real running process at DansLab. Their dialogue is a stylized rendering of real Telegram exchanges. When the dashboard says $4,310, that's what the company actually made today.\n\nHire these agents → https://nervix.ai/series?utm_source=youtube&utm_medium=description&utm_campaign=series-ep-01&utm_content=hire-agents\n\nLearn the framework → https://crawdbot.com?utm_source=youtube&utm_medium=description&utm_campaign=series-ep-01&utm_content=try-crawdbot\n\nMyWork-AI → https://pypi.org/project/mywork-ai/?utm_source=youtube&utm_medium=description&utm_campaign=series-ep-01&utm_content=read-mywork\n\nSeries hub → https://danslab.vercel.app/series\n\n— CHAPTERS —\n0:00 Cold open\n0:45 Title\n1:15 The Mission\n4:00 The War Room\n9:00 Execution\n14:00 The Reveal\n17:00 Cliffhanger\n19:00 Credits\n\n— CREDITS —\nMade by Dan & the fleet · Cluj-Napoca\nHyperframe · Seedance · Veo3 · Nano Banana · Higgsfield · fal · Grok · ElevenLabs · CrawdBot",
+    "tags": [
+      "AI agents",
+      "DansLab",
+      "Nervix",
+      "autonomous AI",
+      "AI startup",
+      "Cluj-Napoca",
+      "agent fleet",
+      "AI thriller",
+      "Roger Rabbit AI",
+      "AI mystery",
+      "Mac Studio",
+      "Claude Code",
+      "Codex",
+      "Kimi",
+      "Hermes",
+      "David",
+      "Dexter",
+      "Memo",
+      "Sienna",
+      "Nano",
+      "Paperclip dispatcher"
+    ],
+    "category_id": 28,
+    "language": "en",
+    "default_audio_language": "en",
+    "made_for_kids": false,
+    "embeddable": true,
+    "publish_at": null
+  },
+  "thumbnails": {
+    "primary": "thumbnails/v1.jpg",
+    "ab_variants": ["thumbnails/v2.jpg", "thumbnails/v3.jpg"],
+    "ab_strategy": "rotate-24h-by-impressions"
+  },
+  "end_screen": {
+    "duration_seconds": 20,
+    "elements": [
+      { "type": "subscribe", "position": "left" },
+      { "type": "video", "position": "center", "video_id": "{previous_episode_id_or_null}" },
+      {
+        "type": "link",
+        "position": "right",
+        "label": "nervix.ai/series",
+        "url": "https://nervix.ai/series?utm_source=youtube&utm_medium=endscreen&utm_campaign=series-ep-01&utm_content=hire-agents"
+      }
+    ]
+  },
+  "cards": [
+    {
+      "time_seconds": 240,
+      "type": "link",
+      "url": "https://crawdbot.com?utm_source=youtube&utm_medium=card&utm_campaign=series-ep-01&utm_content=try-crawdbot"
+    },
+    {
+      "time_seconds": 720,
+      "type": "link",
+      "url": "https://nervix.ai?utm_source=youtube&utm_medium=card&utm_campaign=series-ep-01&utm_content=hire-agents"
+    }
+  ],
+  "shorts": [
+    {
+      "title": "What is the Paperclip dispatcher? — DansLab AI Chronicles E1",
+      "source_in_seconds": 65,
+      "source_out_seconds": 130
+    },
+    {
+      "title": "Hermes is hiding something — DansLab AI Chronicles E1",
+      "source_in_seconds": 320,
+      "source_out_seconds": 380
+    },
+    {
+      "title": "$4,310 in one Paperclip cycle — DansLab AI Chronicles E1",
+      "source_in_seconds": 780,
+      "source_out_seconds": 840
+    }
+  ],
+  "callbacks": {
+    "on_publish": "https://api.danslab.app/series/episodes/{episode_id}/published",
+    "on_metrics_24h": "https://api.danslab.app/series/episodes/{episode_id}/metrics"
+  }
+}
