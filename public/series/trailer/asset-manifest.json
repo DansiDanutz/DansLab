@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "phase": 2,
   "description": "DansLab AI Chronicles trailer — Phase 2 hero stills. Generated via Higgsfield · Nano Banana 2. Each entry locks the prompt, the source job ID, and the Hyperframe motion pass that will turn the still into the cut clip.",
   "assets": [
@@ -40,7 +40,46 @@
         "status": "pending"
       },
       "notes": "Phase-3 regen will swap GSD/Discovery/Monitor out for Memo + Nano + a fourth capital so the framing matches the new mythology (David + 4 capitals + Hermes).",
-      "prompt": "Cinematic wide shot, first-person POV from a Mac Studio desk in a Cluj-Napoca apartment loft. Six translucent holographic agents arranged in a circle on the desk, each ~18 inches tall, the desk visible through their legs, faint scan-line edges. David at center (boyish synthetic ~13, dark suit, conductor's baton with green LED tip), Dexter to his right (rust-orange hair, charcoal lab coat, electric-blue earpiece), GSD to his left (foreman with high-vis stripe, brushed-metal clipboard glowing bright-green), Discovery leaning forward (wild brown hair, brass telescope, floating archive papers around her shoulders), Hermes half-shadowed at the back (older synthetic, brass cane, amber glow, faintly smiling, eyes off-screen), Monitor floating behind (bald, camera-aperture eye, hovering eye-drone, no body). Floating between them: a cinematic holographic dashboard reading 'MISSION 01 · TARGET $100,000' in clean white sans-serif over a candlestick-style chart. Real photographic Mac Studio cube and Studio Display in the foreground, server racks with blinking LEDs to the right, bubbling green reagent tower out of focus far left. Cool fluorescent overhead + warm desk-lamp pool + multi-color rim light from each agent's signature glow. Severance / Mr. Robot mood. Shallow DOF, light film grain. 16:9."
+      "prompt": "Cinematic wide shot, first-person POV from a Mac Studio desk in a Cluj-Napoca apartment loft. Six translucent holographic agents arranged in a circle on the desk... 'MISSION 01 · TARGET $100,000' ... Severance / Mr. Robot mood. 16:9."
+    },
+    {
+      "slug": "hero-03-sienna-double-agent",
+      "shot": "27b",
+      "tc": "1:55",
+      "duration_s": 2,
+      "file": "hero-03-sienna-double-agent.png",
+      "aspect": "16:9",
+      "source": {
+        "model": "nano_banana_2",
+        "job_id": "ebd2caa1-4001-4a5f-906b-a0cba3d133ee",
+        "generated_at": "2026-05-08T11:39:24Z"
+      },
+      "next_pass": {
+        "engine": "hyperframe_kling",
+        "motion": "color flicker pass, left↔right, 2s",
+        "status": "pending"
+      },
+      "notes": "The mythology reveal frame. Only frame in the trailer where the audience sees the doubling, never named.",
+      "prompt": "Cinematic split-frame portrait, hard centerline. Same character on both sides — Sienna ... LEFT HALF: bright green rim light + red-lobster bracelet. RIGHT HALF: amber rim light + brass paper-airplane sigil. 16:9."
+    },
+    {
+      "slug": "hero-04-money-frame",
+      "shot": 17,
+      "tc": "0:55",
+      "duration_s": 6,
+      "file": "hero-04-money-frame.png",
+      "aspect": "16:9",
+      "source": {
+        "model": "nano_banana_2",
+        "job_id": "81c060db-0e2c-472e-99f5-5b4eff84892b",
+        "generated_at": "2026-05-08T11:39:37Z"
+      },
+      "next_pass": {
+        "engine": "hyperframe_veo3",
+        "motion": "glow flicker + chart spike, 6s",
+        "status": "pending"
+      },
+      "prompt": "Full-bleed cinematic frame, dead-center holographic typography '$100,000 / BY 2027', Telegram-blue glow, candlestick chart spiking, faint Hermes silhouette in lower-right. 16:9."
     },
     {
       "slug": "logo-openclaw-lobster",
@@ -59,7 +98,26 @@
         "motion": "two-frame claw-snap loop with red glow halo, 1.5s",
         "status": "pending"
       },
-      "prompt": "Cinematic logo mark — a stylized red lobster (deep red #c0392b, brushed-metal carapace highlights), front-facing and symmetrical, both claws raised forward and slightly toward the viewer in a ready stance, segmented body, antennae swept back. Rendered as a 2D-into-3D mark with a sharp silhouette on a pure black backdrop, faint red glow halo behind it. Scratched-metal emblem texture on the carapace. Designed to read at any size as a faction sigil. No text. Centered. 1:1 square crop."
+      "prompt": "Cinematic logo mark — a stylized red lobster, brushed-metal carapace, both claws raised forward, deep red #c0392b. Pure black backdrop, faint red glow halo. 1:1."
+    },
+    {
+      "slug": "logo-hermes-airplane",
+      "shot": "logo-hermes",
+      "tc": "0:28, 2:55",
+      "duration_s": 1.5,
+      "file": "logo-hermes-airplane.png",
+      "aspect": "1:1",
+      "source": {
+        "model": "nano_banana_2",
+        "job_id": "5068f122-2294-4872-a6be-feafa96b7657",
+        "generated_at": "2026-05-08T11:39:09Z"
+      },
+      "next_pass": {
+        "engine": "hyperframe_veo3",
+        "motion": "unfold-from-envelope loop with amber halo bloom, 1.5s",
+        "status": "pending"
+      },
+      "prompt": "Cinematic logo mark — a brass-edged paper airplane in mid-flight, amber halo (#f59e0b) blooming, three orbit envelopes. Pure black backdrop. 1:1."
     },
     {
       "slug": "legacy-warroom-v1-mission5k",
@@ -78,32 +136,8 @@
         "motion": null,
         "status": "deprecated"
       },
-      "notes": "Original Episode 1 war-room hero with the legacy $5,000 mission target. Kept for reference; superseded by hero-02 for the trailer cut."
+      "notes": "Original Episode 1 war-room with the legacy $5,000 mission target. Kept for reference; superseded by hero-02 for the trailer cut."
     }
   ],
-  "still_to_generate": [
-    {
-      "slug": "logo-hermes-airplane",
-      "shot": "logo-hermes",
-      "engine": "nano_banana_2",
-      "status": "pending",
-      "prompt": "Cinematic logo mark — a brass-edged paper airplane in mid-flight, paper plane folded in classic dart shape but with brass-foil leading edges, an amber halo (#f59e0b) blooming from behind it. A small flock of three more brass-edged envelopes orbit it like satellites. Pure black backdrop. No text. Centered. 1:1 square crop."
-    },
-    {
-      "slug": "hero-03-sienna-double-agent",
-      "shot": "27b",
-      "tc": "1:55",
-      "engine": "nano_banana_2",
-      "status": "pending",
-      "prompt": "Cinematic split-frame portrait, hard centerline. Same character on both sides — Sienna, sharp-featured Romanian-accented synthetic, late 20s, dark hair, tight close-up, both halves stare directly at camera. LEFT HALF: bright green rim light, holding a glowing green Bitcoin in her hand, a small red-lobster bracelet on her wrist, candlestick chart faintly visible behind her shoulder in green. RIGHT HALF: amber rim light, holding the same Bitcoin but now glowing amber, a small brass paper-airplane sigil burned into her wrist instead of the bracelet, candlestick chart behind her in amber. Two rim lights bleed into the centerline forming a thin band of color mixing. Real photographic AI-lab background, server racks blurred behind. No text. Severance / Mr. Robot grade. 16:9."
-    },
-    {
-      "slug": "hero-04-money-frame",
-      "shot": 17,
-      "tc": "0:55",
-      "engine": "nano_banana_2",
-      "status": "pending",
-      "prompt": "Full-bleed cinematic frame, dead-center holographic typography reading '$100,000 / BY 2027' in clean white sans-serif, Telegram-blue (#0ea5e9) glow spilling outward, very slight chromatic aberration. Behind the type: a candlestick chart in the same blue-cyan palette spiking upward, one faint half-shadowed agent silhouette (Hermes, brass cane, amber glow) watching from the lower-right edge. Background: dark navy gradient with faint UI grid. Real photographic AI-lab feel — dust motes catching the beam from the left. Light scan-line texture suggesting holographic projection. Aspect 16:9."
-    }
-  ]
+  "still_to_generate": []
 }
