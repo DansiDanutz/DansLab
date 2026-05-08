@@ -36,3 +36,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# trailer source clips — large, regeneratable from Kling job IDs in
+# public/series/trailer/asset-manifest.json. Build with scripts/trailer/build-trailer.sh.
+scripts/trailer/clips/

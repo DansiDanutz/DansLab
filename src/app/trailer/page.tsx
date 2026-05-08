@@ -126,20 +126,29 @@ export default function TrailerPage() {
     <PageWrapper showGrid={false}>
       {/* ───── Hero ───── */}
       <section className="relative -mx-4 mb-20 overflow-hidden sm:-mx-6 lg:-mx-8">
-        <div className="relative aspect-[21/9] w-full">
-          <HeroStill slug="hero-01-cluj-cold-open" alt="Cluj-Napoca at blue hour" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/55 to-black" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/30" />
+        <div className="relative aspect-video w-full bg-black">
+          <video
+            src={`${TRAILER_BASE}/trailer-teaser.mp4`}
+            poster={`${TRAILER_BASE}/hero-04-money-frame.png`}
+            autoPlay
+            muted
+            playsInline
+            loop
+            controls
+            preload="metadata"
+            className="h-full w-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
         </div>
 
-        <div className="relative z-10 -mt-[60vh] px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="relative z-10 px-4 pb-8 pt-10 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#c0392b]/30 bg-black/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[#e74c3c] backdrop-blur sm:text-sm">
               <span
                 className="h-1.5 w-1.5 rounded-full bg-[#c0392b]"
                 style={{ boxShadow: "0 0 10px rgba(192,57,43,0.8)", animation: "pulse-claw 2s ease-in-out infinite" }}
               />
-              Trailer · 3:00 · Premieres late 2026
+              Teaser cut · 0:43 · visual edit · VO + score in post
             </div>
 
             <h1 className="font-bold leading-[0.92] tracking-tight text-white">
@@ -156,11 +165,20 @@ export default function TrailerPage() {
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <a
-                href="#storyboard"
+                href={`${TRAILER_BASE}/trailer-teaser.mp4`}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#c0392b] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(192,57,43,0.4)] transition hover:bg-[#a72f23]"
               >
                 <Play size={14} fill="currentColor" />
+                Open MP4 (43s)
+              </a>
+              <a
+                href="#storyboard"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm text-white backdrop-blur transition hover:border-white/50"
+              >
                 See the storyboard
+                <ArrowRight size={14} />
               </a>
               <Link
                 href="/series"
