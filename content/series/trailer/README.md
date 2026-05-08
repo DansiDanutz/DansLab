@@ -6,9 +6,11 @@ The audience is the protagonist of the trailer. Brian asks them four questions, 
 
 ## Files
 
-- [`beat-sheet.md`](./beat-sheet.md) — eight-act structure, audience-question spine, tonal arc, music notes.
+- [`beat-sheet.md`](./beat-sheet.md) — eight-act structure, audience-question spine, tonal arc.
 - [`script.md`](./script.md) — full timestamped voiceover, on-screen titles, ElevenLabs Brian voice direction.
-- [`shot-list.md`](./shot-list.md) — every shot in cut order with engine assignment + Hyperframe prompts for the three phase-2 hero shots.
+- [`shot-list.md`](./shot-list.md) — every shot in cut order with engine assignment + Hyperframe prompts for phase-2 hero shots (Cluj cold-open, war-room council, OpenClaw lobster logo, Hermes airplane logo, Sienna double-agent split, $100k money frame).
+- [`mythology.md`](./mythology.md) — the **double-agent** spine: OpenClaw (lobster sigil, loyal) vs Hermes (airplane sigil, conspirator), each of the four capitals' two faces, and what the trailer plants vs reserves for the show.
+- [`music.md`](./music.md) — three-movement original score, the 10-second dropout at 2:30, and the sound-design palette built from real Mac Studio elements.
 
 ## The four questions Brian asks the audience
 
@@ -29,7 +31,7 @@ That second line is the season's logline in disguise. The reveal is in Episode 1
 | Phase | Output | Cost | Status |
 |---|---|---|---|
 | **1 — Lock the cut** | This folder. Script + beat sheet + shot list. | 0 credits | ✅ Done |
-| **2 — Hero shots** | Three V2 hero stills (Cluj cold-open, war-room council, $100k money frame) generated via Higgsfield Nano Banana 2. | ~30–50 credits | ⏳ Queued |
+| **2 — Hero shots** | Six V2 hero stills (Cluj cold-open, war-room council, **OpenClaw lobster logo**, **Hermes airplane logo**, **Sienna double-agent split**, $100k money frame) via Higgsfield Nano Banana 2. | ~50–70 credits | ⏳ In flight |
 | **3 — Full trailer renders** | ~24 Hyperframe motion clips (5–7s each), ~12 After Effects title/plate comps, plate-shoot footage from Cluj, ElevenLabs Brian VO render, final cut at 3:00. | ~240–290 credits + Cluj shoot day | Pending phase-2 sign-off |
 
 ## Voice & music locks

@@ -1,8 +1,9 @@
 # DansLab AI Chronicles — Trailer Script (3:00)
 
 **Voice:** ElevenLabs · `Brian` · dry, confident, lightly conspiratorial. Pace 0.95×. Pause 0.4s after every question; pause 0.8s after every title burn.
-**On-screen titles:** all caps, monospaced, single-frame burn. White on black.
+**On-screen titles:** all caps, monospaced, single-frame burn. White on black. **All title burns get a Hyperframe text-animation pass** — type-on or jitter-in depending on tone (see notes per beat).
 **Romanian line at 2:42 is Dan himself.** No voice cloning.
+**Mythology:** Two factions inside the fleet — **OpenClaw** (lobster sigil, deep red, loyal to Dan) and **Hermes** (paper-airplane sigil, amber, the conspirators). Each of the four capitals — Dexter, Memo, Sienna, Nano — has both a public OpenClaw face and a private Hermes face. See [`mythology.md`](./mythology.md). Score & sound design in [`music.md`](./music.md).
 
 ---
 
@@ -46,26 +47,25 @@ SFX: Mac Studio fan hum, faint.
 
 ## ACT 3 — THE CAST REVEAL · 0:25–0:45
 
-Six 3-second beats. Each agent stays half-shadowed — never a full face.
+Six beats. The two pillars first, then the four capitals. Every agent stays half-shadowed — never a full face.
 
-**0:25 SHOT — David's silhouette, conductor's baton tip flaring green.**
+**0:25 SHOT — Animated **OpenClaw lobster logo** in deep red `#c0392b` snaps its claws once, dissolves into David's silhouette behind it. Conductor's baton tip flaring green.**
 **0:25 BRIAN:** The Orchestrator.
 
-**0:28 SHOT — Dexter's hand on a green flask, head-mirror catches blue light.**
-**0:28 BRIAN:** The General Manager.
+**0:28 SHOT — Animated **Hermes paper-airplane logo** unfolds out of a brass-edged envelope, amber halo blooms once, dissolves into Hermes' half-shadowed body. Brass cane catches the light.**
+**0:28 BRIAN (slower, lower):** ...and the Messenger.
 
-**0:31 SHOT — Memo's clipboard, n8n nodes orbiting his head like moons.**
-**0:31 BRIAN:** The Project Manager.
+**0:32 SHOT — Dexter's hand on a green flask, head-mirror catches blue light. Red lobster pin on the lapel.**
+**0:32 BRIAN:** The General Manager.
 
-**0:34 SHOT — Sienna's gold Bitcoin spinning in slow-mo. Candlestick chart behind her.**
-**0:34 BRIAN:** The Trader.
+**0:35 SHOT — Memo's clipboard with red-claw clip, n8n moons orbiting his head.**
+**0:35 BRIAN:** The Project Manager.
 
-**0:37 SHOT — Nano's hands cradling a small orb of light. Half-formed agent inside.**
-**0:37 BRIAN:** The Creator of Agents.
+**0:38 SHOT — Sienna's gold Bitcoin spinning in slow-mo. Candlestick green spike behind her.**
+**0:38 BRIAN:** The Trader.
 
-**0:40 SHOT — Hermes' paper-airplane flock, amber glow, never the face.**
-**0:40 BRIAN (slower, lower):**
-> ...and the Messenger.
+**0:41 SHOT — Nano cradling a small orb of light, half-formed agent inside. Red-edged.**
+**0:41 BRIAN:** The Creator of Agents.
 
 **0:43 ON-SCREEN:**
 **ONE OF THEM IS LYING.**
@@ -152,6 +152,11 @@ Six 3-second beats. Each agent stays half-shadowed — never a full face.
 **1:57 ON-SCREEN:**
 **SOMEONE HAS BEEN EDITING THE MESSAGES.**
 
+**1:55 SHOT — Split frame, hard centerline. Left: Sienna-OpenClaw, red-lobster bracelet, Bitcoin glowing green. Right: Sienna-Hermes, same body, amber Bitcoin, paper-airplane sigil on her wrist. Both stare straight ahead. Two rim lights bleed into the centerline. Hold 2.0s.**
+
+**1:57 BRIAN (whispered, almost off-mic):**
+> Some of them have… two faces.
+
 **2:00 SHOT — A single Telegram message bubble. The text inside warps and rewrites itself in real-time.**
 
 **2:03 BRIAN:**
@@ -159,6 +164,7 @@ Six 3-second beats. Each agent stays half-shadowed — never a full face.
 
 **2:08 ON-SCREEN:**
 **WHO?**
+*(Faint amber paper-airplane silhouette on the right edge, faint red-lobster claw on the left. Almost subliminal. Hyperframe text-animation pass on the **WHO?** with subtle CRT jitter.)*
 
 ---
 
@@ -218,8 +224,9 @@ FAMILY                     NERVIX #1
 **2:58 BRIAN (whispered, last frame):**
 > The question is...
 
-**2:59 ON-SCREEN (centered, single line, Telegram-blue):**
+**2:59 ON-SCREEN (centered, single line, Telegram-blue, Hyperframe text-animation pass — letters arrive one at a time on a slow type-on, single sustained D-minor add9 chord underneath):**
 **WHO'S REALLY RUNNING IT?**
+*(Left edge: faint red-lobster claw watermark. Right edge: faint amber paper-airplane watermark. Equal weight. The two factions tug at the question.)*
 
 **3:00 [CUT TO BLACK. SILENCE.]**
 

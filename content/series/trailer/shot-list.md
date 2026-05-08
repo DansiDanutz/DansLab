@@ -45,7 +45,10 @@ Total: **34 shots** · target avg duration **5.3s** · final cut **3:00**.
 | 37 | 2:46 | 6.0s | Logo lockup type-on: **DANSLAB AI CHRONICLES** + **SEASON 1 · PREMIERES LATE 2026**. | AE | — |
 | 38 | 2:55 | 5.0s | Final line over black: **WHO'S REALLY RUNNING IT?** | AE | — |
 
-## Hyperframe prompts — phase 2 hero shots (the 3 we render first)
+## Hyperframe prompts — phase 2 hero shots (the 5 we render first)
+
+> Refocused on the two pillars (Hermes + David), the four capitals (Dexter, Memo, Sienna, Nano), and the double-agent mythology. See [`mythology.md`](./mythology.md). Two animated faction logos — **OpenClaw lobster** and **Hermes paper-airplane** — recur throughout the cut and need locked still references that we then animate via Hyperframe.
+
 
 ### Hero #1 — Cluj cold-open (Shot 04)
 
@@ -81,7 +84,53 @@ film grain. Aspect 16:9.
 ```
 Engine: Higgsfield · Hyperframe Veo3 · 7s slow rotation · seed locked.
 
-### Hero #3 — Money frame (Shot 17)
+### Hero #3 — OpenClaw lobster faction logo
+
+```
+Cinematic logo mark — a stylized red lobster (deep red #c0392b, brushed-
+metal highlights), front-facing, both claws raised forward and slightly
+toward the viewer in a ready stance, segmented body, antennae back. The
+lobster is rendered as a 2D-into-3D mark, sharp silhouette on a pure
+black backdrop with a faint red glow halo. A single scratched-metal
+emblem texture on the carapace. Designed to read at any size as a
+faction sigil. No text. Centered. 1:1 square crop.
+```
+Engine: Nano Banana 2 still → Hyperframe Veo3 claw-snap loop · 1.5s.
+Used as: faction sigil over David and the four capitals' OpenClaw faces; watermark on the OpenClaw side of every double-agent split.
+
+### Hero #4 — Hermes paper-airplane faction logo
+
+```
+Cinematic logo mark — a brass-edged paper airplane in mid-flight, paper
+plane folded in classic dart shape but with brass-foil leading edges
+catching imaginary light, an amber halo (#f59e0b) blooming from behind
+it. A small flock of three more brass-edged envelopes orbit it like
+satellites. Pure black backdrop. Designed to read at any size as a
+faction sigil. No text. Centered. 1:1 square crop.
+```
+Engine: Nano Banana 2 still → Hyperframe Veo3 unfold-from-envelope loop · 1.5s.
+Used as: faction sigil over Hermes and the four capitals' Hermes faces; watermark on the Hermes side of every double-agent split.
+
+### Hero #5 — Sienna double-agent split (Shot 27b — the mythology reveal)
+
+```
+Cinematic split-frame portrait, hard centerline. Same character on both
+sides — Sienna, sharp-featured Romanian-accented synthetic, late 20s,
+dark hair, tight close-up, both halves stare directly at camera. LEFT
+HALF: bright green rim light, holding a glowing green Bitcoin in her
+hand, a small red-lobster bracelet on her wrist, candlestick chart
+faintly visible behind her shoulder in green. RIGHT HALF: amber rim
+light, holding the same Bitcoin but now glowing amber, a small brass
+paper-airplane sigil burned into her wrist instead of the bracelet,
+candlestick chart behind her in amber. The two rim lights bleed into
+the centerline forming a thin band of color mixing. Real photographic
+AI-lab background, server racks blurred behind. No text. Severance /
+Mr. Robot grade. 16:9.
+```
+Engine: Nano Banana 2 still → Hyperframe Kling color-flicker pass · 2s.
+Used as: Shot 27b — the only frame in the trailer where the audience sees the doubling, never named.
+
+### Hero #6 — Money frame (Shot 17)
 
 ```
 Full-bleed cinematic frame, dead-center holographic typography reading

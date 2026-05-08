@@ -1,0 +1,83 @@
+{
+  "trailer": "DansLab AI Chronicles · Season 1",
+  "duration_seconds": 180,
+  "format": "16:9",
+  "voice": {
+    "narrator": "ElevenLabs · Brian",
+    "stability": 0.45,
+    "similarity": 0.75,
+    "style": 0.20,
+    "speed": 0.95,
+    "whisper_pass_speed": 0.85,
+    "whisper_pass_db": -8
+  },
+  "factions": {
+    "openclaw": {
+      "color": "#c0392b",
+      "sigil": "lobster",
+      "lead": "david"
+    },
+    "hermes": {
+      "color": "#f59e0b",
+      "sigil": "brass-paper-airplane",
+      "lead": "hermes"
+    }
+  },
+  "double_agents": ["dexter", "memo", "sienna", "nano"],
+  "hero_stills": [
+    {
+      "id": "8727e1e9-5870-4231-8401-37b50692e832",
+      "slot": "shot-04-cluj-cold-open",
+      "engine": "nano_banana_2",
+      "ratio": "16:9"
+    },
+    {
+      "id": "04da8705-1785-471c-bec9-e931854adf17",
+      "slot": "shot-18-war-room-council-v1",
+      "engine": "nano_banana_2",
+      "ratio": "16:9",
+      "note": "Generated before the double-agent pivot. Cast: David, Dexter, GSD, Discovery, Hermes, Monitor. Superseded by 11a7ef4c."
+    },
+    {
+      "id": "ddb927a4-71a6-4f79-b520-43d9ff8c489c",
+      "slot": "logo-openclaw-lobster",
+      "engine": "nano_banana_2",
+      "ratio": "1:1",
+      "next_step": "Hyperframe Veo3 claw-snap loop, 1.5s"
+    },
+    {
+      "id": "06bdf402-f596-4303-9c07-65809dcec7bc",
+      "slot": "logo-hermes-airplane",
+      "engine": "nano_banana_2",
+      "ratio": "1:1",
+      "next_step": "Hyperframe Veo3 unfold-from-envelope loop, 1.5s"
+    },
+    {
+      "id": "24197a45-af59-488a-ba52-42a48336e174",
+      "slot": "shot-27b-sienna-double-agent",
+      "engine": "nano_banana_2",
+      "ratio": "16:9",
+      "next_step": "Hyperframe Kling color-flicker pass, 2.0s"
+    },
+    {
+      "id": "11a7ef4c-f155-4872-ba90-6331feb8c139",
+      "slot": "shot-18-war-room-council-v2",
+      "engine": "nano_banana_2",
+      "ratio": "16:9",
+      "note": "Cast: David + 4 capitals (Dexter, Memo, Sienna, Nano) + Hermes half-shadow. Aligned with double-agent mythology.",
+      "next_step": "Hyperframe Veo3 7s slow rotation"
+    },
+    {
+      "id": "3c15d8bf-7969-4e1d-befa-f87e66d7cd87",
+      "slot": "shot-17-money-frame-100k-2027",
+      "engine": "nano_banana_2",
+      "ratio": "16:9",
+      "next_step": "Hyperframe text animation pass on the typography + glow flicker"
+    }
+  ],
+  "phase_3_video_render_budget_credits": 290,
+  "delivery_targets": {
+    "youtube": "danslab.vercel.app",
+    "premiere_window": "Late 2026"
+  }
+}
