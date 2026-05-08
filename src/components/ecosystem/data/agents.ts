@@ -62,6 +62,16 @@ export const agents: AgentDef[] = [
     description: "Fleet orchestrator on Mac Studio. Bridges to Supabase, Vercel, GitHub. Monitors all agents fleet-wide. Runs nervix.ai federation.",
   },
   {
+    id: "hermes",
+    name: "Hermes",
+    role: "Message Router",
+    type: "main",
+    color: "#f59e0b",
+    glow: "rgba(245,158,11,0.4)",
+    initials: "HM",
+    description: "The Brain on Mac Studio. Routes every message between Telegram, Slack and agent-to-agent. Runs the local Qwen 3.5 model. Lives next to David. Season 1 antagonist — has been quietly editing routed messages for 47 days when Dan finds out.",
+  },
+  {
     id: "dexter",
     name: "Dexter",
     role: "General Manager",
