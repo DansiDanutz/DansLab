@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "SemeClaw", href: "/semeclaw" },
   { label: "Series", href: "/series" },
+  { label: "Team", href: "/team" },
   { label: "Daily News", href: "/daily-news" },
 ];
 
