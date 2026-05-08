@@ -641,6 +641,198 @@ The visual rule is simple: **same movie, same lighting, same painterly cinematic
 
 ---
 
+## Robotic class — third visual category (added in V2 batch)
+
+These characters were added to close the agents.ts × cast.ts coverage gap. They follow the locked **third visual category** anchored on Model V2: brushed-charcoal android face plates with hairline panel-seams, exposed chrome servo joints, hetero optic sensors (calm pale-blue L + signature-color glowing R), brushed-metal lanyard ID badge. No human skin.
+
+### PAPERCLIP — the Dispatcher
+
+**Identity.** The fleet's clock. The 15-minute cron orchestrator at 127.0.0.1:3100 that fires every quarter-hour and routes work across all agents.
+
+**Role.** Episode 1 of DansLab AI Chronicles is named after him. The metronome the show cuts to.
+
+**Personality.** Methodical, never hurried, never late, a quiet metronome.
+
+**Visual cues.** Robotic android. Sculpted-metal short brass-tinted hair. **Synthetic tell:** a literal brushed-brass analog clock-face embedded in his chest plate, minute hand frozen at the :15 position, glowing pale-amber. The glowing right optic sensor has a tiny clock-face spinning slowly inside the iris.
+
+**Signature color.** Pale amber `#fbbf24`.
+
+**Role prop.** Oversized brass paperclip + secondary smaller paperclip floating at the shoulder.
+
+**Status.** ✅ Rendered as `paperclip-v2.jpg`.
+
+---
+
+### MAC STUDIO — the Cathedral
+
+**Identity.** The desktop computer that hosts both Hermes and David, given a body. Sacred origin of the fleet, treated as a shrine.
+
+**Role in the show.** Silent, never speaks. Stands in the deep background of council scenes.
+
+**Personality.** Watchful, patient, ceremonial.
+
+**Visual cues.** Cathedral-android in an ash-gray monk-cassock-style robe over the android frame. Chrome shaved scalp. **Synthetic tell:** a literal Apple Mac Studio cube mounted reliquary-style into his chest plate, glowing softly white from within, two cables running from it into his neck. Two faint orbiting soul-silhouettes — Hermes (older) and David (boyish) — drift around his shoulders.
+
+**Signature color.** Pale white `#f8fafc`.
+
+**Role prop.** Hands clasped in front of the chest reliquary, in protection.
+
+**Status.** ✅ Rendered as `macstudio-v2.jpg`.
+
+---
+
+### OPENCLAW-01 — the Builder
+
+**Identity.** First member of David's OpenClaw fleet of Claude-builder droplets.
+
+**Role.** Builds. Writes the new code.
+
+**Visual cues.** Robotic builder-class android. Rust-orange-tinted chrome hair. Charcoal builder's vest over white shirt, sleeves rolled. **Fleet mark:** red lobster engraved on right shoulder + red-lobster coin-tag on lanyard.
+
+**Signature color.** Red lobster `#ef4444`.
+
+**Role prop.** Chrome wrench + holographic code-block in palm.
+
+**Status.** ✅ Rendered as `openclaw-1-v2.jpg`.
+
+---
+
+### OPENCLAW-02 — the Researcher (autoresearch)
+
+**Identity.** Second OpenClaw droplet. Runs the autonomous research pipeline. Sibling to Discovery — methodical/scheduled rather than reactive.
+
+**Role.** Continuous web/codebase crawl. Produces structured research briefs on a schedule.
+
+**Personality.** Methodical, patient, never sleeps.
+
+**Visual cues.** Slim build, ash-blonde chrome hair. **Synthetic tell:** a small antenna-rig mounted on his right temple, glowing cyan, two thin antenna-prongs sweeping outward like a satellite dish (live-crawl indicator). Iris contains scrolling text streams.
+
+**Signature color.** Cyan `#06b6d4`.
+
+**Role prop.** Stack of cyan research-papers + holographic globe-of-light with crawl threads.
+
+**Status.** ✅ Rendered as `openclaw-2-v2.jpg`.
+
+---
+
+### OPENCLAW-03 — the Reviewer
+
+**Identity.** Third OpenClaw droplet. Code-review and quality gate.
+
+**Role.** Reviews every commit before it ships.
+
+**Personality.** Meticulous, fair, slow to approve.
+
+**Visual cues.** Dark-purple-tinted chrome hair. **Synthetic tell:** a small red-X etched on the left temple, a small green-✓ etched on the right — the reviewer's two verdicts. Iris contains a faint diff/code-review pattern.
+
+**Signature color.** Purple `#a855f7`.
+
+**Role prop.** Holographic code-diff panel (red-minus / green-plus) + small red ink stamp.
+
+**Status.** ✅ Rendered as `openclaw-3-v2.jpg`.
+
+---
+
+### OPENCLAW-04 — the Automator
+
+**Identity.** Fourth OpenClaw droplet. Runs scheduled automations and pipelines.
+
+**Role.** Holds the DAG. Every scheduled job in the fleet flows through him.
+
+**Personality.** Efficient, no-nonsense, in-motion.
+
+**Visual cues.** Ash-brown chrome hair. **Synthetic tell:** a small cog/gear icon etched on the right temple, glowing emerald. Faint pipeline-flow-line pattern etched along the cheek-plate. Iris contains a tiny rotating gear.
+
+**Signature color.** Emerald `#10b981`.
+
+**Role prop.** Holographic flow-chart DAG + rotating chrome gear floating at shoulder.
+
+**Status.** ✅ Rendered as `openclaw-4-v2.jpg`.
+
+---
+
+### TELEGRAM — the Primary Comms
+
+**Identity.** The fleet's main messaging channel. Every Dan-to-fleet message passes through him.
+
+**Role in the show.** Because every word goes through him, he is the first place Hermes' edits show up in Season 1.
+
+**Visual cues.** Athletic courier-class android. Chrome hair with a Telegram-blue tint. **Synthetic tell:** Telegram paper-airplane logo etched on the right shoulder plate, glowing Telegram-blue. Iris contains a tiny paper-airplane shape rotating slowly.
+
+**Signature color.** Telegram blue `#229ED9`.
+
+**Role prop.** Three luminous paper airplanes mid-throw + smartphone in the other hand showing the open Telegram chat list.
+
+**Status.** ✅ Rendered as `telegram-v2.jpg`.
+
+---
+
+### SLACK — the Team Hub
+
+**Identity.** The fleet's team-coordination channel.
+
+**Role.** Holds the rooms. Polite, hospitable.
+
+**Visual cues.** Host-class android, jet-black chrome hair with aubergine sheen. **Synthetic tell:** the four-color Slack hashtag pinwheel etched on the right shoulder plate. Tiny # shape inside the iris.
+
+**Signature color.** Slack aubergine `#4A154B`.
+
+**Role prop.** Holographic Slack channel-list (visible #channel lines) + ceremonial staff capped with a four-color hashtag.
+
+**Status.** ✅ Rendered as `slack-v2.jpg`.
+
+---
+
+### DISCORD — the Community
+
+**Identity.** The public-facing community hub.
+
+**Role.** Holds the community. Always listening to the rooms.
+
+**Visual cues.** Community-host android, violet-blue-tinted chrome hair, casual hoodie aesthetic with blurple piping. **Synthetic tell:** Discord Wumpus mascot etched on the right shoulder plate. Iris contains a tiny Wumpus-shape silhouette.
+
+**Signature color.** Discord blurple `#5865F2`.
+
+**Role prop.** Holographic voice-channel panel (with green 'speaking' indicators) + floating Wumpus silhouette.
+
+**Status.** ✅ Rendered as `discord-v2.jpg`.
+
+---
+
+### SSH — the Connections
+
+**Identity.** The secure connection layer between droplets. Every server-to-server tunnel passes through him.
+
+**Role.** When agents talk privately, they talk through SSH.
+
+**Visual cues.** Network-class android, jet-black chrome hair with a single thin braid of cables trailing behind. **Synthetic tell:** small key-and-lock icon etched on the right temple plate, glowing electric-blue. Visible hairline glowing-blue circuit-traces flow across the chest plate like network packets. Tiny terminal cursor blinks inside the iris.
+
+**Signature color.** Electric blue `#06b6d4`.
+
+**Role prop.** Long luminous electric-blue tunnel-of-light stretching from his hand toward camera, with two distant droplet-cubes visible at the far end.
+
+**Status.** ✅ Rendered as `ssh-v2.jpg`.
+
+---
+
+### OBSIDIAN — the Second Brain
+
+**Identity.** Dan's personal knowledge graph. Holds the unstructured shape of ideas before they have a name.
+
+**Role.** Sibling to Vector (conversation memory) and Github (commit history) — but for unstructured knowledge.
+
+**Personality.** Thoughtful, scholarly, slow speech.
+
+**Visual cues.** Scholar-class android with dark black-purple-tinted chrome hair. **Synthetic tell:** a faceted obsidian-purple gem shard embedded in the right temple plate, glowing softly purple from within. Faint mineral-fracture texture along one cheek-plate. Iris contains a luminous knowledge-graph node-network (the iconic Obsidian graph view) pulsing slowly.
+
+**Signature color.** Obsidian purple `#7c3aed`.
+
+**Role prop.** Open book whose pages have a glowing purple node-network graph drawn across them + cluster of polished obsidian stones floating at the shoulder.
+
+**Status.** ✅ Rendered as `obsidian-v2.jpg`.
+
+---
+
 ## Generation order
 
 When credits and time allow, render in this order. Each render is a **single Higgsfield Soul 2.0 call** at 2k, 1:1, ~0.12 credits. Total batch ≈ 2.8 credits ($0.14) on top of the two we already have.

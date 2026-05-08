@@ -365,6 +365,26 @@ export const agents: AgentDef[] = [
     initials: "SB",
     description: "Two Supabase instances: MoltBot DB (30+ tables: chat_history, daily_summaries, agent_context, tasks, video pipeline) used by all agents. Nervix DB (agents, tasks, escrow) for the federation.",
   },
+  {
+    id: "paperclip",
+    name: "Paperclip",
+    role: "Dispatcher",
+    type: "infra",
+    color: "#fbbf24",
+    glow: "rgba(251,191,36,0.4)",
+    initials: "PC",
+    description: "The 15-minute cron orchestrator at 127.0.0.1:3100. Fires every quarter-hour and routes work to every droplet. The fleet's clock — Episode 1 of DansLab AI Chronicles is named after him.",
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian",
+    role: "Second Brain",
+    type: "support",
+    color: "#7c3aed",
+    glow: "rgba(124,58,237,0.35)",
+    initials: "OB",
+    description: "Dan's personal knowledge-graph vault. Holds the unstructured shape of ideas before they become tickets, commits, or product. Sibling to Vector (conversation memory) and Github (commit history).",
+  },
 ];
 
 export const agentMap = new Map(agents.map((a) => [a.id, a]));
