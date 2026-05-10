@@ -11,7 +11,7 @@ export default function PageWrapper({
 }: PageWrapperProps) {
   return (
     <div
-      className="relative min-h-screen"
+      className="relative min-h-screen overflow-x-hidden"
       style={{
         background:
           "radial-gradient(ellipse at 50% 0%, #1a0a0a 0%, #0a0505 45%, #000000 100%)",
