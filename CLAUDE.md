@@ -21,7 +21,7 @@ Eight tables; everything in the API is a thin read over these:
 - `system_connections` — health rows for Doctor, Monitor, GSD, Vector, Vercel, GitHub, PopeBot.
 - `real_time_metrics` — refreshed every 5s.
 
-Indexes are on FKs only. Migrations live in `supabase/`; `lib/seed.ts` populates dev data and is the source of truth for seeded shapes.
+Indexes cover all FK columns plus a handful of hot query paths: `revenue_tracking(date)`, `real_time_metrics(metric_name)`, `real_time_metrics(timestamp DESC)`, and `team_members(status)`. Migrations live in `supabase/`; `lib/seed.ts` populates dev data and is the source of truth for seeded shapes.
 
 ### API — `src/app/api/` (Next.js App Router)
 All endpoints are read-only `GET`s today:
