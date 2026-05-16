@@ -1,18 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkRateLimit } from "./lib/rate-limit";
 
 /**
- * Bearer token auth for /api/pipeline/* routes.
+ * Bearer token auth + rate limit for /api/pipeline/* routes.
  *
- * Why: pipeline endpoints trigger Python subprocesses that spend money
- * (LLM tokens, render compute, optional uploads). Public access = trivial
- * cost-burn vector. This gate enforces a shared bearer token.
+ * Order of operations:
+ *   1. Verify PIPELINE_API_TOKEN is configured (501 if not)
+ *   2. Extract + validate bearer token (401 if missing/wrong)
+ *   3. Check rate limit (429 if exceeded)
+ *   4. Pass through
  *
- * Token comes from PIPELINE_API_TOKEN env var. Compared in constant time
- * to prevent timing attacks. Missing env var fails closed (501 — refuses
- * to serve auth-gated routes if no token is configured).
+ * Why this order:
+ * - Auth before rate limit so unauthed requests don't pollute the rate buckets
+ *   (otherwise a flood of bad-token requests would burn a per-IP quota).
+ * - Per-token + per-IP composite key, so a single token shared across many IPs
+ *   gets summed (catches token leak abuse) but a single IP with one token isn't
+ *   accidentally throttled by an unrelated user behind the same NAT.
  *
- * Read-only metric endpoints stay open intentionally; pipeline-controlling
- * routes (status, run, jobs, configs, metrics) are all gated.
+ * Rate-limit defaults (read from env so deploys can tune without code change):
+ *   PIPELINE_RATE_LIMIT_PER_MIN — default 60
+ *   PIPELINE_RATE_LIMIT_WINDOW_MS — default 60_000
+ *
+ * Headers on response:
+ *   X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+ *   Retry-After (on 429 only)
  */
 
 function constantTimeEqual(a: string, b: string): boolean {
@@ -30,12 +41,30 @@ function extractBearer(authHeader: string | null): string | null {
   return match ? match[1].trim() : null;
 }
 
+function clientIp(request: NextRequest): string {
+  // Prefer X-Forwarded-For first hop (set by reverse proxies / Vercel).
+  // Fall back to literal "local" when nothing is known — better than throwing.
+  const xff = request.headers.get("x-forwarded-for");
+  if (xff) return xff.split(",")[0].trim();
+  const real = request.headers.get("x-real-ip");
+  if (real) return real;
+  return "local";
+}
+
+function withRateHeaders(
+  response: NextResponse,
+  result: { limit: number; remaining: number; resetAtMs: number },
+): NextResponse {
+  response.headers.set("X-RateLimit-Limit", String(result.limit));
+  response.headers.set("X-RateLimit-Remaining", String(result.remaining));
+  response.headers.set("X-RateLimit-Reset", String(Math.ceil(result.resetAtMs / 1000)));
+  return response;
+}
+
 export function middleware(request: NextRequest) {
   const expected = process.env.PIPELINE_API_TOKEN;
 
-  // Fail-closed: if the server has no token configured, refuse to serve
-  // the protected routes. This prevents "deployed without auth setup" from
-  // silently exposing pipeline control.
+  // 1. Fail-closed if no server-side token is configured
   if (!expected || expected.length < 16) {
     return NextResponse.json(
       {
@@ -47,6 +76,7 @@ export function middleware(request: NextRequest) {
     );
   }
 
+  // 2. Bearer token auth
   const provided = extractBearer(request.headers.get("authorization"));
   if (!provided) {
     return NextResponse.json(
@@ -54,7 +84,6 @@ export function middleware(request: NextRequest) {
       { status: 401, headers: { "WWW-Authenticate": "Bearer" } },
     );
   }
-
   if (!constantTimeEqual(provided, expected)) {
     return NextResponse.json(
       { ok: false, error: "invalid bearer token" },
@@ -62,7 +91,30 @@ export function middleware(request: NextRequest) {
     );
   }
 
-  return NextResponse.next();
+  // 3. Rate limit (composite key: token + IP)
+  const max = Number(process.env.PIPELINE_RATE_LIMIT_PER_MIN ?? 60);
+  const windowMs = Number(process.env.PIPELINE_RATE_LIMIT_WINDOW_MS ?? 60_000);
+  // Use a token prefix to keep the key bounded; don't store full secret in key.
+  const tokenKey = provided.slice(0, 12);
+  const ip = clientIp(request);
+  const result = checkRateLimit(`${tokenKey}:${ip}`, { max, windowMs });
+
+  if (!result.allowed) {
+    const retryAfterSec = Math.max(1, Math.ceil((result.resetAtMs - Date.now()) / 1000));
+    const res = NextResponse.json(
+      {
+        ok: false,
+        error: "rate limit exceeded",
+        retryAfterSec,
+      },
+      { status: 429 },
+    );
+    res.headers.set("Retry-After", String(retryAfterSec));
+    return withRateHeaders(res, result);
+  }
+
+  // 4. Pass through, annotate with rate-limit headers
+  return withRateHeaders(NextResponse.next(), result);
 }
 
 export const config = {
