@@ -1,0 +1,162 @@
+{
+  "dan": {
+    "master": {
+      "filename": "dan.jpg",
+      "size": "500x500",
+      "file_size_kb": 76.58
+    },
+    "large": {
+      "filename": "dan-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.1
+    },
+    "med": {
+      "filename": "dan-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 2.74
+    },
+    "small": {
+      "filename": "dan-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 1.42
+    },
+    "thumb": {
+      "filename": "dan-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 1.0
+    },
+    "tiny": {
+      "filename": "dan-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.66
+    }
+  },
+  "david": {
+    "master": {
+      "filename": "david.jpg",
+      "size": "500x500",
+      "file_size_kb": 92.14
+    },
+    "large": {
+      "filename": "david-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.01
+    },
+    "med": {
+      "filename": "david-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 2.71
+    },
+    "small": {
+      "filename": "david-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 1.39
+    },
+    "thumb": {
+      "filename": "david-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 0.97
+    },
+    "tiny": {
+      "filename": "david-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.67
+    }
+  },
+  "dexter": {
+    "master": {
+      "filename": "dexter.jpg",
+      "size": "500x500",
+      "file_size_kb": 77.15
+    },
+    "large": {
+      "filename": "dexter-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.42
+    },
+    "med": {
+      "filename": "dexter-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 2.92
+    },
+    "small": {
+      "filename": "dexter-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 1.52
+    },
+    "thumb": {
+      "filename": "dexter-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 1.05
+    },
+    "tiny": {
+      "filename": "dexter-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.73
+    }
+  },
+  "memo": {
+    "master": {
+      "filename": "memo.jpg",
+      "size": "500x500",
+      "file_size_kb": 73.45
+    },
+    "large": {
+      "filename": "memo-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.26
+    },
+    "med": {
+      "filename": "memo-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 2.85
+    },
+    "small": {
+      "filename": "memo-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 1.48
+    },
+    "thumb": {
+      "filename": "memo-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 1.03
+    },
+    "tiny": {
+      "filename": "memo-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.72
+    }
+  },
+  "sienna": {
+    "master": {
+      "filename": "sienna.jpg",
+      "size": "500x500",
+      "file_size_kb": 79.11
+    },
+    "large": {
+      "filename": "sienna-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.31
+    },
+    "med": {
+      "filename": "sienna-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 2.87
+    },
+    "small": {
+      "filename": "sienna-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 1.49
+    },
+    "thumb": {
+      "filename": "sienna-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 1.04
+    },
+    "tiny": {
+      "filename": "sienna-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.73
+    }
+  }
+}
