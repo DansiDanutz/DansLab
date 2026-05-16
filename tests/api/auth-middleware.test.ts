@@ -100,4 +100,22 @@ describe("auth middleware: /api/pipeline/* gate", () => {
     assert.equal(body.ok, false);
     assert.equal(typeof body.error, "string");
   });
+
+  test("returns 429 after configured per-minute quota is exceeded", async () => {
+    process.env.PIPELINE_API_TOKEN = VALID_TOKEN;
+    process.env.PIPELINE_RATE_LIMIT_PER_MIN = "2";
+
+    const first = middleware(makeRequest(`Bearer ${VALID_TOKEN}`));
+    const second = middleware(makeRequest(`Bearer ${VALID_TOKEN}`));
+    const third = middleware(makeRequest(`Bearer ${VALID_TOKEN}`));
+
+    assert.equal(first.headers.get("x-middleware-next"), "1");
+    assert.equal(second.headers.get("x-middleware-next"), "1");
+    assert.equal(third.status, 429);
+    assert.equal(third.headers.get("X-RateLimit-Remaining"), "0");
+    assert.ok(Number(third.headers.get("Retry-After")) >= 1);
+    const body = await third.json();
+    assert.equal(body.ok, false);
+    assert.equal(body.error, "rate limit exceeded");
+  });
 });
