@@ -3,11 +3,11 @@
 # OpenClaw Logger — Deploy to ALL machines
 # ============================================================================
 # Builds the package, then deploys to each droplet and local machine.
-# Run from: /Users/dansidanutz/Desktop/OpenClaw/packages/openclaw-logger
 #
 # Prerequisites:
 #   - SSH access configured in ~/.ssh/config
-#   - Supabase credentials set below
+#   - OPENCLAW_SUPABASE_URL and OPENCLAW_SUPABASE_KEY exported in shell env
+#     (See .env.example for required values)
 # ============================================================================
 
 set -euo pipefail
@@ -18,13 +18,31 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # ============================================================================
-# CONFIGURE THESE:
+# Required env vars (no hardcoded defaults — fail closed if unset)
 # ============================================================================
-SUPABASE_URL="${OPENCLAW_SUPABASE_URL:-https://okgwzwdtuhhpoyxyprzg.supabase.co}"
+SUPABASE_URL="${OPENCLAW_SUPABASE_URL:-}"
 SUPABASE_KEY="${OPENCLAW_SUPABASE_KEY:-}"
 
+if [[ -z "$SUPABASE_URL" ]]; then
+  echo -e "${RED}❌ OPENCLAW_SUPABASE_URL is not set.${NC}" >&2
+  echo -e "${YELLOW}   Set it in your shell, e.g.:${NC}" >&2
+  echo -e "     export OPENCLAW_SUPABASE_URL=\"https://<project>.supabase.co\"" >&2
+  echo -e "   See .env.example for the full list of required variables." >&2
+  exit 1
+fi
+
 if [[ -z "$SUPABASE_KEY" || "$SUPABASE_KEY" == "YOUR_SERVICE_ROLE_KEY_HERE" ]]; then
-  echo -e "${RED}❌ SUPABASE_KEY is not set. Export OPENCLAW_SUPABASE_KEY before running.${NC}"
+  echo -e "${RED}❌ OPENCLAW_SUPABASE_KEY is not set.${NC}" >&2
+  echo -e "${YELLOW}   Set it in your shell, e.g.:${NC}" >&2
+  echo -e "     export OPENCLAW_SUPABASE_KEY=\"<service-role-key>\"" >&2
+  exit 1
+fi
+
+# Sanity-check the URL shape so we fail fast on typos
+if [[ ! "$SUPABASE_URL" =~ ^https://[a-z0-9-]+\.supabase\.co$ ]]; then
+  echo -e "${RED}❌ OPENCLAW_SUPABASE_URL does not look like a Supabase URL.${NC}" >&2
+  echo -e "   Expected: https://<project-id>.supabase.co" >&2
+  echo -e "   Got:      $SUPABASE_URL" >&2
   exit 1
 fi
 
