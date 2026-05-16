@@ -1,8 +1,8 @@
 {
-  "name": "danslab",
+  "name": "youtube-pipeline",
   "version": "2.0.0",
   "private": true,
-  "description": "DansLab — Autonomous AI Lab. Next.js web app + Python video pipeline in one product.",
+  "description": "YouTube Pipeline — AI-powered video production. Research to render to upload.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

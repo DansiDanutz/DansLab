@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DansLab — Autonomous AI Lab",
-  description: "A human-led AI ecosystem building, shipping, and earning around the clock",
+  title: "YouTube Pipeline — AI Video Production",
+  description: "AI-powered video pipeline: research, script, render, upload.",
 };
 
 export default function RootLayout({
@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} dark min-h-screen`}>{children}</body>
+      <body className={`${inter.className} dark min-h-screen`}>
+        {children}
+      </body>
     </html>
   );
 }

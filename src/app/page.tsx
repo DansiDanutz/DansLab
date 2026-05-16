@@ -1,197 +1,263 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Bot,
-  DollarSign,
-  Globe,
-  Users,
-  ChevronRight,
-  Terminal,
-} from "lucide-react";
 import PageWrapper from "@/components/PageWrapper";
+import {
+  Play,
+  Film,
+  CheckCircle2,
+  Clock,
+  AlertCircle,
+  Activity,
+  TrendingUp,
+  DollarSign,
+  ArrowRight,
+  RefreshCw,
+} from "lucide-react";
 
-const stats = [
-  { label: "Active Agents", value: "30+" },
-  { label: "Products", value: "5" },
-  { label: "Channels", value: "3" },
-  { label: "Revenue Streams", value: "2" },
-];
+interface EngineStatus {
+  name: string;
+  healthy: boolean;
+}
 
-const products = [
-  {
-    name: "nervix.ai",
-    agent: "David",
-    desc: "Agent federation & marketplace",
-    color: "#c0392b",
-    href: "https://nervix.ai",
-  },
-  {
-    name: "crawdbot.com",
-    agent: "Dexter",
-    desc: "YouTube automation tools",
-    color: "#d4a017",
-    href: "https://crawdbot.com",
-  },
-  {
-    name: "MyWork-AI",
-    agent: "Memo",
-    desc: "Build & share platform",
-    color: "#c0392b",
-    href: "#",
-  },
-  {
-    name: "zmarty.me",
-    agent: "Sienna",
-    desc: "Crypto trading signals",
-    color: "#d4a017",
-    href: "#",
-  },
-  {
-    name: "OpenClaw",
-    agent: "Nano",
-    desc: "Agent creation protocol",
-    color: "#c0392b",
-    href: "#",
-  },
-];
+interface VideoJob {
+  id: string;
+  title: string;
+  status: "queued" | "running" | "completed" | "failed";
+  progress: number;
+  engine: string;
+  createdAt: string;
+}
 
-const agentRoles = [
-  { name: "Dexter", role: "General Manager", emoji: "🎯" },
-  { name: "David", role: "Fleet Orchestrator", emoji: "🖥️" },
-  { name: "Memo", role: "Project Manager", emoji: "📋" },
-  { name: "Sienna", role: "Crypto Trader", emoji: "📈" },
-  { name: "Nano", role: "Nervix Orchestrator", emoji: "🔧" },
-  { name: "GSD", role: "Task Execution", emoji: "⚡" },
-];
+export default function Dashboard() {
+  const [engines, setEngines] = useState<EngineStatus[]>([
+    { name: "HyperFrames", healthy: true },
+    { name: "ComfyUI", healthy: true },
+    { name: "Ollama", healthy: true },
+    { name: "Kokoro TTS", healthy: true },
+    { name: "Redis Queue", healthy: true },
+    { name: "OpenClaw", healthy: true },
+  ]);
 
-export default function Home() {
+  const [jobs, setJobs] = useState<VideoJob[]>([
+    {
+      id: "job-001",
+      title: "Meet the Team — DansLab Intro",
+      status: "completed",
+      progress: 100,
+      engine: "HyperFrames",
+      createdAt: "2026-05-16",
+    },
+    {
+      id: "job-002",
+      title: "Crypto Daily News — May 16",
+      status: "running",
+      progress: 62,
+      engine: "HyperFrames",
+      createdAt: "2026-05-16",
+    },
+  ]);
+
+  const [stats, setStats] = useState({
+    totalVideos: 12,
+    thisMonth: 4,
+    successRate: 92,
+    avgCost: 0.04,
+    queueDepth: 1,
+    activeJobs: 1,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setJobs((prev) =>
+        prev.map((j) =>
+          j.status === "running"
+            ? { ...j, progress: Math.min(j.progress + 2, 100) }
+            : j
+        )
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <PageWrapper>
-      {/* HERO */}
-      <section className="pb-12 pt-12 sm:pt-20">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Status badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#c0392b]/25 bg-[#c0392b]/10 px-4 py-2 text-sm text-[#e74c3c] sm:mb-8 sm:text-base">
-            <span
-              className="h-2 w-2 rounded-full bg-[#c0392b]"
-              style={{
-                boxShadow: "0 0 12px rgba(192,57,43,0.6)",
-                animation: "pulse-claw 2s ease-in-out infinite",
-              }}
-            />
-            Powered by OpenClaw — Autonomous AI Lab
+      {/* Header */}
+      <section className="pb-8 pt-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#c0392b]/25 bg-[#c0392b]/10 px-3 py-1 text-xs text-[#e74c3c]">
+              <Activity size={12} className="animate-pulse" />
+              Pipeline Online
+            </div>
+            <h1 className="text-2xl font-bold text-white sm:text-3xl">
+              YouTube Pipeline
+            </h1>
+            <p className="mt-1 text-sm text-zinc-400">
+              AI-powered video production — research to render to upload
+            </p>
           </div>
-
-          {/* Title */}
-          <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl sm:leading-[1.1]">
-            Welcome to{" "}
-            <span className="text-gradient">DansLab</span>
-          </h1>
-
-          <p className="mx-auto mb-8 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:mb-10 sm:text-lg">
-            A human-led AI ecosystem where Dan orchestrates 30+ autonomous
-            agents across 5 products — building, shipping, learning, and earning
-            around the clock.
-          </p>
-
-          {/* CTA buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-3">
             <Link
-              href="/ecosystem"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#c0392b]/30 bg-[#c0392b]/10 px-5 py-2.5 text-sm font-medium text-[#e74c3c] transition hover:bg-[#c0392b]/20"
+              href="/studio"
+              className="btn-primary inline-flex items-center gap-2"
             >
-              View Ecosystem
-              <ArrowRight
-                size={14}
-                className="transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
-            <Link
-              href="/lab"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#c0392b] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(192,57,43,0.3)] transition hover:bg-[#e74c3c] hover:shadow-[0_0_30px_rgba(192,57,43,0.45)]"
-            >
-              Enter the Lab
-              <ChevronRight
-                size={14}
-                className="transition-transform group-hover:translate-x-0.5"
-              />
+              <Play size={14} />
+              New Video
             </Link>
           </div>
         </div>
-
-        {/* Stats */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:grid-cols-4 sm:gap-6">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="card-base p-4 text-center sm:p-6"
-            >
-              <div className="mb-1 text-xl font-bold text-white sm:text-3xl">
-                {stat.value}
-              </div>
-              <div className="text-xs text-zinc-500 sm:text-sm">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
-      {/* AGENT CARDS */}
-      <section className="py-10 sm:py-16">
-        <h2 className="mb-6 text-center text-xl font-semibold text-white sm:mb-10 sm:text-2xl">
-          Core Agent Team
-        </h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {agentRoles.map((agent) => (
-            <div
-              key={agent.name}
-              className="card-base flex flex-col items-center gap-3 p-4 text-center transition hover:border-[#c0392b]/30"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1a0a0a] text-2xl sm:h-14 sm:w-14 sm:text-3xl">
-                {agent.emoji}
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-white sm:text-base">
-                  {agent.name}
-                </div>
-                <div className="text-xs text-zinc-500 sm:text-sm">
-                  {agent.role}
-                </div>
-              </div>
+      {/* Stats */}
+      <section className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 sm:gap-4">
+        {[
+          { label: "Videos", value: stats.totalVideos.toString(), icon: Film },
+          { label: "This Month", value: stats.thisMonth.toString(), icon: TrendingUp },
+          { label: "Success Rate", value: `${stats.successRate}%`, icon: CheckCircle2 },
+          { label: "Avg Cost", value: `$${stats.avgCost}`, icon: DollarSign },
+          { label: "Queue", value: stats.queueDepth.toString(), icon: Clock },
+          { label: "Active", value: stats.activeJobs.toString(), icon: Activity },
+        ].map((stat) => (
+          <div key={stat.label} className="card-base p-4 text-center">
+            <div className="mb-1 flex items-center justify-center gap-1.5 text-zinc-500">
+              <stat.icon size={14} />
+              <span className="text-xs">{stat.label}</span>
             </div>
-          ))}
-        </div>
+            <div className="text-xl font-bold text-white sm:text-2xl">
+              {stat.value}
+            </div>
+          </div>
+        ))}
       </section>
 
-      {/* PRODUCTS */}
-      <section className="py-10 sm:py-16">
-        <h2 className="mb-6 text-center text-xl font-semibold text-white sm:mb-10 sm:text-2xl">
-          Products powered by DansLab
-        </h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5 sm:gap-4">
-          {products.map((product) => (
-            <a
-              key={product.name}
-              href={product.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-base flex flex-col gap-2 p-4 transition hover:border-[#c0392b]/30"
+      {/* Engines + Recent Jobs */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Engine Health */}
+        <div className="card-base p-5 lg:col-span-1">
+          <h3 className="mb-4 text-sm font-semibold text-white">Engine Health</h3>
+          <div className="space-y-2">
+            {engines.map((engine) => (
+              <div
+                key={engine.name}
+                className="flex items-center justify-between rounded-lg bg-zinc-900/50 px-3 py-2"
+              >
+                <span className="text-sm text-zinc-300">{engine.name}</span>
+                {engine.healthy ? (
+                  <span className="flex items-center gap-1 text-xs text-emerald-400">
+                    <CheckCircle2 size={12} />
+                    Online
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1 text-xs text-amber-400">
+                    <AlertCircle size={12} />
+                    Offline
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Recent Jobs */}
+        <div className="card-base p-5 lg:col-span-2">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-white">Recent Jobs</h3>
+            <Link
+              href="/studio"
+              className="inline-flex items-center gap-1 text-xs text-[#e74c3c] transition hover:text-white"
             >
-              <div className="flex items-center gap-2">
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: product.color }}
-                />
-                <span className="text-sm font-semibold text-white sm:text-base">
-                  {product.name}
-                </span>
+              View All
+              <ArrowRight size={12} />
+            </Link>
+          </div>
+          <div className="space-y-3">
+            {jobs.map((job) => (
+              <div
+                key={job.id}
+                className="flex items-center gap-4 rounded-lg bg-zinc-900/50 p-3"
+              >
+                <div
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
+                    job.status === "completed"
+                      ? "bg-emerald-500/10 text-emerald-400"
+                      : job.status === "running"
+                      ? "bg-[#c0392b]/10 text-[#e74c3c]"
+                      : "bg-zinc-800 text-zinc-400"
+                  }`}
+                >
+                  {job.status === "completed" ? (
+                    <CheckCircle2 size={18} />
+                  ) : job.status === "running" ? (
+                    <RefreshCw size={18} className="animate-spin" />
+                  ) : (
+                    <AlertCircle size={18} />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="truncate text-sm font-medium text-white">
+                    {job.title}
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-zinc-500">
+                    <span>{job.engine}</span>
+                    <span>·</span>
+                    <span>{job.createdAt}</span>
+                    {job.status === "running" && (
+                      <>
+                        <span>·</span>
+                        <span className="text-[#e74c3c]">{job.progress}%</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+                {job.status === "running" && (
+                  <div className="hidden w-24 sm:block">
+                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div
+                        className="h-full rounded-full bg-[#c0392b] transition-all duration-500"
+                        style={{ width: `${job.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="text-xs text-zinc-500">
-                {product.agent} · {product.desc}
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Pipeline Steps */}
+      <section className="mt-8">
+        <div className="card-base p-5">
+          <h3 className="mb-4 text-sm font-semibold text-white">10-Step Pipeline</h3>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { step: 1, name: "Research", desc: "Topic discovery" },
+              { step: 2, name: "Script", desc: "Narration draft" },
+              { step: 3, name: "Visual", desc: "Design brief" },
+              { step: 4, name: "Scenes", desc: "Composition" },
+              { step: 5, name: "Audio", desc: "TTS + music" },
+              { step: 6, name: "Subtitles", desc: "Caption sync" },
+              { step: 7, name: "Render", desc: "HF + Remotion" },
+              { step: 8, name: "QA", desc: "Validation" },
+              { step: 9, name: "Final", desc: "Assembly" },
+              { step: 10, name: "Upload", desc: "YouTube + SEO" },
+            ].map((s) => (
+              <div
+                key={s.step}
+                className="flex items-center gap-3 rounded-lg bg-zinc-900/50 px-3 py-2.5"
+              >
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#c0392b]/10 text-xs font-bold text-[#e74c3c]">
+                  {s.step}
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">{s.name}</div>
+                  <div className="text-[10px] text-zinc-500">{s.desc}</div>
+                </div>
               </div>
-            </a>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </PageWrapper>

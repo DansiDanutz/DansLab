@@ -117,10 +117,10 @@ export default function StudioPage() {
               AI Video Production
             </div>
             <h1 className="text-2xl font-bold text-white sm:text-3xl">
-              DansLab Studio
+              Studio
             </h1>
             <p className="mt-1 text-sm text-zinc-400">
-              10-step autonomous video pipeline — research to render
+              Create, manage, and monitor video production jobs
             </p>
           </div>
           <div className="flex items-center gap-3">
