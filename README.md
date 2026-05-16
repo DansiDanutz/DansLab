@@ -1,199 +1,185 @@
-# DansLab — Autonomous AI Lab
+# YouTube Pipeline
 
 [![CI](https://github.com/DansiDanutz/DansLab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DansiDanutz/DansLab/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **One product.** One codebase. Research → Script → Render → Publish.
+> **AI-powered video production. Research → Script → Render → Upload.**
 
-DansLab is a human-led AI ecosystem where Dan orchestrates 30+ autonomous agents across 5 products. This repo unifies the public-facing web platform with the autonomous video production pipeline.
+A 10-step autonomous video pipeline plus a Next.js studio for managing runs.
+Designed for production use with cost discipline, local-first model routing,
+and a bearer-token-authed API.
 
 ---
 
 ## Architecture
 
 ```
-DansLab/                           # Root — Next.js web app (apps/web pattern)
-├── src/app/                       # Next.js App Router
-│   ├── page.tsx                   # Homepage — ecosystem overview
-│   ├── lab/                       # Lab dashboard
-│   ├── studio/                    # 🎬 Video production studio
-│   ├── ecosystem/                 # Ecosystem explorer
-│   ├── daily-news/                # Daily news feed
-│   ├── evolution/                 # Agent evolution tracker
-│   ├── semeclaw/                  # SemeClaw interface
-│   └── api/pipeline/              # REST API for pipeline control
-│       ├── status/route.ts
-│       ├── run/route.ts
-│       └── configs/route.ts
-├── src/components/                # React components
+youtube-pipeline/                    Next.js 15 web app at repo root
+├── src/
+│   ├── app/
+│   │   ├── page.tsx                 Dashboard — stats, engine health, jobs
+│   │   ├── studio/page.tsx          Studio — create + monitor runs
+│   │   └── api/pipeline/
+│   │       ├── run/route.ts         POST — queue a new video job
+│   │       ├── status/route.ts      GET  — engine + queue health
+│   │       ├── jobs/route.ts        GET  — list/inspect jobs
+│   │       ├── metrics/route.ts     GET  — pipeline metrics
+│   │       └── configs/route.ts     GET  — channel/topic configs
+│   ├── middleware.ts                Bearer-token auth + rate limit
+│   └── lib/rate-limit.ts            In-memory sliding-window limiter
+├── tests/                           node:test suites for middleware + lib
 ├── packages/
-│   └── video-pipeline/            # Python 10-step video engine
-│       ├── engines/               # Step 1–10 engines + render/QA
-│       ├── config/                # YAML configs (sources, routing, prompts)
-│       ├── workflows/             # ComfyUI workflow JSONs
-│       ├── tests/                 # pytest suite
-│       └── tools/                 # Utility scripts
-└── packages/openclaw-logger/      # Shared logging package
+│   ├── video-pipeline/              Python pipeline engine (10 steps)
+│   │   ├── cli.py                   CLI entry (queue, run, worker)
+│   │   ├── engines/                 Render engines (HyperFrames, Remotion, ...)
+│   │   ├── core/                    Orchestrator, queue, cost tracker, agents
+│   │   ├── agents/                  CrewAI content agents
+│   │   └── config/                  YAML channel/topic/prompt configs
+│   └── openclaw-logger/             Optional fleet logger (TypeScript)
+├── docker-compose.yml               Redis (localhost-bind, password-required)
+└── .github/workflows/ci.yml         Lint + build + test on every PR
 ```
 
 ---
 
-## Web App
+## Web App (Next.js 15.5)
 
-**Stack:** Next.js 15 · React 18 · TypeScript · Tailwind CSS · Supabase
+Two pages, intentionally focused:
 
-```bash
-npm install
-npm run dev          # localhost:3000
-```
+- **`/`** — Dashboard with totals, engine health, recent jobs, 10-step pipeline overview
+- **`/studio`** — Projects, Pipeline runs, and Config tabs
 
-### Pages
-
-| Route | Description |
-|-------|-------------|
-| `/` | Homepage — stats, products, agent team |
-| `/lab` | Live lab dashboard with agent status |
-| `/studio` | **Video production studio** — pipeline UI |
-| `/ecosystem` | Full ecosystem visualization |
-| `/daily-news` | Curated daily news feed |
-| `/evolution` | Agent evolution & learning logs |
-| `/semeclaw` | SemeClaw reasoning interface |
+All API routes live under `/api/pipeline/*` and are gated by bearer-token auth.
+Non-pipeline routes (`projects`, `team`, `revenue`, `connections`, `metrics`) have
+been moved to `src/_deprecated/api/` and removed from the live build.
 
 ---
 
-## Video Pipeline
+## Video Pipeline (10 steps)
 
-**Stack:** Python 3.12 · HyperFrames · ComfyUI · Remotion (legacy) · Kokoro TTS
+The pipeline runs under `packages/video-pipeline/`:
 
-The 10-step engine lives in `packages/video-pipeline/engines/`:
+| Step | Name | What it does |
+|----:|------|--------------|
+| 1 | Research | Topic discovery via Perplexity / Brave / Firecrawl |
+| 2 | Script | Narration draft with TTS-aware phonetic conversion |
+| 3 | Visual | Per-scene design brief |
+| 4 | Scenes | Composition + asset layout |
+| 5 | Audio | TTS (Kokoro / ElevenLabs) + BGM |
+| 6 | Subtitles | Caption sync, formatting |
+| 7 | Render | HyperFrames / Remotion / Wan2.2 (configurable) |
+| 8 | QA | Validation gates |
+| 9 | Final | Assembly + transitions |
+| 10 | Upload | YouTube publish + SEO |
 
-| Step | Engine | Purpose |
-|------|--------|---------|
-| 1 | `step1_research.py` | Topic discovery via Perplexity / BytePlus Ark / Ollama |
-| 2 | `step2_script.py` | Script drafting & polishing |
-| 3 | `step3_visual.py` | Visual design brief generation |
-| 4 | `step4_scenes.py` | Scene manifest creation |
-| 5 | `step5_audio.py` | TTS narration (Kokoro) + music |
-| 6 | `step6_subtitles.py` | Caption generation & sync |
-| 7 | `step7_render.py` | **Dual-track render** — HyperFrames + Remotion |
-| 8 | `step8_qa.py` | Technical QA validation |
-| 9 | `step9_final.py` | Final assembly & delivery |
-| 10 | `step10_addons.py` | Thumbnails, metadata, upload |
-
-### Key Features
-
-- **Dual-track rendering** — HyperFrames (preferred) + Remotion run in parallel; `render_judge.py` auto-selects the best output
-- **Deep mode fallback chain** — Perplexity → BytePlus Ark → Ollama for all research steps
-- **Design agent orchestration** — `design_agent_orchestrator.py` + `open_design_agent.py` handle visual direction
-- **ComfyUI integration** — `comfyui_mcp_client.py` for SD1.5 / FLUX avatar & asset generation
-- **Auto-render** — `video_build_mesh.py` can trigger HyperFrames renders automatically after handoff
-
-### Running the Pipeline
+### Run a job
 
 ```bash
 cd packages/video-pipeline
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-
-# Run a step
-python -m engines.step1_research
-
-# Or run via the dashboard server
-python dashboard/server.py
+python cli.py queue --topic "Bitcoin halving explained" --engine hyperframes
+python cli.py worker   # processes queued jobs
 ```
 
----
-
-## Configs
-
-All pipeline configuration is in `packages/video-pipeline/config/`:
-
-| File | Purpose |
-|------|---------|
-| `sources.yaml` | RSS feeds, internal signals, manual topics |
-| `model_routing.yaml` | LLM assignment & fallback chain |
-| `prompts.yaml` | System prompts per pipeline stage |
-| `channels.yaml` | YouTube channel metadata |
-| `comfyui_workflow.json` | ComfyUI generation pipeline |
-| `manual_topics.yaml` | Override topics for forced coverage |
-
----
-
-## API
-
-The Next.js app exposes REST endpoints under `/api/pipeline/`:
+### Or trigger via API
 
 ```bash
-GET  /api/pipeline/status     # Health & engine status
-POST /api/pipeline/run        # Queue a new video job
-GET  /api/pipeline/configs    # List available configs
+curl -X POST http://localhost:3000/api/pipeline/run \
+  -H "Authorization: Bearer $PIPELINE_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"topic":"Bitcoin halving explained","engine":"hyperframes"}'
 ```
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Node 20+
+- Python 3.13+
+- Redis (via `docker compose up redis` — requires `REDIS_PASSWORD` in `.env`)
+- API keys for at least one LLM provider (see `.env.example`)
+
+### Install
+
+```bash
+# Web app
+npm install
+
+# Pipeline
+cd packages/video-pipeline
+pip install -e .
+```
+
+### Configure
+
+```bash
+cp .env.example .env
+# At minimum, set:
+#   PIPELINE_API_TOKEN   (openssl rand -hex 32)
+#   REDIS_PASSWORD       (openssl rand -hex 32)
+#   one LLM provider key (OPENAI_API_KEY / ANTHROPIC_API_KEY / GEMINI_API_KEY / ...)
+```
+
+### Run
+
+```bash
+# Terminal 1 — web app
+npm run dev
+
+# Terminal 2 — Redis (if you use Docker)
+docker compose up redis
+
+# Terminal 3 — pipeline worker
+cd packages/video-pipeline && python cli.py worker
+```
+
+Open http://localhost:3000.
+
+---
+
+## Security model
+
+| Surface | Protection |
+|---------|-----------|
+| `/api/pipeline/*` | Bearer token (PIPELINE_API_TOKEN), constant-time compare, fail-closed |
+| Rate limit | 60 req/min per (token, IP), 429 + Retry-After when exceeded |
+| Redis | Localhost-only bind, password-required, protected-mode on |
+| Secrets | All from env vars; deploy script fails-closed without them |
+
+See [AUDIT_REPORT_2026-05-16.md](AUDIT_REPORT_2026-05-16.md) for the full audit
+that drove these controls.
 
 ---
 
 ## Development
 
-### Prerequisites
-
-- Node.js 20+
-- Python 3.12+
-- pnpm (for workspaces)
-- ComfyUI Desktop (for image generation)
-- HyperFrames CLI (`npx hyperframes`)
-
-### Setup
-
 ```bash
-# Install web dependencies
-npm install
-
-# Install pipeline dependencies
-cd packages/video-pipeline
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
+npm run dev          # Next.js dev server with HMR
+npm run build        # Production build (also runs typecheck)
+npm run lint         # ESLint via next lint
+npm test             # node:test runner — 22 tests across middleware + lib
 ```
 
-### Run Everything
-
-```bash
-# Terminal 1 — Web app
-npm run dev
-
-# Terminal 2 — Pipeline server (when wired)
-cd packages/video-pipeline
-python dashboard/server.py
-```
+All four commands also run in CI on every push and PR.
 
 ---
 
-## Environment Variables
+## Roadmap
 
-Copy `.env.local` and fill in:
+Tracked against the security and feature audit:
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-OPENCLAW_API_KEY=
-PERPLEXITY_API_KEY=
-BYTEPLUS_ARK_API_KEY=
-HIGGSFIELD_API_KEY=
-```
+- [x] Phase 1 — Security baseline (API auth, rate limit, Redis lockdown, CVE patches)
+- [x] Phase 3 (partial) — CI/CD pipeline, dependabot
+- [ ] Phase 2 — Docs + config sweep (this README is the first piece)
+- [ ] Phase 3 (remaining) — Python test coverage for engine modules
+- [ ] Phase 4 — Stock footage (Pexels/Pixabay), BGM library, multi-platform export
+- [ ] Phase 5 — Cost discipline ($0.20/video target with smart fallback)
 
----
-
-## History
-
-This product unifies three previous codebases:
-
-1. **DansLab** (Next.js web app) — the public-facing platform
-2. **YouTubePipeline** (Python) — the 10-step video engine
-3. **YouTube-Studio** (TypeScript, archived) — earlier pipeline iteration
-
-All active development now happens in this single repo.
+See [CHANGELOG.md](CHANGELOG.md) for shipped work.
 
 ---
 
 ## License
 
-Proprietary — DansLab 2026
+MIT — see [LICENSE](LICENSE).
