@@ -1,5 +1,7 @@
 # DansLab — Autonomous AI Lab
 
+[![CI](https://github.com/DansiDanutz/DansLab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DansiDanutz/DansLab/actions/workflows/ci.yml)
+
 > **One product.** One codebase. Research → Script → Render → Publish.
 
 DansLab is a human-led AI ecosystem where Dan orchestrates 30+ autonomous agents across 5 products. This repo unifies the public-facing web platform with the autonomous video production pipeline.
