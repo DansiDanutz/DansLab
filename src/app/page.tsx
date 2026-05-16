@@ -1,8 +1,8 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
+import RefreshButton from "@/components/RefreshButton";
+import { getPipelineStatus } from "@/lib/pipeline-status";
+import type { EngineHealth, QueueHealth } from "@/lib/pipeline-status";
 import {
   Play,
   Film,
@@ -16,12 +16,10 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-interface EngineStatus {
-  name: string;
-  healthy: boolean;
-}
+// Always fetch fresh — pipeline status changes too fast to cache.
+export const dynamic = "force-dynamic";
 
-interface VideoJob {
+interface JobCardProps {
   id: string;
   title: string;
   status: "queued" | "running" | "completed" | "failed";
@@ -30,56 +28,56 @@ interface VideoJob {
   createdAt: string;
 }
 
-export default function Dashboard() {
-  const [engines, setEngines] = useState<EngineStatus[]>([
-    { name: "HyperFrames", healthy: true },
-    { name: "ComfyUI", healthy: true },
-    { name: "Ollama", healthy: true },
-    { name: "Kokoro TTS", healthy: true },
-    { name: "Redis Queue", healthy: true },
-    { name: "OpenClaw", healthy: true },
-  ]);
+// Recent jobs — still mock until /api/pipeline/jobs is extracted to a lib.
+// Tracked as the next dashboard wire-up slice.
+const MOCK_RECENT_JOBS: JobCardProps[] = [
+  {
+    id: "job-001",
+    title: "Meet the Team — YouTube Pipeline Intro",
+    status: "completed",
+    progress: 100,
+    engine: "HyperFrames",
+    createdAt: "2026-05-16",
+  },
+  {
+    id: "job-002",
+    title: "Crypto Daily News — May 16",
+    status: "running",
+    progress: 62,
+    engine: "HyperFrames",
+    createdAt: "2026-05-16",
+  },
+];
 
-  const [jobs, setJobs] = useState<VideoJob[]>([
-    {
-      id: "job-001",
-      title: "Meet the Team — DansLab Intro",
-      status: "completed",
-      progress: 100,
-      engine: "HyperFrames",
-      createdAt: "2026-05-16",
-    },
-    {
-      id: "job-002",
-      title: "Crypto Daily News — May 16",
-      status: "running",
-      progress: 62,
-      engine: "HyperFrames",
-      createdAt: "2026-05-16",
-    },
-  ]);
+interface StatsViewModel {
+  totalVideos: number;
+  thisMonth: number;
+  successRate: number;
+  avgCost: number;
+  queueDepth: number;
+  activeJobs: number;
+}
 
-  const [stats, setStats] = useState({
-    totalVideos: 12,
-    thisMonth: 4,
-    successRate: 92,
-    avgCost: 0.04,
-    queueDepth: 1,
-    activeJobs: 1,
-  });
+function deriveStats(queue: QueueHealth): StatsViewModel {
+  return {
+    // Aggregations TBD — still mock until /api/pipeline/metrics is extracted.
+    totalVideos: 0,
+    thisMonth: 0,
+    successRate: 0,
+    avgCost: 0,
+    // Real data from the queue probe:
+    queueDepth: queue.queued,
+    activeJobs: queue.processing,
+  };
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setJobs((prev) =>
-        prev.map((j) =>
-          j.status === "running"
-            ? { ...j, progress: Math.min(j.progress + 2, 100) }
-            : j
-        )
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+export default async function Dashboard() {
+  const status = await getPipelineStatus();
+  const stats = deriveStats(status.queue);
+  const jobs = MOCK_RECENT_JOBS;
+
+  const pipelineLabel = status.healthy ? "Pipeline Online" : "Pipeline Degraded";
+  const pipelineDotClass = status.healthy ? "animate-pulse" : "";
 
   return (
     <PageWrapper>
@@ -87,9 +85,15 @@ export default function Dashboard() {
       <section className="pb-8 pt-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#c0392b]/25 bg-[#c0392b]/10 px-3 py-1 text-xs text-[#e74c3c]">
-              <Activity size={12} className="animate-pulse" />
-              Pipeline Online
+            <div
+              className={`mb-2 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs ${
+                status.healthy
+                  ? "border-[#c0392b]/25 bg-[#c0392b]/10 text-[#e74c3c]"
+                  : "border-amber-500/30 bg-amber-500/10 text-amber-300"
+              }`}
+            >
+              <Activity size={12} className={pipelineDotClass} />
+              {pipelineLabel}
             </div>
             <h1 className="text-2xl font-bold text-white sm:text-3xl">
               YouTube Pipeline
@@ -99,6 +103,7 @@ export default function Dashboard() {
             </p>
           </div>
           <div className="flex items-center gap-3">
+            <RefreshButton />
             <Link
               href="/studio"
               className="btn-primary inline-flex items-center gap-2"
@@ -116,7 +121,7 @@ export default function Dashboard() {
           { label: "Videos", value: stats.totalVideos.toString(), icon: Film },
           { label: "This Month", value: stats.thisMonth.toString(), icon: TrendingUp },
           { label: "Success Rate", value: `${stats.successRate}%`, icon: CheckCircle2 },
-          { label: "Avg Cost", value: `$${stats.avgCost}`, icon: DollarSign },
+          { label: "Avg Cost", value: `$${stats.avgCost.toFixed(2)}`, icon: DollarSign },
           { label: "Queue", value: stats.queueDepth.toString(), icon: Clock },
           { label: "Active", value: stats.activeJobs.toString(), icon: Activity },
         ].map((stat) => (
@@ -134,11 +139,16 @@ export default function Dashboard() {
 
       {/* Engines + Recent Jobs */}
       <div className="grid gap-6 lg:grid-cols-3">
-        {/* Engine Health */}
+        {/* Engine Health — REAL DATA */}
         <div className="card-base p-5 lg:col-span-1">
-          <h3 className="mb-4 text-sm font-semibold text-white">Engine Health</h3>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-white">Engine Health</h3>
+            <span className="text-[10px] uppercase tracking-wider text-emerald-400">
+              live
+            </span>
+          </div>
           <div className="space-y-2">
-            {engines.map((engine) => (
+            {status.engines.map((engine: EngineHealth) => (
               <div
                 key={engine.name}
                 className="flex items-center justify-between rounded-lg bg-zinc-900/50 px-3 py-2"
@@ -157,10 +167,28 @@ export default function Dashboard() {
                 )}
               </div>
             ))}
+            {/* Queue is part of pipeline-status — show it alongside engines */}
+            <div className="flex items-center justify-between rounded-lg bg-zinc-900/50 px-3 py-2">
+              <span className="text-sm text-zinc-300">Queue</span>
+              {status.queue.healthy ? (
+                <span className="flex items-center gap-1 text-xs text-emerald-400">
+                  <CheckCircle2 size={12} />
+                  Online
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-xs text-amber-400">
+                  <AlertCircle size={12} />
+                  Offline
+                </span>
+              )}
+            </div>
           </div>
+          <p className="mt-3 text-[10px] text-zinc-600">
+            Last check: {new Date(status.lastRun).toLocaleTimeString()}
+          </p>
         </div>
 
-        {/* Recent Jobs */}
+        {/* Recent Jobs — STILL MOCK (next slice) */}
         <div className="card-base p-5 lg:col-span-2">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-sm font-semibold text-white">Recent Jobs</h3>
@@ -224,6 +252,9 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
+          <p className="mt-3 text-[10px] text-zinc-600">
+            Showing sample data — live jobs feed wires up in the next slice.
+          </p>
         </div>
       </div>
 
