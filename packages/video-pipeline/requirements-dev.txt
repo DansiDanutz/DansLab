@@ -1,3 +1,47 @@
-# Dev / CI — dashboard runtime deps are installed ad-hoc today; see README.
+# Production runtime dependencies
+pydantic>=2.0,<3
+pydantic-settings>=2.0,<3
+redis>=5.0,<6
+requests>=2.31,<3
+aiohttp>=3.9,<4
+httpx>=0.27,<1
+python-dotenv>=1.0,<2
+
+# AI / ML
+openai>=1.0,<2
+anthropic>=0.25,<1
+google-generativeai>=0.7,<1
+ollama>=0.3,<1
+fal-client>=0.4,<1
+
+# Media
+moviepy>=1.0,<2
+ffmpeg-python>=0.2,<1
+pillow>=10.0,<11
+opencv-python>=4.9,<5
+
+# TTS / Audio
+faster-whisper>=1.0,<2
+openai-whisper>=20231117
+
+# Image / Video quality
+lpips>=0.1,<1
+librosa>=0.10,<1
+
+# Orchestration (optional — install as needed)
+# celery>=5.3,<6
+# dramatiq>=1.14,<2
+# temporalio>=1.5,<2
+
+# Agents (optional — install as needed)
+# crewai>=0.30,<1
+# langchain>=0.2,<1
+# langgraph>=0.1,<1
+
+# Observability
+prometheus-client>=0.20,<1
+
+# Dev / CI
 pytest>=8.3,<9
 ruff>=0.9,<1
+mypy>=1.9,<2
