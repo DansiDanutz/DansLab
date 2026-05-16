@@ -158,5 +158,69 @@
       "size": "20x20",
       "file_size_kb": 0.73
     }
+  },
+  "nano": {
+    "master": {
+      "filename": "nano.jpg",
+      "size": "500x500",
+      "file_size_kb": 9.39
+    },
+    "large": {
+      "filename": "nano-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 1.24
+    },
+    "med": {
+      "filename": "nano-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 1.06
+    },
+    "small": {
+      "filename": "nano-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 0.92
+    },
+    "thumb": {
+      "filename": "nano-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 0.8
+    },
+    "tiny": {
+      "filename": "nano-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 0.74
+    }
+  },
+  "seme": {
+    "master": {
+      "filename": "seme.jpg",
+      "size": "500x500",
+      "file_size_kb": 83.51
+    },
+    "large": {
+      "filename": "seme-80x80.jpg",
+      "size": "80x80",
+      "file_size_kb": 4.9
+    },
+    "med": {
+      "filename": "seme-60x60.jpg",
+      "size": "60x60",
+      "file_size_kb": 3.5
+    },
+    "small": {
+      "filename": "seme-40x40.jpg",
+      "size": "40x40",
+      "file_size_kb": 2.13
+    },
+    "thumb": {
+      "filename": "seme-32x32.jpg",
+      "size": "32x32",
+      "file_size_kb": 1.69
+    },
+    "tiny": {
+      "filename": "seme-20x20.jpg",
+      "size": "20x20",
+      "file_size_kb": 1.34
+    }
   }
 }
