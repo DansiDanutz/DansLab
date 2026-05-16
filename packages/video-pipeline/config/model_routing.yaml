@@ -1,0 +1,26 @@
+model_routing:
+  hermes_main_brain: gpt_max
+  local_worker: local_models
+  scraping_summary: kimi
+  topic_ranking: gpt_max
+  script_draft: gpt_max
+  script_polish: gpt_max
+  image_prompts: gpt_max_or_glm
+  metadata_titles_tags: gpt_max
+  bulk_variations: glm
+  long_context_research: kimi
+  video_build: openclaw_local
+  compliance_review: gpt_max_first
+  premium_second_opinion: anthropic_only_when_needed
+
+limits:
+  anthropic_max_calls_per_day: 3
+  anthropic_max_calls_per_video: 1
+  gpt_max_daily_budget: flexible
+  local_models_first_for_repetitive_tasks: true
+
+fallbacks:
+  if_gpt_busy: glm
+  if_glm_busy: local
+  if_kimi_busy: gpt_max
+  if_local_fails: gpt_max

@@ -1,7 +1,8 @@
 {
-  "name": "danslab-dashboard",
-  "version": "0.1.0",
+  "name": "danslab",
+  "version": "2.0.0",
   "private": true,
+  "description": "DansLab — Autonomous AI Lab. Next.js web app + Python video pipeline in one product.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

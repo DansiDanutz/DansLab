@@ -1,0 +1,18 @@
+channels:
+  main:
+    name: DansLab AI
+    type: youtube
+    default_privacy: private
+    upload_mode_v1: manual_approval
+    target_format: shorts
+    default_language: en
+    default_category: education
+
+video_defaults:
+  duration_seconds: 60
+  aspect_ratio: 9:16
+  resolution: 1080x1920
+  fps: 30
+  voice_provider: local_or_elevenlabs
+  music_enabled: true
+  subtitles_enabled: true

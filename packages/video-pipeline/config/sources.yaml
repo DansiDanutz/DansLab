@@ -1,0 +1,24 @@
+# Paths below are relative to the repository root unless absolute.
+# Drop JSON exports into data/shared_incoming/ or symlink files here.
+
+sources:
+  internal:
+    - name: zmartbot_status
+      type: local_json
+      path: data/shared_incoming/zmart_signals.json
+    - name: agent_status
+      type: local_json
+      path: data/shared_incoming/agents_status.json
+    - name: kingfisher_reports
+      type: local_json
+      path: data/shared_incoming/kingfisher_reports.json
+
+  external_rss:
+    - name: CoinDesk
+      url: https://www.coindesk.com/arc/outboundfeeds/rss/
+    - name: CoinTelegraph
+      url: https://cointelegraph.com/rss
+
+  manual_topics:
+    enabled: true
+    file: config/manual_topics.yaml

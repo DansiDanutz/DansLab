@@ -1,0 +1,3 @@
+# Dev / CI — dashboard runtime deps are installed ad-hoc today; see README.
+pytest>=8.3,<9
+ruff>=0.9,<1

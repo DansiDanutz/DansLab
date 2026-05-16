@@ -1,0 +1,31 @@
+[project]
+name = "youtube-pipeline"
+version = "0.3.0"
+description = "OSS YouTube production pipeline — dashboard, engines, tests"
+requires-python = ">=3.13"
+
+[tool.pytest.ini_options]
+pythonpath = ["dashboard"]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+exclude = [
+    ".venv",
+    "node_modules",
+    "tools/whisper",
+    "tools/piper",
+    "Youtube-videos",
+    "runs",
+    "out",
+    "logs",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"dashboard/server.py" = ["E402"]
+"dashboard/engines/*.py" = ["E402"]

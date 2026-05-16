@@ -1,0 +1,56 @@
+script_prompt: |
+  Create a YouTube Shorts script about: {topic}
+
+  Requirements:
+  - 45 to 75 seconds
+  - strong hook in first 3 seconds
+  - simple language
+  - no financial advice
+  - explain the value clearly
+  - end with a CTA
+  - style: futuristic, clear, confident, human
+
+  Structure:
+  1. Hook
+  2. Context
+  3. Main insight
+  4. Why it matters
+  5. CTA
+
+image_prompt_prompt: |
+  Based on this video script, create 8 cinematic image prompts.
+
+  Style:
+  - futuristic AI control room
+  - crypto data dashboards
+  - cinematic lighting
+  - dark background
+  - blue/orange accents
+  - high detail
+  - YouTube Shorts vertical format
+
+metadata_prompt: |
+  Create YouTube metadata for this script.
+
+  Return:
+  - 5 title options
+  - best title
+  - description
+  - tags
+  - hashtags
+  - thumbnail text
+
+compliance_prompt: |
+  Review this video script for YouTube safety and quality.
+
+  Check:
+  - no direct financial advice
+  - no misleading claims
+  - no copied article text
+  - no exaggerated guarantees
+  - clear educational framing
+
+  Return:
+  - approved: true/false
+  - issues
+  - improved safer version if needed

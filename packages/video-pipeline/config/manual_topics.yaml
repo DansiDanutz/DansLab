@@ -1,0 +1,5 @@
+manual_topics:
+  - id: danslab-ai-agents-intro
+    topic: How DansLab uses AI agents to build an automated crypto intelligence system.
+    pillar: Behind the Build
+    priority: high

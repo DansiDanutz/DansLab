@@ -7,6 +7,7 @@ import { Zap, Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Lab", href: "/lab" },
+  { label: "Studio", href: "/studio" },
   { label: "Evolution", href: "/evolution" },
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "SemeClaw", href: "/semeclaw" },
