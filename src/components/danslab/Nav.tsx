@@ -9,6 +9,7 @@ const LINKS = [
   { label: "Lab", href: "/lab" },
   { label: "SemeClaw", href: "/semeclaw" },
   { label: "Story", href: "/story" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Nav() {
