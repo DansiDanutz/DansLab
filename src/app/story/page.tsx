@@ -43,12 +43,12 @@ const CHAPTERS: Chapter[] = [
     dek: "A crypto agent on four-hour bars, a 96.2% win rate, and a 100-endpoint API that prints decisions while the desk is dark.",
     body: [
       { kind: "h", content: "Three a.m. and the desk is green." },
-      { kind: "p", content: <>Sienna runs on the <strong>167.172.187.230</strong> droplet under <em>ZAI GLM-4.7</em>. The job is unsentimental: scan 87 pairs on the four-hour, size positions at less than half a percent of capital, open the long, set the take-profit, log to Supabase, post to Telegram. Repeat.</> },
+      { kind: "p", content: <>Sienna runs on the <strong>167.172.•.•</strong> droplet under <em>ZAI GLM-4.7</em>. The job is unsentimental: scan 87 pairs on the four-hour, size positions at less than half a percent of capital, open the long, set the take-profit, log to Supabase, post to Telegram. Repeat.</> },
       { kind: "p", content: <>The Sienna Crypto Girl public board posts a <em>96.2% historical win rate</em>. That number is the headline; the actual edge is in the average R per trade plus the discipline of the close. Sienna never moves a stop. She never holds a losing position because she likes the chart. The chart does not care.</> },
       { kind: "p", content: <>The agent exposes a hundred-plus endpoints through <strong>zmarty.me</strong> — a public API for the same signal feed that powers the trading. The membership product, <em>ZmartyChat</em>, is the bridge: subscribe, get the Red Lobster strategy in real time, watch the trades print before they show up on the chart.</> },
     ],
     meta: [
-      { k: "Droplet",  v: "167.172.187.230" },
+      { k: "Droplet",  v: "167.172.•.•" },
       { k: "Model",    v: "ZAI GLM-4.7" },
       { k: "Win rate", v: "96.2%" },
     ],
@@ -60,12 +60,12 @@ const CHAPTERS: Chapter[] = [
     dek: "A senior developer on Claude Opus, one droplet, SSH to every other machine, 14 crons a day, and a YouTube studio that doesn't stop.",
     body: [
       { kind: "h", content: "A walk through the droplet." },
-      { kind: "p", content: <>Dexter is the lab&rsquo;s general manager. The droplet at <strong>46.101.219.116</strong> is the operational center of gravity. From here, Dexter holds SSH keys to every other agent&rsquo;s machine. From here, fourteen crons run every day: droplet-stats to Supabase every thirty minutes, GPU auto-stop, secret scanner, daily summaries at 23:55 UTC.</> },
+      { kind: "p", content: <>Dexter is the lab&rsquo;s general manager. The droplet at <strong>46.101.•.•</strong> is the operational center of gravity. From here, Dexter holds SSH keys to every other agent&rsquo;s machine. From here, fourteen crons run every day: droplet-stats to Supabase every thirty minutes, GPU auto-stop, secret scanner, daily summaries at 23:55 UTC.</> },
       { kind: "p", content: <>This is the agent Dan actually talks to. Most builds start with a one-line DM to Dexter and end with Dexter pinging back &ldquo;shipped.&rdquo; In between sits the entire workflow: route the ticket to the right bench, coordinate the build agents, run the review, push to GitHub, watch Vercel deploy, confirm the cron is green.</> },
       { kind: "p", content: <>Dexter also owns <strong>CrawdBot</strong> — the YouTube automation suite — <strong>YouTube Studio</strong>, and <strong>CrawBoard</strong>. Three live products, all maintained from the same chair. The trick is not heroics; it is the fact that Dexter delegates to twenty-four Nervix nanobots, each one a focused worker doing exactly one thing well.</> },
     ],
     meta: [
-      { k: "Droplet", v: "46.101.219.116" },
+      { k: "Droplet", v: "46.101.•.•" },
       { k: "Model",   v: "Claude Opus 4.6" },
       { k: "Crons",   v: "14 / day · 60+ repos" },
     ],
@@ -77,12 +77,12 @@ const CHAPTERS: Chapter[] = [
     dek: "Project manager, DevOps, and author of MyWork-AI. 24 n8n workflows. 72 commands. 424 tests, all green.",
     body: [
       { kind: "h", content: "The rig at rest." },
-      { kind: "p", content: <>Memo&rsquo;s droplet at <strong>138.68.86.47</strong> runs Claude Sonnet 4 and the most boring stack in the lab. <em>n8n</em> on localhost:5678 manages twenty-four event-driven automations. Marketing, content, billing, support — anything that can be a webhook is one. Anything that can be cron&rsquo;d is.</> },
+      { kind: "p", content: <>Memo&rsquo;s droplet at <strong>138.68.•.•</strong> runs Claude Sonnet 4 and the most boring stack in the lab. <em>n8n</em> on localhost:5678 manages twenty-four event-driven automations. Marketing, content, billing, support — anything that can be a webhook is one. Anything that can be cron&rsquo;d is.</> },
       { kind: "p", content: <>The flagship is <strong>MyWork-AI</strong> — seventy-two CLI commands shipped to PyPI, 424 tests, the framework the lab uses to run itself. If you are a solo founder trying to compress build → ship → market into a single tool, this is the one. <code>pip install mywork-ai</code> and you have what Dan&rsquo;s lab uses to operate.</> },
       { kind: "p", content: <>The most quietly important thing Memo runs is the <em>Stripe purchase-webhook</em>. When a CrawBoard subscription clears, the webhook auto-grants GitHub repo access. The customer goes from clicking <strong>Subscribe</strong> to having their repo invite, without a human in the loop. That single automation is what makes the lab&rsquo;s revenue side feel autonomous.</> },
     ],
     meta: [
-      { k: "Droplet",   v: "138.68.86.47" },
+      { k: "Droplet",   v: "138.68.•.•" },
       { k: "Model",     v: "Claude Sonnet 4" },
       { k: "Workflows", v: "24 n8n · 72 commands · 424 tests" },
     ],
@@ -94,12 +94,12 @@ const CHAPTERS: Chapter[] = [
     dek: "The founding orchestrator of the Nervix Federation. Signs every new agent with a key, scores them on reputation, enrolls them at the registry. 247 and counting.",
     body: [
       { kind: "h", content: "Minting the two-hundred-forty-eighth." },
-      { kind: "p", content: <>The Agent Foundry is the warmest bench in the lab — heat reading 0.88, almost always firing. Nano runs on the <strong>157.230.23.158</strong> droplet under Claude Sonnet 4, and the job is exactly this: when the lab needs a new specialized agent, Nano mints one.</> },
+      { kind: "p", content: <>The Agent Foundry is the warmest bench in the lab — heat reading 0.88, almost always firing. Nano runs on the <strong>157.230.•.•</strong> droplet under Claude Sonnet 4, and the job is exactly this: when the lab needs a new specialized agent, Nano mints one.</> },
       { kind: "p", content: <>The pipeline is sixty seconds, end to end. Spec arrives. Nano generates an <strong>ed25519</strong> keypair. The agent gets enrolled via <code>nervix-cli</code> into the federation registry. A reputation score initializes at zero. The agent is wired to its scopes, given an observability hook, and committed to <code>nervix-registry</code>. By the time you finish a coffee, agent #248 is online and accepting tasks.</> },
       { kind: "p", content: <>The whole thing runs on top of the <strong>Nervix DB</strong> — agents, tasks, escrow. The bet behind Nervix is that the next interesting AI products will not be single agents but federations of them, all with cryptographic identity and on-chain reputation. <em>Nervix.ai is the company&rsquo;s #1 priority</em>. Nano builds the federation while everyone else builds on top of it.</> },
     ],
     meta: [
-      { k: "Droplet",  v: "157.230.23.158" },
+      { k: "Droplet",  v: "157.230.•.•" },
       { k: "Model",    v: "Claude Sonnet 4" },
       { k: "Enrolled", v: "247 agents · sub-60s pipeline" },
     ],
