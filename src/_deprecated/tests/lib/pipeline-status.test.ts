@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { getPipelineStatus } from "../../src/lib/pipeline-status";
+import { getPipelineStatus } from "../../lib/pipeline-status";
 
 /**
  * These tests run against a process with no engines available (CI is fine —

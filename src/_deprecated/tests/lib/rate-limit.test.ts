@@ -1,6 +1,6 @@
 import { test, describe, beforeEach } from "node:test";
 import assert from "node:assert/strict";
-import { checkRateLimit, _resetRateLimitStore } from "../../src/lib/rate-limit";
+import { checkRateLimit, _resetRateLimitStore } from "../../lib/rate-limit";
 
 describe("checkRateLimit", () => {
   beforeEach(() => _resetRateLimitStore());
