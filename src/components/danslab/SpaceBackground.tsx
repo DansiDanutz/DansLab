@@ -166,19 +166,37 @@ export function SpaceBackground() {
       raf = null;
     };
 
+    // Respect prefers-reduced-motion: render one static starfield frame
+    // instead of the twinkle/comet animation loop.
+    const drawStatic = () => {
+      ctx.clearRect(0, 0, W, H);
+      for (const s of stars) {
+        ctx.globalAlpha = s.baseA;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    };
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const run = () => (motion.matches ? (stop(), drawStatic()) : start());
+
     resize();
     seed();
-    start();
+    run();
 
-    const onResize = () => { resize(); seed(); };
-    const onVis = () => { document.hidden ? stop() : start(); };
+    const onResize = () => { resize(); seed(); if (motion.matches) drawStatic(); };
+    const onVis = () => { document.hidden ? stop() : run(); };
     window.addEventListener("resize", onResize);
     document.addEventListener("visibilitychange", onVis);
+    motion.addEventListener("change", run);
 
     return () => {
       stop();
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", onVis);
+      motion.removeEventListener("change", run);
     };
   }, []);
 

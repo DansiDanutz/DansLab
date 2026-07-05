@@ -1,8 +1,42 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/danslab/Nav";
 import { Footer } from "@/components/danslab/Footer";
 import { SpaceBackground } from "@/components/danslab/SpaceBackground";
+
+const sans = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+const serif = Newsreader({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "DansLab",
+  url: "https://danslab.vercel.app",
+  logo: "https://danslab.vercel.app/icon.svg",
+  description:
+    "A human-led autonomous AI lab: 30+ agents across 5 droplets and a Mac Studio, shipping 5 products around the clock.",
+  founder: { "@type": "Person", name: "Dan Semenescu", url: "https://github.com/DansiDanutz" },
+  address: { "@type": "PostalAddress", addressLocality: "Cluj-Napoca", addressCountry: "RO" },
+  sameAs: ["https://github.com/DansiDanutz", "https://x.com/dansemenescu"],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danslab.vercel.app"),
@@ -52,8 +86,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+        />
         <SpaceBackground />
         <div className="dl-app">
           <div className="dl-grid-overlay" />

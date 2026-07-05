@@ -1,4 +1,5 @@
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
+const COMMIT_SHA = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7);
 
 export function Footer() {
   return (
@@ -46,7 +47,22 @@ export function Footer() {
       </div>
       <div className="dl-footer-bottom">
         <span>© 2026 DANSLAB · POWERED BY OPENCLAW v2026.2.14</span>
-        <span>UPTIME 99.94% / 30D · LAST DEPLOY {BUILD_DATE}</span>
+        <span>
+          UPTIME 99.94% / 30D · LAST DEPLOY {BUILD_DATE}
+          {COMMIT_SHA && (
+            <>
+              {" · "}
+              <a
+                href={`https://github.com/DansiDanutz/DansLab/commit/${COMMIT_SHA}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                style={{ color: "inherit" }}
+              >
+                {COMMIT_SHA}
+              </a>
+            </>
+          )}
+        </span>
       </div>
     </footer>
   );
