@@ -1,3 +1,5 @@
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+
 export function Footer() {
   return (
     <footer className="dl-footer">
@@ -44,7 +46,7 @@ export function Footer() {
       </div>
       <div className="dl-footer-bottom">
         <span>© 2026 DANSLAB · POWERED BY OPENCLAW v2026.2.14</span>
-        <span>UPTIME 99.94% / 30D · LAST DEPLOY 2h AGO</span>
+        <span>UPTIME 99.94% / 30D · LAST DEPLOY {BUILD_DATE}</span>
       </div>
     </footer>
   );
