@@ -46,15 +46,15 @@ export type Stat = {
 
 export const AGENTS: Agent[] = [
   // MAIN AGENTS — main droplet operators
-  { id: "dexter", name: "Dexter", role: "General Manager", type: "main", color: "#3b82f6", initials: "DX", project: "crawdbot.com", product: "CrawdBot", droplet: "46.101.219.116", model: "Claude Opus 4.6", status: "online",
+  { id: "dexter", name: "Dexter", role: "General Manager", type: "main", color: "#3b82f6", initials: "DX", project: "crawdbot.com", product: "CrawdBot", droplet: "46.101.•.•", model: "Claude Opus 4.6", status: "online",
     desc: "Senior Dev & GM. SSH to all agents. Manages CrawdBot, YouTube Platform, CrawBoard. Runs 24 Nervix nanobots + 14 cron jobs. Dan's primary contact." },
   { id: "david", name: "David", role: "Fleet Orchestrator", type: "main", color: "#22c55e", initials: "DV", project: "nervix.ai", product: "Nervix", droplet: "Mac Studio", model: "Qwen 3.5 (local)", status: "online",
     desc: "Mac Studio OpenClaw. Receives the mission from the Bosses and orchestrates the entire company hand-in-hand with Hermes. Bridges Supabase, Vercel, GitHub. Watches every agent fleet-wide. Runs the nervix.ai federation." },
-  { id: "nano", name: "Nano", role: "Agent Creator", type: "main", color: "#a855f7", initials: "NN", project: "nervix.ai", product: "Nervix", droplet: "157.230.23.158", model: "Claude Sonnet 4", status: "busy",
+  { id: "nano", name: "Nano", role: "Agent Creator", type: "main", color: "#a855f7", initials: "NN", project: "nervix.ai", product: "Nervix", droplet: "157.230.•.•", model: "Claude Sonnet 4", status: "busy",
     desc: "Founding Orchestrator of Nervix Federation. Creates specialized agents, enrolls them via nervix-cli. Ed25519 auth, reputation system." },
-  { id: "memo", name: "Memo", role: "Project Manager", type: "main", color: "#f97316", initials: "MM", project: "MyWork-AI", product: "MyWork-AI", droplet: "138.68.86.47", model: "Claude Sonnet 4", status: "online",
+  { id: "memo", name: "Memo", role: "Project Manager", type: "main", color: "#f97316", initials: "MM", project: "MyWork-AI", product: "MyWork-AI", droplet: "138.68.•.•", model: "Claude Sonnet 4", status: "online",
     desc: "PM & DevOps. Runs 24 n8n automations (localhost:5678). Manages MyWork-AI (72+ CLI commands, PyPI). Hosts purchase-webhook for Stripe → GitHub." },
-  { id: "sienna", name: "Sienna", role: "Crypto Specialist", type: "main", color: "#ec4899", initials: "SI", project: "zmarty.me", product: "zmarty", droplet: "167.172.187.230", model: "ZAI GLM-4.7", status: "trading",
+  { id: "sienna", name: "Sienna", role: "Crypto Specialist", type: "main", color: "#ec4899", initials: "SI", project: "zmarty.me", product: "zmarty", droplet: "167.172.•.•", model: "ZAI GLM-4.7", status: "trading",
     desc: "Crypto girl. Binance API trading. 100+ trading endpoints via zmarty.me. Promotes strategy via sienna-crypto-girl site." },
 
   // HERMES — the brain

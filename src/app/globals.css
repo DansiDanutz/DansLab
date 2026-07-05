@@ -48,7 +48,7 @@
   --ink:           #fafafa;
   --ink-dim:       #a1a1aa;
   --ink-mute:      #71717a;
-  --ink-faint:     #3f3f46;
+  --ink-faint:     #55555e;
 
   --dl-accent:        #c0392b;
   --dl-accent-hot:    #e74c3c;
@@ -770,6 +770,9 @@ html, body {
   .dl-wrap, .dl-nav-inner, .dl-footer-bottom { padding-left: 20px; padding-right: 20px; }
   .dl-nav-links { display: none; }
   .dl-hero-title { font-size: 36px; }
+  .dl-stat { min-width: 0; padding: 24px 18px 22px; }
+  .dl-stat-num { font-size: 38px; }
+  .dl-stat-sub { overflow-wrap: break-word; }
 }
 
 /* ============================================================

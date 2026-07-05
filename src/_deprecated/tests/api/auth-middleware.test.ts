@@ -1,8 +1,8 @@
 import { test, describe, beforeEach, afterEach } from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
-import { middleware } from "../../src/middleware";
-import { _resetRateLimitStore } from "../../src/lib/rate-limit";
+import { middleware } from "../../middleware";
+import { _resetRateLimitStore } from "../../lib/rate-limit";
 
 const VALID_TOKEN = "test-token-1234567890abcdef-32chars";
 
