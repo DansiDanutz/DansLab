@@ -9,6 +9,11 @@ A 10-step autonomous video pipeline plus a Next.js studio for managing runs.
 Designed for production use with cost discipline, local-first model routing,
 and a bearer-token-authed API.
 
+**The lab behind it:** [STORY.md](STORY.md) is the factual build log — the fleet, the
+overnight runs, the method (real log times). The literary telling lives on the site at
+`/story`, and [`public/showcase.html`](public/showcase.html) (served at `/showcase.html`)
+is the one-page static showcase used on the YouTube channel.
+
 ---
 
 ## Architecture
