@@ -78,10 +78,10 @@ function HeroTerminal() {
       </div>
       <div className="dl-terminal-body">
         <div className="dl-terminal-ascii">
-{`  ┌─ DANS / LAB ─────────────────────────────┐
-  │  ░▒▓  five droplets · one boss  ▓▒░      │
-  │  ░▒▓  thirty agents · no sleep  ▓▒░      │
-  └──────────────────────────────────────────┘`}
+{`┌─ DANS / LAB ───────────────────────────┐
+│  five droplets · one boss              │
+│  thirty agents · no sleep              │
+└────────────────────────────────────────┘`}
         </div>
         {visible.map((item, i) => (
           <TickerRow key={`${t}-${i}`} item={item} agents={AGENTS} />
