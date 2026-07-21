@@ -35,7 +35,12 @@ const JSON_LD = {
     "A human-led autonomous AI lab: 30+ agents across 5 droplets and a Mac Studio, shipping 5 products around the clock.",
   founder: { "@type": "Person", name: "Dan Semenescu", url: "https://github.com/DansiDanutz" },
   address: { "@type": "PostalAddress", addressLocality: "Cluj-Napoca", addressCountry: "RO" },
-  sameAs: ["https://github.com/DansiDanutz", "https://x.com/dansemenescu"],
+  sameAs: [
+    "https://github.com/DansiDanutz",
+    "https://x.com/dansemenescu",
+    "https://www.youtube.com/@DansLab-WorldCup",
+    "https://dansemenescu.vercel.app",
+  ],
 };
 
 export const metadata: Metadata = {
