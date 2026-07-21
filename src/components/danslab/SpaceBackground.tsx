@@ -26,6 +26,21 @@ export function SpaceBackground() {
     let last = 0;
     let raf: ReturnType<typeof setInterval> | null = null;
 
+    // "Avatar star": every AV_PERIOD one star flies to the hero's right side,
+    // morphs into Dan's avatar, holds, then fades back into the field.
+    const AV_PERIOD = 60;      // s between appearances
+    const AV_FIRST_DELAY = 8;  // s before the first one
+    const AV_FLY = 1.6, AV_MORPH = 0.8, AV_HOLD = 4.2, AV_FADE = 0.9;
+    const AV_SIZE = 76;        // avatar diameter px
+    const avatarImg = new Image();
+    avatarImg.src = "/avatars/dan.jpg";
+    let avatarReady = false;
+    avatarImg.onload = () => { avatarReady = true; };
+    let avClock = AV_PERIOD - AV_FIRST_DELAY;
+    const av = { active: false, t: 0, sx: 0, sy: 0, tx: 0, ty: 0, star: -1 };
+
+    const easeInOut = (p: number) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
     const resize = () => {
       DPR = Math.min(2, window.devicePixelRatio || 1);
       W = window.innerWidth;
@@ -91,7 +106,9 @@ export function SpaceBackground() {
       ctx.clearRect(0, 0, W, H);
 
       // stars
-      for (const s of stars) {
+      for (let si = 0; si < stars.length; si++) {
+        if (av.active && si === av.star) continue; // borrowed by the avatar sequence
+        const s = stars[si];
         s.phase += dt * s.speed;
         const a = Math.max(0.05, Math.min(1, s.baseA + Math.sin(s.phase) * 0.3));
         ctx.globalAlpha = a;
@@ -151,6 +168,94 @@ export function SpaceBackground() {
         ctx.globalAlpha = 1;
         if (k.life >= k.ttl || k.x > W + 200 || k.y > H + 200 || k.x < -200) {
           comets.splice(i, 1);
+        }
+      }
+
+      // avatar star sequence
+      avClock += dt;
+      if (!av.active && avatarReady && avClock >= AV_PERIOD && window.scrollY < H * 0.8) {
+        avClock = 0;
+        // borrow a star from the left/center so the flight reads
+        let pick = -1;
+        for (let i = 0; i < stars.length; i++) {
+          if (stars[i].x < W * 0.55 && stars[i].y < H * 0.7 && (pick < 0 || stars[i].r > stars[pick].r)) pick = i;
+        }
+        if (pick >= 0) {
+          av.active = true; av.t = 0; av.star = pick;
+          av.sx = stars[pick].x; av.sy = stars[pick].y;
+          // land in open space on the right: below the hero terminal card if
+          // it's in view, otherwise upper-right of the viewport
+          av.tx = W * 0.82; av.ty = H * 0.24;
+          const term = document.querySelector(".dl-terminal");
+          if (term) {
+            const r = term.getBoundingClientRect();
+            if (r.bottom > 0 && r.top < H) {
+              const below = H - r.bottom;
+              const above = r.top;
+              if (below > AV_SIZE * 2.2) { av.tx = r.left + r.width * 0.55; av.ty = r.bottom + Math.min(below * 0.45, 90); }
+              else if (above > AV_SIZE * 2.2) { av.tx = r.left + r.width * 0.55; av.ty = r.top - Math.min(above * 0.45, 90); }
+              else { av.tx = Math.max(70, r.left - AV_SIZE * 1.2); av.ty = H * 0.3; }
+            }
+          }
+        }
+      }
+      if (av.active) {
+        av.t += dt;
+        const T = av.t;
+        const total = AV_FLY + AV_MORPH + AV_HOLD + AV_FADE;
+        let x = av.tx, y = av.ty, starA = 0, imgA = 0, ringA = 0, scale = 1;
+        if (T < AV_FLY) {
+          const p = easeInOut(T / AV_FLY);
+          x = av.sx + (av.tx - av.sx) * p;
+          y = av.sy + (av.ty - av.sy) * p;
+          starA = 1;
+        } else if (T < AV_FLY + AV_MORPH) {
+          const p = (T - AV_FLY) / AV_MORPH;
+          starA = 1 - p; imgA = p; ringA = p; scale = 0.6 + 0.4 * easeInOut(p);
+        } else if (T < AV_FLY + AV_MORPH + AV_HOLD) {
+          imgA = 1; ringA = 1;
+        } else if (T < total) {
+          const p = (T - AV_FLY - AV_MORPH - AV_HOLD) / AV_FADE;
+          imgA = 1 - p; ringA = 1 - p; starA = p * 0.8; scale = 1 - 0.35 * p;
+        } else {
+          // respawn the borrowed star somewhere new
+          stars[av.star].x = Math.random() * W;
+          stars[av.star].y = Math.random() * H;
+          av.active = false;
+        }
+        if (av.active) {
+          const R = (AV_SIZE / 2) * scale;
+          if (starA > 0) { // travelling / flaring star
+            ctx.globalAlpha = starA;
+            ctx.fillStyle = "#f4c15c";
+            ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill();
+            ctx.globalAlpha = starA * 0.3;
+            ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.fill();
+            ctx.globalAlpha = 1;
+          }
+          if (imgA > 0) {
+            const pulse = 1 + Math.sin(T * 2.2) * 0.04;
+            ctx.save();
+            ctx.globalAlpha = imgA;
+            ctx.shadowColor = "rgba(231,76,60,0.85)";
+            ctx.shadowBlur = 26 * ringA;
+            ctx.beginPath(); ctx.arc(x, y, R * pulse, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(244,193,92,${0.9 * ringA})`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+            ctx.clip();
+            ctx.drawImage(avatarImg, x - R * pulse, y - R * pulse, R * 2 * pulse, R * 2 * pulse);
+            ctx.restore();
+            if (ringA > 0.5) {
+              ctx.globalAlpha = (ringA - 0.5) * 1.4;
+              ctx.fillStyle = "#f4c15c";
+              ctx.font = "600 9px 'JetBrains Mono', monospace";
+              ctx.textAlign = "center";
+              ctx.fillText("DAN · FOUNDER", x, y + R + 18);
+              ctx.globalAlpha = 1;
+            }
+          }
         }
       }
     };
