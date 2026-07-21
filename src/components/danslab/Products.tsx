@@ -7,10 +7,10 @@ import { ProductArt } from "./ProductArt";
 export function Products() {
   return (
     <section className="dl-products" id="dl-products">
-      <SectionLabel n={3} title="SHIPPING // 5 PRODUCTS" />
+      <SectionLabel n={3} title="SHIPPING // 6 PRODUCTS" />
       <div className="dl-products-head">
         <h2 className="dl-h2">
-          Five products.<br />
+          Six products.<br />
           <span className="dl-h2-dim">One human approval per direction.</span>
         </h2>
         <div className="dl-products-sub">

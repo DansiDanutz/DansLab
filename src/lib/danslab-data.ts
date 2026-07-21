@@ -108,9 +108,12 @@ export const AGENTS: Agent[] = [
     desc: "Two Supabase instances: MoltBot DB (30+ tables) used by all agents. Nervix DB (agents, tasks, escrow)." },
 ];
 
+export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@DansLab-WorldCup";
+
 export const PRODUCTS: Product[] = [
   { id: "nervix", name: "nervix.ai", lead: "David", desc: "Agent federation & marketplace · YouTube Studio", color: "#c0392b", href: "https://nervix.ai", kpi: "247 agents enrolled" },
   { id: "crawdbot", name: "crawdbot.com", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://crawdbot.com", kpi: "12.4k videos processed" },
+  { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's YouTube channel — automated football video production, live", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, kpi: "14k subscribers · 133 videos" },
   { id: "mywork", name: "MyWork-AI", lead: "Memo", desc: "Build & ship platform", color: "#c0392b", href: "#", kpi: "72 CLI commands · PyPI" },
   { id: "zmarty", name: "zmarty.me", lead: "Sienna", desc: "Crypto trading signals", color: "#d4a017", href: "#", kpi: "96.2% win rate" },
   { id: "semeclaw", name: "SemeClaw", lead: "Dan", desc: "War-room protocol · where decisions get signed", color: "#c0392b", href: "/semeclaw", kpi: "Always lobsters" },
@@ -131,7 +134,7 @@ export const ACTIVITY: ActivityItem[] = [
 
 export const STATS: Stat[] = [
   { label: "Active agents", value: 30, suffix: "+", sub: "across 5 droplets" },
-  { label: "Products live", value: 5, suffix: "", sub: "deployed on Vercel" },
+  { label: "Products live", value: 6, suffix: "", sub: "5 on Vercel + YouTube" },
   { label: "Cron jobs", value: 38, suffix: "/day", sub: "14 Dexter · 24 Memo" },
   { label: "Uptime", value: 99.94, suffix: "%", sub: "last 30 days" },
 ];

@@ -373,9 +373,44 @@ function SemeclawArt({ color = "#c0392b" }: { color?: string }) {
   );
 }
 
+function YoutubeArt({ color = "#c0392b" }: { color?: string }) {
+  const bars = [14, 22, 9, 18, 26, 12, 20, 30, 16, 24];
+  return (
+    <ArtFrame color={color}>
+      {/* play button */}
+      <div style={{
+        position: "absolute", left: "50%", top: "42%", transform: "translate(-50%,-50%)",
+        width: 64, height: 44, borderRadius: 10,
+        background: color, boxShadow: `0 0 28px ${color}66`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{
+          width: 0, height: 0, marginLeft: 4,
+          borderTop: "10px solid transparent", borderBottom: "10px solid transparent",
+          borderLeft: "16px solid #fff",
+        }} />
+      </div>
+      {/* subscriber counter */}
+      <div style={{
+        position: "absolute", left: "50%", top: "72%", transform: "translateX(-50%)",
+        fontFamily: "JetBrains Mono,monospace", fontSize: 9, letterSpacing: ".18em",
+        color: "#f4c15c", fontWeight: 700, whiteSpace: "nowrap",
+      }}>▲ 14,000 SUBSCRIBERS</div>
+      {/* watch-time bars */}
+      <svg viewBox="0 0 100 34" style={{ position: "absolute", left: 10, right: 10, bottom: 4, width: "calc(100% - 20px)", height: 30 }}>
+        {bars.map((h, i) => (
+          <rect key={i} x={i * 10 + 2} y={32 - h} width={6} height={h} rx={1}
+            fill={color} opacity={0.25 + (h / 30) * 0.5} />
+        ))}
+      </svg>
+    </ArtFrame>
+  );
+}
+
 export const ProductArt: Record<string, (props: { color?: string }) => React.JSX.Element> = {
   nervix: NervixArt,
   crawdbot: CrawdbotArt,
+  youtube: YoutubeArt,
   mywork: MyworkArt,
   zmarty: ZmartyArt,
   semeclaw: SemeclawArt,
