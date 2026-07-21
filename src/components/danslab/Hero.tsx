@@ -25,7 +25,7 @@ export function Hero({ onEnterLab, onViewEcosystem }: {
           <p className="dl-hero-lede">
             <span className="dl-drop">D</span>ansLab is a fleet of <em>30+ agents</em> orchestrated across
             five DigitalOcean droplets and a Mac Studio. They build, ship, research, trade,
-            and escalate to Dan over Telegram — around the clock, across five products,
+            and escalate to Dan over Telegram — around the clock, across six products,
             on one budget.
           </p>
 

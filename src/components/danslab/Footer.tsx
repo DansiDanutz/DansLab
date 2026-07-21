@@ -1,3 +1,5 @@
+import { YOUTUBE_CHANNEL_URL } from "@/lib/danslab-data";
+
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const COMMIT_SHA = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7);
 
@@ -23,6 +25,7 @@ export function Footer() {
               <li><a href="#">MyWork-AI</a></li>
               <li><a href="https://zmarty.vercel.app" target="_blank" rel="noreferrer noopener">zmarty.me</a></li>
               <li><a href="/semeclaw">SemeClaw</a></li>
+              <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">YouTube · 14k subs</a></li>
             </ul>
           </div>
           <div>
@@ -37,9 +40,10 @@ export function Footer() {
           <div>
             <h4>SIGNAL</h4>
             <ul>
+              <li><a href="https://dansemenescu.vercel.app" target="_blank" rel="noreferrer noopener">Dan Semenescu — Founder</a></li>
+              <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">YouTube</a></li>
               <li><a href="https://github.com/DansiDanutz" target="_blank" rel="noreferrer noopener">GitHub</a></li>
               <li><a href="https://x.com/dansemenescu" target="_blank" rel="noreferrer noopener">X / Twitter</a></li>
-              <li><a href="https://dansemenescu.vercel.app" target="_blank" rel="noreferrer noopener">dansemenescu.app</a></li>
               <li><a href="mailto:semebitcoin@gmail.com">semebitcoin@gmail.com</a></li>
             </ul>
           </div>
