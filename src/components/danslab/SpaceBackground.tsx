@@ -29,7 +29,7 @@ export function SpaceBackground() {
     // "Avatar star": every AV_PERIOD one star flies to the hero's right side,
     // morphs into Dan's avatar, holds, then fades back into the field.
     const AV_PERIOD = 60;      // s between appearances
-    const AV_FIRST_DELAY = 8;  // s before the first one
+    const AV_FIRST_DELAY = 5;  // s before the first one
     const AV_FLY = 1.6, AV_MORPH = 0.8, AV_HOLD = 4.2, AV_FADE = 0.9;
     const AV_SIZE = 120;       // avatar diameter px
     const avatarImg = new Image();
@@ -38,6 +38,20 @@ export function SpaceBackground() {
     avatarImg.onload = () => { avatarReady = true; };
     let avClock = AV_PERIOD - AV_FIRST_DELAY;
     const av = { active: false, t: 0, sx: 0, sy: 0, tx: 0, ty: 0, star: -1 };
+    // morph burst particles: swirl out from the star, settle on the ring
+    const avParts: { a: number; sp: number; rr: number; sz: number; gold: boolean }[] = [];
+    const seedParts = () => {
+      avParts.length = 0;
+      for (let i = 0; i < 42; i++) {
+        avParts.push({
+          a: Math.random() * Math.PI * 2,        // start angle
+          sp: 2.2 + Math.random() * 3.4,         // swirl speed
+          rr: 0.55 + Math.random() * 0.75,       // final radius vs ring
+          sz: 0.7 + Math.random() * 1.5,
+          gold: Math.random() < 0.7,
+        });
+      }
+    };
 
     const easeInOut = (p: number) => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
 
@@ -212,6 +226,7 @@ export function SpaceBackground() {
           y = av.sy + (av.ty - av.sy) * p;
           starA = 1;
         } else if (T < AV_FLY + AV_MORPH) {
+          if (avParts.length === 0) seedParts();
           const p = (T - AV_FLY) / AV_MORPH;
           starA = 1 - p; imgA = p; ringA = p; scale = 0.6 + 0.4 * easeInOut(p);
         } else if (T < AV_FLY + AV_MORPH + AV_HOLD) {
@@ -224,6 +239,7 @@ export function SpaceBackground() {
           stars[av.star].x = Math.random() * W;
           stars[av.star].y = Math.random() * H;
           av.active = false;
+          avParts.length = 0;
         }
         if (av.active) {
           const R = (AV_SIZE / 2) * scale;
@@ -233,6 +249,23 @@ export function SpaceBackground() {
             ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill();
             ctx.globalAlpha = starA * 0.3;
             ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.fill();
+            ctx.globalAlpha = 1;
+          }
+          // burst particles: alive through the morph and briefly into the hold
+          const burstEnd = AV_FLY + AV_MORPH + 0.7;
+          if (T >= AV_FLY && T < burstEnd && avParts.length) {
+            const bp = (T - AV_FLY) / (burstEnd - AV_FLY); // 0..1
+            const pa = bp < 0.15 ? bp / 0.15 : 1 - easeInOut((bp - 0.15) / 0.85);
+            const R0 = AV_SIZE / 2;
+            for (const pt of avParts) {
+              const ang = pt.a + bp * pt.sp;
+              const rad = R0 * pt.rr * easeInOut(Math.min(1, bp * 1.6)) * (1 + bp * 0.5);
+              const px = x + Math.cos(ang) * rad;
+              const py = y + Math.sin(ang) * rad;
+              ctx.globalAlpha = Math.max(0, pa) * 0.9;
+              ctx.fillStyle = pt.gold ? "#f4c15c" : "#e74c3c";
+              ctx.beginPath(); ctx.arc(px, py, pt.sz, 0, Math.PI * 2); ctx.fill();
+            }
             ctx.globalAlpha = 1;
           }
           if (imgA > 0) {
@@ -250,11 +283,16 @@ export function SpaceBackground() {
             ctx.drawImage(avatarImg, x - R * pulse, y - R * pulse, R * 2 * pulse, R * 2 * pulse);
             ctx.restore();
             if (ringA > 0.5) {
-              ctx.globalAlpha = (ringA - 0.5) * 1.4;
-              ctx.fillStyle = "#f4c15c";
-              ctx.font = "600 9px 'JetBrains Mono', monospace";
+              const capA = (ringA - 0.5) * 1.4;
               ctx.textAlign = "center";
-              ctx.fillText("DAN · FOUNDER", x, y + R + 18);
+              ctx.globalAlpha = capA;
+              ctx.fillStyle = "#f4c15c";
+              ctx.font = "700 11px 'JetBrains Mono', monospace";
+              ctx.fillText("DAN · FOUNDER", x, y + R + 22);
+              ctx.globalAlpha = capA * 0.75;
+              ctx.fillStyle = "#e8e3d8";
+              ctx.font = "italic 9px Georgia, serif";
+              ctx.fillText("the human in the loop", x, y + R + 38);
               ctx.globalAlpha = 1;
             }
           }
