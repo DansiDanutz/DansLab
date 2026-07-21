@@ -4,7 +4,7 @@ import { AGENTS, PRODUCTS } from "@/lib/danslab-data";
 import { Monogram, SectionLabel, cssVar } from "./atoms";
 import { ProductArt } from "./ProductArt";
 
-export function Products() {
+export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
   return (
     <section className="dl-products" id="dl-products">
       <SectionLabel n={3} title="SHIPPING // 6 PRODUCTS" />
@@ -62,7 +62,7 @@ export function Products() {
 
                 <div className="dl-product-kpi-row">
                   <span className="dl-product-kpi-dot" />
-                  <span className="dl-product-kpi-val">{p.kpi}</span>
+                  <span className="dl-product-kpi-val">{p.id === "youtube" && youtubeKpi ? youtubeKpi : p.kpi}</span>
                 </div>
 
                 <div className="dl-product-cta">
