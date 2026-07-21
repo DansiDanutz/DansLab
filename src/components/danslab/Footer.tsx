@@ -25,7 +25,7 @@ export function Footer() {
               <li><a href="#">MyWork-AI</a></li>
               <li><a href="https://zmarty.vercel.app" target="_blank" rel="noreferrer noopener">zmarty.me</a></li>
               <li><a href="/semeclaw">SemeClaw</a></li>
-              <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">YouTube · 14k subs</a></li>
+              <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">WorldCup Central · YouTube</a></li>
             </ul>
           </div>
           <div>
