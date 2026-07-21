@@ -31,7 +31,7 @@ export function SpaceBackground() {
     const AV_PERIOD = 60;      // s between appearances
     const AV_FIRST_DELAY = 8;  // s before the first one
     const AV_FLY = 1.6, AV_MORPH = 0.8, AV_HOLD = 4.2, AV_FADE = 0.9;
-    const AV_SIZE = 76;        // avatar diameter px
+    const AV_SIZE = 120;       // avatar diameter px
     const avatarImg = new Image();
     avatarImg.src = "/avatars/dan.jpg";
     let avatarReady = false;
@@ -189,12 +189,14 @@ export function SpaceBackground() {
           const term = document.querySelector(".dl-terminal");
           if (term) {
             const r = term.getBoundingClientRect();
-            if (r.bottom > 0 && r.top < H) {
+            if (r.left < W * 0.5) {
+              // stacked layout (terminal below the copy): empty sky right of the headline
+              av.tx = W * 0.8;
+              av.ty = Math.min(H * 0.28, Math.max(AV_SIZE, r.top * 0.4));
+            } else if (r.bottom > 0 && r.top < H) {
               const below = H - r.bottom;
-              const above = r.top;
-              if (below > AV_SIZE * 2.2) { av.tx = r.left + r.width * 0.55; av.ty = r.bottom + Math.min(below * 0.45, 90); }
-              else if (above > AV_SIZE * 2.2) { av.tx = r.left + r.width * 0.55; av.ty = r.top - Math.min(above * 0.45, 90); }
-              else { av.tx = Math.max(70, r.left - AV_SIZE * 1.2); av.ty = H * 0.3; }
+              if (below > AV_SIZE * 2.2) { av.tx = r.left + r.width * 0.55; av.ty = r.bottom + Math.min(below * 0.45, 110); }
+              else { av.tx = Math.max(AV_SIZE, r.left - AV_SIZE * 0.9); av.ty = H * 0.22; }
             }
           }
         }
