@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Fleet Audit Dashboard</title>
 <style>
   :root {
@@ -60,6 +61,16 @@
   a.report:hover{border-bottom-color:var(--felt)}
   footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.76rem;color:var(--ink-soft)}
   .legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:var(--ink-soft);margin-top:.8rem}
+  .toolbar{display:flex;justify-content:flex-end;margin:.2rem 0 .7rem}
+  .btn{font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--felt);background:var(--felt-soft);border:1px solid var(--felt);border-radius:8px;padding:.42rem .85rem;cursor:pointer}
+  .btn:hover{background:var(--felt);color:var(--paper)}
+  .addform{display:none;gap:.7rem;flex-wrap:wrap;align-items:end;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:.85rem;margin:0 0 1rem}
+  .addform.open{display:flex}
+  .addform label{display:flex;flex-direction:column;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);gap:.25rem;font-weight:600}
+  .addform input,.addform select{font-family:var(--sans);font-size:.85rem;padding:.42rem .55rem;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink)}
+  #f_name{min-width:11rem} #f_path{min-width:18rem}
+  .chip.added{color:var(--felt);background:var(--felt-soft)}
+  .rm{border:none;background:none;color:var(--crit);cursor:pointer;font-size:1.05rem;line-height:1;padding:0 .3rem}
 </style>
 
 <div class="wrap">
@@ -70,12 +81,20 @@
 </header>
 
 <div class="stats">
-  <div><span class="n">16</span><span class="l">Projects tracked</span></div>
+  <div><span class="n" id="stat-tracked">16</span><span class="l">Projects tracked</span></div>
   <div><span class="n">1</span><span class="l">Audited</span></div>
   <div><span class="n">1</span><span class="l">Production-GO</span></div>
-  <div><span class="n">15</span><span class="l">Not yet audited</span></div>
+  <div><span class="n" id="stat-notaudited">15</span><span class="l">Not yet audited</span></div>
   <div><span class="n">20</span><span class="l">Findings fixed (fleet)</span></div>
 </div>
+
+<div class="toolbar"><button class="btn" id="addBtn" type="button">+ Add repo</button></div>
+<form class="addform" id="addForm">
+  <label>Project<input id="f_name" required placeholder="my-new-repo"></label>
+  <label>Path / repo<input id="f_path" placeholder="~/Projects/my-new-repo · owner/repo"></label>
+  <label>Priority<select id="f_status"><option value="none">Not audited</option><option value="due">Recommended (money/data)</option></select></label>
+  <button class="btn" type="submit">Add to list</button>
+</form>
 
 <div class="tablewrap">
 <table>
@@ -175,7 +194,73 @@
 </div>
 
 <footer>
-  Fleet audit tracker · maintained per the ~/CLAUDE.md audit convention · only rows with a date have been audited; everything else is a tracked candidate. <br>
+  Fleet audit tracker · maintained per the ~/CLAUDE.md audit convention · only rows with a date have been audited; everything else is a tracked candidate. Repos you add with <b>+ Add repo</b> are saved in this browser and persist across visits. <br>
   <b>Last updated: 2026-07-24.</b>
 </footer>
+</div>
+
+<script>
+(function () {
+  var KEY = "fleetAuditExtras";
+  var tbody = document.querySelector("table tbody");
+  var form = document.getElementById("addForm");
+  var BASE_TRACKED = 16, BASE_NOTAUDITED = 15; // static seed rows
+
+  document.getElementById("addBtn").addEventListener("click", function () {
+    form.classList.toggle("open");
+  });
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function makeRow(r, i) {
+    var v = r.status === "due"
+      ? '<span class="verdict due">Recommended</span>'
+      : '<span class="verdict none">Not audited</span>';
+    var tr = document.createElement("tr");
+    tr.setAttribute("data-extra", "1");
+    tr.innerHTML =
+      '<td><span class="proj">' + esc(r.name) + '</span> <span class="chip added">added</span>' +
+      '<span class="path">' + esc(r.path) + "</span></td>" +
+      '<td class="date muted">—</td><td class="muted">not yet audited</td>' +
+      "<td>" + v + "</td>" +
+      '<td><button class="rm" type="button" title="Remove" data-i="' + i + '">×</button></td>';
+    return tr;
+  }
+  function stats() {
+    var n = load().length;
+    document.getElementById("stat-tracked").textContent = BASE_TRACKED + n;
+    document.getElementById("stat-notaudited").textContent = BASE_NOTAUDITED + n;
+  }
+  function render() {
+    Array.prototype.forEach.call(tbody.querySelectorAll('tr[data-extra]'), function (n) { n.remove(); });
+    var a = load();
+    a.forEach(function (r, i) { tbody.appendChild(makeRow(r, i)); });
+    Array.prototype.forEach.call(tbody.querySelectorAll(".rm"), function (b) {
+      b.addEventListener("click", function () {
+        var arr = load(); arr.splice(parseInt(b.dataset.i, 10), 1); save(arr); render();
+      });
+    });
+    stats();
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("f_name").value.trim();
+    if (!name) return;
+    var a = load();
+    a.push({
+      name: name,
+      path: document.getElementById("f_path").value.trim(),
+      status: document.getElementById("f_status").value,
+    });
+    save(a); form.reset(); form.classList.remove("open"); render();
+  });
+
+  render();
+})();
+</script>
 </div>
