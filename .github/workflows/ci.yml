@@ -21,10 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Node 20
+      - name: Setup Node 22
         uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -40,26 +40,21 @@ jobs:
         run: npm test
 
   audit:
-    name: Security audit (advisory)
+    name: Production dependency audit
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    # Advisory only — doesn't block merges. Surfaces high/critical so
-    # we notice when new CVEs hit transitive deps. Tune to fail-on:high
-    # once we've cleared the current postcss-via-Next.js transitives.
-    continue-on-error: true
-
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup Node 20
+      - name: Setup Node 22
         uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
-      - name: npm audit (high+critical)
-        run: npm audit --audit-level=high
+      - name: npm audit (production high+critical)
+        run: npm audit --omit=dev --audit-level=high
