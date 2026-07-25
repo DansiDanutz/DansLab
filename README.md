@@ -100,7 +100,7 @@ curl -X POST http://localhost:3000/api/pipeline/run \
 
 ### Prerequisites
 
-- Node 20+
+- Node 22+
 - Python 3.13+
 - Redis (via `docker compose up redis` — requires `REDIS_PASSWORD` in `.env`)
 - API keys for at least one LLM provider (see `.env.example`)

@@ -2,6 +2,9 @@
   "name": "youtube-pipeline",
   "version": "2.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "description": "YouTube Pipeline — AI-powered video production. Research to render to upload.",
   "scripts": {
     "dev": "next dev",
