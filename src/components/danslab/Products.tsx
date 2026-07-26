@@ -7,10 +7,10 @@ import { ProductArt } from "./ProductArt";
 export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
   return (
     <section className="dl-products" id="dl-products">
-      <SectionLabel n={3} title="SHIPPING // 6 PRODUCTS" />
+      <SectionLabel n={3} title={`SHIPPING // ${PRODUCTS.length} PRODUCTS`} />
       <div className="dl-products-head">
         <h2 className="dl-h2">
-          Six products.<br />
+          Eight products.<br />
           <span className="dl-h2-dim">One human approval per direction.</span>
         </h2>
         <div className="dl-products-sub">

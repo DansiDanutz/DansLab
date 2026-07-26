@@ -200,6 +200,63 @@ export const PROJECT_DOCS: ProjectDoc[] = [
       { label: "Tasks UI", href: "https://semeclaw.fly.dev/tasks" },
     ],
   },
+  {
+    id: "neverdie",
+    name: "NeverDie",
+    tagline: "Second brain & digital-immortality vault",
+    liveUrl: "https://github.com/DansiDanutz/NeverDieFable",
+    liveLabel: "github.com/DansiDanutz/NeverDieFable",
+    lead: "Dan",
+    status: "beta",
+    stack: ["AI memory vault", "Voice cloning", "Digital avatars", "Open source"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "NeverDie is a personal memory vault and digital-immortality app. It stores everything a person wants to keep — photos, messages, emails, documents, voice notes, live conversations — organizes it with AI, and turns it into a living Digital Mind: a clone of your voice, your face, and your way of thinking.",
+          "While you live, it is your second brain — ask it anything, it answers from your own life. When you die, it becomes your legacy — your family keeps talking to you.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "The vault ingests a lifetime of media and text, indexes it with AI, and builds a conversational avatar from the owner's own voice, face, and writing. It can also rebuild avatars of people already lost, from their photos, voices, and letters.",
+          "The project is open source on GitHub and consolidates the earlier DigitalMind and NeverDie repositories.",
+        ],
+      },
+    ],
+    links: [
+      { label: "GitHub repository", href: "https://github.com/DansiDanutz/NeverDieFable" },
+    ],
+  },
+  {
+    id: "dansite",
+    name: "dansemenescu.com",
+    tagline: "The founder's personal site",
+    liveUrl: "https://dansemenescu.vercel.app",
+    liveLabel: "dansemenescu.vercel.app",
+    lead: "Dan",
+    status: "live",
+    stack: ["Next.js", "Vercel"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "The personal site of Dan Semenescu — founder of DansLab. Story, ventures, and contact in one place: the poker background, the autonomous AI lab, and the products the fleet ships.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "A Next.js site deployed on Vercel, maintained by the fleet like every other DansLab property. It links back to the lab, the products, and the story told on this site.",
+        ],
+      },
+    ],
+    links: [
+      { label: "Live site", href: "https://dansemenescu.vercel.app" },
+      { label: "The DansLab story", href: "/story" },
+    ],
+  },
 ];
 
 export function getProjectDoc(id: string): ProjectDoc | undefined {
