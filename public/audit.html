@@ -1,0 +1,266 @@
+<meta charset="utf-8">
+<title>Fleet Audit Dashboard</title>
+<style>
+  :root {
+    --paper:#fbfaf7; --paper-2:#f2f1ea; --ink:#20261f; --ink-soft:#55604f; --line:#d9d8cd;
+    --felt:#1e6f4c; --felt-soft:#e4efe7;
+    --crit:#b3261e; --crit-bg:#f9e9e7; --high:#a05a12; --high-bg:#f7eee0;
+    --med:#8a6d00; --med-bg:#f5f0da; --low:#5c675e; --low-bg:#ebede8;
+    --go:#1e6f4c; --go-bg:#e4efe7; --none:#8a8f86; --none-bg:#ecede8;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --serif:Palatino,"Palatino Linotype","Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){:root{
+    --paper:#151a17; --paper-2:#1d2420; --ink:#e7eae4; --ink-soft:#9daa9d; --line:#313b34;
+    --felt:#4cae82; --felt-soft:#1d3529;
+    --crit:#ff8a80; --crit-bg:#3a1f1c; --high:#ffb865; --high-bg:#382a17;
+    --med:#e3cc60; --med-bg:#34301a; --low:#a3aea4; --low-bg:#262c27;
+    --go:#4cae82; --go-bg:#1d3529; --none:#7c857b; --none-bg:#242a25;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#151a17; --paper-2:#1d2420; --ink:#e7eae4; --ink-soft:#9daa9d; --line:#313b34;
+    --felt:#4cae82; --felt-soft:#1d3529; --crit:#ff8a80; --crit-bg:#3a1f1c; --high:#ffb865; --high-bg:#382a17;
+    --med:#e3cc60; --med-bg:#34301a; --low:#a3aea4; --low-bg:#262c27; --go:#4cae82; --go-bg:#1d3529; --none:#7c857b; --none-bg:#242a25;
+  }
+  :root[data-theme="light"]{
+    --paper:#fbfaf7; --paper-2:#f2f1ea; --ink:#20261f; --ink-soft:#55604f; --line:#d9d8cd;
+    --felt:#1e6f4c; --felt-soft:#e4efe7; --crit:#b3261e; --crit-bg:#f9e9e7; --high:#a05a12; --high-bg:#f7eee0;
+    --med:#8a6d00; --med-bg:#f5f0da; --low:#5c675e; --low-bg:#ebede8; --go:#1e6f4c; --go-bg:#e4efe7; --none:#8a8f86; --none-bg:#ecede8;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;margin:0;font-size:15px}
+  .wrap{max-width:68rem;margin:0 auto;padding:2.25rem 1.25rem 4rem}
+  header.db{border-bottom:3px double var(--line);padding-bottom:1.4rem;margin-bottom:1.5rem}
+  .eyebrow{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--felt);font-weight:600;margin:0 0 .5rem}
+  h1{font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.3rem);margin:0 0 .5rem;font-weight:600}
+  .sub{color:var(--ink-soft);font-size:.9rem;margin:0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:1.4rem 0}
+  .stats>div{background:var(--paper-2);padding:.8rem 1rem}
+  .stats .n{font-family:var(--serif);font-size:1.6rem;font-weight:600;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+  .stats .l{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:52rem}
+  th{text-align:left;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;padding:.65rem .85rem;border-bottom:2px solid var(--line);background:var(--paper-2);position:sticky;top:0}
+  td{padding:.7rem .85rem;border-bottom:1px solid var(--line);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr.audited td:first-child{box-shadow:inset 3px 0 0 var(--felt)}
+  .proj{font-weight:600}
+  .path{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);display:block;margin-top:.15rem}
+  .date{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .muted{color:var(--ink-soft)}
+  .chips{display:flex;gap:.3rem;flex-wrap:wrap}
+  .chip{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:.14em .5em;border-radius:99px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .chip.c{color:var(--crit);background:var(--crit-bg)} .chip.h{color:var(--high);background:var(--high-bg)}
+  .chip.m{color:var(--med);background:var(--med-bg)} .chip.l{color:var(--low);background:var(--low-bg)}
+  .verdict{font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.2em .6em;border-radius:6px;white-space:nowrap}
+  .verdict.go{color:var(--go);background:var(--go-bg)}
+  .verdict.none{color:var(--none);background:var(--none-bg)}
+  .verdict.due{color:var(--high);background:var(--high-bg)}
+  a.report{color:var(--felt);font-weight:600;font-size:.82rem;text-decoration:none;border-bottom:1px solid color-mix(in oklab,var(--felt) 40%,transparent)}
+  a.report:hover{border-bottom-color:var(--felt)}
+  footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.76rem;color:var(--ink-soft)}
+  .legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;color:var(--ink-soft);margin-top:.8rem}
+  .toolbar{display:flex;justify-content:flex-end;margin:.2rem 0 .7rem}
+  .btn{font-family:var(--sans);font-size:.82rem;font-weight:600;color:var(--felt);background:var(--felt-soft);border:1px solid var(--felt);border-radius:8px;padding:.42rem .85rem;cursor:pointer}
+  .btn:hover{background:var(--felt);color:var(--paper)}
+  .addform{display:none;gap:.7rem;flex-wrap:wrap;align-items:end;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:.85rem;margin:0 0 1rem}
+  .addform.open{display:flex}
+  .addform label{display:flex;flex-direction:column;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);gap:.25rem;font-weight:600}
+  .addform input,.addform select{font-family:var(--sans);font-size:.85rem;padding:.42rem .55rem;border:1px solid var(--line);border-radius:7px;background:var(--paper);color:var(--ink)}
+  #f_name{min-width:11rem} #f_path{min-width:18rem}
+  .chip.added{color:var(--felt);background:var(--felt-soft)}
+  .rm{border:none;background:none;color:var(--crit);cursor:pointer;font-size:1.05rem;line-height:1;padding:0 .3rem}
+</style>
+
+<div class="wrap">
+<header class="db">
+  <p class="eyebrow">Dan's Lab · Fleet Security &amp; Correctness</p>
+  <h1>Audit Dashboard</h1>
+  <p class="sub">One place to see what's been audited, when, and where it stands. Update a row's date + verdict each time a project is audited.</p>
+</header>
+
+<div class="stats">
+  <div><span class="n" id="stat-tracked">16</span><span class="l">Projects tracked</span></div>
+  <div><span class="n">1</span><span class="l">Audited</span></div>
+  <div><span class="n">1</span><span class="l">Production-GO</span></div>
+  <div><span class="n" id="stat-notaudited">15</span><span class="l">Not yet audited</span></div>
+  <div><span class="n">20</span><span class="l">Findings fixed (fleet)</span></div>
+</div>
+
+<div class="toolbar"><button class="btn" id="addBtn" type="button">+ Add repo</button></div>
+<form class="addform" id="addForm">
+  <label>Project<input id="f_name" required placeholder="my-new-repo"></label>
+  <label>Path / repo<input id="f_path" placeholder="~/Projects/my-new-repo · owner/repo"></label>
+  <label>Priority<select id="f_status"><option value="none">Not audited</option><option value="due">Recommended (money/data)</option></select></label>
+  <button class="btn" type="submit">Add to list</button>
+</form>
+
+<div class="tablewrap">
+<table>
+  <thead>
+    <tr><th>Project</th><th>Last audited</th><th>Findings (fixed)</th><th>Verdict</th><th>Report</th></tr>
+  </thead>
+  <tbody>
+    <tr class="audited">
+      <td><span class="proj">PokerAgent</span><span class="path">~/Projects/PokerAgent · DansiDanutz/PokerAgent</span></td>
+      <td class="date">2026-07-24</td>
+      <td><div class="chips"><span class="chip c">1C</span><span class="chip h">4H</span><span class="chip m">7M</span><span class="chip l">5L</span></div></td>
+      <td><span class="verdict go">GO</span></td>
+      <td><a class="report" href="https://claude.ai/code/artifact/48a47a68-18f6-42e4-9f2f-32c71d8f0ddf">View report ↗</a></td>
+    </tr>
+    <tr>
+      <td><span class="proj">Reality (Fable)</span><span class="path">~/Fable · 3D Earth life-sim</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">DailyStock</span><span class="path">~/Projects/DailyStock · dailystock-cyan.vercel.app</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">DigitalAssistant</span><span class="path">~/Projects/DigitalAssistant · WhatsApp bot</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict due">Recommended</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">nervix-federation-v2</span><span class="path">~/Projects/nervix-federation-v2 · marketplace</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict due">Recommended</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">dan-semenescu</span><span class="path">~/Projects/dan-semenescu · CV site</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">Claude-Youtube</span><span class="path">~/Projects/Claude-Youtube · video pipeline</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">DansLab website</span><span class="path">danslab.vercel.app · GitHub main</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">SemeClaw</span><span class="path">~/Desktop/DavidAi/SemeClaw · multi-agent meetings</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict due">Recommended</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">SemeClaw Ads (ad-semeclaw)</span><span class="path">~/Desktop/DavidAi/SemeClaw/ad-semeclaw · ad generator</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">paperclip-axi</span><span class="path">~/Projects/paperclip-axi · control plane</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict due">Recommended</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">zmarty-axi</span><span class="path">~/Projects/zmarty-axi</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">Arbitrage / Arbitrage-Bot</span><span class="path">~/Projects/Arbitrage* · trading (money-handling)</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict due">Recommended</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">rubric</span><span class="path">~/Projects/rubric · evaluator toolkit</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">deer-flow</span><span class="path">~/Projects/deer-flow</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+    <tr>
+      <td><span class="proj">CrawdBot / NeverDieFable</span><span class="path">~/Projects/* · experiments</span></td>
+      <td class="date muted">—</td><td class="muted">not yet audited</td>
+      <td><span class="verdict none">Not audited</span></td><td class="muted">—</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="legend">
+  <span><b>C/H/M/L</b> = Critical / High / Medium / Low findings (count fixed)</span>
+  <span><span class="verdict due" style="padding:.1em .45em">Recommended</span> = money- or data-handling; audit before scaling</span>
+</div>
+
+<footer>
+  Fleet audit tracker · maintained per the ~/CLAUDE.md audit convention · only rows with a date have been audited; everything else is a tracked candidate. Repos you add with <b>+ Add repo</b> are saved in this browser and persist across visits. <br>
+  <b>Last updated: 2026-07-24.</b>
+</footer>
+</div>
+
+<script>
+(function () {
+  var KEY = "fleetAuditExtras";
+  var tbody = document.querySelector("table tbody");
+  var form = document.getElementById("addForm");
+  var BASE_TRACKED = 16, BASE_NOTAUDITED = 15; // static seed rows
+
+  document.getElementById("addBtn").addEventListener("click", function () {
+    form.classList.toggle("open");
+  });
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(a) { localStorage.setItem(KEY, JSON.stringify(a)); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function makeRow(r, i) {
+    var v = r.status === "due"
+      ? '<span class="verdict due">Recommended</span>'
+      : '<span class="verdict none">Not audited</span>';
+    var tr = document.createElement("tr");
+    tr.setAttribute("data-extra", "1");
+    tr.innerHTML =
+      '<td><span class="proj">' + esc(r.name) + '</span> <span class="chip added">added</span>' +
+      '<span class="path">' + esc(r.path) + "</span></td>" +
+      '<td class="date muted">—</td><td class="muted">not yet audited</td>' +
+      "<td>" + v + "</td>" +
+      '<td><button class="rm" type="button" title="Remove" data-i="' + i + '">×</button></td>';
+    return tr;
+  }
+  function stats() {
+    var n = load().length;
+    document.getElementById("stat-tracked").textContent = BASE_TRACKED + n;
+    document.getElementById("stat-notaudited").textContent = BASE_NOTAUDITED + n;
+  }
+  function render() {
+    Array.prototype.forEach.call(tbody.querySelectorAll('tr[data-extra]'), function (n) { n.remove(); });
+    var a = load();
+    a.forEach(function (r, i) { tbody.appendChild(makeRow(r, i)); });
+    Array.prototype.forEach.call(tbody.querySelectorAll(".rm"), function (b) {
+      b.addEventListener("click", function () {
+        var arr = load(); arr.splice(parseInt(b.dataset.i, 10), 1); save(arr); render();
+      });
+    });
+    stats();
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("f_name").value.trim();
+    if (!name) return;
+    var a = load();
+    a.push({
+      name: name,
+      path: document.getElementById("f_path").value.trim(),
+      status: document.getElementById("f_status").value,
+    });
+    save(a); form.reset(); form.classList.remove("open"); render();
+  });
+
+  render();
+})();
+</script>
+</div>

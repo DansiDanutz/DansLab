@@ -7,10 +7,10 @@ import { ProductArt } from "./ProductArt";
 export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
   return (
     <section className="dl-products" id="dl-products">
-      <SectionLabel n={3} title="SHIPPING // 6 PRODUCTS" />
+      <SectionLabel n={3} title={`SHIPPING // ${PRODUCTS.length} PRODUCTS`} />
       <div className="dl-products-head">
         <h2 className="dl-h2">
-          Six products.<br />
+          Eight products.<br />
           <span className="dl-h2-dim">One human approval per direction.</span>
         </h2>
         <div className="dl-products-sub">
@@ -24,14 +24,13 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
           const Art = ProductArt[p.id];
           const isExternal = p.href.startsWith("http");
           return (
-            <a
-              key={p.id}
-              className="dl-product"
-              href={p.href}
-              target={isExternal ? "_blank" : undefined}
-              rel={isExternal ? "noreferrer noopener" : undefined}
-              style={cssVar({ "--p-color": p.color })}
-            >
+            <div key={p.id} className="dl-product" style={cssVar({ "--p-color": p.color })}>
+              <a
+                className="dl-product-main"
+                href={p.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noreferrer noopener" : undefined}
+              >
               <div className="dl-product-head">
                 <span className="dl-product-idx">P/{String(i + 1).padStart(2, "0")}</span>
                 <span className="dl-product-dot" />
@@ -70,7 +69,12 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
                   <span className="dl-product-arrow">→</span>
                 </div>
               </div>
-            </a>
+              </a>
+              <a className="dl-product-docs" href={p.docs}>
+                <span>Docs</span>
+                <span className="dl-product-arrow">→</span>
+              </a>
+            </div>
           );
         })}
       </div>
