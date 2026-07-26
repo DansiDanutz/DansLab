@@ -26,6 +26,7 @@ export type Product = {
   desc: string;
   color: string;
   href: string;
+  docs: string;
   kpi: string;
 };
 
@@ -111,12 +112,12 @@ export const AGENTS: Agent[] = [
 export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@DansLab-WorldCup";
 
 export const PRODUCTS: Product[] = [
-  { id: "nervix", name: "nervix.ai", lead: "David", desc: "Agent federation & marketplace · YouTube Studio", color: "#c0392b", href: "https://nervix.ai", kpi: "247 agents enrolled" },
-  { id: "crawdbot", name: "crawdbot.com", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://crawdbot.com", kpi: "12.4k videos processed" },
-  { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's YouTube channel — automated football video production, live", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, kpi: "14k subscribers · 133 videos" },
-  { id: "mywork", name: "MyWork-AI", lead: "Memo", desc: "Build & ship platform", color: "#c0392b", href: "#", kpi: "72 CLI commands · PyPI" },
-  { id: "zmarty", name: "zmarty.me", lead: "Sienna", desc: "Crypto trading signals", color: "#d4a017", href: "#", kpi: "96.2% win rate" },
-  { id: "semeclaw", name: "SemeClaw", lead: "Dan", desc: "War-room protocol · where decisions get signed", color: "#c0392b", href: "/semeclaw", kpi: "Always lobsters" },
+  { id: "nervix", name: "nervix.ai", lead: "David", desc: "Agent federation & marketplace · YouTube Studio", color: "#c0392b", href: "https://nervix.ai", docs: "/docs/nervix", kpi: "247 agents enrolled" },
+  { id: "crawdbot", name: "crawdbot.com", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://crawdbot.com", docs: "/docs/crawdbot", kpi: "12.4k videos processed" },
+  { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's YouTube channel — automated football video production, live", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, docs: "/docs/youtube", kpi: "14k subscribers · 133 videos" },
+  { id: "mywork", name: "MyWork-AI", lead: "Memo", desc: "Build & ship platform", color: "#c0392b", href: "https://pypi.org/project/mywork-ai/", docs: "/docs/mywork", kpi: "72 CLI commands · PyPI" },
+  { id: "zmarty", name: "zmarty.me", lead: "Sienna", desc: "Crypto trading signals", color: "#d4a017", href: "https://zmarty.me", docs: "/docs/zmarty", kpi: "96.2% win rate" },
+  { id: "semeclaw", name: "SemeClaw", lead: "Dan", desc: "War-room protocol · where decisions get signed", color: "#c0392b", href: "/semeclaw", docs: "/docs/semeclaw", kpi: "Always lobsters" },
 ];
 
 export const ACTIVITY: ActivityItem[] = [
