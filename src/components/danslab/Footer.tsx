@@ -1,3 +1,5 @@
+import { PRODUCTS } from "@/lib/danslab-data";
+
 export function Footer() {
   return (
     <footer className="dl-footer">
@@ -8,18 +10,27 @@ export function Footer() {
               Dans<span style={{ color: "var(--dl-accent-hot)" }}>Lab</span>
             </div>
             <p className="dl-footer-line">
-              A human-led autonomous AI lab. Dan orchestrates 30+ agents across 5 products.
+              A human-led autonomous AI lab. Dan orchestrates 30+ agents across {PRODUCTS.length} products.
               Built in Cluj-Napoca · Frankfurt · US-East.
             </p>
           </div>
           <div>
             <h4>PRODUCTS</h4>
             <ul>
-              <li><a href="https://nervix.ai" target="_blank" rel="noreferrer noopener">nervix.ai</a></li>
-              <li><a href="https://crawdbot.com" target="_blank" rel="noreferrer noopener">crawdbot.com</a></li>
-              <li><a href="#">MyWork-AI</a></li>
-              <li><a href="https://zmarty.vercel.app" target="_blank" rel="noreferrer noopener">zmarty.me</a></li>
-              <li><a href="/semeclaw">SemeClaw</a></li>
+              {PRODUCTS.map((product) => {
+                const isExternal = product.href.startsWith("http");
+                return (
+                  <li key={product.id}>
+                    <a
+                      href={product.href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noreferrer noopener" : undefined}
+                    >
+                      {product.name}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>

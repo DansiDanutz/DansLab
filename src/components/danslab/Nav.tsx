@@ -36,15 +36,13 @@ export function Nav() {
             );
           })}
         </div>
-        <a
+        <Link
           className="dl-nav-cta"
-          href="https://nervix.ai"
-          target="_blank"
-          rel="noreferrer noopener"
+          href="/#dl-products"
         >
           <span style={{ width: 6, height: 6, borderRadius: 999, background: "#fff", boxShadow: "0 0 8px #fff" }} />
-          Enter Lab
-        </a>
+          View Projects
+        </Link>
       </div>
     </nav>
   );

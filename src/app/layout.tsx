@@ -3,34 +3,35 @@ import "./globals.css";
 import { Nav } from "@/components/danslab/Nav";
 import { Footer } from "@/components/danslab/Footer";
 import { SpaceBackground } from "@/components/danslab/SpaceBackground";
+import { PRODUCTS } from "@/lib/danslab-data";
+
+const productionProjectCount = PRODUCTS.length;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danslab.vercel.app"),
   title: {
-    default: "DansLab — A human-led autonomous AI lab",
-    template: "%s · DansLab",
+    default: "DansLab - A human-led autonomous AI lab",
+    template: "%s | DansLab",
   },
   description:
-    "A fleet of 30+ AI agents orchestrated across 5 droplets and a Mac Studio. Building, shipping, trading 24/7. Founded by Dan Semenescu in Cluj-Napoca.",
+    `A fleet of 30+ AI agents orchestrated across 5 droplets and a Mac Studio, with ${productionProjectCount} RepoAudit-verified production projects.`,
   keywords: [
     "DansLab",
     "multi-agent AI",
     "autonomous AI lab",
-    "Hermes agent",
-    "OpenClaw",
-    "Nervix.ai",
-    "ZmartyChat",
-    "MyWork-AI",
+    "RepoAudit",
     "CrawdBot",
+    "CrawBoard",
+    "ZmartRise",
+    "OpenClaw",
     "Dan Semenescu",
-    "Stack Finance",
     "Cluj-Napoca AI",
   ],
   authors: [{ name: "Dan Semenescu", url: "https://github.com/DansiDanutz" }],
   openGraph: {
-    title: "DansLab — A human-led autonomous AI lab",
+    title: "DansLab - A human-led autonomous AI lab",
     description:
-      "30+ agents · 5 products · 1 human. Hermes (brain) + David (orchestrator) lead a droplet fleet shipping Nervix.ai, CrawdBot, MyWork-AI, zmarty.me, OpenClaw.",
+      `30+ agents, ${productionProjectCount} RepoAudit-verified production projects, and one human orchestrating the DansLab fleet.`,
     type: "website",
     url: "https://danslab.vercel.app",
     siteName: "DansLab",
@@ -38,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DansLab — A human-led autonomous AI lab",
+    title: "DansLab - A human-led autonomous AI lab",
     description:
-      "30+ agents · 5 products · 1 human. Built by Dan Semenescu in Cluj-Napoca.",
+      `30+ agents, ${productionProjectCount} audited production projects, and one human. Built by Dan Semenescu in Cluj-Napoca.`,
     creator: "@dansemenescu",
   },
   robots: { index: true, follow: true },

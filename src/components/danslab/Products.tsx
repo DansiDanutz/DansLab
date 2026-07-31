@@ -5,12 +5,14 @@ import { Monogram, SectionLabel, cssVar } from "./atoms";
 import { ProductArt } from "./ProductArt";
 
 export function Products() {
+  const productCount = PRODUCTS.length;
+
   return (
     <section className="dl-products" id="dl-products">
-      <SectionLabel n={3} title="SHIPPING // 5 PRODUCTS" />
+      <SectionLabel n={3} title={`SHIPPING // ${productCount} PRODUCTS`} />
       <div className="dl-products-head">
         <h2 className="dl-h2">
-          Five products.<br />
+          {productCount} products.<br />
           <span className="dl-h2-dim">One human approval per direction.</span>
         </h2>
         <div className="dl-products-sub">

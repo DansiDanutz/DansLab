@@ -109,11 +109,25 @@ export const AGENTS: Agent[] = [
 ];
 
 export const PRODUCTS: Product[] = [
-  { id: "nervix", name: "nervix.ai", lead: "David", desc: "Agent federation & marketplace · YouTube Studio", color: "#c0392b", href: "https://nervix.ai", kpi: "247 agents enrolled" },
-  { id: "crawdbot", name: "crawdbot.com", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://crawdbot.com", kpi: "12.4k videos processed" },
-  { id: "mywork", name: "MyWork-AI", lead: "Memo", desc: "Build & ship platform", color: "#c0392b", href: "#", kpi: "72 CLI commands · PyPI" },
-  { id: "zmarty", name: "zmarty.me", lead: "Sienna", desc: "Crypto trading signals", color: "#d4a017", href: "#", kpi: "96.2% win rate" },
-  { id: "semeclaw", name: "SemeClaw", lead: "Dan", desc: "War-room protocol · where decisions get signed", color: "#c0392b", href: "/semeclaw", kpi: "Always lobsters" },
+  { id: "danslab", name: "DansLab", lead: "David", desc: "Fleet architecture and audit surface", color: "#c0392b", href: "https://danslab.vercel.app", kpi: "RepoAudit verified READY" },
+  { id: "repoaudit", name: "RepoAudit", lead: "Dan", desc: "Fleet audit control plane", color: "#22c55e", href: "https://repoaudit.vercel.app", kpi: "Audit source of truth" },
+  { id: "crawdbot", name: "CrawdBot", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://molt-bot-seven.vercel.app", kpi: "Audited production app" },
+  { id: "crawboard", name: "CrawBoard", lead: "Dexter", desc: "Creator operations dashboard", color: "#3b82f6", href: "https://team.crawdbot.com", kpi: "Audited production app" },
+  { id: "marketplace", name: "MyWork Marketplace", lead: "Memo", desc: "Build and ship marketplace", color: "#c0392b", href: "https://my-work-ai.vercel.app", kpi: "Audited production app" },
+  { id: "zmartrise", name: "ZmartRise", lead: "Sienna", desc: "AI-powered market intelligence", color: "#d4a017", href: "https://www.zmartrise.ai", kpi: "Audited custom domain" },
+  { id: "worldcup", name: "WorldCup", lead: "Dan", desc: "Football content and analytics app", color: "#22c55e", href: "https://worldcup-irises-projects-ce549f63.vercel.app", kpi: "Audited production app" },
+  { id: "pokerclubcluj", name: "Poker Club Cluj", lead: "Dan", desc: "Public civic campaign and memo hub", color: "#3b82f6", href: "https://poker-club-cluj.vercel.app", kpi: "Audited production app" },
+  { id: "pokercluj", name: "PokerCluj", lead: "Dan", desc: "Poker Cluj public deployment", color: "#60a5fa", href: "https://pokercluj.vercel.app", kpi: "Audited production app" },
+  { id: "pokeragent", name: "PokerAgent", lead: "Dan", desc: "Poker analysis agent surface", color: "#a855f7", href: "https://poker-agent-flax.vercel.app", kpi: "Audited production app" },
+  { id: "adsemeclaw", name: "Ad-SemeClaw", lead: "Dan", desc: "SemeClaw ad campaign surface", color: "#c0392b", href: "https://ad-semeclaw.vercel.app", kpi: "Audited production app" },
+  { id: "danslabvideo", name: "DansLab Video", lead: "Dan", desc: "Video pipeline public surface", color: "#ec4899", href: "https://danslab-video.vercel.app", kpi: "Audited production app" },
+  { id: "livetranslation", name: "LiveTranslation", lead: "Dan", desc: "Live translation app", color: "#14b8a6", href: "https://live-translation-eight.vercel.app", kpi: "Audited production app" },
+  { id: "dailystock", name: "DailyStock", lead: "Sienna", desc: "Daily market dashboard", color: "#f97316", href: "https://dailystock-cyan.vercel.app", kpi: "Audited production app" },
+  { id: "dansemenescu", name: "Dan Semenescu", lead: "Dan", desc: "Founder personal site", color: "#f5f5f5", href: "https://dansemenescu.vercel.app", kpi: "Audited production app" },
+  { id: "danmatei", name: "Dan Matei", lead: "Dan", desc: "Dan Matei public site", color: "#22c55e", href: "https://www.danmatei.ro", kpi: "Audited custom domain" },
+  { id: "scoalafotbal", name: "Scoala Fotbal Dan Matei", lead: "Dan", desc: "Football school public site", color: "#38bdf8", href: "https://scoala-fotbal-dan-matei.vercel.app", kpi: "Audited production app" },
+  { id: "game1", name: "Shikaku Quest", lead: "Dan", desc: "Puzzle game deployment", color: "#a3e635", href: "https://shikaku-quest-three.vercel.app", kpi: "Audited production app" },
+  { id: "staticdeployment", name: "Static Deployment", lead: "Dan", desc: "Static production deployment", color: "#f59e0b", href: "https://static-deployment-swart.vercel.app", kpi: "Audited production app" },
 ];
 
 export const ACTIVITY: ActivityItem[] = [
@@ -131,7 +145,7 @@ export const ACTIVITY: ActivityItem[] = [
 
 export const STATS: Stat[] = [
   { label: "Active agents", value: 30, suffix: "+", sub: "across 5 droplets" },
-  { label: "Products live", value: 5, suffix: "", sub: "deployed on Vercel" },
+  { label: "Products live", value: PRODUCTS.length, suffix: "", sub: "RepoAudit READY deployments" },
   { label: "Cron jobs", value: 38, suffix: "/day", sub: "14 Dexter · 24 Memo" },
   { label: "Uptime", value: 99.94, suffix: "%", sub: "last 30 days" },
 ];
