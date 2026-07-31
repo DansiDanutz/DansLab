@@ -54,20 +54,20 @@ const POS: Record<string, Pos> = {
   "openclaw-2":  { x: 44, y: 76, z:  -60 },
   "openclaw-3":  { x: 56, y: 76, z:  -60 },
   "openclaw-4":  { x: 64, y: 70, z:  -40 },
-  vector:        { x: 50, y: 84, z:  -90 },
-  monitor:       { x: 4,  y: 62, z:   30 },
-  doctor:        { x: 5,  y: 74, z:    0 },
-  learning:      { x: 4,  y: 86, z:  -30 },
-  model:         { x: 96, y: 62, z:   30 },
-  gsd:           { x: 95, y: 74, z:    0 },
-  ssh:           { x: 96, y: 86, z:  -30 },
-  autoforge:     { x: 11, y: 95, z:  160 },
-  github:        { x: 23, y: 97, z:  180 },
-  pope:          { x: 35, y: 98, z:  200 },
-  vercel:        { x: 50, y: 96, z:  220 },
-  stripe:        { x: 65, y: 98, z:  200 },
-  supabase:      { x: 77, y: 97, z:  180 },
-  update:        { x: 89, y: 95, z:  160 },
+  vector:        { x: 50, y: 79, z:  -90 },
+  monitor:       { x: 8,  y: 62, z:   30 },
+  doctor:        { x: 8,  y: 74, z:    0 },
+  learning:      { x: 8,  y: 86, z:  -30 },
+  model:         { x: 84, y: 62, z:   30 },
+  gsd:           { x: 84, y: 74, z:    0 },
+  ssh:           { x: 84, y: 83, z:  -30 },
+  autoforge:     { x: 17, y: 89, z:  160 },
+  github:        { x: 26, y: 88, z:  180 },
+  pope:          { x: 36, y: 89, z:  200 },
+  vercel:        { x: 47, y: 89, z:  220 },
+  stripe:        { x: 58, y: 89, z:  200 },
+  supabase:      { x: 69, y: 88, z:  180 },
+  update:        { x: 80, y: 87, z:  160 },
 };
 
 const EXTRA_AGENTS: EcoAgent[] = [
@@ -309,14 +309,16 @@ function useScenarioPlayer() {
 // ────────────────────────────────────────────
 // Node
 // ────────────────────────────────────────────
-function EcoNode({ agent, pos, active, highlighted, dimmed, selected, onDown, size }: {
+function EcoNode({ agent, pos, active, highlighted, dimmed, selected, dragging, onDown, onTap, size }: {
   agent: EcoAgent;
   pos: Pos;
   active: boolean;
   highlighted: boolean;
   dimmed: boolean;
   selected: boolean;
+  dragging: boolean;
   onDown: (e: ReactMouseEvent, id: string) => void;
+  onTap: (id: string) => void;
   size: "sm" | "md" | "lg";
 }) {
   const sz = size === "sm" ? 44 : size === "lg" ? 64 : 52;
@@ -348,13 +350,14 @@ function EcoNode({ agent, pos, active, highlighted, dimmed, selected, onDown, si
 
   return (
     <div
-      className={`eco-node ${active ? "is-active" : ""} ${highlighted ? "is-hl" : ""} ${dimmed ? "is-dim" : ""} ${selected ? "is-sel" : ""}`}
+      className={`eco-node ${active ? "is-active" : ""} ${highlighted ? "is-hl" : ""} ${dimmed ? "is-dim" : ""} ${selected ? "is-sel" : ""} ${dragging ? "is-drag" : ""}`}
       style={{
         left: `${pos.x}%`,
         top: `${pos.y}%`,
         transform: `translate(-50%, -50%) translateZ(${z}px)`,
       }}
       onMouseDown={(e) => { e.stopPropagation(); onDown(e, agent.id); }}
+      onTouchEnd={(e) => { e.stopPropagation(); onTap(agent.id); }}
     >
       <div
         className="eco-node-disc"
@@ -579,6 +582,9 @@ export default function EcosystemPage() {
   const [dim, setDim] = useState({ w: 1200, h: 900 });
   const [view, setView] = useState({ scale: 1, tx: 0, ty: 0 });
   const [tilted, setTilted] = useState(true);
+  const [smooth, setSmooth] = useState(false);
+  const smoothTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const interactedRef = useRef(false);
   const dragRef = useRef<DragRef | null>(null);
   const nodeDragRef = useRef<NodeDragRef | null>(null);
   const [dragId, setDragId] = useState<string | null>(null);
@@ -604,10 +610,11 @@ export default function EcosystemPage() {
     setNodePos({ ...POS });
   };
 
-  // Auto-play after idle
+  // Auto-play once after idle — stops suggesting itself as soon as the user interacts
   useEffect(() => {
     if (scenarioState.playing || selected) return;
     const t = setTimeout(() => {
+      if (interactedRef.current || document.hidden) return;
       const id = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)].id;
       play(id);
     }, 18000);
@@ -615,9 +622,24 @@ export default function EcosystemPage() {
   }, [scenarioState.playing, selected, play]);
 
   const handleSelect = (id: string | null) => {
+    interactedRef.current = true;
     if (id && scenarioState.playing) stop();
     setSelected((cur) => (cur === id ? null : id));
   };
+
+  // End any drag on window mouseup — releasing outside the canvas must not leave a node glued to the cursor
+  useEffect(() => {
+    const endDrag = () => {
+      if (nodeDragRef.current) { nodeDragRef.current = null; setDragId(null); }
+      dragRef.current = null;
+    };
+    window.addEventListener("mouseup", endDrag);
+    window.addEventListener("blur", endDrag);
+    return () => {
+      window.removeEventListener("mouseup", endDrag);
+      window.removeEventListener("blur", endDrag);
+    };
+  }, []);
 
   // Track size
   useEffect(() => {
@@ -634,6 +656,7 @@ export default function EcosystemPage() {
   // Wheel zoom
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault();
+    interactedRef.current = true;
     const wrap = wrapRef.current;
     if (!wrap) return;
     const rect = wrap.getBoundingClientRect();
@@ -657,6 +680,7 @@ export default function EcosystemPage() {
 
   const onMouseDown = (e: ReactMouseEvent) => {
     if (e.button !== 0) return;
+    interactedRef.current = true;
     const target = e.target as HTMLElement;
     if (target.closest(".eco-node, .eco-zoom-ctrls, .eco-panel, .eco-zone-pill")) return;
     dragRef.current = { x: e.clientX, y: e.clientY, tx: view.tx, ty: view.ty, dragged: false };
@@ -664,6 +688,7 @@ export default function EcosystemPage() {
 
   const onNodeDown = (e: ReactMouseEvent, id: string) => {
     if (e.button !== 0) return;
+    interactedRef.current = true;
     const start = nodePos[id];
     if (!start) return;
     nodeDragRef.current = {
@@ -713,6 +738,7 @@ export default function EcosystemPage() {
   // Touch
   const touchRef = useRef<{ mode: "pan" | "pinch"; x?: number; y?: number; tx?: number; ty?: number; d0?: number; scale0?: number } | null>(null);
   const onTouchStart = (e: ReactTouchEvent) => {
+    interactedRef.current = true;
     if (e.touches.length === 1) {
       const t = e.touches[0];
       touchRef.current = { mode: "pan", x: t.clientX, y: t.clientY, tx: view.tx, ty: view.ty };
@@ -734,12 +760,29 @@ export default function EcosystemPage() {
       const [a, b] = [e.touches[0], e.touches[1]];
       const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
       const newScale = Math.max(0.45, Math.min(3.2, r.scale0 * (d / r.d0)));
-      setView((v) => ({ ...v, scale: newScale }));
+      // anchor the pinch at the midpoint between fingers, not the plane origin
+      const wrap = wrapRef.current;
+      const rect = wrap ? wrap.getBoundingClientRect() : { left: 0, top: 0 };
+      const cx = (a.clientX + b.clientX) / 2 - rect.left;
+      const cy = (a.clientY + b.clientY) / 2 - rect.top;
+      setView((v) => {
+        const sx = (cx - v.tx) / v.scale;
+        const sy = (cy - v.ty) / v.scale;
+        return { scale: newScale, tx: cx - sx * newScale, ty: cy - sy * newScale };
+      });
     }
   };
   const onTouchEnd = () => { touchRef.current = null; };
 
-  const zoomBy = (factor: number) => {
+  // Button zoom/fit animate smoothly; drag & pinch stay 1:1 with the pointer
+  const smoothly = (apply: () => void) => {
+    interactedRef.current = true;
+    setSmooth(true);
+    apply();
+    if (smoothTimer.current) clearTimeout(smoothTimer.current);
+    smoothTimer.current = setTimeout(() => setSmooth(false), 280);
+  };
+  const zoomBy = (factor: number) => smoothly(() => {
     setView((v) => {
       const newScale = Math.max(0.45, Math.min(3.2, v.scale * factor));
       const cx = dim.w / 2, cy = dim.h / 2;
@@ -747,8 +790,8 @@ export default function EcosystemPage() {
       const sy = (cy - v.ty) / v.scale;
       return { scale: newScale, tx: cx - sx * newScale, ty: cy - sy * newScale };
     });
-  };
-  const fit = () => setView({ scale: 1, tx: 0, ty: 0 });
+  });
+  const fit = () => smoothly(() => setView({ scale: 1, tx: 0, ty: 0 }));
 
   // Focus = selected or dragged node
   const focusId = dragId || selected;
@@ -791,7 +834,7 @@ export default function EcosystemPage() {
 
           <div className="eco-stage">
             <div
-              className={`eco-plane ${tilted ? "is-tilted" : ""}`}
+              className={`eco-plane ${tilted ? "is-tilted" : ""} ${smooth ? "is-smooth" : ""}`}
               style={{ transform: planeTransform, width: dim.w, height: dim.h } as CSSProperties}
             >
               {/* zone bands */}
@@ -850,7 +893,9 @@ export default function EcosystemPage() {
                       highlighted={highlighted}
                       dimmed={dimmed}
                       selected={selected === id}
+                      dragging={dragId === id}
                       onDown={onNodeDown}
+                      onTap={handleSelect}
                       size={size}
                     />
                   );

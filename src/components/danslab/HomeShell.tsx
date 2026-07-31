@@ -8,7 +8,7 @@ import { AgentGrid } from "./AgentGrid";
 import { Products } from "./Products";
 import { Drawer } from "./Drawer";
 
-export function HomeShell() {
+export function HomeShell({ youtubeKpi }: { youtubeKpi?: string }) {
   const [openAgent, setOpenAgent] = useState<Agent | null>(null);
 
   const scrollTo = (sel: string) => {
@@ -27,7 +27,7 @@ export function HomeShell() {
       />
       <StatStrip />
       <AgentGrid onOpen={setOpenAgent} />
-      <Products />
+      <Products youtubeKpi={youtubeKpi} />
       <Drawer agent={openAgent} onClose={() => setOpenAgent(null)} />
     </>
   );

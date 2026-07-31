@@ -25,7 +25,8 @@ export function Hero({ onEnterLab, onViewEcosystem }: {
           <p className="dl-hero-lede">
             <span className="dl-drop">D</span>ansLab is a fleet of <em>30+ agents</em> orchestrated across
             five DigitalOcean droplets and a Mac Studio. They build, ship, research, trade,
-            and escalate to Dan over Telegram — around the clock, across {PRODUCTS.length} audited production projects,
+            and escalate to Dan over Telegram — around the clock, across {PRODUCTS.length} production surfaces,
+            including 19 RepoAudit-verified apps and the live WorldCup Central channel,
             on one budget.
           </p>
 
@@ -78,10 +79,10 @@ function HeroTerminal() {
       </div>
       <div className="dl-terminal-body">
         <div className="dl-terminal-ascii">
-{`  ┌─ DANS / LAB ─────────────────────────────┐
-  │  ░▒▓  five droplets · one boss  ▓▒░      │
-  │  ░▒▓  thirty agents · no sleep  ▓▒░      │
-  └──────────────────────────────────────────┘`}
+{`┌─ DANS / LAB ───────────────────────────┐
+│  five droplets · one boss              │
+│  thirty agents · no sleep              │
+└────────────────────────────────────────┘`}
         </div>
         {visible.map((item, i) => (
           <TickerRow key={`${t}-${i}`} item={item} agents={AGENTS} />

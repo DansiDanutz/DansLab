@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,7 +46,7 @@
   --ink:           #fafafa;
   --ink-dim:       #a1a1aa;
   --ink-mute:      #71717a;
-  --ink-faint:     #3f3f46;
+  --ink-faint:     #55555e;
 
   --dl-accent:        #c0392b;
   --dl-accent-hot:    #e74c3c;
@@ -61,9 +59,9 @@
   --gold:          #d4a017;
   --gold-hot:      #f1c40f;
 
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
 
   --grid-size: 48px;
 
@@ -338,7 +336,6 @@ html, body {
 
 .dl-terminal-body {
   padding: 16px;
-  min-height: 360px;
   font-family: var(--mono); font-size: 12.5px;
   line-height: 1.7;
   color: var(--ink-dim);
@@ -770,6 +767,17 @@ html, body {
   .dl-wrap, .dl-nav-inner, .dl-footer-bottom { padding-left: 20px; padding-right: 20px; }
   .dl-nav-links { display: none; }
   .dl-hero-title { font-size: 36px; }
+  .dl-stat { min-width: 0; padding: 24px 18px 22px; }
+  .dl-stat-num { font-size: 38px; }
+  .dl-stat-sub { overflow-wrap: break-word; }
+  .dl-ticker-row { grid-template-columns: 34px 16px 78px 64px 1fr; gap: 6px; font-size: 11px; }
+  .dl-ticker-target { overflow-wrap: anywhere; }
+  .dl-terminal-body { font-size: 11.5px; }
+}
+@media (max-width: 420px) {
+  .dl-terminal-meta { display: none; }
+  .dl-terminal-ascii { font-size: 9.5px; }
+  .dl-hero-title { font-size: 31px; }
 }
 
 /* ============================================================
@@ -830,9 +838,10 @@ html, body {
   top: 0; left: 0;
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
-  transition: transform .12s linear;
   will-change: transform;
 }
+/* smooth only for button-driven zoom/fit — direct drag/pinch stays 1:1 */
+.eco-plane.is-smooth { transition: transform .25s ease-out; }
 .eco-zone-band {
   position: absolute;
   left: 0; right: 0;
@@ -914,6 +923,8 @@ html, body {
   position: absolute;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   transition: opacity .35s, transform .2s;
+}
+.eco-node.is-drag { transition: none; cursor: grabbing;
   z-index: 2;
   pointer-events: auto;
   transform-style: preserve-3d;
@@ -2055,4 +2066,14 @@ html, body {
   .contact-grid { grid-template-columns: 1fr; }
   .contact-actions { grid-template-columns: 1fr; }
   .contact-input-row { grid-template-columns: 1fr; }
+}
+
+/* ─── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
