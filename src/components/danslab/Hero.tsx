@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { ACTIVITY, AGENTS } from "@/lib/danslab-data";
+import { ACTIVITY, AGENTS, PRODUCTS } from "@/lib/danslab-data";
 import { LivePill, SectionLabel, TickerRow, useTicker } from "./atoms";
 
 export function Hero({ onEnterLab, onViewEcosystem }: {
@@ -25,7 +25,8 @@ export function Hero({ onEnterLab, onViewEcosystem }: {
           <p className="dl-hero-lede">
             <span className="dl-drop">D</span>ansLab is a fleet of <em>30+ agents</em> orchestrated across
             five DigitalOcean droplets and a Mac Studio. They build, ship, research, trade,
-            and escalate to Dan over Telegram — around the clock, across six products,
+            and escalate to Dan over Telegram — around the clock, across {PRODUCTS.length} production surfaces,
+            including 19 RepoAudit-verified apps and the live WorldCup Central channel,
             on one budget.
           </p>
 

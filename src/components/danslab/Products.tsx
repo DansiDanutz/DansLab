@@ -5,16 +5,18 @@ import { Monogram, SectionLabel, cssVar } from "./atoms";
 import { ProductArt } from "./ProductArt";
 
 export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
+  const productCount = PRODUCTS.length;
+
   return (
     <section className="dl-products" id="dl-products">
-      <SectionLabel n={3} title="SHIPPING // 6 PRODUCTS" />
+      <SectionLabel n={3} title={`SHIPPING // ${productCount} LIVE SURFACES`} />
       <div className="dl-products-head">
         <h2 className="dl-h2">
-          Six products.<br />
+          {productCount} products and channels.<br />
           <span className="dl-h2-dim">One human approval per direction.</span>
         </h2>
         <div className="dl-products-sub">
-          Each product has a lead agent. They ship without asking — but Dan signs off on direction.
+          Each product has a lead agent. They ship without asking - but Dan signs off on direction.
         </div>
       </div>
 
@@ -40,7 +42,7 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
                 <div className="dl-product-ph-inner" style={{ borderColor: `${p.color}33`, background: "transparent", padding: 0 }}>
                   {Art ? <Art color={p.color} /> : (
                     <>
-                      <span style={{ fontSize: 28, color: p.color }}>◉</span>
+                      <span style={{ fontSize: 28, color: p.color }}>o</span>
                       <span style={{ fontFamily: "JetBrains Mono,monospace", fontSize: 10, color: "var(--ink-faint)", letterSpacing: ".1em" }}>[ product screen ]</span>
                     </>
                   )}
@@ -67,7 +69,7 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
 
                 <div className="dl-product-cta">
                   <span>Open</span>
-                  <span className="dl-product-arrow">→</span>
+                  <span className="dl-product-arrow">-&gt;</span>
                 </div>
               </div>
             </a>
