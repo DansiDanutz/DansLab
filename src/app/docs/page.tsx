@@ -4,7 +4,7 @@ import { PROJECT_DOCS } from "@/lib/project-docs";
 
 export const metadata = {
   title: "Project Documentation — DansLab",
-  description: "Documentation for every DansLab project: nervix.ai, crawdbot.com, WorldCup Central, MyWork-AI, zmarty.me, and SemeClaw.",
+  description: "Documentation for every DansLab project: Nervix, NervixPay, YouTube Studio, Fake / Real, SemeClaw, Zmarty, CrawdBot, MyWork-AI and more.",
 };
 
 export default function DocsIndexPage() {

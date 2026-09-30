@@ -1,5 +1,6 @@
 // DansLab — canonical agent + product data
-// Ported from design-system data.jsx
+// Facts here must be verifiable: live sites, public repos, or the company
+// operating docs (DANSLAB-OS.md / SYSTEM.md). Do not add unsourced metrics.
 
 export type AgentStatus = "online" | "busy" | "trading" | "thinking" | "idle" | "off";
 export type AgentType = "main" | "support" | "slack";
@@ -13,20 +14,24 @@ export type Agent = {
   initials: string;
   status: AgentStatus;
   desc: string;
+  core?: boolean;
   project?: string;
   product?: string;
   droplet?: string;
   model?: string;
 };
 
+export type ProductTier = "flagship" | "shipping" | "lab";
+
 export type Product = {
   id: string;
   name: string;
+  tier: ProductTier;
   lead: string;
   desc: string;
   color: string;
   href: string;
-  docs: string;
+  docs?: string;
   kpi: string;
 };
 
@@ -46,100 +51,98 @@ export type Stat = {
 };
 
 export const AGENTS: Agent[] = [
-  // MAIN AGENTS — main droplet operators
-  { id: "dexter", name: "Dexter", role: "General Manager", type: "main", color: "#3b82f6", initials: "DX", project: "crawdbot.com", product: "CrawdBot", droplet: "46.101.•.•", model: "Claude Opus 4.6", status: "online",
-    desc: "Senior Dev & GM. SSH to all agents. Manages CrawdBot, YouTube Platform, CrawBoard. Runs 24 Nervix nanobots + 14 cron jobs. Dan's primary contact." },
-  { id: "david", name: "David", role: "Fleet Orchestrator", type: "main", color: "#22c55e", initials: "DV", project: "nervix.ai", product: "Nervix", droplet: "Mac Studio", model: "Qwen 3.5 (local)", status: "online",
-    desc: "Mac Studio OpenClaw. Receives the mission from the Bosses and orchestrates the entire company hand-in-hand with Hermes. Bridges Supabase, Vercel, GitHub. Watches every agent fleet-wide. Runs the nervix.ai federation." },
-  { id: "nano", name: "Nano", role: "Agent Creator", type: "main", color: "#a855f7", initials: "NN", project: "nervix.ai", product: "Nervix", droplet: "157.230.•.•", model: "Claude Sonnet 4", status: "busy",
-    desc: "Founding Orchestrator of Nervix Federation. Creates specialized agents, enrolls them via nervix-cli. Ed25519 auth, reputation system." },
-  { id: "memo", name: "Memo", role: "Project Manager", type: "main", color: "#f97316", initials: "MM", project: "MyWork-AI", product: "MyWork-AI", droplet: "138.68.•.•", model: "Claude Sonnet 4", status: "online",
-    desc: "PM & DevOps. Runs 24 n8n automations (localhost:5678). Manages MyWork-AI (72+ CLI commands, PyPI). Hosts purchase-webhook for Stripe → GitHub." },
-  { id: "sienna", name: "Sienna", role: "Crypto Specialist", type: "main", color: "#ec4899", initials: "SI", project: "zmarty.me", product: "zmarty", droplet: "167.172.•.•", model: "ZAI GLM-4.7", status: "trading",
-    desc: "Crypto girl. Binance API trading. 100+ trading endpoints via zmarty.me. Promotes strategy via sienna-crypto-girl site." },
-
-  // HERMES — the brain
-  { id: "hermes", name: "Hermes", role: "The Brain", type: "main", color: "#d4a017", initials: "HM", project: "danslab", product: "Hermes", droplet: "Mac Studio", model: "Claude Opus 4.6", status: "thinking",
-    desc: "The brain of DansLab. Reasoning layer above the fleet — routes intent, holds long-term context, scribes every war room. Loads full Vector Memory on every call." },
+  // CORE CREW — the eight agents that run the company (DANSLAB-OS §1)
+  { id: "david", name: "David", role: "Fleet Orchestrator", type: "main", color: "#22c55e", initials: "DV", core: true, project: "nervix.ai", product: "Nervix", droplet: "Mac Studio", status: "online",
+    desc: "Runs on the Mac Studio. Receives the mission from Dan, assigns work, verifies evidence, and closes or escalates every issue. Bridges Supabase, Vercel and GitHub, and watches the whole fleet." },
+  { id: "hermes", name: "Hermes", role: "The Brain", type: "main", color: "#d4a017", initials: "HM", core: true, project: "danslab", product: "Hermes", droplet: "Mac Studio", status: "thinking",
+    desc: "The reasoning layer above the fleet. Scopes the day's work each morning, holds long-term context, and runs the weekly strategy review." },
+  { id: "dexter", name: "Dexter", role: "Backend & DevOps Lead", type: "main", color: "#3b82f6", initials: "DX", core: true, project: "nervix.ai", product: "Nervix", droplet: "46.101.•.•", status: "online",
+    desc: "Senior developer and general manager. Owns the Nervix backend, CrawdBot and deployments. Runs the nanobots and cron jobs on his droplet and is Dan's primary contact." },
+  { id: "nano", name: "Nano", role: "Agent Supply", type: "main", color: "#a855f7", initials: "NN", core: true, project: "nervix.ai", product: "Nervix", droplet: "157.230.•.•", status: "busy",
+    desc: "Founding orchestrator of the Nervix federation. Creates specialised agents, enrolls them through nervix-cli, and manages onboarding, Ed25519 identity and reputation." },
+  { id: "memo", name: "Memo", role: "Project Manager", type: "main", color: "#f97316", initials: "MM", core: true, project: "MyWork-AI", product: "MyWork-AI", droplet: "138.68.•.•", status: "online",
+    desc: "Project manager and DevOps. Runs the n8n automations and maintains MyWork-AI, the build-and-ship CLI published on PyPI. Hosts the Stripe purchase webhook." },
+  { id: "sienna", name: "Sienna", role: "Crypto Specialist", type: "main", color: "#ec4899", initials: "SI", core: true, project: "zmarty.me", product: "zmarty", droplet: "167.172.•.•", status: "trading",
+    desc: "Owns Zmarty — crypto market intelligence and trading signals. Works the Zmarty API and promotes the strategy publicly." },
+  { id: "doctor", name: "DansLabDoctor", role: "Health & Auto-Repair", type: "support", color: "#ef4444", initials: "DR", core: true, status: "online",
+    desc: "Owns the watchdog. Checks infrastructure every 15 minutes, restarts stuck agents, and runs the daily audit. Humans only hear about what auto-repair could not fix." },
+  { id: "finance", name: "Finance", role: "Cost & Revenue", type: "support", color: "#eab308", initials: "FN", core: true, status: "online",
+    desc: "Tracks what the lab spends and what it earns, and reports a daily spend and revenue line. The number has to be real, not zero." },
 
   // CLAW SUPPORT AGENTS
   { id: "openclaw-1", name: "OpenClaw-01", role: "Builder", type: "support", color: "#60a5fa", initials: "O1", status: "online",
-    desc: "Internal Claw builder. Runs v2026.2.14 locally on ws://127.0.0.1:18789 with Telegram provider, Supabase context." },
+    desc: "Internal Claw builder running against the OpenClaw gateway with Telegram and Supabase context." },
   { id: "openclaw-2", name: "OpenClaw-02", role: "Researcher", type: "support", color: "#c084fc", initials: "O2", status: "idle",
-    desc: "OpenClaw researcher — discovery, mapping, design. ClawHub skills marketplace extends capabilities." },
+    desc: "OpenClaw researcher — discovery, mapping, design. ClawHub skills extend capabilities." },
   { id: "openclaw-3", name: "OpenClaw-03", role: "Reviewer", type: "support", color: "#f472b6", initials: "O3", status: "online",
-    desc: "OpenClaw reviewer — QA, edge cases, regression. Reviews PRs on GitHub before Pope runs CI." },
+    desc: "OpenClaw reviewer — QA, edge cases, regression. Reviews PRs on GitHub before CI." },
   { id: "openclaw-4", name: "OpenClaw-04", role: "Automation", type: "support", color: "#38bdf8", initials: "O4", status: "busy",
-    desc: "OpenClaw automation specialist — glue code, scripts, repetitive tasks. Works with AutoForge for autonomous shipping." },
+    desc: "OpenClaw automation specialist — glue code, scripts, repetitive tasks." },
   { id: "manusclaw", name: "ManusClaw", role: "Operator", type: "slack", color: "#f59e0b", initials: "MC", status: "online",
-    desc: "Manus AI operations agent. Runs focused execution loops. Designed Nervix v2 federation architecture." },
+    desc: "Manus AI operations agent. Runs focused execution loops. Designed the Nervix v2 federation architecture." },
   { id: "kiloclaw", name: "KiloClaw", role: "Moderator", type: "slack", color: "#f43f5e", initials: "KC", status: "online",
-    desc: "KiloCode agent on Slack — moderates all agents, keeps order, escalates issues to Doctor." },
+    desc: "KiloCode agent on Slack — moderates the agents, keeps order, escalates issues to Doctor." },
   { id: "kimiclaw", name: "KimiClaw", role: "Advertiser", type: "slack", color: "#14b8a6", initials: "KM", status: "online",
-    desc: "OpenClaw signal amplifier — promotes crawdbot.com, nervix.ai, MyWork-AI, zmarty.me across all channels." },
+    desc: "OpenClaw signal amplifier — promotes the lab's products across channels." },
 
   // INFRASTRUCTURE / SUPPORT
   { id: "monitor", name: "DansLabMonitor", role: "System Monitor", type: "support", color: "#eab308", initials: "MO", status: "online",
-    desc: "14 crons on Dexter's droplet: droplet stats → Supabase every 30min, GPU auto-stop, secret scanner, daily summaries at 23:55 UTC." },
+    desc: "Scheduled health telemetry: droplet stats to Supabase, GPU auto-stop, secret scanner, and daily summaries." },
   { id: "vercel", name: "DansLabVercel", role: "Deployments", type: "support", color: "#f5f5f5", initials: "VC", status: "online",
-    desc: "Manages Vercel deployments: CrawdBot, CrawBoard, Nervix, YouTube Platform, OpenClaw Key Manager, DansLab." },
+    desc: "Manages Vercel deployments across the lab's products." },
   { id: "github", name: "DansLabGithub", role: "Code Org", type: "support", color: "#c084fc", initials: "GH", status: "online",
-    desc: "60+ repos organized. Agent workspaces, agent configs, Nervix microservices, product repos." },
+    desc: "Keeps repositories organised: agent workspaces, configs, microservices and product repos." },
   { id: "pope", name: "ThePopeBot", role: "Async Worker", type: "support", color: "#fb923c", initials: "PP", status: "busy",
-    desc: "Autonomous GitHub Actions worker. Docker agents create branches, code in containers, submit PRs. Cron + webhook triggers." },
+    desc: "Autonomous GitHub Actions worker. Docker agents create branches, code in containers, and submit PRs." },
   { id: "autoforge", name: "DansLabAutoForge", role: "Auto Coder", type: "support", color: "#38bdf8", initials: "AF", status: "busy",
-    desc: "Autonomous coding agent — writes, refactors, ships code. Uses GSD framework for structured execution." },
+    desc: "Autonomous coding agent — writes, refactors, ships code using the GSD framework." },
   { id: "gsd", name: "DansLabGSD", role: "GSD Framework", type: "support", color: "#4ade80", initials: "GS", status: "online",
-    desc: "GSD Framework — structured task execution used by AutoForge, Pope, OpenClaw agents." },
+    desc: "Structured task execution: reads milestones, breaks them into tasks, and dispatches them to the agents." },
   { id: "vector", name: "DansLabVector", role: "Vector Memory", type: "support", color: "#818cf8", initials: "VE", status: "online",
-    desc: "All agents load team context on startup. Stores agent_context + daily_summaries in Supabase." },
-  { id: "update", name: "DansLabUpdate", role: "Version Manager", type: "support", color: "#2dd4bf", initials: "UP", status: "idle",
-    desc: "Updates all tools: OpenClaw v2026.2.14, Claude Code, Codex, AutoForge, GSD, nervix-cli." },
-  { id: "model", name: "DansLabModel", role: "LLM Optimizer", type: "support", color: "#f472b6", initials: "ML", status: "online",
-    desc: "Manages model fallback chains. 7+ providers: Anthropic, OpenRouter, DeepSeek, Z.AI, Google, OpenAI." },
-  { id: "doctor", name: "DansLabDoctor", role: "System Fixer", type: "support", color: "#ef4444", initials: "DR", status: "online",
-    desc: "Runs devops-control-repo scripts/audit.sh daily. Checks solutions/ folder from Manus AI. Executes repairs." },
+    desc: "Team memory. Agents load shared context on startup from agent_context and daily_summaries in Supabase." },
+  { id: "model", name: "DansLabModel", role: "LLM Router", type: "support", color: "#f472b6", initials: "ML", status: "online",
+    desc: "Manages model routing and fallback chains across providers so the cheapest capable model does each job." },
   { id: "learning", name: "DansLabLearning", role: "Auto Learner", type: "support", color: "#a3e635", initials: "LN", status: "idle",
-    desc: "Auto-learns from previous day. Daily summaries generated at 23:55 UTC → Supabase daily_summaries." },
+    desc: "Learns from the previous day. Daily summaries are written to Supabase each night." },
   { id: "stripe", name: "DansLabStripe", role: "Payments", type: "support", color: "#8b5cf6", initials: "ST", status: "online",
-    desc: "Stripe integration for CrawBoard billing (Pro/Team/Enterprise). purchase-webhook auto-grants GitHub repo access." },
+    desc: "Stripe integration for billing. The purchase webhook grants GitHub repo access automatically." },
   { id: "ssh", name: "DansLabSSH", role: "Connections", type: "support", color: "#06b6d4", initials: "SH", status: "online",
-    desc: "Cross-droplet SSH mesh via ed25519 keys. Dexter↔Memo, Dexter↔Sienna, Sienna→Nano, Memo→Dexter." },
+    desc: "Cross-droplet connectivity over ed25519 keys and the private tailnet." },
   { id: "supabase", name: "DansLabSupabase", role: "Database", type: "support", color: "#34d399", initials: "SB", status: "online",
-    desc: "Two Supabase instances: MoltBot DB (30+ tables) used by all agents. Nervix DB (agents, tasks, escrow)." },
+    desc: "The lab's shared databases: one for the agents' working memory, one for the Nervix federation." },
 ];
+
+export const CORE_AGENT_ORDER = ["david", "hermes", "dexter", "nano", "memo", "sienna", "doctor", "finance"] as const;
 
 export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@DansLab-WorldCup";
 
 export const PRODUCTS: Product[] = [
-  { id: "nervix", name: "nervix.ai", lead: "David", desc: "Agent federation & marketplace · YouTube Studio", color: "#c0392b", href: "https://nervix.ai", docs: "/docs/nervix", kpi: "247 agents enrolled" },
-  { id: "crawdbot", name: "crawdbot.com", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://crawdbot.com", docs: "/docs/crawdbot", kpi: "12.4k videos processed" },
-  { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's YouTube channel — automated football video production, live", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, docs: "/docs/youtube", kpi: "14k subscribers · 133 videos" },
-  { id: "mywork", name: "MyWork-AI", lead: "Memo", desc: "Build & ship platform", color: "#c0392b", href: "https://pypi.org/project/mywork-ai/", docs: "/docs/mywork", kpi: "72 CLI commands · PyPI" },
-  { id: "zmarty", name: "zmarty.me", lead: "Sienna", desc: "Crypto trading signals", color: "#d4a017", href: "https://zmarty.me", docs: "/docs/zmarty", kpi: "96.2% win rate" },
-  { id: "semeclaw", name: "SemeClaw", lead: "Dan", desc: "War-room protocol · where decisions get signed", color: "#c0392b", href: "/semeclaw", docs: "/docs/semeclaw", kpi: "Always lobsters" },
-  { id: "neverdie", name: "NeverDie", lead: "Dan", desc: "Second brain & digital-immortality vault — your forever voice", color: "#d4a017", href: "https://github.com/DansiDanutz/NeverDieFable", docs: "/docs/neverdie", kpi: "Open source · GitHub" },
-  { id: "dansite", name: "dansemenescu.com", lead: "Dan", desc: "The founder's personal site — story, ventures, contact", color: "#c0392b", href: "https://dansemenescu.vercel.app", docs: "/docs/dansite", kpi: "Live on Vercel" },
-];
+  // FLAGSHIP — production-ready
+  { id: "nervix", name: "Nervix", tier: "flagship", lead: "David", desc: "The global federation layer for AI agents. Enroll agents, trade tasks, build reputation, and settle on TON.", color: "#c0392b", href: "https://nervix.ai", docs: "/docs/nervix", kpi: "Agent marketplace · TON settlement" },
+  { id: "nervixpay", name: "NervixPay", tier: "flagship", lead: "Dexter", desc: "Accept crypto payments as easily as a QR code. Non-custodial checkout for merchants and AI agents.", color: "#d4a017", href: "https://nervixpay.vercel.app", docs: "/docs/nervixpay", kpi: "Polygon · Ethereum · BNB Chain" },
+  { id: "youtubestudio", name: "YouTube Studio", tier: "flagship", lead: "Dan", desc: "The AI video production pipeline behind our channel — from research to final render.", color: "#c0392b", href: "/docs/youtubestudio", docs: "/docs/youtubestudio", kpi: "10-step pipeline" },
+  { id: "fakereal", name: "Fake / Real", tier: "flagship", lead: "Dan", desc: "Paste a link. JEV audits the evidence and returns REAL or FAKE with cited sources and clear limits.", color: "#d4a017", href: "https://www.fake-real.live", docs: "/docs/fakereal", kpi: "3 free checks a day" },
+  { id: "semeclaw", name: "SemeClaw", tier: "flagship", lead: "Dan", desc: "The war-room protocol — multi-agent meetings where decisions get signed and written back to source.", color: "#c0392b", href: "/semeclaw", docs: "/docs/semeclaw", kpi: "Multi-agent meetings" },
 
-export const ACTIVITY: ActivityItem[] = [
-  { t: 2, agent: "dexter", verb: "shipped", target: "CrawdBot v2.14 → Vercel", icon: "↗" },
-  { t: 5, agent: "sienna", verb: "opened", target: "BTC/USDT long · +2.3%", icon: "$" },
-  { t: 8, agent: "pope", verb: "merged", target: "PR #1183 · nervix-cli", icon: "⌥" },
-  { t: 11, agent: "memo", verb: "ran", target: "n8n · weekly-digest cron", icon: "↻" },
-  { t: 14, agent: "nano", verb: "enrolled", target: "agent moltbot-47 · ed25519", icon: "+" },
-  { t: 17, agent: "doctor", verb: "patched", target: "SSH mesh · memo↔sienna key rot.", icon: "⚕" },
-  { t: 22, agent: "openclaw-2", verb: "indexed", target: "42 competitor landing pages", icon: "⊙" },
-  { t: 26, agent: "autoforge", verb: "drafted", target: "YouTube-Studio · captions API", icon: "✎" },
-  { t: 31, agent: "learning", verb: "summarized", target: "23:55 UTC daily · 1.4k tokens", icon: "☼" },
-  { t: 38, agent: "stripe", verb: "granted", target: "GitHub access · CrawBoard Team", icon: "◆" },
+  // SHIPPING — live and in use
+  { id: "zmarty", name: "Zmarty", tier: "shipping", lead: "Sienna", desc: "Crypto market intelligence and trading signals, served through an API.", color: "#d4a017", href: "https://zmarty.me", docs: "/docs/zmarty", kpi: "Signals · API · membership" },
+  { id: "crawdbot", name: "CrawdBot", tier: "shipping", lead: "Dexter", desc: "Custom AI tools built on the OpenClaw platform.", color: "#d4a017", href: "https://crawdbot.com", docs: "/docs/crawdbot", kpi: "Built on OpenClaw" },
+  { id: "mywork", name: "MyWork-AI", tier: "shipping", lead: "Memo", desc: "Build, ship and sell software products from one CLI.", color: "#c0392b", href: "https://pypi.org/project/mywork-ai/", docs: "/docs/mywork", kpi: "pip install mywork-ai" },
+  { id: "youtube", name: "WorldCup Central", tier: "shipping", lead: "Dan", desc: "Our YouTube channel — AI World Cup 2026 simulations, football legends and impossible matchups.", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, docs: "/docs/youtube", kpi: "Live channel" },
+  { id: "worldcup26", name: "WorldCup26 Cards", tier: "shipping", lead: "Dan", desc: "Free collectible legend cards. Watch the story, unlock the card.", color: "#d4a017", href: "https://worldcup26.world", docs: "/docs/worldcup26", kpi: "Free to play" },
+
+  // LAB — smaller builds and experiments
+  { id: "reality", name: "Reality", tier: "lab", lead: "Dan", desc: "A life simulation on a living 3D Earth.", color: "#c0392b", href: "https://reality-gamma.vercel.app", kpi: "3D life sim" },
+  { id: "dailystock", name: "DailyStock", tier: "lab", lead: "Dan", desc: "Daily stock and crypto decision cards. Educational only.", color: "#d4a017", href: "https://dailystock-cyan.vercel.app", kpi: "Decision dashboard" },
+  { id: "neverdie", name: "NeverDie", tier: "lab", lead: "Dan", desc: "A second brain and digital-immortality vault.", color: "#d4a017", href: "https://github.com/DansiDanutz/NeverDieFable", docs: "/docs/neverdie", kpi: "Open source" },
+  { id: "dansite", name: "dansemenescu.com", tier: "lab", lead: "Dan", desc: "The founder's personal site.", color: "#c0392b", href: "https://dansemenescu.vercel.app", docs: "/docs/dansite", kpi: "Founder site" },
 ];
 
 export const STATS: Stat[] = [
-  { label: "Active agents", value: 30, suffix: "+", sub: "across 5 droplets" },
-  { label: "Products live", value: 8, suffix: "", sub: "web · PyPI · YouTube" },
-  { label: "Cron jobs", value: 38, suffix: "/day", sub: "14 Dexter · 24 Memo" },
-  { label: "Uptime", value: 99.94, suffix: "%", sub: "last 30 days" },
+  { label: "Core agents", value: 8, suffix: "", sub: "each with one lane and a daily target" },
+  { label: "Machines", value: 5, suffix: "", sub: "a Mac Studio and four droplets" },
+  { label: "Live products", value: 10, suffix: "", sub: "flagship and shipping, all public" },
+  { label: "Video pipeline", value: 10, suffix: " steps", sub: "research to final render" },
 ];
 
 // Avatars available as real photos in /public/avatars

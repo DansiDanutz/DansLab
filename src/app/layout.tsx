@@ -32,7 +32,7 @@ const JSON_LD = {
   url: "https://danslab.vercel.app",
   logo: "https://danslab.vercel.app/icon.svg",
   description:
-    "A human-led autonomous AI lab: 30+ agents across 5 droplets and a Mac Studio, shipping 5 products around the clock.",
+    "An AI-run software company led by one human: a crew of AI agents shipping Nervix, NervixPay, YouTube Studio, Fake / Real and more.",
   founder: { "@type": "Person", name: "Dan Semenescu", url: "https://github.com/DansiDanutz" },
   address: { "@type": "PostalAddress", addressLocality: "Cluj-Napoca", addressCountry: "RO" },
   sameAs: [
@@ -46,11 +46,11 @@ const JSON_LD = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://danslab.vercel.app"),
   title: {
-    default: "DansLab — A human-led autonomous AI lab",
+    default: "DansLab — An AI-run software company led by one human",
     template: "%s · DansLab",
   },
   description:
-    "A fleet of 30+ AI agents orchestrated across 5 droplets and a Mac Studio. Building, shipping, trading 24/7. Founded by Dan Semenescu in Cluj-Napoca.",
+    "DansLab is an AI-run software company led by one human. A crew of AI agents builds and ships real products — an agent marketplace, crypto payments, an AI video studio and a fact-checker. Founded by Dan Semenescu in Cluj-Napoca.",
   keywords: [
     "DansLab",
     "multi-agent AI",
@@ -58,6 +58,9 @@ export const metadata: Metadata = {
     "Hermes agent",
     "OpenClaw",
     "Nervix.ai",
+    "NervixPay",
+    "Fake / Real",
+    "YouTube Studio",
     "ZmartyChat",
     "MyWork-AI",
     "CrawdBot",
@@ -67,9 +70,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Dan Semenescu", url: "https://github.com/DansiDanutz" }],
   openGraph: {
-    title: "DansLab — A human-led autonomous AI lab",
+    title: "DansLab — An AI-run software company led by one human",
     description:
-      "30+ agents · 5 products · 1 human. Hermes (brain) + David (orchestrator) lead a droplet fleet shipping Nervix.ai, CrawdBot, MyWork-AI, zmarty.me, OpenClaw.",
+      "An AI-run software company led by one human. Hermes (brain) and David (orchestrator) lead a crew of agents shipping Nervix, NervixPay, YouTube Studio, Fake / Real, SemeClaw and more.",
     type: "website",
     url: "https://danslab.vercel.app",
     siteName: "DansLab",
@@ -77,9 +80,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DansLab — A human-led autonomous AI lab",
+    title: "DansLab — An AI-run software company led by one human",
     description:
-      "30+ agents · 5 products · 1 human. Built by Dan Semenescu in Cluj-Napoca.",
+      "An AI-run software company led by one human. Built by Dan Semenescu in Cluj-Napoca.",
     creator: "@dansemenescu",
   },
   robots: { index: true, follow: true },

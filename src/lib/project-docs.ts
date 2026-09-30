@@ -1,5 +1,7 @@
 // DansLab — per-project documentation content
-// Rendered at /docs/[project]. One entry per PRODUCTS id in danslab-data.ts.
+// Rendered at /docs/[project]. One entry per PRODUCTS id in danslab-data.ts that has a docs path.
+
+import { YOUTUBE_CHANNEL_URL } from "@/lib/danslab-data";
 
 export type DocLink = {
   label: string;
@@ -75,7 +77,7 @@ export const PROJECT_DOCS: ProjectDoc[] = [
       {
         title: "How it works",
         body: [
-          "Pipelines process topics through research, script, visuals, audio, and render stages, with QA gates between each. Output ships to connected channels; 12.4k+ videos processed to date.",
+          "Pipelines process topics through research, script, visuals, audio, and render stages, with QA gates between each. Output ships to connected channels.",
           "CrawBoard, the companion dashboard, handles team billing through Stripe (Pro/Team/Enterprise) with automatic GitHub repo access grants.",
         ],
       },
@@ -98,7 +100,7 @@ export const PROJECT_DOCS: ProjectDoc[] = [
       {
         title: "What it is",
         body: [
-          "WorldCup Central is the lab's own YouTube channel — automated football video production running live on the CrawdBot pipeline. 14k subscribers, 133+ videos, fully agent-produced.",
+          "WorldCup Central is the lab's own YouTube channel — automated football video production running live on the CrawdBot pipeline. Every video is produced end to end by the lab's own pipeline.",
         ],
       },
       {
@@ -125,8 +127,8 @@ export const PROJECT_DOCS: ProjectDoc[] = [
       {
         title: "What it is",
         body: [
-          "MyWork-AI is the lab's build-and-ship platform: a CLI with 72+ commands, published on PyPI, that packages the fleet's development workflow into installable tooling.",
-          "Memo — PM and DevOps — owns it, alongside 24 n8n automations and the Stripe purchase-webhook that grants GitHub access on payment.",
+          "MyWork-AI is the lab's build-and-ship platform: a CLI with 67+ commands, published on PyPI, that packages the fleet's development workflow into installable tooling.",
+          "Memo — PM and DevOps — owns it, alongside the n8n automations and the Stripe purchase webhook that grants GitHub access on payment.",
         ],
       },
       {
@@ -255,6 +257,126 @@ export const PROJECT_DOCS: ProjectDoc[] = [
     links: [
       { label: "Live site", href: "https://dansemenescu.vercel.app" },
       { label: "The DansLab story", href: "/story" },
+    ],
+  },
+  {
+    id: "nervixpay",
+    name: "NervixPay",
+    tagline: "Non-custodial crypto checkout for merchants and AI agents",
+    liveUrl: "https://nervixpay.vercel.app",
+    liveLabel: "nervixpay.vercel.app",
+    lead: "Dexter",
+    status: "live",
+    stack: ["Next.js", "Supabase Auth", "Row Level Security", "Polygon · Ethereum · BNB Chain", "USDC · USDT"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "NervixPay turns any sale into a one-time, on-chain-verified checkout. Customers pick a network and pay in the native asset or a stablecoin, and the merchant is paid straight to their own wallet. No custody and no card fees.",
+          "It is the payments layer of the Nervix ecosystem: built for merchants, and for AI agents that need to pay or get paid. It ships with hosted checkouts, scoped agent access and referral tools.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "A merchant signs in, sets up a wallet and creates a payment. The customer scans a QR code and pays on Polygon, Ethereum or BNB Chain. PayScan shows the exact wallet, network, amount and order, independently verified before the order completes.",
+          "Accounts run on Supabase Auth with Row Level Security. The site includes a three-minute guided walkthrough and full documentation.",
+        ],
+      },
+    ],
+    links: [
+      { label: "Live site", href: "https://nervixpay.vercel.app" },
+      { label: "NervixPay documentation", href: "https://nervixpay.vercel.app/docs" },
+      { label: "Nervix federation", href: "/docs/nervix" },
+    ],
+  },
+  {
+    id: "fakereal",
+    name: "Fake / Real",
+    tagline: "Fact-check a link against cited evidence",
+    liveUrl: "https://www.fake-real.live",
+    liveLabel: "fake-real.live",
+    lead: "Dan",
+    status: "live",
+    stack: ["JEV by TypeSafe", "Evidence retrieval", "English · Romanian"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "Fake / Real checks public articles and posts. Paste a link and the system audits the evidence, then returns a REAL or FAKE finding with cited sources and a plain statement of its limits. If there is not enough evidence, it says so.",
+          "Three checks a day are free, with no account needed. Results are published to a shared catalog, so submitted links should never contain private information.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "For each link, the system reads the submitted page, extracts its factual claims, searches for external sources, reads the evidence pages, and compares the claims with what it found. JEV, TypeSafe's typed-decision model, judges the cited evidence. A check takes up to two minutes.",
+        ],
+      },
+    ],
+    links: [
+      { label: "Live site", href: "https://www.fake-real.live" },
+      { label: "How it uses JEV", href: "https://github.com/DansiDanutz/fake-real-jev" },
+      { label: "Awesome Jev", href: "https://awesomejev.vercel.app" },
+    ],
+  },
+  {
+    id: "youtubestudio",
+    name: "YouTube Studio",
+    tagline: "The AI video production pipeline behind our channel",
+    liveUrl: YOUTUBE_CHANNEL_URL,
+    liveLabel: "Output: WorldCup Central",
+    lead: "Dan",
+    status: "live",
+    stack: ["Next.js studio dashboard", "10-step pipeline", "Paperclip + GSD orchestration"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "YouTube Studio is a standalone video production pipeline. It takes a topic and produces a finished video through ten steps: Research, Script, Visual, Scenes, Audio, Subtitles, Render, QA, Final and Add-ons.",
+          "It is the system that produces WorldCup Central, the lab's YouTube channel, and it comes with a dashboard and studio UI for running and monitoring jobs.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "Each step is a gate. Research feeds the script, the script drives visuals and scenes, and audio and subtitles are synced before the render. A QA step checks the result before it is marked final.",
+          "The last step produces a thumbnail and SEO add-on spec. Publishing to YouTube remains a human decision.",
+        ],
+      },
+    ],
+    links: [
+      { label: "Watch what it makes", href: YOUTUBE_CHANNEL_URL },
+      { label: "WorldCup26 Cards", href: "https://worldcup26.world" },
+      { label: "How the lab runs", href: "/#dl-harness" },
+    ],
+  },
+  {
+    id: "worldcup26",
+    name: "WorldCup26 Cards",
+    tagline: "Free collectible legend cards — watch the story, unlock the card",
+    liveUrl: "https://worldcup26.world",
+    liveLabel: "worldcup26.world",
+    lead: "Dan",
+    status: "live",
+    stack: ["Web app", "Free to play"],
+    sections: [
+      {
+        title: "What it is",
+        body: [
+          "WorldCup26 Cards is a free collectible game built around the channel. Each legend card unlocks when you listen to its story and open the matching YouTube episode. It is just for fun, with no prizes.",
+        ],
+      },
+      {
+        title: "How it works",
+        body: [
+          "Every card is unique, with no duplicate rewards and no reused unlocks. Progress through the album by watching episodes on WorldCup Central, and save your cards with an account.",
+        ],
+      },
+    ],
+    links: [
+      { label: "Collect the cards", href: "https://worldcup26.world" },
+      { label: "WorldCup Central channel", href: YOUTUBE_CHANNEL_URL },
     ],
   },
 ];

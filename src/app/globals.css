@@ -2145,3 +2145,126 @@ html, body {
   .dl-docs-grid { grid-template-columns: 1fr; }
   .dl-docs-facts { grid-template-columns: 1fr; }
 }
+
+/* ─── Homepage: CEO brief (hero) ─────────────────────────── */
+.dl-brief-intro { font-size: 12.5px; line-height: 1.6; color: var(--ink-dim); margin-bottom: 14px; }
+.dl-brief-row {
+  display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: baseline;
+  padding: 8px 0; border-top: 1px dashed var(--dl-accent-line);
+  font-size: 12.5px; line-height: 1.5;
+}
+.dl-brief-tag { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--ink-faint); }
+.dl-brief-text { color: var(--ink-dim); }
+.dl-brief-row.is-ok .dl-brief-tag { color: #4ade80; }
+.dl-brief-row.is-warn .dl-brief-tag { color: var(--gold); }
+.dl-brief-row.is-act .dl-brief-tag { color: var(--dl-accent-hot); }
+.dl-brief-row.is-act .dl-brief-text { color: var(--ink); }
+.dl-brief-reply { font-family: var(--mono); font-size: 12px; color: var(--gold-hot); margin: 0 6px; }
+
+/* ─── Homepage: shared section rhythm ────────────────────── */
+.dl-what, .dl-bridge, .dl-harness {
+  padding: 72px 0 var(--pad-sec); border-top: 1px solid var(--dl-accent-line);
+}
+
+/* ─── What DansLab is ────────────────────────────────────── */
+.dl-what .dl-h2 { margin-bottom: 36px; }
+.dl-what-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.dl-what-card {
+  display: flex; flex-direction: column; gap: 12px; padding: 26px 24px;
+  background: var(--bg-2); border: 1px solid var(--dl-accent-line); border-radius: var(--r);
+  color: var(--ink); text-decoration: none; transition: all .2s;
+}
+.dl-what-card:hover { border-color: var(--dl-accent-hot); transform: translateY(-3px); }
+.dl-what-k { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--dl-accent-hot); }
+.dl-what-card h3 { font-size: 19px; line-height: 1.25; font-weight: 600; }
+.dl-what-card p { font-size: 13.5px; line-height: 1.65; color: var(--ink-dim); flex: 1; }
+.dl-what-cta { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); }
+.dl-what-card:hover .dl-what-cta { color: var(--ink); }
+
+/* ─── From the channel ───────────────────────────────────── */
+.dl-bridge-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: start; margin-bottom: 36px; }
+.dl-bridge-copy { margin-top: 20px; font-size: 15px; line-height: 1.7; color: var(--ink-dim); max-width: 520px; }
+.dl-bridge-copy b { color: var(--ink); }
+.dl-bridge-kpi {
+  display: inline-block; margin-top: 18px; padding: 6px 12px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold-hot); border: 1px solid var(--dl-accent-line-2); border-radius: 999px;
+}
+.dl-bridge-links { display: flex; flex-direction: column; gap: 10px; }
+.dl-bridge-link {
+  position: relative; display: flex; flex-direction: column; gap: 4px; padding: 16px 44px 16px 18px;
+  background: var(--bg-2); border: 1px solid var(--dl-accent-line); border-radius: var(--r);
+  color: var(--ink); text-decoration: none; transition: all .2s;
+}
+.dl-bridge-link:hover { border-color: var(--dl-accent-hot); background: var(--dl-accent-softer); }
+.dl-bridge-link-label { font-size: 15px; font-weight: 600; }
+.dl-bridge-link-note { font-size: 12.5px; color: var(--ink-mute); }
+.dl-bridge-link-arrow { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--dl-accent-hot); transition: transform .25s; }
+.dl-bridge-link:hover .dl-bridge-link-arrow { transform: translate(4px, -50%); }
+.dl-pipeline { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; }
+.dl-pipeline-step {
+  display: flex; flex-direction: column; gap: 6px; padding: 10px 10px 12px;
+  background: var(--bg-1); border: 1px solid var(--dl-accent-line); border-radius: 6px;
+  font-size: 12px; color: var(--ink-dim);
+}
+.dl-pipeline-n { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; color: var(--gold); }
+
+/* ─── Products: tiers ────────────────────────────────────── */
+.dl-tier { margin-top: 40px; }
+.dl-tier-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.dl-tier-head h3 { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+.dl-tier-head span { font-size: 12.5px; color: var(--ink-mute); }
+.dl-product-glyph { font-family: var(--mono); font-size: 38px; font-weight: 700; line-height: 1; padding: 34px 0; text-align: center; width: 100%; }
+.dl-labgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.dl-labrow {
+  display: grid; grid-template-columns: 150px 1fr 20px; gap: 14px; align-items: baseline;
+  padding: 14px 16px; background: var(--bg-2); border: 1px solid var(--dl-accent-line);
+  border-radius: var(--r); color: var(--ink); text-decoration: none; transition: all .2s;
+}
+.dl-labrow:hover { border-color: var(--p-color); background: var(--dl-accent-softer); }
+.dl-labrow-name { font-weight: 600; font-size: 14px; }
+.dl-labrow-desc { font-size: 12.5px; color: var(--ink-mute); line-height: 1.45; }
+.dl-labrow-arrow { color: var(--p-color); }
+
+/* ─── Harness ────────────────────────────────────────────── */
+.dl-loop { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; margin-bottom: 28px; }
+.dl-loop-step {
+  position: relative; flex: 1 1 96px; display: flex; flex-direction: column; gap: 4px; padding: 12px 14px;
+  background: var(--bg-2); border: 1px solid var(--dl-accent-line); border-radius: 6px;
+}
+.dl-loop-step:not(:last-of-type)::after { content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); z-index: 1; font-size: 12px; color: var(--dl-accent-hot); }
+.dl-loop-n { font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; color: var(--ink-faint); }
+.dl-loop-name { font-size: 14px; font-weight: 600; }
+.dl-loop-observers {
+  flex: 1 1 100%; display: flex; gap: 18px; flex-wrap: wrap; align-items: center;
+  padding: 10px 14px; font-size: 12.5px; color: var(--ink-dim);
+  border: 1px dashed var(--dl-accent-line); border-radius: 6px;
+}
+.dl-loop-observers-k { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: var(--gold); }
+.dl-layers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+.dl-layer { padding: 22px 20px; background: var(--bg-2); border: 1px solid var(--dl-accent-line); border-radius: var(--r); }
+.dl-layer-name { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); }
+.dl-layer-tool { margin: 8px 0 10px; font-size: 16px; font-weight: 600; color: var(--gold-hot); }
+.dl-layer p { font-size: 13px; line-height: 1.6; color: var(--ink-dim); }
+.dl-laws { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.dl-laws-col { padding: 24px; background: var(--bg-1); border: 1px solid var(--dl-accent-line); border-radius: var(--r); }
+.dl-laws-h { margin-bottom: 14px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--dl-accent-hot); }
+.dl-law { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 10px 0; border-top: 1px dashed var(--dl-accent-line); font-size: 14px; line-height: 1.55; }
+.dl-law-n { font-family: var(--mono); color: var(--gold); }
+.dl-guardrails { list-style: none; padding: 0; display: flex; flex-direction: column; }
+.dl-guardrails li { padding: 10px 0 10px 18px; position: relative; border-top: 1px dashed var(--dl-accent-line); font-size: 13.5px; line-height: 1.55; color: var(--ink-dim); }
+.dl-guardrails li::before { content: "▸"; position: absolute; left: 0; color: var(--dl-accent-hot); }
+.dl-agents-note { margin-top: 18px; font-size: 12px; color: var(--ink-faint); }
+
+@media (max-width: 1100px) {
+  .dl-layers { grid-template-columns: repeat(2, 1fr); }
+  .dl-pipeline { grid-template-columns: repeat(5, 1fr); }
+  .dl-bridge-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 720px) {
+  .dl-what-grid, .dl-laws, .dl-labgrid, .dl-layers { grid-template-columns: 1fr; }
+  .dl-pipeline { grid-template-columns: repeat(2, 1fr); }
+  .dl-labrow { grid-template-columns: 1fr 20px; }
+  .dl-labrow-desc { grid-column: 1 / -1; grid-row: 2; }
+  .dl-loop-step:not(:last-of-type)::after { display: none; }
+}
