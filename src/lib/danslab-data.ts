@@ -21,7 +21,7 @@ export type Agent = {
   model?: string;
 };
 
-export type ProductTier = "flagship" | "shipping" | "lab";
+export type ProductTier = "flagship" | "shipping" | "lab" | "audited";
 
 export type Product = {
   id: string;
@@ -32,6 +32,7 @@ export type Product = {
   color: string;
   href: string;
   docs?: string;
+  audited?: boolean;
   kpi: string;
 };
 
@@ -126,23 +127,42 @@ export const PRODUCTS: Product[] = [
 
   // SHIPPING — live and in use
   { id: "zmarty", name: "Zmarty", tier: "shipping", lead: "Sienna", desc: "Crypto market intelligence and trading signals, served through an API.", color: "#d4a017", href: "https://zmarty.me", docs: "/docs/zmarty", kpi: "Signals · API · membership" },
-  { id: "crawdbot", name: "CrawdBot", tier: "shipping", lead: "Dexter", desc: "Custom AI tools built on the OpenClaw platform.", color: "#d4a017", href: "https://crawdbot.com", docs: "/docs/crawdbot", kpi: "Built on OpenClaw" },
+  { id: "crawdbot", name: "CrawdBot", tier: "shipping", lead: "Dexter", desc: "Custom AI tools built on the OpenClaw platform.", color: "#d4a017", href: "https://crawdbot.com", docs: "/docs/crawdbot", audited: true, kpi: "Built on OpenClaw" },
   { id: "mywork", name: "MyWork-AI", tier: "shipping", lead: "Memo", desc: "Build, ship and sell software products from one CLI.", color: "#c0392b", href: "https://pypi.org/project/mywork-ai/", docs: "/docs/mywork", kpi: "pip install mywork-ai" },
   { id: "youtube", name: "WorldCup Central", tier: "shipping", lead: "Dan", desc: "Our YouTube channel — AI World Cup 2026 simulations, football legends and impossible matchups.", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, docs: "/docs/youtube", kpi: "Live channel" },
-  { id: "worldcup26", name: "WorldCup26 Cards", tier: "shipping", lead: "Dan", desc: "Free collectible legend cards. Watch the story, unlock the card.", color: "#d4a017", href: "https://worldcup26.world", docs: "/docs/worldcup26", kpi: "Free to play" },
+  { id: "worldcup", name: "WorldCup26 Cards", tier: "shipping", lead: "Dan", desc: "Free collectible legend cards. Watch the story, unlock the card.", color: "#d4a017", href: "https://worldcup26.world", docs: "/docs/worldcup", audited: true, kpi: "Free to play" },
 
   // LAB — smaller builds and experiments
   { id: "reality", name: "Reality", tier: "lab", lead: "Dan", desc: "A life simulation on a living 3D Earth.", color: "#c0392b", href: "https://reality-gamma.vercel.app", kpi: "3D life sim" },
-  { id: "dailystock", name: "DailyStock", tier: "lab", lead: "Dan", desc: "Daily stock and crypto decision cards. Educational only.", color: "#d4a017", href: "https://dailystock-cyan.vercel.app", kpi: "Decision dashboard" },
+  { id: "dailystock", name: "DailyStock", tier: "lab", lead: "Sienna", desc: "Daily stock and crypto decision cards. Educational only.", color: "#d4a017", href: "https://dailystock-cyan.vercel.app", audited: true, kpi: "Decision dashboard" },
   { id: "neverdie", name: "NeverDie", tier: "lab", lead: "Dan", desc: "A second brain and digital-immortality vault.", color: "#d4a017", href: "https://github.com/DansiDanutz/NeverDieFable", docs: "/docs/neverdie", kpi: "Open source" },
-  { id: "dansite", name: "dansemenescu.com", tier: "lab", lead: "Dan", desc: "The founder's personal site.", color: "#c0392b", href: "https://dansemenescu.vercel.app", docs: "/docs/dansite", kpi: "Founder site" },
+  { id: "dansemenescu", name: "Dan Semenescu", tier: "lab", lead: "Dan", desc: "The founder's personal site.", color: "#c0392b", href: "https://dansemenescu.vercel.app", docs: "/docs/dansemenescu", audited: true, kpi: "Founder site" },
+
+  // AUDITED — production apps verified by RepoAudit; shown in the collapsed verified-apps list
+  { id: "danslab", name: "DansLab", tier: "audited", lead: "David", desc: "This site: fleet architecture and the audit surface.", color: "#c0392b", href: "https://danslab.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "repoaudit", name: "RepoAudit", tier: "audited", lead: "Dan", desc: "The fleet audit control plane and source of truth for what is verified.", color: "#22c55e", href: "https://repoaudit.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "crawboard", name: "CrawBoard", tier: "audited", lead: "Dexter", desc: "Creator operations dashboard.", color: "#3b82f6", href: "https://team.crawdbot.com", audited: true, kpi: "RepoAudit verified" },
+  { id: "marketplace", name: "MyWork Marketplace", tier: "audited", lead: "Memo", desc: "Build and ship marketplace.", color: "#c0392b", href: "https://my-work-ai.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "zmartrise", name: "ZmartRise", tier: "audited", lead: "Sienna", desc: "AI-powered market intelligence.", color: "#d4a017", href: "https://www.zmartrise.ai", audited: true, kpi: "RepoAudit verified" },
+  { id: "pokerclubcluj", name: "Poker Club Cluj", tier: "audited", lead: "Dan", desc: "Public civic campaign and memo hub.", color: "#3b82f6", href: "https://poker-club-cluj.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "pokercluj", name: "PokerCluj", tier: "audited", lead: "Dan", desc: "Poker Cluj public deployment.", color: "#60a5fa", href: "https://pokercluj.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "pokeragent", name: "PokerAgent", tier: "audited", lead: "Dan", desc: "AI-assisted poker player and agent management platform with a built-in odds calculator.", color: "#a855f7", href: "https://poker-agent-flax.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "adsemeclaw", name: "Ad-SemeClaw", tier: "audited", lead: "Dan", desc: "SemeClaw ad campaign surface.", color: "#c0392b", href: "https://ad-semeclaw.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "danslabvideo", name: "DansLab Video", tier: "audited", lead: "Dan", desc: "Video pipeline public surface.", color: "#ec4899", href: "https://danslab-video.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "livetranslation", name: "LiveTranslation", tier: "audited", lead: "Dan", desc: "Live translation app.", color: "#14b8a6", href: "https://live-translation-eight.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "danmatei", name: "Dan Matei", tier: "audited", lead: "Dan", desc: "Dan Matei public site.", color: "#22c55e", href: "https://www.danmatei.ro", audited: true, kpi: "RepoAudit verified" },
+  { id: "scoalafotbal", name: "Scoala Fotbal Dan Matei", tier: "audited", lead: "Dan", desc: "Football school public site.", color: "#38bdf8", href: "https://scoala-fotbal-dan-matei.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "game1", name: "Shikaku Quest", tier: "audited", lead: "Dan", desc: "Puzzle game deployment.", color: "#a3e635", href: "https://shikaku-quest-three.vercel.app", audited: true, kpi: "RepoAudit verified" },
+  { id: "staticdeployment", name: "Static Deployment", tier: "audited", lead: "Dan", desc: "Static production deployment.", color: "#f59e0b", href: "https://static-deployment-swart.vercel.app", audited: true, kpi: "RepoAudit verified" },
 ];
+
+export const AUDITED_PRODUCTS: Product[] = PRODUCTS.filter((p) => p.audited);
 
 export const STATS: Stat[] = [
   { label: "Core agents", value: 8, suffix: "", sub: "each with one lane and a daily target" },
   { label: "Machines", value: 5, suffix: "", sub: "a Mac Studio and four droplets" },
-  { label: "Live products", value: 10, suffix: "", sub: "flagship and shipping, all public" },
-  { label: "Video pipeline", value: 10, suffix: " steps", sub: "research to final render" },
+  { label: "Live products", value: PRODUCTS.filter((p) => p.tier === "flagship" || p.tier === "shipping").length, suffix: "", sub: "flagship and shipping, all public" },
+  { label: "Audited apps", value: AUDITED_PRODUCTS.length, suffix: "", sub: "verified by RepoAudit" },
 ];
 
 // Avatars available as real photos in /public/avatars

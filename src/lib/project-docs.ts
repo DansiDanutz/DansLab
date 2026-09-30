@@ -232,8 +232,8 @@ export const PROJECT_DOCS: ProjectDoc[] = [
     ],
   },
   {
-    id: "dansite",
-    name: "dansemenescu.com",
+    id: "dansemenescu",
+    name: "Dan Semenescu",
     tagline: "The founder's personal site",
     liveUrl: "https://dansemenescu.vercel.app",
     liveLabel: "dansemenescu.vercel.app",
@@ -352,7 +352,7 @@ export const PROJECT_DOCS: ProjectDoc[] = [
     ],
   },
   {
-    id: "worldcup26",
+    id: "worldcup",
     name: "WorldCup26 Cards",
     tagline: "Free collectible legend cards — watch the story, unlock the card",
     liveUrl: "https://worldcup26.world",

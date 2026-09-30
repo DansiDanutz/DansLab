@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SectionLabel } from "@/components/danslab/atoms";
+import { PRODUCTS } from "@/lib/danslab-data";
 
 // ===== CONFIG =====
 const EMAIL = "semebitcoin@gmail.com";
@@ -217,11 +218,16 @@ export default function ContactPage() {
 
           <div className="contact-sidebar-row">
             <h4>LIVE PRODUCTS</h4>
-            <a href="https://nervix.ai" target="_blank" rel="noreferrer noopener">nervix.ai</a>
-            <a href="https://crawdbot.com" target="_blank" rel="noreferrer noopener">crawdbot.com</a>
-            <a href="https://zmarty.me" target="_blank" rel="noreferrer noopener">zmarty.me</a>
-            <a href="https://pypi.org/project/mywork-ai/" target="_blank" rel="noreferrer noopener">mywork-ai · PyPI</a>
-            <a href="https://semeclaw.fly.dev" target="_blank" rel="noreferrer noopener">semeclaw.fly.dev</a>
+            {PRODUCTS.map((product) => (
+              <a
+                key={product.id}
+                href={product.href}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {product.name}
+              </a>
+            ))}
           </div>
 
           <div className="contact-sidebar-divider" />

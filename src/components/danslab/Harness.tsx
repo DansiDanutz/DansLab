@@ -33,6 +33,7 @@ const LAWS = [
 ];
 
 const GUARDRAILS = [
+  "RepoAudit, our audit control plane, tracks security, correctness, review coverage and deployment status for every repository.",
   "A watchdog checks every agent every 15 minutes and restarts what is stuck.",
   "Issues left in review for over 48 hours are bounced back to an owner.",
   "Disk pressure on any machine triggers automatic cleanup before an alert.",

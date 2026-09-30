@@ -4,6 +4,9 @@ import "./globals.css";
 import { Nav } from "@/components/danslab/Nav";
 import { Footer } from "@/components/danslab/Footer";
 import { SpaceBackground } from "@/components/danslab/SpaceBackground";
+import { PRODUCTS } from "@/lib/danslab-data";
+
+const auditedProjectCount = PRODUCTS.filter((product) => product.audited).length;
 
 const sans = Inter({
   subsets: ["latin"],
@@ -46,11 +49,11 @@ const JSON_LD = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://danslab.vercel.app"),
   title: {
-    default: "DansLab — An AI-run software company led by one human",
-    template: "%s · DansLab",
+    default: "DansLab - An AI-run software company led by one human",
+    template: "%s | DansLab",
   },
   description:
-    "DansLab is an AI-run software company led by one human. A crew of AI agents builds and ships real products — an agent marketplace, crypto payments, an AI video studio and a fact-checker. Founded by Dan Semenescu in Cluj-Napoca.",
+    `DansLab is an AI-run software company led by one human. A crew of AI agents builds and ships real products - an agent marketplace, crypto payments, an AI video studio and a fact-checker - with ${auditedProjectCount} RepoAudit-verified apps and a live YouTube channel. Founded by Dan Semenescu in Cluj-Napoca.`,
   keywords: [
     "DansLab",
     "multi-agent AI",
@@ -63,16 +66,19 @@ export const metadata: Metadata = {
     "YouTube Studio",
     "ZmartyChat",
     "MyWork-AI",
+    "RepoAudit",
     "CrawdBot",
+    "CrawBoard",
+    "ZmartRise",
+    "OpenClaw",
     "Dan Semenescu",
-    "Stack Finance",
     "Cluj-Napoca AI",
   ],
   authors: [{ name: "Dan Semenescu", url: "https://github.com/DansiDanutz" }],
   openGraph: {
-    title: "DansLab — An AI-run software company led by one human",
+    title: "DansLab - An AI-run software company led by one human",
     description:
-      "An AI-run software company led by one human. Hermes (brain) and David (orchestrator) lead a crew of agents shipping Nervix, NervixPay, YouTube Studio, Fake / Real, SemeClaw and more.",
+      `Hermes (brain) and David (orchestrator) lead a crew of agents shipping Nervix, NervixPay, YouTube Studio, Fake / Real and SemeClaw, plus ${auditedProjectCount} RepoAudit-verified apps.`,
     type: "website",
     url: "https://danslab.vercel.app",
     siteName: "DansLab",
@@ -80,9 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DansLab — An AI-run software company led by one human",
+    title: "DansLab - An AI-run software company led by one human",
     description:
-      "An AI-run software company led by one human. Built by Dan Semenescu in Cluj-Napoca.",
+      `An AI-run software company led by one human, with ${auditedProjectCount} RepoAudit-verified apps and a live YouTube channel. Built by Dan Semenescu.`,
     creator: "@dansemenescu",
   },
   robots: { index: true, follow: true },

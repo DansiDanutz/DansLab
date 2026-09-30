@@ -1,6 +1,6 @@
 "use client";
 
-import { AGENTS, PRODUCTS, type Product, type ProductTier } from "@/lib/danslab-data";
+import { AGENTS, AUDITED_PRODUCTS, PRODUCTS, type Product, type ProductTier } from "@/lib/danslab-data";
 import { Monogram, SectionLabel, cssVar } from "./atoms";
 import { ProductArt } from "./ProductArt";
 
@@ -8,13 +8,14 @@ const GLYPHS: Record<string, string> = {
   nervixpay: "◒",
   youtubestudio: "▶",
   fakereal: "f/r",
-  worldcup26: "⚽",
+  worldcup: "⚽",
 };
 
 const TIER_HEADINGS: Record<ProductTier, { title: string; note: string }> = {
   flagship: { title: "Flagship", note: "Production-ready, and what we would show you first." },
   shipping: { title: "Shipping", note: "Live and in use." },
   lab: { title: "From the lab", note: "Smaller builds and experiments." },
+  audited: { title: "Verified", note: "Production apps checked by RepoAudit." },
 };
 
 const isExternal = (href: string) => href.startsWith("http");
@@ -138,6 +139,33 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
           {byTier("lab").map((p) => <LabRow key={p.id} p={p} />)}
         </div>
       </div>
+
+      <details className="dl-audited">
+        <summary>
+          <span>All {AUDITED_PRODUCTS.length} RepoAudit-verified apps</span>
+          <span className="dl-audited-hint">Show</span>
+        </summary>
+        <p className="dl-audited-note">
+          RepoAudit is our audit control plane. It tracks security, correctness and deployment
+          status across the fleet&rsquo;s repositories, and these apps are on its verified production list.
+        </p>
+        <div className="dl-audited-grid">
+          {AUDITED_PRODUCTS.map((p) => {
+            const external = isExternal(p.href);
+            return (
+              <a
+                key={p.id}
+                className="dl-audited-chip"
+                href={p.href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer noopener" : undefined}
+              >
+                {p.name}
+              </a>
+            );
+          })}
+        </div>
+      </details>
     </section>
   );
 }
