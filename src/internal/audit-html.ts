@@ -1,4 +1,6 @@
-<meta charset="utf-8">
+// Internal fleet audit dashboard markup. Lives outside /public so it is
+// reachable only through the Basic-Auth gated /audit route.
+export const AUDIT_HTML = String.raw`<meta charset="utf-8">
 <title>Fleet Audit Dashboard</title>
 <style>
   :root {
@@ -85,7 +87,7 @@
   <div><span class="n">1</span><span class="l">Audited</span></div>
   <div><span class="n">1</span><span class="l">Production-GO</span></div>
   <div><span class="n" id="stat-notaudited">15</span><span class="l">Not yet audited</span></div>
-  <div><span class="n">20</span><span class="l">Findings fixed (fleet)</span></div>
+  <div><span class="n">17</span><span class="l">Findings fixed (fleet)</span></div>
 </div>
 
 <div class="toolbar"><button class="btn" id="addBtn" type="button">+ Add repo</button></div>
@@ -264,3 +266,4 @@
 })();
 </script>
 </div>
+`;

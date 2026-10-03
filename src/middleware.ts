@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import { isValidBasicAuth } from "@/lib/basic-auth";
+
 /**
  * Gates the INTERNAL fleet audit dashboard (/audit) behind HTTP Basic Auth.
  *
@@ -7,24 +9,11 @@ import { NextResponse, type NextRequest } from "next/server";
  * dashboard exposes internal security posture (which projects are unaudited),
  * so it must never be public. Set AUDIT_USER and AUDIT_PASS in the deployment
  * env. If they're unset in production the route fails CLOSED (503) rather than
- * serving the dashboard openly. The page itself lives at /public/audit.html;
- * this rewrites the clean /audit URL onto it after the auth check, and also
- * guards direct hits on /audit.html.
+ * serving the dashboard openly. The page is served by the /audit route handler
+ * (src/app/audit/route.ts); it is deliberately NOT under /public, where a
+ * static file would bypass this gate.
  */
-export const config = { matcher: ["/audit", "/audit.html"] };
-
-function constantTimeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  let mismatch = 0;
-  for (let i = 0; i < a.length; i++) mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
-  return mismatch === 0;
-}
-
-function serveDashboard(req: NextRequest): NextResponse {
-  const url = req.nextUrl.clone();
-  url.pathname = "/audit.html";
-  return NextResponse.rewrite(url);
-}
+export const config = { matcher: ["/audit"] };
 
 function unauthorized(): NextResponse {
   // Header values are Latin-1 only — keep the realm plain ASCII.
@@ -43,13 +32,12 @@ export function middleware(req: NextRequest): NextResponse {
     if (process.env.NODE_ENV === "production") {
       return new NextResponse("Audit dashboard is not configured.", { status: 503 });
     }
-    return serveDashboard(req);
+    return NextResponse.next();
   }
 
   const header = req.headers.get("authorization") ?? "";
-  const expected = "Basic " + btoa(`${user}:${pass}`);
-  if (header && constantTimeEqual(header, expected)) {
-    return serveDashboard(req);
+  if (isValidBasicAuth(header, user, pass)) {
+    return NextResponse.next();
   }
   return unauthorized();
 }
