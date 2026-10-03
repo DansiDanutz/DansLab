@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "DansLab — A human-led autonomous AI lab";
+export const alt = "DansLab — An AI-run software company led by one human";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -49,21 +49,21 @@ export default function OpengraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 72, lineHeight: 1.12, letterSpacing: "-0.02em" }}>
-            <span>A human-led</span>
+            <span>An AI-run software</span>
             <span style={{ display: "flex" }}>
-              <span style={{ color: CRIMSON, fontStyle: "italic" }}>autonomous AI lab</span>
+              <span style={{ color: CRIMSON, fontStyle: "italic" }}>company, led by</span>
             </span>
-            <span>running while Dan sleeps.</span>
+            <span>one human.</span>
           </div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 36, fontSize: 24, color: "#a1a1aa" }}>
           <span style={{ display: "flex", gap: 10 }}>
-            <span style={{ color: GOLD, fontWeight: 700 }}>30+</span> agents
+            <span style={{ color: GOLD, fontWeight: 700 }}>8</span> core agents
           </span>
           <span style={{ color: "#3f3f46" }}>·</span>
           <span style={{ display: "flex", gap: 10 }}>
-            <span style={{ color: GOLD, fontWeight: 700 }}>5</span> products
+            <span style={{ color: GOLD, fontWeight: 700 }}>10</span> live products
           </span>
           <span style={{ color: "#3f3f46" }}>·</span>
           <span style={{ display: "flex", gap: 10 }}>

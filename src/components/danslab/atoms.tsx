@@ -72,12 +72,12 @@ export function StatusDot({ status = "online", size = 6 }: { status?: AgentStatu
 // Live status badge pill (hero)
 // ────────────────────────────────────────────
 const LIVE_MSGS = [
-  "Dexter online · Opus 4.6",
-  "38 crons scheduled today",
-  "Sienna · BTC long open",
-  "Pope merged PR #1183",
-  "Nano enrolling moltbot-47",
-  "14 agents active now",
+  "Nervix · the agent marketplace",
+  "NervixPay · non-custodial checkout",
+  "Fake / Real · 3 free checks a day",
+  "YouTube Studio · 10-step video pipeline",
+  "8 core agents · 1 human",
+  "The daily brief lands at 07:00",
 ];
 
 export function LivePill() {

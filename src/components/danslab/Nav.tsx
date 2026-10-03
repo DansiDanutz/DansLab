@@ -8,6 +8,7 @@ const LINKS = [
   { label: "Ecosystem", href: "/ecosystem" },
   { label: "Lab", href: "/lab" },
   { label: "SemeClaw", href: "/semeclaw" },
+  { label: "Docs", href: "/docs" },
   { label: "Story", href: "/story" },
   { label: "Contact", href: "/contact" },
 ];
@@ -20,7 +21,7 @@ export function Nav() {
         <Link href="/" className="dl-logo">
           <span className="dl-logo-mark">D</span>
           Dans<span style={{ color: "var(--dl-accent-hot)" }}>Lab</span>
-          <span className="dl-logo-sub">{"// v2026.4"}</span>
+          <span className="dl-logo-sub">{"// 2026"}</span>
         </Link>
         <div className="dl-nav-links">
           {LINKS.map((l) => {

@@ -27,16 +27,23 @@ const AUDITED_PROJECT_IDS = [
 
 test("project grid contains the audited production set and live YouTube channel", () => {
   const auditedIds = PRODUCTS
-    .filter((product) => product.id !== "youtube")
+    .filter((product) => product.audited)
     .map((product) => product.id)
     .sort();
 
   assert.deepEqual(auditedIds, AUDITED_PROJECT_IDS);
-  assert.equal(PRODUCTS.length, AUDITED_PROJECT_IDS.length + 1);
   assert.equal(PRODUCTS.find((product) => product.id === "youtube")?.href, YOUTUBE_CHANNEL_URL);
 });
 
-test("project cards use unique HTTPS destinations without placeholders", () => {
+test("flagship products outside the audited set are not marked audited", () => {
+  for (const id of ["nervix", "nervixpay", "youtubestudio", "fakereal", "semeclaw"]) {
+    const product = PRODUCTS.find((p) => p.id === id);
+    assert.ok(product, `${id} must be listed`);
+    assert.notEqual(product?.audited, true, `${id} is not in the RepoAudit set`);
+  }
+});
+
+test("project cards use unique HTTPS or in-site destinations without placeholders", () => {
   const ids = PRODUCTS.map((product) => product.id);
   const hrefs = PRODUCTS.map((product) => product.href);
 
@@ -44,7 +51,7 @@ test("project cards use unique HTTPS destinations without placeholders", () => {
   assert.equal(new Set(hrefs).size, hrefs.length);
 
   for (const product of PRODUCTS) {
-    assert.match(product.href, /^https:\/\//, `${product.name} must use HTTPS`);
+    assert.match(product.href, /^(https:\/\/|\/[a-z])/, `${product.name} must use HTTPS or an in-site path`);
     assert.notEqual(product.href, "#", `${product.name} must not use a placeholder link`);
   }
 });
