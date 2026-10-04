@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { isValidBasicAuth } from "@/lib/basic-auth";
+import { checkAuditAccess } from "@/lib/basic-auth";
 
 /**
  * Gates the INTERNAL fleet audit dashboard (/audit) behind HTTP Basic Auth.
@@ -8,8 +8,8 @@ import { isValidBasicAuth } from "@/lib/basic-auth";
  * DansLab is a public marketing site with no user system, and the audit
  * dashboard exposes internal security posture (which projects are unaudited),
  * so it must never be public. Set AUDIT_USER and AUDIT_PASS in the deployment
- * env. If they're unset in production the route fails CLOSED (503) rather than
- * serving the dashboard openly. The page is served by the /audit route handler
+ * env. If either is unset, in any environment, the route fails CLOSED (503)
+ * rather than serving the dashboard openly. The page is served by the /audit route handler
  * (src/app/audit/route.ts); it is deliberately NOT under /public, where a
  * static file would bypass this gate.
  */
@@ -24,20 +24,16 @@ function unauthorized(): NextResponse {
 }
 
 export function middleware(req: NextRequest): NextResponse {
-  const user = process.env.AUDIT_USER;
-  const pass = process.env.AUDIT_PASS;
+  const access = checkAuditAccess(
+    process.env.AUDIT_USER,
+    process.env.AUDIT_PASS,
+    req.headers.get("authorization") ?? "",
+  );
 
-  if (!user || !pass) {
-    // Never serve it open. Denied in prod; allowed in dev for convenience.
-    if (process.env.NODE_ENV === "production") {
-      return new NextResponse("Audit dashboard is not configured.", { status: 503 });
-    }
-    return NextResponse.next();
-  }
-
-  const header = req.headers.get("authorization") ?? "";
-  if (isValidBasicAuth(header, user, pass)) {
-    return NextResponse.next();
+  if (access === "allowed") return NextResponse.next();
+  if (access === "unconfigured") {
+    // Fail closed in every environment, including local dev.
+    return new NextResponse("Audit dashboard is not configured.", { status: 503 });
   }
   return unauthorized();
 }

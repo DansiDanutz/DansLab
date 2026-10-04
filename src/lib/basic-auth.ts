@@ -24,3 +24,15 @@ export function isValidBasicAuth(header: string, user: string, pass: string): bo
   const decoded = decodeBasicCredentials(header);
   return decoded !== null && constantTimeEqual(decoded, `${user}:${pass}`);
 }
+
+export type AuditAccess = "allowed" | "unconfigured" | "denied";
+
+/** Fail closed: missing credentials config denies in every environment. */
+export function checkAuditAccess(
+  user: string | undefined,
+  pass: string | undefined,
+  header: string,
+): AuditAccess {
+  if (!user || !pass) return "unconfigured";
+  return isValidBasicAuth(header, user, pass) ? "allowed" : "denied";
+}

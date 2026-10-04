@@ -46,6 +46,18 @@ test("committed source carries no fleet inventory, local paths or artifact URLs"
   }
 });
 
+test("middleware has no environment-dependent open path", () => {
+  const src = readFileSync("src/middleware.ts", "utf8");
+  assert.doesNotMatch(src, /NODE_ENV/);
+  assert.match(src, /status: 503/);
+});
+
+test(".env.example documents every audit variable", () => {
+  const env = readFileSync(".env.example", "utf8");
+  for (const key of ["AUDIT_USER", "AUDIT_PASS", "AUDIT_DATA"]) assert.match(env, new RegExp(`^${key}=`, "m"));
+  assert.doesNotMatch(env, /claude\.ai\/code\/artifact/);
+});
+
 test("template has placeholders for private data", () => {
   for (const key of ["{{STATS}}", "{{ROWS}}", "{{UPDATED}}"]) assert.ok(AUDIT_TEMPLATE.includes(key));
 });
