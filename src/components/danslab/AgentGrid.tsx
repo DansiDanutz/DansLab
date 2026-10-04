@@ -1,41 +1,46 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties } from "react";
-import { AGENTS, type Agent } from "@/lib/danslab-data";
+import { AGENTS, CORE_AGENT_ORDER, type Agent } from "@/lib/danslab-data";
 import { Monogram, SectionLabel, StatusDot, cssVar } from "./atoms";
 
-type FilterId = "all" | "main" | "support" | "slack";
+type FilterId = "core" | "all" | "support" | "slack";
 
 const AGENT_FILTERS: { id: FilterId; label: string }[] = [
+  { id: "core", label: "Core crew" },
   { id: "all", label: "All agents" },
-  { id: "main", label: "Main" },
   { id: "support", label: "Support" },
   { id: "slack", label: "Slack crew" },
 ];
 
 export function AgentGrid({ onOpen }: { onOpen: (a: Agent) => void }) {
-  const [filter, setFilter] = useState<FilterId>("all");
+  const [filter, setFilter] = useState<FilterId>("core");
 
   const list = useMemo(() => {
     if (filter === "all") return AGENTS;
+    if (filter === "core") {
+      return CORE_AGENT_ORDER
+        .map((id) => AGENTS.find((a) => a.id === id))
+        .filter((a): a is Agent => a !== undefined);
+    }
     return AGENTS.filter((a) => a.type === filter);
   }, [filter]);
 
   const counts: Record<FilterId, number> = useMemo(() => ({
+    core: CORE_AGENT_ORDER.length,
     all: AGENTS.length,
-    main: AGENTS.filter((a) => a.type === "main").length,
     support: AGENTS.filter((a) => a.type === "support").length,
     slack: AGENTS.filter((a) => a.type === "slack").length,
   }), []);
 
   return (
     <section className="dl-agents" id="dl-agents">
-      <SectionLabel n={2} title="THE CREW // 30 AGENTS" />
+      <SectionLabel n={6} title="THE CREW // 8 CORE AGENTS" />
 
       <div className="dl-agents-head">
         <h2 className="dl-h2">
-          Every agent owns a domain.<br />
-          <span className="dl-h2-dim">They DM each other like colleagues.</span>
+          Eight agents run the company.<br />
+          <span className="dl-h2-dim">The rest are specialists.</span>
         </h2>
         <div className="dl-filter-bar">
           {AGENT_FILTERS.map((f) => (
@@ -57,6 +62,9 @@ export function AgentGrid({ onOpen }: { onOpen: (a: Agent) => void }) {
           <AgentCard key={a.id} a={a} i={i} onOpen={onOpen} />
         ))}
       </div>
+      <p className="dl-agents-note">
+        Roles and lanes are real. The status dots are indicative, not a live feed.
+      </p>
     </section>
   );
 }
