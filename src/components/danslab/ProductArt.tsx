@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 
+// Round trig output so server and browser render identical SVG attributes.
+const r3 = (n: number): number => Math.round(n * 1000) / 1000;
+
 // Inline SVG cover art for each product card
 // Ported from design-system/product-art.jsx
 
@@ -140,7 +143,7 @@ function CrawdbotArt({ color = "#d4a017" }: { color?: string }) {
         <div style={{ position: "relative", height: "28%", background: "rgba(0,0,0,.4)", borderRadius: 2, overflow: "hidden" }}>
           <svg viewBox="0 0 100 10" preserveAspectRatio="none" style={{ width: "100%", height: "100%" }}>
             {Array.from({ length: 60 }).map((_, i) => {
-              const h = 2 + Math.abs(Math.sin(i * 0.7 + i * 0.3)) * 6;
+              const h = r3(2 + Math.abs(Math.sin(i * 0.7 + i * 0.3)) * 6);
               return <rect key={i} x={i * 1.7} y={(10 - h) / 2} width={1} height={h} fill="#22c55e" opacity=".8" />;
             })}
           </svg>
@@ -319,18 +322,18 @@ function SemeclawArt({ color = "#c0392b" }: { color?: string }) {
         {Array.from({ length: 24 }).map((_, i) => {
           const a = (i / 24) * Math.PI * 2;
           const r1 = 30, r2 = 28;
-          const x1 = 50 + Math.cos(a) * r1;
-          const y1 = 50 + Math.sin(a) * r1;
-          const x2 = 50 + Math.cos(a) * r2;
-          const y2 = 50 + Math.sin(a) * r2;
+          const x1 = r3(50 + Math.cos(a) * r1);
+          const y1 = r3(50 + Math.sin(a) * r1);
+          const x2 = r3(50 + Math.cos(a) * r2);
+          const y2 = r3(50 + Math.sin(a) * r2);
           const bold = i % 6 === 0;
           return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
             stroke={bold ? "rgba(244,193,92,0.5)" : "rgba(212,160,23,0.2)"} strokeWidth={bold ? ".4" : ".2"} />;
         })}
         {seats.map((s, i) => {
           const a = (s.angle * Math.PI) / 180;
-          const x = 50 + Math.cos(a) * R;
-          const y = 50 + Math.sin(a) * R;
+          const x = r3(50 + Math.cos(a) * R);
+          const y = r3(50 + Math.sin(a) * R);
           return (
             <line key={`l${i}`} x1="50" y1="50" x2={x} y2={y}
               stroke={s.c} strokeOpacity="0.35" strokeWidth=".25" strokeDasharray=".6 .8" />
@@ -350,8 +353,8 @@ function SemeclawArt({ color = "#c0392b" }: { color?: string }) {
           fill="#1a0a0a" fontWeight="600">S</text>
         {seats.map((s, i) => {
           const a = (s.angle * Math.PI) / 180;
-          const x = 50 + Math.cos(a) * R;
-          const y = 50 + Math.sin(a) * R;
+          const x = r3(50 + Math.cos(a) * R);
+          const y = r3(50 + Math.sin(a) * R);
           return (
             <g key={`s${i}`}>
               <circle cx={x} cy={y} r="4.4" fill={s.c} opacity="0.15" />

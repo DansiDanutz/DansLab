@@ -1,4 +1,5 @@
-import { PRODUCTS, YOUTUBE_CHANNEL_URL } from "@/lib/danslab-data";
+import Link from "next/link";
+import { YOUTUBE_CHANNEL_URL } from "@/lib/danslab-data";
 
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const COMMIT_SHA = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7);
@@ -13,25 +14,28 @@ export function Footer() {
               Dans<span style={{ color: "var(--dl-accent-hot)" }}>Lab</span>
             </div>
             <p className="dl-footer-line">
-              A human-led autonomous AI lab. Dan orchestrates 30+ agents across {PRODUCTS.length} production surfaces.
-              Built in Cluj-Napoca | Frankfurt | US-East.
+              An AI-run software company led by one human. A crew of agents builds and ships
+              real products. Built in Cluj-Napoca.
             </p>
           </div>
           <div>
             <h4>PRODUCTS</h4>
             <ul>
-              {PRODUCTS.map((product) => (
-                <li key={product.id}>
-                  <a href={product.href} target="_blank" rel="noreferrer noopener">
-                    {product.name}
-                  </a>
-                </li>
-              ))}
+              <li><a href="https://nervix.ai" target="_blank" rel="noreferrer noopener">Nervix</a></li>
+              <li><a href="https://nervixpay.vercel.app" target="_blank" rel="noreferrer noopener">NervixPay</a></li>
+              <li><Link href="/docs/youtubestudio">YouTube Studio</Link></li>
+              <li><a href="https://www.fake-real.live" target="_blank" rel="noreferrer noopener">Fake / Real</a></li>
+              <li><a href="/semeclaw">SemeClaw</a></li>
+              <li><a href="https://zmarty.me" target="_blank" rel="noreferrer noopener">Zmarty</a></li>
+              <li><a href="https://crawdbot.com" target="_blank" rel="noreferrer noopener">CrawdBot</a></li>
+              <li><a href="https://pypi.org/project/mywork-ai/" target="_blank" rel="noreferrer noopener">MyWork-AI</a></li>
+              <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">WorldCup Central · YouTube</a></li>
             </ul>
           </div>
           <div>
             <h4>LAB</h4>
             <ul>
+              <li><Link href="/docs">Documentation</Link></li>
               <li><a href="/ecosystem">Ecosystem</a></li>
               <li><a href="/lab">Agents</a></li>
               <li><a href="/semeclaw">War Room</a></li>
@@ -41,7 +45,7 @@ export function Footer() {
           <div>
             <h4>SIGNAL</h4>
             <ul>
-              <li><a href="https://dansemenescu.vercel.app" target="_blank" rel="noreferrer noopener">Dan Semenescu - Founder</a></li>
+              <li><a href="https://dansemenescu.vercel.app" target="_blank" rel="noreferrer noopener">Dan Semenescu — Founder</a></li>
               <li><a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noreferrer noopener">YouTube</a></li>
               <li><a href="https://github.com/DansiDanutz" target="_blank" rel="noreferrer noopener">GitHub</a></li>
               <li><a href="https://x.com/dansemenescu" target="_blank" rel="noreferrer noopener">X / Twitter</a></li>
@@ -51,12 +55,12 @@ export function Footer() {
         </div>
       </div>
       <div className="dl-footer-bottom">
-        <span>(c) 2026 DANSLAB | POWERED BY OPENCLAW v2026.2.14</span>
+        <span>© 2026 DANSLAB · BUILT ON OPENCLAW, HERMES AND PAPERCLIP</span>
         <span>
-          UPTIME 99.94% / 30D | LAST DEPLOY {BUILD_DATE}
+          LAST DEPLOY {BUILD_DATE}
           {COMMIT_SHA && (
             <>
-              {" | "}
+              {" · "}
               <a
                 href={`https://github.com/DansiDanutz/DansLab/commit/${COMMIT_SHA}`}
                 target="_blank"

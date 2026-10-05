@@ -3,8 +3,10 @@ import assert from "node:assert/strict";
 
 import sitemap from "../../src/app/sitemap";
 import robots from "../../src/app/robots";
+import { PROJECT_DOCS } from "../../src/lib/project-docs";
 
-const ROUTES = ["/", "/ecosystem", "/lab", "/semeclaw", "/story", "/contact"];
+const STATIC_ROUTES = ["/", "/ecosystem", "/lab", "/semeclaw", "/story", "/contact", "/docs"];
+const ROUTES = [...STATIC_ROUTES, ...PROJECT_DOCS.map((doc) => `/docs/${doc.id}`)];
 
 test("sitemap lists every public route exactly once", () => {
   const entries = sitemap();
