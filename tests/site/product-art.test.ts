@@ -21,3 +21,18 @@ test("every product card has cover art instead of the placeholder", () => {
     assert.ok(keys.has(product.id), `${product.name} is missing cover art`);
   }
 });
+
+test("the product grid renders art from both registries", () => {
+  const grid = readFileSync(new URL("../../src/components/danslab/Products.tsx", import.meta.url), "utf8");
+
+  assert.match(grid, /import \{ ProductCovers \} from "\.\/ProductCovers";/);
+  assert.match(grid, /const Art = ProductArt\[p\.id\] \?\? ProductCovers\[p\.id\];/);
+});
+
+test("animated covers pause for reduced-motion users", () => {
+  const covers = readFileSync(new URL("../../src/components/danslab/ProductCovers.tsx", import.meta.url), "utf8");
+
+  assert.match(covers, /prefers-reduced-motion: reduce/);
+  assert.match(covers, /pauseAnimations\(\)/);
+  assert.match(covers, /<svg ref=\{svgRef\}/);
+});

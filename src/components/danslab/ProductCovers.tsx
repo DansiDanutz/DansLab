@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useEffect, useRef, type ReactNode } from "react";
 import { ArtFrame } from "./ProductArt";
 
 // Inline SVG covers for the flagship products that have no design-system art.
@@ -8,11 +10,35 @@ type CoverProps = { color?: string };
 
 const MONO = "JetBrains Mono,monospace";
 const svgStyle = { position: "absolute", inset: 0, width: "100%", height: "100%" } as const;
+// SMIL ignores CSS motion preferences; freeze late enough that one-shot animations show their end state.
+const REDUCED_MOTION_FRAME_SECONDS = 2;
+
+function useReducedMotionPause() {
+  const ref = useRef<SVGSVGElement>(null);
+  useEffect(() => {
+    const svg = ref.current;
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!svg) return;
+    const sync = () => {
+      if (query.matches) {
+        svg.setCurrentTime(REDUCED_MOTION_FRAME_SECONDS);
+        svg.pauseAnimations();
+      } else {
+        svg.unpauseAnimations();
+      }
+    };
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+  return ref;
+}
 
 function Cover({ color, label, children }: { color: string; label: string; children: ReactNode }) {
+  const svgRef = useReducedMotionPause();
   return (
     <ArtFrame color={color}>
-      <svg viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" style={svgStyle}>
+      <svg ref={svgRef} viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice" style={svgStyle}>
         {children}
       </svg>
       <div style={{ position: "absolute", left: 10, bottom: 10, fontFamily: MONO, fontSize: 9, letterSpacing: ".15em", color }}>
