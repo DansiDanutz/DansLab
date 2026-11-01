@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
   { label: "Home", href: "/" },
@@ -17,11 +17,16 @@ export function Nav() {
   const pathname = usePathname();
   // Phones hide the inline links; the toggle opens them as a dropdown panel.
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
@@ -54,11 +59,13 @@ export function Nav() {
           <Link
             className="dl-nav-cta"
             href="/#dl-products"
+            onClick={() => setOpen(false)}
           >
             <span style={{ width: 6, height: 6, borderRadius: 999, background: "#fff", boxShadow: "0 0 8px #fff" }} />
             View Projects
           </Link>
           <button
+            ref={toggleRef}
             type="button"
             className="dl-nav-toggle"
             aria-expanded={open}

@@ -19,7 +19,13 @@ test("phones get a menu button that exposes every page link", () => {
 
 test("the phone menu closes after navigating or pressing Escape", () => {
   assert.match(nav, /useEffect\(\(\) => setOpen\(false\), \[pathname\]\)/, "menu stays open on the next page");
-  assert.match(nav, /e\.key === "Escape"/, "Escape does not close the menu");
+  assert.match(nav, /e\.key !== "Escape"/, "Escape does not close the menu");
+  assert.match(nav, /toggleRef\.current\?\.focus\(\)/, "Escape drops keyboard focus instead of returning it to the button");
+});
+
+test("View Projects closes the menu even though only the hash changes", () => {
+  const cta = nav.slice(nav.indexOf('href="/#dl-products"'), nav.indexOf("View Projects"));
+  assert.match(cta, /onClick=\{\(\) => setOpen\(false\)\}/, "menu stays open over the projects section");
 });
 
 test("the nav reaches the contact page on every screen size", () => {
