@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact — DansLab",
+  title: "Contact",
   description:
     "Partnership, press, investor, or consulting inquiry — send a structured message direct to Dan via email or WhatsApp.",
 };
