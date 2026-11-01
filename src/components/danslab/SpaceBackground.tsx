@@ -187,7 +187,8 @@ export function SpaceBackground() {
 
       // avatar star sequence
       avClock += dt;
-      if (!av.active && avatarReady && avClock >= AV_PERIOD && window.scrollY < H * 0.8) {
+      // Landing spots are planned around the home hero terminal; elsewhere the avatar would cover page content.
+      if (!av.active && avatarReady && avClock >= AV_PERIOD && window.scrollY < H * 0.8 && document.querySelector(".dl-terminal")) {
         avClock = 0;
         // borrow a star from the left/center so the flight reads
         let pick = -1;

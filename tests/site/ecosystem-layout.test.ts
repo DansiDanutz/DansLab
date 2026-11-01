@@ -48,6 +48,19 @@ for (const width of WIDTHS) {
   });
 }
 
+test("wrapped tiers split into even rows instead of leaving one node alone", () => {
+  const layout = computeLayout(TIERS, 375);
+  for (const tier of TIERS) {
+    const counts = new Map<number, number>();
+    for (const id of tier.nodes) {
+      const y = Math.round(layout.nodes[id].y);
+      counts.set(y, (counts.get(y) ?? 0) + 1);
+    }
+    const sizes = [...counts.values()];
+    assert.ok(Math.max(...sizes) - Math.min(...sizes) <= 1, `${tier.id} rows are uneven: ${sizes.join(" + ")}`);
+  }
+});
+
 test("tier bands stack in order without overlapping", () => {
   const { tiers } = computeLayout(TIERS, 1024);
   for (let i = 1; i < tiers.length; i++) {

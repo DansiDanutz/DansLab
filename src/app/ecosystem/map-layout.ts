@@ -15,14 +15,25 @@ export type LayoutMetrics = {
   gap: number;         // space between tiers
 };
 
-export const DESKTOP_METRICS: LayoutMetrics = { minColumn: 116, maxColumn: 200, header: 34, row: 112, gap: 14 };
+export const DESKTOP_METRICS: LayoutMetrics = { minColumn: 104, maxColumn: 200, header: 34, row: 112, gap: 14 };
 export const COMPACT_METRICS: LayoutMetrics = { minColumn: 92, maxColumn: 140, header: 30, row: 98, gap: 10 };
 export const COMPACT_BREAKPOINT = 640;
 
 export const metricsFor = (width: number) => (width < COMPACT_BREAKPOINT ? COMPACT_METRICS : DESKTOP_METRICS);
 
-function chunk<T>(items: T[], size: number): T[][] {
-  return Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, i * size + size));
+// Split into the fewest rows that fit, then even them out (8 across 7 slots → 4 + 4, not 7 + 1).
+function balancedRows<T>(items: T[], maxPerRow: number): T[][] {
+  const rowCount = Math.ceil(items.length / maxPerRow);
+  const base = Math.floor(items.length / rowCount);
+  const extra = items.length % rowCount;
+  const rows: T[][] = [];
+  let start = 0;
+  for (let i = 0; i < rowCount; i++) {
+    const size = base + (i < extra ? 1 : 0);
+    rows.push(items.slice(start, start + size));
+    start += size;
+  }
+  return rows;
 }
 
 export function computeLayout(tiers: Tier[], width: number, metrics: LayoutMetrics = metricsFor(width)): MapLayout {
@@ -32,7 +43,7 @@ export function computeLayout(tiers: Tier[], width: number, metrics: LayoutMetri
   let top = 0;
 
   for (const tier of tiers) {
-    const rows = chunk(tier.nodes, perRow);
+    const rows = balancedRows(tier.nodes, perRow);
     rows.forEach((row, r) => {
       const column = Math.min(metrics.maxColumn, width / row.length);
       const start = width / 2 - (column * (row.length - 1)) / 2;
