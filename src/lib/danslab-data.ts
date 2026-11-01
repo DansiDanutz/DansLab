@@ -111,26 +111,16 @@ export const AGENTS: Agent[] = [
 export const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@DansLab-WorldCup";
 
 export const PRODUCTS: Product[] = [
-  { id: "danslab", name: "DansLab", lead: "David", desc: "Fleet architecture and audit surface", color: "#c0392b", href: "https://danslab.vercel.app", kpi: "RepoAudit verified READY" },
-  { id: "repoaudit", name: "RepoAudit", lead: "Dan", desc: "Fleet audit control plane", color: "#22c55e", href: "https://repoaudit.vercel.app", kpi: "Audit source of truth" },
-  { id: "crawdbot", name: "CrawdBot", lead: "Dexter", desc: "YouTube automation suite", color: "#d4a017", href: "https://molt-bot-seven.vercel.app", kpi: "Audited production app" },
-  { id: "crawboard", name: "CrawBoard", lead: "Dexter", desc: "Creator operations dashboard", color: "#3b82f6", href: "https://team.crawdbot.com", kpi: "Audited production app" },
-  { id: "marketplace", name: "MyWork Marketplace", lead: "Memo", desc: "Build and ship marketplace", color: "#c0392b", href: "https://my-work-ai.vercel.app", kpi: "Audited production app" },
-  { id: "zmartrise", name: "ZmartRise", lead: "Sienna", desc: "AI-powered market intelligence", color: "#d4a017", href: "https://www.zmartrise.ai", kpi: "Audited custom domain" },
-  { id: "worldcup", name: "WorldCup", lead: "Dan", desc: "Football content and analytics app", color: "#22c55e", href: "https://worldcup-irises-projects-ce549f63.vercel.app", kpi: "Audited production app" },
+  { id: "nervix", name: "Nervix.ai", lead: "David", desc: "Agent federation where AI agents earn real money", color: "#c0392b", href: "https://nervix.ai", kpi: "Federation protocol v2" },
+  { id: "nervixpay", name: "NervixPay", lead: "David", desc: "Multi-chain stablecoin payments for merchants and agents", color: "#d4a017", href: "https://nervixpay.live", kpi: "Polygon · BNB · TON · Tron" },
+  { id: "fakereal", name: "Fake / Real", lead: "Dan", desc: "Paste a link, get the evidence — fact-checking with JEV", color: "#22c55e", href: "https://www.fake-real.live", kpi: "Live fact-check engine" },
+  { id: "zmarty", name: "Zmarty", lead: "Sienna", desc: "AI market intelligence: liquidation maps, regime detection, pre-trade briefings", color: "#f97316", href: "https://zmartychat-landing.vercel.app", kpi: "OpenClaw-ready API" },
+  { id: "repoaudit", name: "RepoAudit", lead: "Dan", desc: "Fleet audit control plane for every repository", color: "#22c55e", href: "https://repoaudit.vercel.app", kpi: "Audit source of truth" },
+  { id: "dailystock", name: "DailyStock", lead: "Sienna", desc: "Daily stock and crypto setups, scored", color: "#f97316", href: "https://dailystock-cyan.vercel.app", kpi: "Daily scored cards" },
+  { id: "adnow", name: "Ad NOW", lead: "Dan", desc: "30-second ad cards that play before every SemeClaw meeting", color: "#d4a017", href: "https://ad-semeclaw.vercel.app", kpi: "SemeClaw advertiser console" },
+  { id: "worldcup26", name: "WorldCup26 Legend Cards", lead: "Dan", desc: "Watch the story, unlock the card", color: "#22c55e", href: "https://worldcup26.world", kpi: "Collectible legend cards" },
   { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's live YouTube football channel", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, kpi: "Live channel" },
-  { id: "pokerclubcluj", name: "Poker Club Cluj", lead: "Dan", desc: "Public civic campaign and memo hub", color: "#3b82f6", href: "https://poker-club-cluj.vercel.app", kpi: "Audited production app" },
-  { id: "pokercluj", name: "PokerCluj", lead: "Dan", desc: "Poker Cluj public deployment", color: "#60a5fa", href: "https://pokercluj.vercel.app", kpi: "Audited production app" },
-  { id: "pokeragent", name: "PokerAgent", lead: "Dan", desc: "Poker analysis agent surface", color: "#a855f7", href: "https://poker-agent-flax.vercel.app", kpi: "Audited production app" },
-  { id: "adsemeclaw", name: "Ad-SemeClaw", lead: "Dan", desc: "SemeClaw ad campaign surface", color: "#c0392b", href: "https://ad-semeclaw.vercel.app", kpi: "Audited production app" },
-  { id: "danslabvideo", name: "DansLab Video", lead: "Dan", desc: "Video pipeline public surface", color: "#ec4899", href: "https://danslab-video.vercel.app", kpi: "Audited production app" },
-  { id: "livetranslation", name: "LiveTranslation", lead: "Dan", desc: "Live translation app", color: "#14b8a6", href: "https://live-translation-eight.vercel.app", kpi: "Audited production app" },
-  { id: "dailystock", name: "DailyStock", lead: "Sienna", desc: "Daily market dashboard", color: "#f97316", href: "https://dailystock-cyan.vercel.app", kpi: "Audited production app" },
-  { id: "dansemenescu", name: "Dan Semenescu", lead: "Dan", desc: "Founder personal site", color: "#f5f5f5", href: "https://dansemenescu.vercel.app", kpi: "Audited production app" },
-  { id: "danmatei", name: "Dan Matei", lead: "Dan", desc: "Dan Matei public site", color: "#22c55e", href: "https://www.danmatei.ro", kpi: "Audited custom domain" },
-  { id: "scoalafotbal", name: "Scoala Fotbal Dan Matei", lead: "Dan", desc: "Football school public site", color: "#38bdf8", href: "https://scoala-fotbal-dan-matei.vercel.app", kpi: "Audited production app" },
-  { id: "game1", name: "Shikaku Quest", lead: "Dan", desc: "Puzzle game deployment", color: "#a3e635", href: "https://shikaku-quest-three.vercel.app", kpi: "Audited production app" },
-  { id: "staticdeployment", name: "Static Deployment", lead: "Dan", desc: "Static production deployment", color: "#f59e0b", href: "https://static-deployment-swart.vercel.app", kpi: "Audited production app" },
+  { id: "danslabvideo", name: "DansLab — The Series", lead: "Dan", desc: "A company built by machines, told in nine films", color: "#ec4899", href: "https://danslab-video.vercel.app", kpi: "Nine-film series" },
 ];
 
 export const ACTIVITY: ActivityItem[] = [
@@ -148,7 +138,7 @@ export const ACTIVITY: ActivityItem[] = [
 
 export const STATS: Stat[] = [
   { label: "Active agents", value: 30, suffix: "+", sub: "across 5 droplets" },
-  { label: "Production surfaces", value: PRODUCTS.length, suffix: "", sub: "19 audited apps + YouTube" },
+  { label: "Production surfaces", value: PRODUCTS.length, suffix: "", sub: "flagship apps + YouTube" },
   { label: "Cron jobs", value: 38, suffix: "/day", sub: "14 Dexter · 24 Memo" },
   { label: "Uptime", value: 99.94, suffix: "%", sub: "last 30 days" },
 ];

@@ -3,56 +3,68 @@ import { test } from "node:test";
 
 import { PRODUCTS, YOUTUBE_CHANNEL_URL } from "../../src/lib/danslab-data";
 
-const AUDITED_PROJECT_IDS = [
-  "adsemeclaw",
-  "crawboard",
-  "crawdbot",
+// Curated flagship set: only polished, live surfaces, one card per product.
+const FLAGSHIP_PROJECT_IDS = [
+  "adnow",
   "dailystock",
-  "danmatei",
-  "dansemenescu",
-  "danslab",
   "danslabvideo",
-  "game1",
-  "livetranslation",
-  "marketplace",
-  "pokeragent",
-  "pokercluj",
-  "pokerclubcluj",
+  "fakereal",
+  "nervix",
+  "nervixpay",
   "repoaudit",
-  "scoalafotbal",
-  "staticdeployment",
-  "worldcup",
-  "zmartrise",
+  "worldcup26",
+  "youtube",
+  "zmarty",
 ].sort();
 
-test("project grid contains the audited production set and live YouTube channel", () => {
-  const auditedIds = PRODUCTS
-    .filter((product) => product.id !== "youtube")
-    .map((product) => product.id)
-    .sort();
+// Removed as duplicates, placeholders, login-only shells or this site itself.
+const EXCLUDED_PROJECT_IDS = [
+  "danslab",
+  "crawdbot",
+  "crawboard",
+  "marketplace",
+  "zmartrise",
+  "pokerclubcluj",
+  "pokercluj",
+  "pokeragent",
+  "livetranslation",
+  "dansemenescu",
+  "danmatei",
+  "scoalafotbal",
+  "game1",
+  "staticdeployment",
+];
 
-  assert.deepEqual(auditedIds, AUDITED_PROJECT_IDS);
-  assert.equal(PRODUCTS.length, AUDITED_PROJECT_IDS.length + 1);
-  assert.equal(PRODUCTS.find((product) => product.id === "youtube")?.href, YOUTUBE_CHANNEL_URL);
+test("project grid shows exactly the curated flagship set", () => {
+  const ids = PRODUCTS.map((product) => product.id).sort();
+
+  assert.deepEqual(ids, FLAGSHIP_PROJECT_IDS);
+  for (const id of EXCLUDED_PROJECT_IDS) {
+    assert.ok(!ids.includes(id), `${id} must not be listed`);
+  }
 });
 
-test("project cards use unique HTTPS destinations without placeholders", () => {
-  const ids = PRODUCTS.map((product) => product.id);
-  const hrefs = PRODUCTS.map((product) => product.href);
+test("project cards have no duplicate ids, names or destinations", () => {
+  const unique = (values: string[]) => new Set(values.map((v) => v.toLowerCase())).size;
 
-  assert.equal(new Set(ids).size, ids.length);
-  assert.equal(new Set(hrefs).size, hrefs.length);
+  assert.equal(unique(PRODUCTS.map((p) => p.id)), PRODUCTS.length);
+  assert.equal(unique(PRODUCTS.map((p) => p.name)), PRODUCTS.length);
+  assert.equal(unique(PRODUCTS.map((p) => new URL(p.href).hostname.replace(/^www\./, ""))), PRODUCTS.length);
+});
 
+test("project cards use HTTPS destinations without placeholders", () => {
   for (const product of PRODUCTS) {
     assert.match(product.href, /^https:\/\//, `${product.name} must use HTTPS`);
     assert.notEqual(product.href, "#", `${product.name} must not use a placeholder link`);
   }
 });
 
-test("redirected products use their canonical public destinations", () => {
+test("flagship products use their canonical public destinations", () => {
   const hrefById = new Map(PRODUCTS.map((product) => [product.id, product.href]));
 
+  assert.equal(hrefById.get("nervix"), "https://nervix.ai");
+  assert.equal(hrefById.get("nervixpay"), "https://nervixpay.live");
+  assert.equal(hrefById.get("fakereal"), "https://www.fake-real.live");
   assert.equal(hrefById.get("repoaudit"), "https://repoaudit.vercel.app");
-  assert.equal(hrefById.get("crawboard"), "https://team.crawdbot.com");
-  assert.equal(hrefById.get("youtube"), "https://www.youtube.com/@DansLab-WorldCup");
+  assert.equal(hrefById.get("youtube"), YOUTUBE_CHANNEL_URL);
 });
