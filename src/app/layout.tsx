@@ -7,7 +7,7 @@ import { SpaceBackground } from "@/components/danslab/SpaceBackground";
 import { PRODUCTS } from "@/lib/danslab-data";
 
 const productionSurfaceCount = PRODUCTS.length;
-const auditedProjectCount = PRODUCTS.filter((product) => product.id !== "youtube").length;
+const flagshipProjectCount = PRODUCTS.filter((product) => product.id !== "youtube").length;
 
 const sans = Inter({
   subsets: ["latin"],
@@ -54,15 +54,16 @@ export const metadata: Metadata = {
     template: "%s | DansLab",
   },
   description:
-    `A fleet of 30+ AI agents with ${auditedProjectCount} RepoAudit-verified projects and a live YouTube channel.`,
+    `A fleet of 30+ AI agents with ${flagshipProjectCount} flagship projects and a live YouTube channel.`,
   keywords: [
     "DansLab",
     "multi-agent AI",
     "autonomous AI lab",
     "RepoAudit",
-    "CrawdBot",
-    "CrawBoard",
-    "ZmartRise",
+    "Nervix",
+    "NervixPay",
+    "Fake Real",
+    "Zmarty",
     "OpenClaw",
     "Dan Semenescu",
     "Cluj-Napoca AI",
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "DansLab - A human-led autonomous AI lab",
     description:
-      `30+ agents, ${auditedProjectCount} RepoAudit-verified projects, and a live YouTube channel.`,
+      `30+ agents, ${flagshipProjectCount} flagship projects, and a live YouTube channel.`,
     type: "website",
     url: "https://danslab.vercel.app",
     siteName: "DansLab",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DansLab - A human-led autonomous AI lab",
     description:
-      `30+ agents, ${auditedProjectCount} audited projects, and a live YouTube channel. Built by Dan Semenescu.`,
+      `30+ agents, ${flagshipProjectCount} flagship projects, and a live YouTube channel. Built by Dan Semenescu.`,
     creator: "@dansemenescu",
   },
   robots: { index: true, follow: true },
