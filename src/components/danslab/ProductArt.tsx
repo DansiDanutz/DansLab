@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 // Inline SVG cover art for each product card
 // Ported from design-system/product-art.jsx
 
-function ArtFrame({ color, children }: { color: string; children: ReactNode }) {
+export function ArtFrame({ color, children }: { color: string; children: ReactNode }) {
   return (
     <div style={{
       position: "absolute", inset: 0, borderRadius: 4, overflow: "hidden",

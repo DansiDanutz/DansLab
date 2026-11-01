@@ -3,6 +3,7 @@
 import { AGENTS, PRODUCTS } from "@/lib/danslab-data";
 import { Monogram, SectionLabel, cssVar } from "./atoms";
 import { ProductArt } from "./ProductArt";
+import { ProductCovers } from "./ProductCovers";
 
 export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
   const productCount = PRODUCTS.length;
@@ -23,7 +24,7 @@ export function Products({ youtubeKpi }: { youtubeKpi?: string }) {
       <div className="dl-products-grid">
         {PRODUCTS.map((p, i) => {
           const leadAgent = AGENTS.find((a) => a.name === p.lead);
-          const Art = ProductArt[p.id];
+          const Art = ProductArt[p.id] ?? ProductCovers[p.id];
           const isExternal = p.href.startsWith("http");
           return (
             <a
