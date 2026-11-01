@@ -3,15 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { SITE_PAGES } from "@/lib/site-nav";
 
-const LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Ecosystem", href: "/ecosystem" },
-  { label: "Lab", href: "/lab" },
-  { label: "SemeClaw", href: "/semeclaw" },
-  { label: "Story", href: "/story" },
-  { label: "Contact", href: "/contact" },
-];
 
 export function Nav() {
   const pathname = usePathname();
@@ -40,7 +33,7 @@ export function Nav() {
           <span className="dl-logo-sub">{"// v2026.4"}</span>
         </Link>
         <div id="dl-nav-links" className={`dl-nav-links ${open ? "is-open" : ""}`}>
-          {LINKS.map((l) => {
+          {SITE_PAGES.map((l) => {
             const active = pathname === l.href || (l.href !== "/" && pathname?.startsWith(l.href));
             return (
               <Link

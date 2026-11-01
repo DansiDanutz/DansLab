@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx lib/seed.ts",
-    "test": "tsx --test tests/**/*.test.ts"
+    "test": "TSX_TSCONFIG_PATH=tests/tsconfig.json tsx --test tests/**/*.test.ts"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.2.1",

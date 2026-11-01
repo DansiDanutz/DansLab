@@ -28,6 +28,7 @@ test("View Projects closes the menu even though only the hash changes", () => {
   assert.match(cta, /onClick=\{\(\) => setOpen\(false\)\}/, "menu stays open over the projects section");
 });
 
-test("the nav reaches the contact page on every screen size", () => {
-  assert.match(nav, /href: "\/contact"/);
+test("the menu renders the shared page list", () => {
+  assert.match(nav, /from "@\/lib\/site-nav"/);
+  assert.match(nav, /SITE_PAGES\.map\(/);
 });
