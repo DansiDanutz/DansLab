@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { PRODUCTS, YOUTUBE_CHANNEL_URL } from "@/lib/danslab-data";
+import { SITE_PAGES } from "@/lib/site-nav";
 
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const COMMIT_SHA = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7);
@@ -13,7 +15,7 @@ export function Footer() {
               Dans<span style={{ color: "var(--dl-accent-hot)" }}>Lab</span>
             </div>
             <p className="dl-footer-line">
-              A human-led autonomous AI lab. Dan orchestrates 30+ agents across {PRODUCTS.length} production surfaces.
+              A human-led autonomous AI lab. Dan orchestrates 30+ agents across {PRODUCTS.length} flagship surfaces.
               Built in Cluj-Napoca | Frankfurt | US-East.
             </p>
           </div>
@@ -32,10 +34,9 @@ export function Footer() {
           <div>
             <h4>LAB</h4>
             <ul>
-              <li><a href="/ecosystem">Ecosystem</a></li>
-              <li><a href="/lab">Agents</a></li>
-              <li><a href="/semeclaw">War Room</a></li>
-              <li><a href="/story">Story</a></li>
+              {SITE_PAGES.filter((page) => page.href !== "/").map((page) => (
+                <li key={page.href}><Link href={page.href}>{page.label}</Link></li>
+              ))}
             </ul>
           </div>
           <div>
