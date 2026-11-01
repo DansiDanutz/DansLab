@@ -8,10 +8,14 @@ const FLAGSHIP_PROJECT_IDS = [
   "adnow",
   "dailystock",
   "danslabvideo",
+  "dexty",
   "fakereal",
   "nervix",
   "nervixpay",
+  "preflop",
+  "reality",
   "repoaudit",
+  "shikaku",
   "worldcup26",
   "youtube",
   "zmarty",
@@ -31,7 +35,6 @@ const EXCLUDED_PROJECT_IDS = [
   "dansemenescu",
   "danmatei",
   "scoalafotbal",
-  "game1",
   "staticdeployment",
 ];
 
@@ -65,6 +68,7 @@ test("flagship products use their canonical public destinations", () => {
   assert.equal(hrefById.get("nervix"), "https://nervix.ai");
   assert.equal(hrefById.get("nervixpay"), "https://nervixpay.live");
   assert.equal(hrefById.get("fakereal"), "https://www.fake-real.live");
+  assert.equal(hrefById.get("dexty"), "https://dexty.live");
   assert.equal(hrefById.get("repoaudit"), "https://repoaudit.vercel.app");
   assert.equal(hrefById.get("youtube"), YOUTUBE_CHANNEL_URL);
 });

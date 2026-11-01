@@ -118,7 +118,11 @@ export const PRODUCTS: Product[] = [
   { id: "repoaudit", name: "RepoAudit", lead: "Dan", desc: "Fleet audit control plane for every repository", color: "#22c55e", href: "https://repoaudit.vercel.app", kpi: "Audit source of truth" },
   { id: "dailystock", name: "DailyStock", lead: "Sienna", desc: "Daily stock and crypto setups, scored", color: "#f97316", href: "https://dailystock-cyan.vercel.app", kpi: "Daily scored cards" },
   { id: "adnow", name: "Ad NOW", lead: "Dan", desc: "30-second ad cards that play before every SemeClaw meeting", color: "#d4a017", href: "https://ad-semeclaw.vercel.app", kpi: "SemeClaw advertiser console" },
-  { id: "worldcup26", name: "WorldCup26 Legend Cards", lead: "Dan", desc: "Watch the story, unlock the card", color: "#22c55e", href: "https://worldcup26.world", kpi: "Collectible legend cards" },
+  { id: "dexty", name: "Did You Know That?", lead: "Dan", desc: "History mystery game: one subject traced from 1500 to 2100", color: "#a855f7", href: "https://dexty.live", kpi: "Daily facts · episodes" },
+  { id: "reality", name: "Reality", lead: "Dan", desc: "Live a second life on a living 3D Earth", color: "#38bdf8", href: "https://reality-gamma.vercel.app", kpi: "3D life simulation" },
+  { id: "preflop", name: "PreFlop", lead: "Dan", desc: "Predict the flop: exact odds over all 22,100 flops", color: "#22c55e", href: "https://preflop-staging-web.vercel.app", kpi: "Signed evidence chain" },
+  { id: "shikaku", name: "Shikaku Quest", lead: "Dan", desc: "Puzzle quest game", color: "#a3e635", href: "https://shikaku-quest-three.vercel.app", kpi: "Live puzzle game" },
+  { id: "worldcup26",name: "WorldCup26 Legend Cards", lead: "Dan", desc: "Watch the story, unlock the card", color: "#22c55e", href: "https://worldcup26.world", kpi: "Collectible legend cards" },
   { id: "youtube", name: "WorldCup Central", lead: "Dan", desc: "The lab's live YouTube football channel", color: "#c0392b", href: YOUTUBE_CHANNEL_URL, kpi: "Live channel" },
   { id: "danslabvideo", name: "DansLab — The Series", lead: "Dan", desc: "A company built by machines, told in nine films", color: "#ec4899", href: "https://danslab-video.vercel.app", kpi: "Nine-film series" },
 ];
