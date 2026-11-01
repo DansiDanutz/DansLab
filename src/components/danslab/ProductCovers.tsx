@@ -113,7 +113,7 @@ function DailyStockArt({ color = "#f97316" }: CoverProps) {
   const candles = Array.from({ length: 16 }, (_, i) => {
     const base = 62 - i * 1.8 + (seeded(i) - 0.5) * 10;
     const up = seeded(i + 40) > 0.35;
-    return { x: 14 + i * 6.4, o: up ? base + 4 : base - 4, c: up ? base - 4 : base + 4, h: base - 9, l: base + 9, up };
+    return { x: 24 + i * 5.6, o: up ? base + 4 : base - 4, c: up ? base - 4 : base + 4, h: base - 9, l: base + 9, up };
   });
   return (
     <Cover color={color} label="◢ TODAY'S SETUPS · SCORED">
@@ -168,15 +168,15 @@ function DextyArt({ color = "#a855f7" }: CoverProps) {
       </defs>
       <text x="80" y="58" textAnchor="middle" fontSize="54" fontWeight="900" fill="url(#dexty-q)" filter="url(#dexty-glow)" opacity=".7">?</text>
       <text x="80" y="58" textAnchor="middle" fontSize="54" fontWeight="900" fill="url(#dexty-q)">?</text>
-      <line x1="16" x2="144" y1="72" y2="72" stroke={color} strokeOpacity=".5" strokeWidth=".5" />
+      <line x1="26" x2="134" y1="72" y2="72" stroke={color} strokeOpacity=".5" strokeWidth=".5" />
       {years.map((y, i) => (
-        <g key={y} transform={`translate(${16 + i * 32} 72)`}>
+        <g key={y} transform={`translate(${26 + i * 27} 72)`}>
           <circle r="1.6" fill={i === 3 ? "#f97316" : color} />
           <text y="-4" textAnchor="middle" fill="#c4b5fd" fontFamily={MONO} fontSize="3.6">{y}</text>
         </g>
       ))}
       <circle cy="72" r="2.4" fill="#fff">
-        <animate attributeName="cx" values="16;144;16" dur="6s" repeatCount="indefinite" />
+        <animate attributeName="cx" values="26;134;26" dur="6s" repeatCount="indefinite" />
       </circle>
     </Cover>
   );
@@ -285,7 +285,7 @@ function WorldCup26Art({ color = "#22c55e" }: CoverProps) {
       <rect x="84" y="16" width="36" height="52" rx="4" fill="#0b2216" stroke={color} strokeOpacity=".35" strokeWidth=".5" transform="rotate(10 102 42)" />
       <rect x="58" y="8" width="44" height="64" rx="4" fill="#062014" stroke="url(#wc-holo)" strokeWidth="1.2" />
       <polygon points="80,22 84,32 95,32 86,38 89,49 80,42 71,49 74,38 65,32 76,32" fill="url(#wc-holo)" />
-      <text x="80" y="60" textAnchor="middle" fill="#fef3c7" fontFamily={MONO} fontSize="4.4" fontWeight="700">THE VANISHED HERO</text>
+      <text x="80" y="60" textAnchor="middle" fill="#fef3c7" fontFamily={MONO} fontSize="3.5" fontWeight="700">THE VANISHED HERO</text>
       <g clipPath="url(#wc-card)">
         <rect x="-30" y="0" width="20" height="100" fill="url(#wc-shine)" transform="skewX(-20)">
           <animate attributeName="x" values="30;150" dur="3.2s" repeatCount="indefinite" />
