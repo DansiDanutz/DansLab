@@ -205,7 +205,8 @@
         state.phase = 'error';
         if (get('decision-api-costs')) get('decision-api-costs').innerHTML = '<p>Cost evidence unavailable.</p>';
         get('decision-history-status').textContent = 'Decision archive unavailable: ' + error.message;
-        get('decision-history-rows').innerHTML = '<div class="empty error">Saved decision history could not be loaded.</div>';
+        get('decision-history-rows').innerHTML = '<div class="empty error">Saved decision history could not be loaded.</div><button type="button" id="decision-retry">Retry this page</button>';
+        get('decision-retry').addEventListener('click', () => load());
         get('decision-distribution').innerHTML = '<div class="empty error">Distribution unavailable.</div>';
         get('decision-timeline').innerHTML = '<div class="empty error">Timeline unavailable.</div>';
       }

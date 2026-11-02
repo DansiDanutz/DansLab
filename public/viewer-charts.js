@@ -303,7 +303,7 @@
     }) : null;
     if (observer) observer.observe(equityTarget);
     return { render: draw, update(next) { current = next; return draw(); },
-      updateAges(now = Date.now()) { renderReceiptAge(model, id => doc.getElementById(id), now); },
+      updateAges(now = Date.now()) { if (range !== 'all') model = render(current, range, doc, now); else renderReceiptAge(model, id => doc.getElementById(id), now); },
       disconnect() { if (observer) observer.disconnect(); } };
   }
 
