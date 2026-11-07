@@ -2,31 +2,23 @@ import Image from "next/image";
 import type { Video } from "@/lib/videos";
 
 function VideoFrame({ video }: { video: Video }) {
-  const { source, title, poster } = video;
-  switch (source.kind) {
-    case "file":
-      return (
-        <video controls playsInline preload="none" poster={poster} aria-label={title}>
-          <source src={source.url} type="video/mp4" />
-        </video>
-      );
-    case "youtube":
-      return (
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${source.id}`}
-          title={title}
-          loading="lazy"
-          allow="encrypted-media; picture-in-picture; fullscreen"
-        />
-      );
-    case "soon":
-      return (
-        <>
-          <Image src={poster} alt="" fill sizes="(max-width: 720px) 100vw, 360px" />
-          <span className="video-soon">Coming soon</span>
-        </>
-      );
+  const { source, title } = video;
+  if (source.kind === "youtube") {
+    return (
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${source.id}`}
+        title={title}
+        loading="lazy"
+        allow="encrypted-media; picture-in-picture; fullscreen"
+      />
+    );
   }
+  return (
+    <>
+      <Image src={source.poster} alt="" fill sizes="(max-width: 720px) 100vw, 360px" />
+      <span className="video-soon">Coming soon</span>
+    </>
+  );
 }
 
 export function VideoCard({ video }: { video: Video }) {

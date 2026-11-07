@@ -4,7 +4,7 @@ import { VIDEOS } from "@/lib/videos";
 
 export const metadata = {
   title: "Videos · DansLab",
-  description: "Every Dan's Lab episode in one place, from The Origin to The Flywheel.",
+  description: "Every Dan's Lab episode in one place.",
 };
 
 export default function VideosPage() {
