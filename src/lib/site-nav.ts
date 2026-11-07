@@ -6,5 +6,6 @@ export const SITE_PAGES = [
   { label: "Lab", href: "/lab" },
   { label: "SemeClaw", href: "/semeclaw" },
   { label: "Story", href: "/story" },
+  { label: "Videos", href: "/videos" },
   { label: "Contact", href: "/contact" },
 ] as const;
