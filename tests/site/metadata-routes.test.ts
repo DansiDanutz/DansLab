@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import sitemap from "../../src/app/sitemap";
 import robots from "../../src/app/robots";
 
-const ROUTES = ["/", "/ecosystem", "/lab", "/semeclaw", "/story", "/contact"];
+const ROUTES = ["/", "/ecosystem", "/lab", "/semeclaw", "/story", "/videos", "/contact"];
 
 test("sitemap lists every public route exactly once", () => {
   const entries = sitemap();

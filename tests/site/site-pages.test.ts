@@ -30,6 +30,7 @@ test("the rendered footer links every page except Home, Contact included", () =>
     { href: "/lab", label: "Lab" },
     { href: "/semeclaw", label: "SemeClaw" },
     { href: "/story", label: "Story" },
+    { href: "/videos", label: "Videos" },
     { href: "/contact", label: "Contact" },
   ]);
 });
