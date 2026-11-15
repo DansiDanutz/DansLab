@@ -6,15 +6,18 @@ import { test } from "node:test";
 const nav = readFileSync(new URL("../../src/components/danslab/Nav.tsx", import.meta.url), "utf8");
 const css = readFileSync(new URL("../../src/app/globals.css", import.meta.url), "utf8");
 
-const phoneBlock = css.slice(css.indexOf("@media (max-width: 720px)"));
+const compactNavBlock = css.slice(
+  css.indexOf("@media (max-width: 1100px)"),
+  css.indexOf("@media (max-width: 720px)"),
+);
 
-test("phones get a menu button that exposes every page link", () => {
+test("phones and tablets get a menu button that exposes every page link", () => {
   assert.match(nav, /className="dl-nav-toggle"/, "no menu button in the nav");
   assert.match(nav, /aria-expanded=\{open\}/, "menu button does not report its state");
   assert.match(nav, /aria-controls="dl-nav-links"/, "menu button is not tied to the links");
   assert.match(nav, /id="dl-nav-links"/);
-  assert.match(phoneBlock, /\.dl-nav-toggle\s*\{[^}]*display:\s*inline-flex/, "menu button stays hidden on phones");
-  assert.match(phoneBlock, /\.dl-nav-links\.is-open\s*\{[^}]*display:\s*flex/, "open menu never shows the links");
+  assert.match(compactNavBlock, /\.dl-nav-toggle\s*\{[^}]*display:\s*inline-flex/, "menu button stays hidden on phones and tablets");
+  assert.match(compactNavBlock, /\.dl-nav-links\.is-open\s*\{[^}]*display:\s*flex/, "open menu never shows the links");
 });
 
 test("the phone menu closes after navigating or pressing Escape", () => {

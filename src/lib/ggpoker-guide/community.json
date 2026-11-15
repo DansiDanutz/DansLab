@@ -1,0 +1,1034 @@
+[
+  {
+    "id": "branding",
+    "title": "Branding",
+    "kicker": "Identitate vizuală",
+    "summary": "Înlocuiește sigla și bannerul general al lobby-ului, verifică rezultatul și revino la imaginile implicite când este necesar.",
+    "minutes": 4,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "branding-pregatire",
+        "title": "Pregătește imaginile potrivite",
+        "paragraphs": [
+          "Deschide Branding din meniul administrării. Pagina are două carduri independente: Wordmark / logo și Lobby banner. Previzualizarea fiecărui card arată imaginea folosită în prezent. Schimbarea unui card nu îl modifică pe celălalt.",
+          "Păstrează o copie a imaginilor originale înainte de înlocuire. Reset to default revine la resursa implicită a aplicației, nu la ultima imagine încărcată de tine."
+        ],
+        "table": {
+          "headers": [
+            "Element",
+            "Pregătire recomandată"
+          ],
+          "rows": [
+            [
+              "Wordmark / logo",
+              "PNG transparent, aproximativ 216 × 48 px; grafica albă se potrivește fundalului închis."
+            ],
+            [
+              "Lobby banner",
+              "Imagine lată, ideal 845 × 143 px. Zona afișată poate fi decupată."
+            ],
+            [
+              "Fișier",
+              "Selectorul acceptă PNG, JPEG și WebP, maximum 3 MB."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "branding-upload",
+        "title": "Încarcă și verifică",
+        "steps": [
+          {
+            "title": "Alege cardul corect",
+            "text": "Apasă Upload image sub siglă sau sub banner. Selectează fișierul final, cu un nume ușor de recunoscut."
+          },
+          {
+            "title": "Așteaptă confirmarea",
+            "text": "Încărcarea salvează direct imaginea. Nu există un buton Save separat pentru această pagină. Confirmarea este Branding updated."
+          },
+          {
+            "title": "Controlează aspectul public",
+            "text": "Reîncarcă lobby-ul într-o filă de verificare. Uită-te la lizibilitate, margini, transparență și decupaj, inclusiv într-o fereastră îngustă."
+          }
+        ],
+        "paragraphs": [
+          "Imaginile sunt servite de aplicație fără reconstruirea site-ului. Dacă previzualizarea nu s-a schimbat sau apare Upload failed, verifică formatul și dimensiunea înainte să încerci din nou. O imagine promoțională individuală se configurează separat în Promotions."
+        ]
+      },
+      {
+        "id": "branding-reset",
+        "title": "Revino la varianta implicită",
+        "paragraphs": [
+          "Apasă Reset to default pe cardul pe care vrei să-l restabilești. După confirmarea Reset to default, verifică din nou lobby-ul. Butonul acționează imediat asupra acelui element; nu oferă un istoric de variante.",
+          "În Audit log poți căuta brand_upload sau brand_reset pentru a identifica schimbarea și administratorul care a făcut-o."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Verifică imaginea în context",
+          "text": "Previzualizarea din administrare nu reproduce toate dimensiunile din lobby. Păstrează textul important departe de marginile bannerului."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Controalele Branding",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L770-L810"
+      },
+      {
+        "label": "Salvarea imaginilor și audit",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2464-L2484"
+      }
+    ]
+  },
+  {
+    "id": "promotions",
+    "title": "Promotions",
+    "kicker": "Bannere și navigare",
+    "summary": "Creează sau actualizează bannerele promoționale și controlează dacă sunt active.",
+    "minutes": 5,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "promotions-lista",
+        "title": "Citește lista înainte de editare",
+        "paragraphs": [
+          "În Promotions & banners, fiecare rând arată Slot, Title, Subtitle, Image, Link și Enabled. On indică un banner activ, iar Off unul dezactivat. Identifică rândul după combinația dintre titlu și zonă, mai ales când aceeași campanie are mai multe variante.",
+          "Edit deschide formularul existent. Toggle inversează imediat starea On/Off și reîncarcă datele. Folosește dezactivarea pentru a retrage o campanie din selecția activă; pagina nu afișează un buton de ștergere."
+        ]
+      },
+      {
+        "id": "promotions-campanie",
+        "title": "Configurează o campanie",
+        "steps": [
+          {
+            "title": "Începe cu + New banner",
+            "text": "Pentru o campanie nouă, completează formularul deschis. Pentru o corecție, pornește din Edit pe rândul potrivit."
+          },
+          {
+            "title": "Alege destinația și conținutul",
+            "text": "Selectează Slot, scrie Title și Subtitle, apoi completează Image path și Link."
+          },
+          {
+            "title": "Controlează activarea",
+            "text": "Bifează Enabled când bannerul trebuie să fie disponibil. Poți salva inițial dezactivat pentru a verifica datele."
+          },
+          {
+            "title": "Salvează",
+            "text": "Apasă Save și așteaptă Promotion saved. Cancel închide formularul fără salvarea modificărilor curente."
+          }
+        ],
+        "table": {
+          "headers": [
+            "Câmp",
+            "Ce stabilește"
+          ],
+          "rows": [
+            [
+              "Slot",
+              "Zona declarată: home, tournaments, slots, casino sau cashier."
+            ],
+            [
+              "Title / Subtitle",
+              "Titlul campaniei și explicația scurtă."
+            ],
+            [
+              "Image path",
+              "Adresa imaginii deja disponibile; acest formular nu încarcă fișiere."
+            ],
+            [
+              "Link",
+              "Destinația deschisă de promovare, de exemplu o pagină internă."
+            ],
+            [
+              "Enabled",
+              "Disponibilitatea bannerului în configurația activă."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "promotions-control",
+        "title": "Verifică imaginea și destinația",
+        "paragraphs": [
+          "Deschide zona vizată din aplicația jucătorului și reîncarcă pagina. Confirmă că imaginea se încarcă, textul este lizibil și linkul duce unde ai intenționat. Salvarea unui Slot nu dovedește singură că fiecare ecran al clientului afișează acel tip de banner.",
+          "Pentru o campanie expirată, apasă Toggle și verifică Off. Pentru o eroare de conținut, revino în Edit, corectează și salvează. Păstrează titlurile distincte pentru a evita editarea unui banner cu nume similar."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Branding și Promotions au roluri diferite",
+          "text": "Branding înlocuiește imaginea generală a lobby-ului. Promotions gestionează înregistrări promoționale cu titlu, zonă și destinație."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Lista și formularul Promotions",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L664-L691"
+      },
+      {
+        "label": "Câmpurile bannerului",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L1018-L1026"
+      },
+      {
+        "label": "Persistența bannerelor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2955-L2971"
+      }
+    ]
+  },
+  {
+    "id": "verifications",
+    "title": "Verifications",
+    "kicker": "Revizuirea solicitărilor",
+    "summary": "Examinează documentul unei solicitări și înregistrează o decizie clară pentru contul corect.",
+    "minutes": 5,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "verifications-triere",
+        "title": "Identifică solicitarea",
+        "paragraphs": [
+          "Deschide Identity verifications și apasă Refresh. Solicitările pending sunt aduse înaintea celorlalte, iar cele recente apar primele în cadrul ordinii folosite de listă.",
+          "Verifică Player, identificatorul de autentificare afișat sub nume, Name, Country, Document, Status și Submitted. Două nume asemănătoare nu înseamnă același cont. Folosește identificatorul solicitării și contul din rând pentru discuția internă."
+        ],
+        "table": {
+          "headers": [
+            "Status",
+            "Cum îl folosești"
+          ],
+          "rows": [
+            [
+              "pending",
+              "Solicitare care așteaptă revizuirea."
+            ],
+            [
+              "approved",
+              "Decizie de aprobare înregistrată în aplicație."
+            ],
+            [
+              "rejected",
+              "Decizie de respingere, cu nota introdusă la revizuire."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "verifications-decizie",
+        "title": "Examinează și decide",
+        "steps": [
+          {
+            "title": "Deschide View ID",
+            "text": "Documentul se deschide într-o fereastră nouă. Dacă nu apare, verifică notificarea browserului pentru ferestre blocate și permite deschiderea pentru această pagină."
+          },
+          {
+            "title": "Verifică materialul",
+            "text": "Compară documentul cu datele solicitării conform procedurii operatorului. O imagine absentă, neclară sau nepotrivită nu trebuie confundată cu o verificare completă."
+          },
+          {
+            "title": "Înregistrează rezultatul",
+            "text": "Approve setează approved. Reject cere Reason for rejection; scrie motivul concret, apoi confirmă. Anularea promptului nu trimite decizia."
+          },
+          {
+            "title": "Recitește statusul",
+            "text": "Urmărește Verified sau Rejected, apoi apasă Refresh dacă ai nevoie să confirmi starea reîncărcată de pe server."
+          }
+        ]
+      },
+      {
+        "id": "verifications-urmarire",
+        "title": "Păstrează decizia verificabilă",
+        "paragraphs": [
+          "O decizie nouă poate înlocui statusul anterior: controalele nu dispar după aprobare sau respingere. Reconfirmă rândul înainte de fiecare apăsare. Acțiunile verification_approved și verification_rejected apar în Audit log.",
+          "Pagina înregistrează revizuirea din aplicație. Aprobarea nu acordă automat rol de administrator și nu modifică solduri. Închide fereastra documentului după verificare și folosește canalul privat al operatorului pentru orice clarificări care conțin date personale."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Motivul trebuie să ajute la corectare",
+          "text": "La respingere, descrie problema observată: de exemplu, imagine ilizibilă sau document incomplet. Evită note vagi care nu explică ce trebuie verificat din nou."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Interfața Verifications",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L724-L763"
+      },
+      {
+        "label": "Listare, document și decizie",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2665-L2687"
+      }
+    ]
+  },
+  {
+    "id": "player-reports",
+    "title": "Player reports",
+    "kicker": "Sesizări și dovezi",
+    "summary": "Revizuiește sesizările jucătorilor, consultă mâna asociată și marchează rezultatul analizei.",
+    "minutes": 5,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "reports-triere",
+        "title": "Începe cu sesizările deschise",
+        "paragraphs": [
+          "Apasă Refresh în Player reports. Lista aduce sesizările open înaintea celor închise și returnează cel mult 200 de rânduri. Coloanele Reporter și Target separă persoana care raportează de persoana vizată.",
+          "Citește Reason și Details împreună cu Created și Hand. O sesizare descrie afirmația jucătorului; înainte de decizie, compar-o cu dovezile disponibile. Dacă Hand este gol, acel rând nu oferă o mână asociată."
+        ]
+      },
+      {
+        "id": "reports-mana",
+        "title": "Consultă Hand evidence",
+        "steps": [
+          {
+            "title": "Deschide Hand",
+            "text": "Butonul apare când sesizarea conține un identificator de mână. Dacă apare Hand unavailable, păstrează identificatorul pentru verificarea operatorului."
+          },
+          {
+            "title": "Urmărește tabla",
+            "text": "Replay pornește prezentarea tablei de la început. Play/Pause controlează redarea, iar Show all dezvăluie toate cărțile comune din înregistrare."
+          },
+          {
+            "title": "Compară informațiile",
+            "text": "Examinează Player, Cards, Stack, Bet și Win, apoi acțiunile consemnate pe străzi. Aceasta este vizualizarea dovezii salvate, nu reluarea unei mese live."
+          },
+          {
+            "title": "Revino la sesizare",
+            "text": "Închide fereastra cu X și verifică din nou rândul înainte să alegi rezultatul."
+          }
+        ]
+      },
+      {
+        "id": "reports-inchidere",
+        "title": "Marchează rezultatul",
+        "table": {
+          "headers": [
+            "Acțiune",
+            "Efect"
+          ],
+          "rows": [
+            [
+              "Resolve",
+              "Setează sesizarea în resolved și înregistrează momentul soluționării."
+            ],
+            [
+              "Dismiss",
+              "Setează sesizarea în dismissed și înregistrează momentul închiderii."
+            ],
+            [
+              "Export CSV",
+              "Descarcă sesizările încărcate în listă, inclusiv identificatori și statusuri."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Resolve și Dismiss sunt disponibile pentru rândurile open. După apăsare, lista este reîncărcată; verifică statusul rezultat. Exportul nu trebuie tratat ca întregul istoric dacă există mai mult de 200 de sesizări.",
+          "În Audit log, report_resolved și report_dismissed leagă decizia de administrator și de sesizare. Dacă analiza justifică o măsură asupra contului, aceasta se aplică separat în Users sau Chat moderation."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Închiderea sesizării nu aplică o sancțiune",
+          "text": "Resolve și Dismiss schimbă evidența sesizării. Nu acordă jetoane, nu interzic contul și nu șterg automat mesaje."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Player reports și export",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L873-L904"
+      },
+      {
+        "label": "Vizualizarea mâinii",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L925-L973"
+      },
+      {
+        "label": "Stările sesizărilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2787-L2802"
+      }
+    ]
+  },
+  {
+    "id": "chat-moderation",
+    "title": "Chat moderation",
+    "kicker": "Conversațiile de la mese",
+    "summary": "Revizuiește mesajele recente, elimină un mesaj și aplică sau ridică restricția de chat a unui cont.",
+    "minutes": 4,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "chat-moderation-flux",
+        "title": "Alege conversația",
+        "paragraphs": [
+          "Deschide Chat moderation. All tables afișează mesajele recente din canalele meselor; poți alege o masă din selector pentru o examinare mai precisă. Numărul din dreptul mesei reprezintă mesajele păstrate pentru acel canal.",
+          "Interfața solicită cele mai recente 100 de mesaje și oferă Refresh pentru actualizare. Citește Time, Table, Player și Message împreună. Ora este afișată în fusul local al browserului. Această listă privește conversațiile meselor, nu anunțurile din lobby."
+        ]
+      },
+      {
+        "id": "chat-moderation-actiuni",
+        "title": "Alege măsura potrivită",
+        "steps": [
+          {
+            "title": "Delete pentru un mesaj",
+            "text": "Apasă Delete pe rândul exact. Dialogul repetă autorul și textul; confirmă numai după ce le-ai verificat. Lista se reîncarcă după operațiune."
+          },
+          {
+            "title": "Mute player pentru restricționarea contului",
+            "text": "Apasă Mute player și citește confirmarea. Restricția împiedică acel cont să scrie în chat până la ridicarea ei."
+          },
+          {
+            "title": "Unmute din Users",
+            "text": "Caută contul în Users, verifică eticheta Chat muted și apasă Unmute. Nu există un control de ridicare a restricției în rândul mesajului."
+          }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Mute se aplică întregului cont",
+          "text": "Selectarea unei mese filtrează lista. Mute player nu limitează restricția la masa aleasă și nu stabilește o expirare automată."
+        }
+      },
+      {
+        "id": "chat-moderation-control",
+        "title": "Verifică rezultatul și evidența",
+        "paragraphs": [
+          "Delete elimină mesajul păstrat pe server și scrie o intrare chat_delete în Audit log. Intrarea include context și un fragment din mesaj; nu reprezintă o copie completă a conversației. Interfața nu oferă Undo.",
+          "Pentru verificare, reîncarcă lista și, dacă este necesar, istoricul mesei. Nu presupune că mesajul dispare instantaneu din fiecare fereastră deja deschisă. Mute nu șterge mesajele vechi; Delete nu aplică automat Mute.",
+          "Dacă un mesaj nu mai există sau operațiunea eșuează, apasă Refresh înainte de a repeta. Este posibil ca alt administrator să fi intervenit între timp. Butonul Mute player este indisponibil pentru un rând fără un cont asociat."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Controalele de moderare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminChatModeration.tsx"
+      },
+      {
+        "label": "Filtrarea și ștergerea cu audit",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-chat.js"
+      },
+      {
+        "label": "Mute și Unmute în Users",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L568-L574"
+      }
+    ]
+  },
+  {
+    "id": "missions",
+    "title": "Missions",
+    "kicker": "Obiective și recompense virtuale",
+    "summary": "Configurează misiunile existente, înțelege contorii afișați și folosește Reset numai după evaluarea efectului asupra revendicărilor.",
+    "minutes": 6,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "missions-campuri",
+        "title": "Editează definiția",
+        "paragraphs": [
+          "Apasă Save și urmărește Mission saved. Cancel închide formularul fără salvarea editării curente. Simbolul monetar folosit în aplicație nu transformă recompensa în bani reali."
+        ],
+        "table": {
+          "headers": [
+            "Câmp",
+            "Interpretare"
+          ],
+          "rows": [
+            [
+              "Goal",
+              "Pragul de progres necesar pentru revendicare."
+            ],
+            [
+              "Reward",
+              "Valoarea numerică acordată, în unitatea tipului ales."
+            ],
+            [
+              "USD",
+              "Sold virtual de joc; valoarea brută este în sutimi: 100 înseamnă 1,00 afișat."
+            ],
+            [
+              "PLAY / TICKET / GEM",
+              "Unități de play chips, tichete sau gems, potrivit contorului respectiv."
+            ],
+            [
+              "Active",
+              "Controlează includerea misiunii în lista activă prezentată jucătorilor."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "missions-legare",
+        "title": "Verifică dacă obiectivul se poate îndeplini",
+        "paragraphs": [
+          "Titlul unei misiuni nu creează automat o regulă de progres. Formularul nu are un selector de eveniment, iar misiunile existente sunt legate în aplicație de acțiuni precum mâini jucate, câștiguri, flopuri, participare la turneu și puncte VIP.",
+          "Pentru o misiune nouă, confirmă împreună cu operatorul că există mecanismul care îi actualizează progresul. Apoi verifică dintr-un cont de test autorizat dacă acțiunea relevantă schimbă progresul și permite revendicarea. Fără această verificare, o definiție nouă poate fi vizibilă, dar imposibil de completat."
+        ]
+      },
+      {
+        "id": "missions-contori",
+        "title": "Interpretează Progress și Claimed",
+        "paragraphs": [
+          "În lista de administrare, Progress reprezintă numărul înregistrărilor de recompensă revendicate pentru misiune, agregat peste perioade. Nu este progresul individual al unui jucător și nici suma mâinilor jucate de comunitate. Claimed devine Yes când există cel puțin o revendicare.",
+          "Progresul individual se calculează pentru perioada misiunii. Misiunile săptămânale existente folosesc săptămâna UTC, iar celelalte perioada zilnică UTC. La o neconcordanță, compară aceeași misiune și aceeași perioadă, apoi consultă Transactions pentru recompensa efectivă."
+        ]
+      },
+      {
+        "id": "missions-reset",
+        "title": "Folosește Reset cu atenție",
+        "callout": {
+          "tone": "warning",
+          "title": "Reset afectează revendicările tuturor jucătorilor",
+          "text": "Butonul șterge progresul și marcajele de revendicare asociate acelei misiuni, pentru toate perioadele. Nu este o simplă reîmprospătare a listei și nu are confirmare suplimentară în acest ecran."
+        },
+        "paragraphs": [
+          "Înainte de Reset, păstrează evidența necesară și stabilește motivul operațiunii. După resetare, jucătorii pot relua progresul și pot ajunge din nou la revendicare. Tranzacțiile istorice nu sunt șterse.",
+          "Buildul documentat împiedică o a doua creditare pentru aceeași recompensă a aceleiași perioade deja înregistrată în registru. Nu folosi Reset ca metodă de acordare a unei plăți suplimentare. Pentru o problemă punctuală, analizează contul și tranzacția înainte de a reseta misiunea întregii comunități."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Lista și Reset",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L694-L721"
+      },
+      {
+        "label": "Formularul Missions",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L1028-L1035"
+      },
+      {
+        "label": "Contori și ștergerea revendicărilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2974-L2998"
+      },
+      {
+        "label": "Perioade și deduplicarea recompensei",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/db.js#L721-L770"
+      }
+    ]
+  },
+  {
+    "id": "snapshots",
+    "title": "Snapshots și restaurare",
+    "kicker": "Copii de siguranță",
+    "summary": "Creează, descarcă și gestionează copii ale bazei de date; programează o restaurare controlată pentru următoarea repornire.",
+    "minutes": 7,
+    "group": "siguranta",
+    "sections": [
+      {
+        "id": "snapshots-creare",
+        "title": "Creează o copie verificată",
+        "steps": [
+          {
+            "title": "Deschide Snapshots",
+            "text": "Verifică lista, dimensiunile și datele copiilor existente. Textul paginii arată câte copii recente sunt păstrate."
+          },
+          {
+            "title": "Apasă Create snapshot",
+            "text": "Așteaptă finalizarea operațiunii. Snapshot saved indică numele copiei și rezultatul verificării de integritate."
+          },
+          {
+            "title": "Verifică lista actualizată",
+            "text": "Confirmă noul rând. Dacă mesajul anunță eliminarea unor copii vechi, aceasta ține de politica de retenție afișată."
+          }
+        ],
+        "paragraphs": [
+          "Copiile acestei pagini sunt păstrate pe server. La crearea unei copii, cele mai vechi care depășesc retenția pot fi eliminate. Un snapshot pe același server este util pentru revenire, dar păstrează și o copie descărcată în spațiul privat al operatorului."
+        ]
+      },
+      {
+        "id": "snapshots-pastrare",
+        "title": "Descarcă sau elimină o copie",
+        "table": {
+          "headers": [
+            "Control",
+            "Ce face"
+          ],
+          "rows": [
+            [
+              "Download",
+              "Descarcă exact snapshotul ales."
+            ],
+            [
+              "Delete",
+              "Șterge copia aleasă după confirmarea numelui."
+            ],
+            [
+              "Dashboard → Download backup",
+              "Descarcă o copie nouă a bazei de date curente."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Înainte de Delete, verifică dacă mai ai copia necesară pentru recuperare. Ștergerea unui snapshot nu este o metodă de anulare a unei restaurări deja programate.",
+          "Fișierele de backup conțin datele aplicației. Păstrează-le în spațiul de lucru privat al operatorului și nu le încărca pe pagina publică a ghidului sau într-un canal public."
+        ]
+      },
+      {
+        "id": "snapshots-restaurare",
+        "title": "Programează revenirea la un snapshot",
+        "steps": [
+          {
+            "title": "Păstrează starea curentă",
+            "text": "Descarcă un backup înainte de intervenție și stabilește cu operatorul momentul potrivit pentru repornire."
+          },
+          {
+            "title": "Alege Restore…",
+            "text": "Verifică numele, data și dimensiunea copiei pe care intenționezi să o aplici."
+          },
+          {
+            "title": "Confirmă explicit",
+            "text": "Scrie exact RESTORE și apasă Queue restore. Cancel închide formularul înainte de trimitere."
+          },
+          {
+            "title": "Urmărește mesajul",
+            "text": "Restore queued — restart the server to apply înseamnă că fișierul a fost pregătit, nu că baza live a fost deja înlocuită."
+          }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Restaurarea se aplică la următoarea pornire",
+          "text": "Queue restore nu repornește serverul. Următoarea repornire, inclusiv una neplanificată, poate aplica copia pregătită. Coordonează operațiunea prin procedura operatorului."
+        }
+      },
+      {
+        "id": "snapshots-import",
+        "title": "Restaurează un backup descărcat",
+        "paragraphs": [
+          "În Dashboard, apasă Restore backup… și selectează fișierul SQLite potrivit. Selectorul acceptă .db, .sqlite și .sqlite3; încărcarea prin acest formular este limitată la 6 MB. Scrie RESTORE și apasă Queue restore.",
+          "Serverul verifică integritatea fișierului și structura minimă necesară înainte de programare. Dacă primești Invalid backup sau Backup larger than 6 MB, oprește tentativa și cere verificarea fișierului prin procedura operatorului.",
+          "O nouă programare înlocuiește copia aflată în așteptare. Cancel din formular nu anulează o restaurare trimisă anterior. Dacă ai programat copia greșită, anunță operatorul înainte de orice repornire."
+        ]
+      },
+      {
+        "id": "snapshots-dupa",
+        "title": "Verifică după repornire",
+        "paragraphs": [
+          "La aplicare, aplicația păstrează baza înlocuită drept copie de salvare. Menține și backupul descărcat înaintea intervenției până când verificarea rezultatului este completă.",
+          "Reautentifică-te dacă este necesar și verifică datele relevante: configurația meselor, conturile, soldurile virtuale și ultimele înregistrări așteptate pentru data copiei. O restaurare readuce baza de date la momentul snapshotului; modificările ulterioare pot lipsi din starea restaurată.",
+          "Audit log înregistrează operațiunile de snapshot și programarea restaurării. Folosește această evidență împreună cu confirmarea operatorului că repornirea și verificarea finală au avut loc."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Controalele Snapshots",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminSnapshots.tsx"
+      },
+      {
+        "label": "Importul unui backup",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminRestore.tsx"
+      },
+      {
+        "label": "Retenție și integritate",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-snapshots.js"
+      },
+      {
+        "label": "Programare și aplicare la pornire",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-restore.js"
+      },
+      {
+        "label": "Backup descărcabil",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-backup.js"
+      }
+    ]
+  },
+  {
+    "id": "transactions",
+    "title": "Transactions",
+    "kicker": "Registrul soldurilor virtuale",
+    "summary": "Caută operațiuni, interpretează valorile și exportă exact selecția pe care o analizezi.",
+    "minutes": 5,
+    "group": "siguranta",
+    "sections": [
+      {
+        "id": "transactions-filtre",
+        "title": "Aplică o selecție precisă",
+        "steps": [
+          {
+            "title": "Completează căutarea",
+            "text": "Search login, nick or memo caută fragmente în identificatorul de autentificare, pseudonim sau explicația operațiunii."
+          },
+          {
+            "title": "Alege tipul",
+            "text": "Kind restrânge lista la un tip de tranzacție. All kinds elimină această restricție."
+          },
+          {
+            "title": "Alege limita și apasă Apply",
+            "text": "Poți cere ultimele 50, 100, 300, 500 sau 1000 de rezultate. Valoarea inițială este 300."
+          },
+          {
+            "title": "Resetează când schimbi investigația",
+            "text": "Reset golește filtrele și revine la selecția implicită. Nu șterge tranzacții."
+          }
+        ],
+        "paragraphs": [
+          "Câmpurile editate nu devin filtre active până la Apply. Căutarea și tipul se combină, iar rezultatele sunt ordonate de la cele mai recente. Un rezultat gol poate însemna o combinație prea restrictivă, nu lipsa întregului istoric."
+        ]
+      },
+      {
+        "id": "transactions-valori",
+        "title": "Citește corect un rând",
+        "table": {
+          "headers": [
+            "Coloană",
+            "Semnificație"
+          ],
+          "rows": [
+            [
+              "User / Type",
+              "Contul asociat și categoria operațiunii."
+            ],
+            [
+              "Currency",
+              "Contorul virtual afectat: USD, PLAY, TICKET sau GEM."
+            ],
+            [
+              "Amount",
+              "Modificarea înregistrată; semnul separă adăugarea de scădere."
+            ],
+            [
+              "Balance",
+              "Soldul consemnat după acea operațiune, nu neapărat soldul actual."
+            ],
+            [
+              "Memo / Date",
+              "Contextul și momentul operațiunii."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Pentru USD virtual, valorile brute sunt în sutimi: 2500 reprezintă 25,00 în afișarea monetară. Pentru celelalte tipuri, interpretează numărul în unitatea contorului. În această versiune, tabelul aplică un format monetar comun la Amount și Balance; verifică întotdeauna Currency și valorile brute din export.",
+          "Nu interpreta fiecare ieșire ca o pierdere: un buy-in poate muta jetoane la masă, iar un cash-out le poate aduce înapoi. Citește tipul, explicația și operațiunile asociate înainte de a concluziona că există o eroare."
+        ]
+      },
+      {
+        "id": "transactions-export",
+        "title": "Exportă și urmărește neconcordanțele",
+        "paragraphs": [
+          "Apasă Export CSV după Apply. Fișierul transactions.csv folosește filtrele și limita deja aplicate; nu exportă automat întregul registru. Include identificatorul tranzacției, contul, login, nick, kind, amount brut, currency, memo și created_at. Coloana Balance din tabel nu este inclusă în acest export.",
+          "La o neconcordanță, păstrează identificatorul tranzacției, perioada și moneda virtuală, apoi compară cu Users și cu Audit log. Această pagină este pentru consultare și export; nu are controale de editare sau ștergere a tranzacțiilor."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Unități de joc",
+          "text": "Registrul documentează solduri și recompense virtuale. Semnul $ din interfață nu reprezintă o încasare bancară sau o plată în bani reali."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Filtre și coloane",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminTransactions.tsx"
+      },
+      {
+        "label": "Căutare și coloane CSV",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-transactions.js"
+      },
+      {
+        "label": "Formatul monetar",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/api.ts#L447-L453"
+      },
+      {
+        "label": "Contorul afectat de monedă",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/db.js#L650-L660"
+      }
+    ]
+  },
+  {
+    "id": "audit-log",
+    "title": "Audit log",
+    "kicker": "Istoricul intervențiilor",
+    "summary": "Identifică cine a făcut o schimbare, găsește contextul operațiunii și exportă evidența relevantă.",
+    "minutes": 4,
+    "group": "siguranta",
+    "sections": [
+      {
+        "id": "audit-log-cautare",
+        "title": "Caută după autor, acțiune și detaliu",
+        "paragraphs": [
+          "Audit log afișează numărul intrării, Actor, Action, Detail și Date. Actor reprezintă autorul consemnat al operațiunii, iar Action este denumirea tehnică a acțiunii, utilă pentru filtrare."
+        ],
+        "steps": [
+          {
+            "title": "Completează filtrele",
+            "text": "Actor (login) și Action cer potrivire exactă. Search detail caută un fragment în explicația operațiunii."
+          },
+          {
+            "title": "Stabilește fereastra de rezultate",
+            "text": "Alege Last 50, 200, 500 sau 1000. Implicit sunt cerute 200 de intrări recente."
+          },
+          {
+            "title": "Apasă Apply",
+            "text": "Toate filtrele completate se aplică împreună. Dacă nu găsești înregistrarea, elimină întâi filtrul cel mai restrictiv."
+          },
+          {
+            "title": "Revino la lista generală",
+            "text": "Reset golește filtrele și revine la limita implicită; nu șterge jurnalul."
+          }
+        ]
+      },
+      {
+        "id": "audit-log-actiuni",
+        "title": "Repere utile pentru investigație",
+        "table": {
+          "headers": [
+            "Action",
+            "Ce poți urmări"
+          ],
+          "rows": [
+            [
+              "brand_upload / brand_reset",
+              "Înlocuirea sau resetarea unui element de branding."
+            ],
+            [
+              "verification_approved / verification_rejected",
+              "Decizia asupra unei solicitări de verificare."
+            ],
+            [
+              "report_resolved / report_dismissed",
+              "Închiderea unei sesizări."
+            ],
+            [
+              "chat_delete / mute / unmute",
+              "Intervenții asupra mesajelor sau dreptului de a scrie."
+            ],
+            [
+              "snapshot_create / snapshot_delete / restore_queued",
+              "Copii de siguranță și programarea unei restaurări."
+            ],
+            [
+              "grant_admin / revoke_admin / resetpw",
+              "Schimbări de acces și resetări de parolă."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Folosește exact forma cu underscore din jurnal, nu traducerea vizibilă într-un alt ecran. Detail poate indica un cont, o sesizare, un mesaj sau un fișier; compară identificatorul cu pagina de origine.",
+          "Data este prezentată ca valoarea înregistrată de server. La corelarea cu ora locală afișată în alte ecrane, verifică fusul orar înainte să presupui că două evenimente nu coincid."
+        ]
+      },
+      {
+        "id": "audit-log-export",
+        "title": "Exportă fără să pierzi contextul",
+        "paragraphs": [
+          "Export CSV descarcă audit.csv pentru filtrele și limita aplicate. Dacă ai schimbat un câmp, apasă Apply înainte de export. Păstrează împreună fișierul și explicația selecției: autorul, acțiunea și perioada analizată.",
+          "Jurnalul arată acțiunile pe care aplicația le înregistrează explicit. Nu este o copie completă a bazei de date, nu oferă Undo și nu dovedește singur că fiecare clic sau fiecare schimbare posibilă a fost înregistrată. Confirmă starea finală în ecranul funcțional corespunzător.",
+          "Dacă interfața raportează eșec la încărcare sau export, verifică accesul privat și sesiunea. Nu considera lista veche rămasă pe ecran drept dovada că nu s-a întâmplat nimic nou."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Interfața Audit log",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminAuditLog.tsx"
+      },
+      {
+        "label": "Semantica filtrelor și exportul",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-audit.js"
+      },
+      {
+        "label": "Operațiuni de moderare și acces",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js"
+      }
+    ]
+  },
+  {
+    "id": "announcements",
+    "title": "Announcements",
+    "kicker": "Mesaje pentru lobby",
+    "summary": "Publică un anunț scurt în conversația lobby-ului și verifică apariția lui.",
+    "minutes": 3,
+    "group": "comunitate",
+    "sections": [
+      {
+        "id": "announcements-destinatie",
+        "title": "Înțelege unde ajunge mesajul",
+        "paragraphs": [
+          "Deschide Announcements și folosește câmpul Announcement text…. În buildul documentat, acest formular trimite mesajul în canalul lobby. Nu există selector de masă sau de canal și nu există programare pentru o oră viitoare.",
+          "Descrierea veche a ecranului menționează și mesele, dar butonul Send transmite numai textul, iar serverul alege lobby ca destinație. Pentru comunicarea la o masă, urmează procedura separată a operatorului."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Trimite pentru lobby",
+          "text": "Nu trata Send drept o notificare globală garantată către toate mesele, un mesaj privat sau o campanie programată."
+        }
+      },
+      {
+        "id": "announcements-trimitere",
+        "title": "Publică un mesaj clar",
+        "steps": [
+          {
+            "title": "Scrie informația esențială",
+            "text": "Spune ce se întâmplă, când și ce trebuie să facă jucătorii. Dacă menționezi o oră, precizează fusul orar relevant."
+          },
+          {
+            "title": "Recitește înainte de Send",
+            "text": "Păstrează mesajul în limita de 500 de caractere. Serverul taie textul care depășește limita, iar un mesaj gol nu este acceptat."
+          },
+          {
+            "title": "Apasă Send o singură dată",
+            "text": "La succes apare Announcement sent, iar câmpul se golește. Dacă nu ai o confirmare clară, verifică lobby-ul înainte de a repeta."
+          },
+          {
+            "title": "Controlează apariția",
+            "text": "Deschide conversația lobby-ului și actualizează pagina dacă este necesar. Verifică textul complet și contul sub care apare mesajul."
+          }
+        ]
+      },
+      {
+        "id": "announcements-corectare",
+        "title": "Corectează fără să multiplici confuzia",
+        "paragraphs": [
+          "Pagina nu oferă editare, retragere sau un istoric propriu al anunțurilor. Dacă ai trimis o informație greșită, publică o corecție scurtă care identifică explicit ce se schimbă.",
+          "Chat moderation filtrează conversațiile meselor, deci nu este lista de verificare pentru anunțurile lobby-ului. Mesajele de mentenanță trebuie coordonate cu operatorul care execută intervenția; trimiterea anunțului nu pornește și nu oprește serverul."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Formularul Announcements",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L910-L919"
+      },
+      {
+        "label": "Destinația lobby și limita textului",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L3041-L3047"
+      },
+      {
+        "label": "Cererea trimisă de UI",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/api.ts#L385"
+      },
+      {
+        "label": "Istoricul lobby-ului",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2653-L2656"
+      }
+    ]
+  },
+  {
+    "id": "depanare",
+    "title": "Acces și depanare",
+    "kicker": "Când ceva nu funcționează",
+    "summary": "Separă problema de conexiune, autentificare sau permisiuni și verifică rezultatul înainte să repeți o operațiune.",
+    "minutes": 7,
+    "group": "inceput",
+    "sections": [
+      {
+        "id": "depanare-acces",
+        "title": "Pornește de la conexiunea corectă",
+        "steps": [
+          {
+            "title": "Folosește procedura operatorului",
+            "text": "Stabilește accesul privat autorizat înainte să deschizi administrarea. Acest ghid public explică interfața; nu oferă acces la conturi sau la server."
+          },
+          {
+            "title": "Deschide adresa indicată",
+            "text": "În configurația documentată, intrarea locală este http://127.0.0.1:5198/marketplace/admin, după stabilirea conexiunii private. Folosește adresa completă, fără un fragment vechi adăugat după #."
+          },
+          {
+            "title": "Autentifică-te cu contul atribuit",
+            "text": "Introdu identificatorul contului și parola actuală. Pagina păstrează destinația administrării Marketplace după autentificare."
+          },
+          {
+            "title": "Confirmă mediul",
+            "text": "Verifică versiunea afișată în interfață și datele așteptate. Un alt server local poate ocupa aceeași adresă; operatorul trebuie să confirme conexiunea înainte de intervenții."
+          }
+        ],
+        "paragraphs": [
+          "Autentificarea publică reușită nu garantează accesul la funcțiile administrative. Aplicația verifică separat sesiunea, rolul de administrator și rețeaua permisă. Nu modifica adrese, porturi sau reguli de acces ca încercare de ocolire a unei erori."
+        ]
+      },
+      {
+        "id": "depanare-erori",
+        "title": "Citește mesajul exact",
+        "table": {
+          "headers": [
+            "Mesaj sau simptom",
+            "Interpretare și pas util"
+          ],
+          "rows": [
+            [
+              "Invalid account ID or password",
+              "Datele nu au fost acceptate. Verifică identificatorul și parola actuală, inclusiv completarea automată; evită încercările repetate."
+            ],
+            [
+              "Too many failed attempts…",
+              "Limită temporară de încercări pentru identificator. Oprește repetarea și așteaptă intervalul indicat."
+            ],
+            [
+              "Too many failed sign-in attempts from your network…",
+              "Limită temporară pentru rețea. Mesajul indică 15 minute; schimbarea numelui contului nu rezolvă limita."
+            ],
+            [
+              "This account is locked. Contact support.",
+              "Contul este blocat. Solicită operatorului verificarea stării contului."
+            ],
+            [
+              "unauthorized",
+              "Sesiunea lipsește, a expirat sau a fost revocată. Autentifică-te din nou."
+            ],
+            [
+              "admin only",
+              "Sesiunea este validă, dar contul nu are rolul cerut. Cere verificarea drepturilor."
+            ],
+            [
+              "Admin access is restricted to the Mac Studio network",
+              "Cererea nu trece regula rețelei private. Verifică împreună cu operatorul conexiunea autorizată."
+            ],
+            [
+              "bad origin",
+              "Adresa sau originea cererii nu este acceptată. Nu este dovada unei parole greșite; revino la adresa configurată."
+            ],
+            [
+              "Conexiunea de administrare nu este disponibilă",
+              "Verifică accesul privat și sesiunea, apoi folosește Reîncearcă."
+            ]
+          ]
+        }
+      },
+      {
+        "id": "depanare-browser",
+        "title": "Elimină confuzia produsă de datele vechi",
+        "paragraphs": [
+          "După schimbarea parolei, formularul poate completa parola veche păstrată de Remember me. Șterge valoarea precompletată și tastează parola actuală. Pentru o verificare curată, deschide o fereastră privată și introdu din nou adresa completă.",
+          "Aplicația păstrează tokenul în stocarea locală a browserului. O sesiune respinsă este eliminată automat; nu este necesar să începi cu ștergerea tuturor cookie-urilor. Autentificarea pe domeniul public nu transferă automat sesiunea către adresa locală.",
+          "Dacă vezi o versiune veche, reîncarcă pagina după confirmarea conexiunii. Clientul verifică versiunea înainte de login, iar mecanismul offline nu memorează cererile administrative. Dacă apare ecranul de reconectare, remediază conexiunea înainte să presupui că parola s-a schimbat."
+        ]
+      },
+      {
+        "id": "depanare-rezultat",
+        "title": "Verifică înainte să repeți",
+        "paragraphs": [
+          "Un mesaj de rețea nu spune întotdeauna dacă serverul a terminat salvarea înainte de întrerupere. Reîncarcă datele din ecranul respectiv și, unde există, consultă Audit log sau Transactions înainte să retrimiți operațiunea.",
+          "Pentru liste goale, verifică filtrele și apasă Apply sau Reset. Pentru o încărcare de fișier, verifică formatul și limita afișată. Pentru View ID, verifică dacă browserul a blocat fereastra nouă.",
+          "După Queue restore, lipsa unei schimbări imediate este normală: restaurarea așteaptă repornirea serverului. Nu încărca repetat alte copii și nu considera Cancel o anulare a operațiunii deja programate."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Trimite operatorului informații utile",
+          "text": "Notează ecranul, acțiunea, mesajul exact, ora și versiunea afișată. În capturi, ascunde parolele, tokenurile, documentele și datele personale care nu sunt necesare diagnosticării."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Rutarea intrării administrative",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/entryRoute.ts"
+      },
+      {
+        "label": "Autentificare și controlul rețelei",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L1324-L1365"
+      },
+      {
+        "label": "Sesiuni respinse și login",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/store.tsx"
+      },
+      {
+        "label": "Date completate automat",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Login.tsx#L63-L72"
+      },
+      {
+        "label": "Navigare și excluderea API din cache",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/public/sw.js"
+      },
+      {
+        "label": "Procedura publică de acces",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/deploy/README.md#L108-L119"
+      }
+    ]
+  }
+]

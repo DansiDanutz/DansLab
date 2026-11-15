@@ -1,0 +1,1212 @@
+[
+  {
+    "id": "dashboard",
+    "title": "Dashboard",
+    "kicker": "Privirea de ansamblu",
+    "summary": "Înțelege indicatorii, găsește rapid secțiunea potrivită și deosebește consultarea datelor de comenzile care închid mese sau restaurează platforma.",
+    "minutes": 8,
+    "group": "operare",
+    "sections": [
+      {
+        "id": "dashboard-orientare",
+        "title": "De unde începi",
+        "paragraphs": [
+          "Dashboard este pagina de orientare a administratorului. În partea de sus, „Platforma ta, într-un singur loc” oferă scurtături către toate zonele consolei. Câmpul „Caută o zonă de administrare” filtrează aceste scurtături după nume sau descriere; nu caută jucători și nu schimbă setări.",
+          "Alege cardul care corespunde lucrului dorit: Users pentru conturi, Cash tables pentru mese, Marketplace pentru oferte. „Vezi Marketplace ↗” deschide pagina publică într-o filă separată, utilă pentru a compara ceea ce publici cu ceea ce vede comunitatea. Meniul lateral rămâne disponibil pentru revenire."
+        ]
+      },
+      {
+        "id": "dashboard-indicatori",
+        "title": "Ce înseamnă cifrele",
+        "table": {
+          "headers": [
+            "Indicator",
+            "Cum îl interpretezi"
+          ],
+          "rows": [
+            [
+              "Users",
+              "Numărul conturilor care nu sunt șterse; nu înseamnă că toate sunt conectate."
+            ],
+            [
+              "Hands played",
+              "Mâinile înregistrate în istoricul aplicației."
+            ],
+            [
+              "Cash tables / Tournaments",
+              "Configurațiile existente. Pentru ce rulează acum, uită-te la Live tables sau Platform."
+            ],
+            [
+              "Bot mint / Spin mint",
+              "Contoare ale emisiunilor de sold virtual asociate boților și jocurilor Spin. Nu sunt încasări comerciale."
+            ],
+            [
+              "Bad beat jackpot / Total turnover",
+              "Valori din economia virtuală a jocului, nu raportul financiar al Marketplace."
+            ],
+            [
+              "Server",
+              "Starea conexiunii de administrare: Connected, Loading… sau Connection unavailable."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "Online players nu este un recensământ real",
+          "text": "În această versiune, indicatorul Online players din Dashboard este calculat dintr-o valoare de prezentare și o variație simulată. Pentru conturile distincte conectate, consultă Platform → Connections → Identified users. Nu folosi numărul din Dashboard pentru a raporta audiența reală."
+        }
+      },
+      {
+        "id": "dashboard-rutina",
+        "title": "O verificare scurtă la începutul zilei",
+        "steps": [
+          {
+            "title": "Actualizează informațiile",
+            "text": "Apasă Refresh în cardul House status. Acesta recitește datele; nu repornește serverul și nu întrerupe jocurile."
+          },
+          {
+            "title": "Compară configurațiile cu activitatea",
+            "text": "Privește Live tables: numele mesei, jucătorii așezați, numărul mâinii și etapa jocului. O listă goală poate însemna pur și simplu că nu rulează nicio masă."
+          },
+          {
+            "title": "Consultă operațiunile recente",
+            "text": "Recent transactions arată ultimele opt înregistrări. Pentru căutare și context complet, deschide Transactions, unde poți filtra după cont și tip."
+          },
+          {
+            "title": "Alege zona următoare",
+            "text": "Intră în Platform dacă urmărești funcționarea serverului sau într-o secțiune de configurare dacă ai o schimbare concretă de făcut."
+          }
+        ]
+      },
+      {
+        "id": "dashboard-exporturi",
+        "title": "Exporturile și copia de siguranță",
+        "table": {
+          "headers": [
+            "Buton",
+            "Ce descarcă"
+          ],
+          "rows": [
+            [
+              "⤓ users",
+              "Un tabel CSV cu date despre conturi."
+            ],
+            [
+              "⤓ transactions",
+              "Operațiuni înregistrate în economia jocului."
+            ],
+            [
+              "⤓ hands",
+              "Date din istoricul mâinilor."
+            ],
+            [
+              "⤓ tournaments",
+              "Configurații și informații despre turnee."
+            ],
+            [
+              "⤓ Download backup",
+              "O copie a bazei de date, pentru păstrare sau recuperare."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "CSV este potrivit pentru analiză într-un program de foi de calcul. Un export CSV nu ține locul copiei complete necesare unei restaurări. Aceste fișiere pot conține informații despre utilizatori; când le descarci, păstrează-le în spațiul tău de administrare, fără să le publici în ghid sau în pagina Marketplace."
+        ]
+      },
+      {
+        "id": "dashboard-inchidere",
+        "title": "Close închide masa care rulează",
+        "paragraphs": [
+          "Butonul Close se află lângă fiecare masă din lista Live tables. El acționează asupra jocului activ: scoate jucătorii și închide instanța mesei. La o masă obișnuită se decontează stack-ul rămas; o mână în desfășurare poate fi întreruptă. Nu este butonul de închidere a unei ferestre.",
+          "Configurația mesei și instanța activă sunt lucruri distincte. Disable din Cash tables schimbă disponibilitatea configurației; Close oprește masa care rulează. Dacă dorești doar să citești detaliile unei mese, nu apăsa Close."
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Comandă directă, fără dialog de confirmare",
+          "text": "În acest build, Close este trimis imediat după apăsare. Nu îl folosi pentru exerciții și nu presupune că așteaptă terminarea mâinii. Închiderea unei mese de turneu poate afecta participarea jucătorilor; intervențiile asupra unui turneu activ se fac după verificarea stării sale."
+        }
+      },
+      {
+        "id": "dashboard-restore",
+        "title": "Restore backup… pregătește revenirea la o copie",
+        "paragraphs": [
+          "Restore backup… îți permite să alegi un fișier de backup acceptat. După alegere apar câmpul de confirmare, Queue restore și Cancel. Queue restore pregătește copia pentru aplicare la următoarea pornire a serverului; nu repornește singur aplicația și nu înlocuiește instantaneu baza de date.",
+          "La aplicarea restaurării, informațiile revin la momentul copiei selectate. Datele mai noi nu sunt combinate automat cu ea. Baza curentă este păstrată separat pentru recuperare. Dacă doar înveți interfața, folosește Cancel și lasă această operațiune pentru o situație de recuperare planificată."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Dashboard, indicatori și butoane",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L338"
+      },
+      {
+        "label": "Calcularea indicatorului online și închiderea meselor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js"
+      },
+      {
+        "label": "Fluxul de restaurare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminRestore.tsx"
+      },
+      {
+        "label": "Aplicarea restaurării la pornire",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-restore.js"
+      }
+    ]
+  },
+  {
+    "id": "platform",
+    "title": "Platform",
+    "kicker": "Starea tehnică a aplicației",
+    "summary": "Citește corect conexiunile, resursele serverului și turneele active. Află ce salvează Snapshot și ce schimbă efectiv Level +1.",
+    "minutes": 9,
+    "group": "operare",
+    "sections": [
+      {
+        "id": "platform-citire",
+        "title": "Un ecran de monitorizare, actualizat la 10 secunde",
+        "paragraphs": [
+          "Platform arată procesul aplicației, conexiunile și camerele de turneu care rulează. Datele se actualizează automat la fiecare zece secunde cât timp ești în această secțiune. Refresh cere o actualizare imediată. Valorile pot varia între două citiri fără ca asta să indice o problemă.",
+          "Nu există aici un buton de oprire sau restart general. Lista Live tables din partea de jos este pentru consultare; comanda Close se găsește în Dashboard."
+        ]
+      },
+      {
+        "id": "platform-carduri",
+        "title": "Cele șapte carduri de sus",
+        "table": {
+          "headers": [
+            "Etichetă",
+            "Semnificație practică"
+          ],
+          "rows": [
+            [
+              "Uptime",
+              "Timpul trecut de la pornirea procesului aplicației. O repornire îl resetează."
+            ],
+            [
+              "Memory",
+              "Memoria RAM folosită de proces. Nu este spațiul de stocare al serverului."
+            ],
+            [
+              "WS clients",
+              "Conexiunile deschise cu aplicația. Același om poate avea mai multe ferestre conectate."
+            ],
+            [
+              "Live tables",
+              "Mesele active în motorul de joc, inclusiv mese aparținând turneelor."
+            ],
+            [
+              "Tournament rooms",
+              "Camerele de turneu active. Un singur turneu poate ocupa mai multe mese."
+            ],
+            [
+              "Database",
+              "Dimensiunea fișierului principal al bazei de date; cardul Server arată separat și jurnalul WAL."
+            ],
+            [
+              "Disk free",
+              "Spațiul disponibil pe sistemul de fișiere, împreună cu procentul deja folosit."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Dacă urmărești o creștere neobișnuită, compară mai multe citiri și activitatea din același interval. Un singur număr de memorie sau de conexiuni nu stabilește singur dacă serverul are o problemă."
+        ]
+      },
+      {
+        "id": "platform-conexiuni",
+        "title": "Server și Connections: ce merită urmărit",
+        "paragraphs": [
+          "În Server, Version identifică versiunea instalată. Node / PID și Environment sunt detalii utile persoanei care întreține aplicația. CPU / load indică resursele și încărcarea sistemului; Users / hands și Tables / tournaments sunt numere din baza de date.",
+          "În Connections, Identified users numără conturile distincte recunoscute în conexiunile active. Live seats numără locurile ocupate și poate include boți. Table connections include și ferestre care urmăresc jocul. Tournament players left arată participanții rămași, iar Tournament flights reprezintă mesele în care sunt împărțiți. De aceea aceste cifre nu trebuie să fie egale."
+        ]
+      },
+      {
+        "id": "platform-comenzi",
+        "title": "Butoanele și efectele lor",
+        "table": {
+          "headers": [
+            "Buton",
+            "Rezultat"
+          ],
+          "rows": [
+            [
+              "Refresh",
+              "Recitește raportul tehnic. Nu schimbă configurația jocurilor."
+            ],
+            [
+              "Snapshot all",
+              "Încearcă să salveze puncte de recuperare pentru toate turneele active. Raportează câte au fost salvate și câte au fost sărite."
+            ],
+            [
+              "⤓ JSON",
+              "Descarcă raportul curent într-un fișier pentru diagnostic; nu este o copie completă a bazei de date."
+            ],
+            [
+              "Snapshot, pe rândul unui turneu",
+              "Încearcă salvarea unui punct de recuperare pentru acel turneu."
+            ],
+            [
+              "Level +1",
+              "Avansează nivelul de blinduri al turneului, după confirmare, atunci când nu există o mână în curs."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "warning",
+          "title": "Level +1 modifică jocul",
+          "text": "Dacă o mână este în curs, serverul refuză avansarea cu motivul hand in progress. Comanda nu rămâne în așteptare pentru mai târziu. Dacă este acceptată, schimbă nivelul și reia cronometrul acelui nivel. Nu o folosi ca metodă de Refresh."
+        }
+      },
+      {
+        "id": "platform-turnee",
+        "title": "Cum citești Live tournament rooms",
+        "table": {
+          "headers": [
+            "Coloană",
+            "Ce urmărești"
+          ],
+          "rows": [
+            [
+              "Event",
+              "Turneul și tipul său."
+            ],
+            [
+              "Level / blinds",
+              "Nivelul curent și blindurile aplicate."
+            ],
+            [
+              "Players left",
+              "Participanții rămași; separat poate apărea câți sunt oameni."
+            ],
+            [
+              "Flights",
+              "Numărul meselor turneului."
+            ],
+            [
+              "Finished",
+              "Numărul participanților care și-au încheiat parcursul."
+            ],
+            [
+              "Next / state",
+              "Timpul până la următorul nivel sau starea afișată de interfață."
+            ],
+            [
+              "Recovery",
+              "Momentul și dimensiunea ultimului punct de recuperare; poate afișa stale sau restored."
+            ],
+            [
+              "Actions",
+              "Snapshot și Level +1, pentru acel turneu."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Dacă nu există camere active, mesajul No tournament room is live este normal. Configurarea unui turneu în Tournaments și existența unei camere care rulează sunt etape diferite."
+        ]
+      },
+      {
+        "id": "platform-recuperare",
+        "title": "Ce faci când apare stale",
+        "steps": [
+          {
+            "title": "Identifică turneul",
+            "text": "Verifică rândul, participanții rămași și informația Recovery. stale înseamnă că lipsește un punct recent de recuperare sau că acesta este mai vechi de cinci minute."
+          },
+          {
+            "title": "Încearcă o salvare la moment potrivit",
+            "text": "Folosește Snapshot. Dacă primești Snapshot skipped sau hand in progress, mâna în curs nu permite o salvare stabilă în acel moment."
+          },
+          {
+            "title": "Verifică rezultatul",
+            "text": "După confirmarea salvării, verifică ora din Recovery. Un mesaj de succes este relevant; simpla apăsare a butonului nu garantează salvarea."
+          },
+          {
+            "title": "Păstrează contextul dacă situația persistă",
+            "text": "Notează ce turneu este afectat și mesajul afișat. Raportul JSON poate ajuta operatorul tehnic să investigheze, fără să încerci Level +1 sau Close pentru a elimina avertizarea."
+          }
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Două tipuri diferite de copie",
+          "text": "Snapshot din Platform păstrează starea turneului pentru recuperare. Copiile din secțiunea Snapshots și Download backup din Dashboard privesc baza de date. Un snapshot de turneu nu înlocuiește backup-ul platformei."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Interfața Platform",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L406"
+      },
+      {
+        "label": "Semnificația indicatorilor și pragul stale",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-platform.js"
+      },
+      {
+        "label": "Regulile Level +1",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/tournament-controls.js"
+      },
+      {
+        "label": "Salvarea camerelor de turneu",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/tournament-room-owner.js"
+      }
+    ]
+  },
+  {
+    "id": "users",
+    "title": "Users",
+    "kicker": "Conturile comunității",
+    "summary": "Găsește contul corect, urmărește soldurile virtuale și folosește explicit creditarea, moderarea chatului și rolurile de administrator.",
+    "minutes": 10,
+    "group": "operare",
+    "sections": [
+      {
+        "id": "users-cautare",
+        "title": "Găsește contul înainte de orice acțiune",
+        "steps": [
+          {
+            "title": "Caută după identificare",
+            "text": "În Search login, nickname or email… scrie loginul, nickname-ul sau emailul contului. Căutarea se actualizează după o scurtă pauză de tastare."
+          },
+          {
+            "title": "Alege filtrul potrivit",
+            "text": "All users arată toate conturile din listă. Active, Admins, Banned și Chat muted restrâng rezultatele după starea aleasă. Un rezultat absent poate fi ascuns de filtru."
+          },
+          {
+            "title": "Verifică rândul",
+            "text": "Compară Player și Login. Nu te baza numai pe avatar sau pe faptul că primul rezultat seamănă cu numele căutat."
+          },
+          {
+            "title": "Folosește paginarea",
+            "text": "Poți afișa 25, 50 sau 100 de conturi pe pagină. Prev și Next schimbă pagina. ⤓ CSV exportă date; exportul este o copie, nu un editor al conturilor."
+          }
+        ]
+      },
+      {
+        "id": "users-coloane",
+        "title": "Ce reprezintă soldurile și starea",
+        "table": {
+          "headers": [
+            "Coloană",
+            "Interpretare"
+          ],
+          "rows": [
+            [
+              "Balance",
+              "Soldul virtual afișat cu simbolul $. Nu reprezintă o plată încasată prin Marketplace."
+            ],
+            [
+              "Play chips",
+              "Soldul separat de jetoane de joc."
+            ],
+            [
+              "Tickets",
+              "Soldul de tickets al contului."
+            ],
+            [
+              "VIP",
+              "Nivelul VIP. Acesta nu acordă acces la administrare."
+            ],
+            [
+              "Status",
+              "Poate arăta Active, Banned sau Chat muted; Admin este afișat separat."
+            ],
+            [
+              "Actions",
+              "Comenzile disponibile pentru contul de pe acel rând."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Schimbarea filtrului sau a paginii nu modifică utilizatorul. Pentru a investiga o diferență de sold, deschide Transactions și caută operațiunile contului; cifra curentă singură nu explică de unde provine modificarea."
+        ]
+      },
+      {
+        "id": "users-credit",
+        "title": "+$1k și -$1k: adăugare sau retragere din sold",
+        "steps": [
+          {
+            "title": "Alege sensul operațiunii",
+            "text": "+$1k adaugă 1.000 de unități afișate cu $, iar -$1k retrage aceeași sumă. Sunt valori virtuale. Nu sunt butoane pentru sume arbitrare."
+          },
+          {
+            "title": "Recitește titlul dialogului",
+            "text": "Dialogul arată Credit sau Debit, suma și nickname-ul. Acesta este ultimul moment potrivit să verifici că ai selectat contul dorit."
+          },
+          {
+            "title": "Scrie motivul",
+            "text": "Reason este obligatoriu, cu 3–200 de caractere după normalizarea spațiilor. Explică operațiunea, de exemplu „Corectarea unei recompense acordate greșit”, fără date sensibile inutile."
+          },
+          {
+            "title": "Confirmă sau renunță",
+            "text": "Confirm aplică operațiunea; Cancel închide dialogul. Motivul ajunge în registrul tranzacțiilor și audit. Un debit care depășește soldul disponibil este refuzat."
+          },
+          {
+            "title": "Verifică soldul rezultat",
+            "text": "Așteaptă mesajul User updated și reîncărcarea listei. Dacă apare o eroare, citește-o înainte de o nouă încercare; nu deschide succesiv dialoguri pentru aceeași corecție."
+          }
+        ]
+      },
+      {
+        "id": "users-edit",
+        "title": "Edit: câmpuri existente și limita acestei versiuni",
+        "table": {
+          "headers": [
+            "Câmp",
+            "Rolul indicat de formular"
+          ],
+          "rows": [
+            [
+              "Nickname",
+              "Numele public afișat în formular."
+            ],
+            [
+              "Balance (cents)",
+              "Soldul total exprimat în cenți: 10.000 corespunde valorii $100.00."
+            ],
+            [
+              "Play chips / Tickets",
+              "Valorile totale ale acestor solduri, nu diferențe de adăugat."
+            ],
+            [
+              "VIP level",
+              "Nivelul VIP al contului."
+            ],
+            [
+              "New password",
+              "Câmpul prevăzut pentru schimbarea parolei; necompletat ar trebui să o păstreze."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "warning",
+          "title": "Nu folosi Edit pentru schimbări reale în buildul verificat",
+          "text": "Formularul nu preia corect contul selectat în starea pe care o salvează: poate arăta câmpuri goale sau valori implicite. În plus, Save nu transmite Nickname, deci editarea acestui câmp nu schimbă numele. Folosește Cancel; nu încerca să repari situația completând manual zerourile. Creditarea, Mute și comenzile de rol admin au fluxuri separate."
+        },
+        "paragraphs": [
+          "Această limitare este specifică versiunii pe care se bazează ghidul. Până la corectarea ei, explicația câmpurilor te ajută să înțelegi interfața, nu constituie o procedură sigură pentru schimbarea soldului total sau a parolei."
+        ]
+      },
+      {
+        "id": "users-moderare",
+        "title": "Mute și Unmute",
+        "paragraphs": [
+          "Mute blochează chatul contului; Unmute îl permite din nou. Acțiunea din Users se aplică direct la apăsare, pentru contul ales. Nu este o interdicție de conectare și nu schimbă automat soldul.",
+          "Dacă incidentul pornește de la un mesaj concret, Chat moderation oferă contextul conversației și ștergerea mesajului. Deblocarea chatului se poate face ulterior prin Unmute în Users. Filtrul Banned permite consultarea conturilor în acea stare, dar această listă nu oferă un buton Ban în buildul verificat."
+        ]
+      },
+      {
+        "id": "users-roluri",
+        "title": "Make admin și Revoke admin",
+        "paragraphs": [
+          "Make admin acordă acces complet la consolă, după confirmare. Alege acest rol pentru o persoană care trebuie să administreze platforma, nu pentru un jucător VIP sau pentru cineva care cumpără un serviciu.",
+          "Revoke admin retrage rolul. Dacă îl retragi propriului cont, pierzi accesul la consolă. Interfața protejează ultimul administrator activ și nu îi oferă retragerea rolului. Citește contul și efectul din dialog înainte să confirmi."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Exercițiul de început",
+          "text": "Caută un cont, schimbă filtrul, citește coloanele și revino la All users. Aceste acțiuni sunt suficiente pentru a învăța lista. Nu este necesară acordarea unui rol admin sau modificarea unui sold pentru a verifica că ai înțeles navigarea."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Lista Users, filtre și acțiuni",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L539"
+      },
+      {
+        "label": "Editorul Users și salvarea câmpurilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L981"
+      },
+      {
+        "label": "Credit, Debit, motiv și confirmare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminGrantDialog.tsx"
+      },
+      {
+        "label": "Regulile operațiunilor asupra conturilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2810"
+      }
+    ]
+  },
+  {
+    "id": "cash-tables",
+    "title": "Cash tables",
+    "kicker": "Configurarea meselor",
+    "summary": "Creează întâi o configurație dezactivată, introdu corect mizele în cenți și înțelege diferența dintre Enable, Disable, Duplicate, Delete și Close.",
+    "minutes": 12,
+    "group": "jocuri",
+    "sections": [
+      {
+        "id": "cash-tables-lista",
+        "title": "Configurația și masa activă",
+        "paragraphs": [
+          "Cash tables conține configurațiile meselor: jocul, mizele, numărul locurilor și disponibilitatea lor. O configurație existentă nu înseamnă automat că masa rulează. Pentru activitatea curentă, consultă Platform → Live tables.",
+          "În listă, Stakes afișează small blind și big blind în format monetar, Seats numărul locurilor, Featured evidențierea, iar Enabled arată On sau Off. Acestea sunt valorile salvate ale configurației; nu toate schimbările sunt preluate imediat de o masă deja pornită."
+        ]
+      },
+      {
+        "id": "cash-tables-creare",
+        "title": "Creează o masă fără să o publici imediat",
+        "steps": [
+          {
+            "title": "Deschide + New table",
+            "text": "Apare editorul cu valori precompletate. Recitește-le: exemplul implicit nu este o recomandare de miză pentru comunitatea ta."
+          },
+          {
+            "title": "Debifează Enabled",
+            "text": "Astfel salvezi o configurație dezactivată. Poți verifica numele și mizele înainte de a permite apariția ei în oferta de mese."
+          },
+          {
+            "title": "Completează câmpurile",
+            "text": "Pentru un prim exemplu simplu, folosește game = holdem și un nume descriptiv. Introdu mizele și limitele în cenți, conform tabelului de mai jos."
+          },
+          {
+            "title": "Alege locurile și timpul",
+            "text": "seats este un număr între 2 și 9. Action time primește secunde întregi între 5 și 300; gol înseamnă 15 secunde."
+          },
+          {
+            "title": "Salvează și verifică",
+            "text": "Save păstrează configurația; Cancel renunță la modificările nesalvate. După Table saved, verifică în listă Stakes, Seats și starea Off."
+          },
+          {
+            "title": "Activează când configurația este pregătită",
+            "text": "Enable schimbă starea în On. Verifică apariția în lobby și prezentarea limitelor înainte de a anunța masa comunității."
+          }
+        ]
+      },
+      {
+        "id": "cash-tables-bani",
+        "title": "Cenți la sume, locuri la seats",
+        "table": {
+          "headers": [
+            "Eticheta exactă",
+            "Ce introduci",
+            "Exemplu"
+          ],
+          "rows": [
+            [
+              "sb (cents where money)",
+              "Small blind, în cenți.",
+              "50 → $0.50"
+            ],
+            [
+              "bb (cents where money)",
+              "Big blind, în cenți.",
+              "100 → $1.00"
+            ],
+            [
+              "ante (cents where money)",
+              "Ante, în cenți; 0 este permis.",
+              "0 → fără ante"
+            ],
+            [
+              "min_buyin (cents where money)",
+              "Intrarea minimă, în cenți.",
+              "2000 → $20.00"
+            ],
+            [
+              "max_buyin (cents where money)",
+              "Intrarea maximă, în cenți.",
+              "10000 → $100.00"
+            ],
+            [
+              "seats (cents where money)",
+              "Numărul locurilor. Textul despre cenți nu se aplică aici.",
+              "6 → șase locuri"
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "Nu aplica această regulă în Marketplace",
+          "text": "În Cash tables și în câmpurile monetare ale turneelor introduci cenți. În Marketplace → Preț afișat introduci prețul obișnuit: 49 înseamnă 49 din moneda aleasă. Cele două formulare fac conversia diferit."
+        }
+      },
+      {
+        "id": "cash-tables-campuri",
+        "title": "Celelalte câmpuri",
+        "table": {
+          "headers": [
+            "Câmp",
+            "Cum îl folosești"
+          ],
+          "rows": [
+            [
+              "name",
+              "Numele mesei, recognoscibil în lobby și în rapoarte."
+            ],
+            [
+              "game",
+              "Codul jocului, de exemplu holdem, omaha sau shortdeck. Nu introduce o traducere liberă a numelui."
+            ],
+            [
+              "category",
+              "Categoria de prezentare a mesei."
+            ],
+            [
+              "speed",
+              "Eticheta vitezei, de exemplu Normal. Timpul efectiv de decizie se configurează prin Action time."
+            ],
+            [
+              "Action time (s, 5-300; blank = 15)",
+              "Secunde pentru o decizie. Schimbarea este preluată de o masă activă la următoarea decizie."
+            ],
+            [
+              "Featured",
+              "Marchează masa pentru evidențiere."
+            ],
+            [
+              "Enabled",
+              "Controlează disponibilitatea configurației în catalogul meselor."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Serverul verifică jocul ales. Variantele avansate au reguli proprii; nu presupune că schimbarea textului game transformă orice masă într-un turneu sau activează un mod neimplementat. În această versiune, Battle Royale nu poate fi creat ca masă funcțională din acest formular."
+        ]
+      },
+      {
+        "id": "cash-tables-actiuni",
+        "title": "Edit, Enable, Disable, Duplicate și Delete",
+        "table": {
+          "headers": [
+            "Acțiune",
+            "Efect concret"
+          ],
+          "rows": [
+            [
+              "Edit",
+              "Deschide configurația existentă. Save păstrează schimbările; Cancel le abandonează."
+            ],
+            [
+              "Enable / Disable",
+              "Schimbă disponibilitatea configurației. Nu reprezintă o comandă de oprire a instanței active."
+            ],
+            [
+              "Duplicate",
+              "Creează o copie cu nume de tipul „(copy)”, dezactivată. Configurația originală rămâne intactă."
+            ],
+            [
+              "Delete",
+              "După confirmare, șterge configurația. Nu presupune că gestionează și închiderea unei mese deja active."
+            ],
+            [
+              "Close, în Dashboard",
+              "Închide efectiv instanța care rulează și poate întrerupe jocul. Nu se află în acest editor."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Duplicate este util când vrei o masă similară, cu altă miză: copiezi, editezi copia, verifici starea Off și activezi numai configurația finală. Nu modifica o masă ocupată ca metodă de experimentare cu alte reguli."
+        ]
+      },
+      {
+        "id": "cash-tables-validare",
+        "title": "Dacă Save este refuzat",
+        "bullets": [
+          "Small blind nu poate depăși big blind.",
+          "Intrarea minimă nu poate depăși intrarea maximă și trebuie să acopere cel puțin un big blind.",
+          "Mizele și limitele se introduc ca numere întregi în unitatea cerută; nu scrie simbolul $ în câmp.",
+          "seats trebuie să fie între 2 și 9, iar Action time între 5 și 300 de secunde sau gol.",
+          "Corectează câmpul indicat de mesaj și verifică din nou valorile salvate în listă."
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Schimbările de miză nu sunt garantate imediat pe masa activă",
+          "text": "În acest build, timpul de decizie are actualizare explicită pentru masa pornită. Nu există aceeași promisiune pentru toate celelalte câmpuri. Pentru schimbări de joc, mize sau structură, pregătește o configurație separată ori aplică modificarea când masa nu este folosită."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Cash tables și editorul",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L593"
+      },
+      {
+        "label": "Etichete și unități în editor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L991"
+      },
+      {
+        "label": "Validarea configurației meselor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/validate.js"
+      },
+      {
+        "label": "Duplicarea creează o copie dezactivată",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-table-duplicate.js"
+      },
+      {
+        "label": "Salvarea și efectul asupra mesei active",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js#L2897"
+      }
+    ]
+  },
+  {
+    "id": "tournaments",
+    "title": "Tournaments",
+    "kicker": "Evenimentele comunității",
+    "summary": "Pregătește un turneu cu sume și structură corecte, înțelege stările și tratează explicit limita de fus orar a acestei versiuni.",
+    "minutes": 12,
+    "group": "jocuri",
+    "sections": [
+      {
+        "id": "tournaments-lista",
+        "title": "Ce arată lista",
+        "paragraphs": [
+          "Tournaments afișează Name, Buy-in, GTD, Entrants, Start și Status. Buy-in din listă include taxa: valoarea buyin plus fee. GTD este valoarea garantată configurată, iar Entrants numărul de participanți folosit de eveniment.",
+          "Acțiunile disponibile sunt + New tournament, Edit și Delete. Monitorizarea turneului pornit și comenzile Snapshot sau Level +1 se află în Platform. Nu există în acest editor un buton separat de pauză sau un mod Ciornă ca în Marketplace."
+        ]
+      },
+      {
+        "id": "tournaments-creare",
+        "title": "Pregătirea unui turneu nou",
+        "steps": [
+          {
+            "title": "Deschide + New tournament",
+            "text": "Recitește toate valorile precompletate. Pentru un exercițiu de învățare, completează formularul și încheie cu Cancel."
+          },
+          {
+            "title": "Stabilește numele și intrarea",
+            "text": "Folosește un nume clar. Completează buyin, fee și gtd în cenți. Nu confunda taxa fee cu suma care intră în fondul de premiere."
+          },
+          {
+            "title": "Configurează structura",
+            "text": "Alege starting stack, blind speed și late reg, apoi formatul și modul de joc. Lasă entrants la 0 pentru un eveniment nou; nu îl folosi pentru a inventa înscrieri."
+          },
+          {
+            "title": "Pregătește programarea",
+            "text": "Folosește un moment viitor și Status = registering pentru un eveniment care primește înscrieri. Verifică problema de fus orar explicată mai jos înainte de a comunica o oră publică."
+          },
+          {
+            "title": "Salvează numai evenimentul pregătit",
+            "text": "Save creează configurația activă, vizibilă în oferta de turnee. Verifică lista și lobby-ul turneului: suma totală de intrare, structura și informația de început."
+          }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Save nu salvează o ciornă privată",
+          "text": "Editorul de turnee nu are comutator Enabled sau stare Draft. Crearea prin Save activează evenimentul. Pentru exersare fără publicare, folosește Cancel; pentru teste complete, lucrează într-o instanță de test."
+        }
+      },
+      {
+        "id": "tournaments-unitati",
+        "title": "Câmpurile și unitățile lor",
+        "table": {
+          "headers": [
+            "Etichetă exactă",
+            "Unitate și sens"
+          ],
+          "rows": [
+            [
+              "buyin",
+              "Cenți. 1000 înseamnă $10.00 pentru intrarea de bază."
+            ],
+            [
+              "fee",
+              "Cenți. 100 înseamnă $1.00 taxă; cu buyin = 1000, lista arată $11.00."
+            ],
+            [
+              "gtd",
+              "Cenți pentru valoarea garantată. 10000 se afișează $100.00."
+            ],
+            [
+              "bounty",
+              "Cenți pentru valoarea asociată mecanismului bounty."
+            ],
+            [
+              "entrants",
+              "Număr de participanți, nu valoare monetară."
+            ],
+            [
+              "starting stack",
+              "Jetoanele inițiale de turneu. 10000 este prezentat ca stack de 10.000, fără conversia de preț."
+            ],
+            [
+              "blind speed",
+              "Minute pentru ritmul nivelurilor; motorul impune minimum cinci minute."
+            ],
+            [
+              "late reg",
+              "Minute după start în care înscrierile târzii pot rămâne deschise."
+            ],
+            [
+              "Start (local time)",
+              "Data și ora din editor; citește limita de fus orar de mai jos."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "Zero nu dezactivează late reg în această versiune",
+          "text": "La salvare, valoarea 0 pentru late reg este înlocuită de valoarea implicită 90. Nu te baza pe introducerea lui 0 pentru închiderea înscrierilor târzii. Valorile foarte mici pentru blind speed nu înseamnă automat niveluri de unul sau două minute."
+        }
+      },
+      {
+        "id": "tournaments-format",
+        "title": "Format, Game, Mode și Ticket / target",
+        "paragraphs": [
+          "Format oferă NLH, PLO și Short Deck; Game oferă Hold’em, PLO și Short Deck. Păstrează-le coerente: de exemplu, NLH cu Hold’em. Format este și o informație de prezentare, iar Game identifică jocul.",
+          "Mode oferă STANDARD, BOUNTY, MYSTERY, SATELLITE și FLIP. Alege mecanismul pe care îl poți explica participanților. Ticket / target este destinat țintei sau ticketului unui satelit. Selectarea unui mod nu ține locul definirii corecte a intrării, structurii și recompenselor."
+        ]
+      },
+      {
+        "id": "tournaments-ora",
+        "title": "Ora: limita UTC / local a editorului",
+        "paragraphs": [
+          "Câmpul este numit Start (local time), însă precompletarea și redeschiderea pentru editare folosesc o conversie în UTC, apoi elimină marcajul de fus orar. La salvare, valoarea ajunge fără fus orar, iar serverul o interpretează după propriul mediu.",
+          "Prin urmare, eticheta „local time” nu garantează aceeași oră efectivă în browser și pe server. Nici faptul că lista și formularul par să se potrivească nu demonstrează momentul la care va porni programatorul serverului."
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Confirmă programarea înainte să anunți evenimentul",
+          "text": "Pentru un turneu real, stabilește ora efectivă împreună cu operatorul tehnic sau verific-o într-un test controlat. Nu aplica o regulă fixă de tipul „adaugă două ore”: diferența depinde de fusuri și de ora de vară. Aceasta este o limitare identificată a buildului verificat."
+        }
+      },
+      {
+        "id": "tournaments-stari",
+        "title": "Stările și pornirea automată",
+        "table": {
+          "headers": [
+            "Status",
+            "Utilizare"
+          ],
+          "rows": [
+            [
+              "registering",
+              "Evenimentul primește înscrieri. Programatorul îl poate porni când ora este atinsă și există cel puțin doi participanți."
+            ],
+            [
+              "running",
+              "Evenimentul este marcat în desfășurare. Nu folosi schimbarea manuală a etichetei ca exercițiu de pornire."
+            ],
+            [
+              "completed",
+              "Evenimentul este marcat încheiat. Schimbarea textului nu este o procedură completă de finalizare sau de plată a premiilor."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Pentru un eveniment nou, lasă fluxul normal să gestioneze pornirea. În Platform urmărești camera activă, jucătorii rămași și nivelul. Level +1 cere confirmare și este refuzat dacă există o mână în curs; nu programează o schimbare pentru mai târziu."
+        ]
+      },
+      {
+        "id": "tournaments-editare-stergere",
+        "title": "Edit și Delete după creare",
+        "paragraphs": [
+          "Edit deschide valorile existente; Save le persistă, iar Cancel renunță la schimbările nesalvate. Evită modificarea intrării, stack-ului sau numărului de participanți după înscrieri: formularul nu reprezintă un flux de recalculare și compensare a înscrierilor deja făcute.",
+          "Delete cere confirmare, închide forțat camera dacă aceasta există și șterge evenimentul. Nu este arhivare și nu promite rambursarea automată a tuturor înscrierilor. Nu șterge un turneu activ doar pentru a-l ascunde din listă."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tournaments: listă și creare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L628"
+      },
+      {
+        "label": "Câmpurile și stările editorului",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L1004"
+      },
+      {
+        "label": "Salvare, înscriere și programatorul turneelor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js"
+      },
+      {
+        "label": "Stack-ul afișat în lobby",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/tournaments/TournamentLobby.tsx"
+      },
+      {
+        "label": "Comanda de avansare a nivelului",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/tournament-controls.js"
+      }
+    ]
+  },
+  {
+    "id": "wait-lists",
+    "title": "Wait lists",
+    "kicker": "Cozile de acces la mese",
+    "summary": "Urmărește cine așteaptă un loc, ce locuri sunt rezervate și ce pierde o coadă atunci când folosești Clear queue.",
+    "minutes": 6,
+    "group": "jocuri",
+    "sections": [
+      {
+        "id": "wait-lists-scop",
+        "title": "De ce există această secțiune",
+        "paragraphs": [
+          "Wait lists urmărește cererile jucătorilor care așteaptă un loc la o masă sau într-un grup de mese. Nu este lista înscrierilor la turnee și nici lista solicitărilor comerciale din Marketplace.",
+          "Waiting înseamnă că persoana este încă în coadă. Held seat înseamnă că există un loc rezervat temporar pentru un jucător, cu un interval rămas pentru folosirea lui. O rezervare nu este echivalentă cu un jucător deja așezat la masă."
+        ]
+      },
+      {
+        "id": "wait-lists-citire",
+        "title": "Indicatorii și coloanele",
+        "table": {
+          "headers": [
+            "Etichetă",
+            "Ce reprezintă"
+          ],
+          "rows": [
+            [
+              "Queues",
+              "Numărul cozilor raportate."
+            ],
+            [
+              "Waiting players",
+              "Totalul pozițiilor de așteptare din cozile raportate; nu presupune automat persoane distincte."
+            ],
+            [
+              "Held seats",
+              "Locurile rezervate temporar."
+            ],
+            [
+              "Queue / Type",
+              "Coada și tipul ei: pentru o masă sau pentru un grup."
+            ],
+            [
+              "Waiting / Players (position)",
+              "Câți așteaptă și poziția fiecăruia în ordine."
+            ],
+            [
+              "Held seats, în rând",
+              "Jucătorul, masa, locul rezervat și timpul rămas."
+            ],
+            [
+              "Oldest wait",
+              "Durata celei mai vechi așteptări din acea coadă."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Refresh recitește starea cozilor. Spre deosebire de Platform, această pagină nu are un cronometru propriu de reîmprospătare la zece secunde. Apasă Refresh înainte să decizi că o rezervare sau o așteptare a rămas blocată."
+        ]
+      },
+      {
+        "id": "wait-lists-investigare",
+        "title": "Urmărește o așteptare fără să o întrerupi",
+        "steps": [
+          {
+            "title": "Identifică masa sau grupul",
+            "text": "Găsește coada după nume și verifică Type. O coadă de grup poate privi mai multe mese cu aceeași configurație."
+          },
+          {
+            "title": "Verifică poziția",
+            "text": "Citește Players (position) și compară numărul celor care așteaptă. Un jucător aflat mai jos în ordine poate aștepta normal."
+          },
+          {
+            "title": "Verifică rezervările",
+            "text": "Dacă există un Held seat, citește timpul rămas. Nu elibera o rezervare doar pentru că locul nu a fost încă ocupat."
+          },
+          {
+            "title": "Compară cu activitatea mesei",
+            "text": "În Platform poți verifica locurile ocupate și conexiunile. Revino cu Refresh pentru o stare actuală a cozii."
+          }
+        ]
+      },
+      {
+        "id": "wait-lists-golire",
+        "title": "Clear queue afectează întreaga coadă",
+        "steps": [
+          {
+            "title": "Selectează rândul corect",
+            "text": "Clear queue operează asupra cozii de pe acel rând, nu numai asupra unui nume afișat în ea."
+          },
+          {
+            "title": "Citește confirmarea",
+            "text": "Dialogul spune câte poziții de așteptare și câte locuri rezervate vor fi eliminate. Dacă acesta nu este efectul dorit, renunță."
+          },
+          {
+            "title": "Confirmă numai golirea necesară",
+            "text": "Sunt eliminate așteptările și eliberate rezervările; jucătorii afectați sunt notificați. Nu este o metodă de a muta primul jucător la masă."
+          },
+          {
+            "title": "Verifică rezultatul",
+            "text": "Mesajul arată câte poziții au fost eliminate și câte locuri au fost eliberate, apoi lista este recitită."
+          }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Golirea nu este o reîmprospătare",
+          "text": "Clear queue anulează pozițiile și rezervările respective. Dacă vrei doar informații actuale, folosește Refresh. Operațiunea nu creează locuri suplimentare la mese și nu mărește capacitatea lor."
+        }
+      },
+      {
+        "id": "wait-lists-gol",
+        "title": "Când lista este goală",
+        "paragraphs": [
+          "No players are waiting for a seat înseamnă că nu există cozi de afișat la momentul încărcării. Nu este, de unul singur, un semn că jocul nu funcționează. În această secțiune nu creezi manual o coadă, nu adaugi un jucător și nu schimbi ordinea prin tragerea numelor."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Interfața și confirmarea Clear queue",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminWaitlists.tsx"
+      },
+      {
+        "label": "Structura datelor pentru cozile de așteptare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/api.ts"
+      },
+      {
+        "label": "Operațiunile de administrare a cozilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-waitlist.js"
+      }
+    ]
+  },
+  {
+    "id": "game-settings",
+    "title": "Game settings",
+    "kicker": "Parametrii platformei",
+    "summary": "Modifică setările cu unitățile corecte, înțelege limitele mentenanței și configurează distinct probabilitatea și valoarea Fast Fold Cash Drop.",
+    "minutes": 10,
+    "group": "jocuri",
+    "sections": [
+      {
+        "id": "game-settings-formular",
+        "title": "Cum funcționează formularul",
+        "paragraphs": [
+          "Prima parte a Game settings afișează cheile existente în setările instalației. Lista poate varia, deci nu trebuie să conțină exact aceleași câmpuri pe orice server. Etichetele sunt numele tehnice ale setărilor, iar butonul Save settings salvează valorile afișate, inclusiv secțiunea Cash Drop de mai jos.",
+          "Valorile true și false sunt interpretate ca pornit și oprit. Numerele sunt interpretate numeric; alt text rămâne text. Nu traduce true în „da” și nu adăuga unități precum secunde sau $ în câmpul numeric. Formularul nu are un buton Cancel pentru revenirea automată la toate valorile inițiale."
+        ]
+      },
+      {
+        "id": "game-settings-chei",
+        "title": "Chei uzuale și unități",
+        "table": {
+          "headers": [
+            "Cheie",
+            "Semnificație și efect"
+          ],
+          "rows": [
+            [
+              "site_name",
+              "Numele de site păstrat în setări. Nu înlocuiește imaginea logo-ului din Branding."
+            ],
+            [
+              "online_base",
+              "Baza indicatorului public de online simulat. Nu reprezintă utilizatori conectați măsurați."
+            ],
+            [
+              "default_balance / welcome_bonus",
+              "Valori în cenți folosite la crearea conturilor noi. Nu redistribuie automat solduri către conturile existente."
+            ],
+            [
+              "jackpot",
+              "Valoarea din setări pentru jackpotul virtual, în cenți."
+            ],
+            [
+              "rake_percent",
+              "Procentul de rake configurat; 5 înseamnă 5%, nu 0,05."
+            ],
+            [
+              "rake_cap",
+              "Plafonul de rake, în cenți; 300 corespunde valorii $3.00."
+            ],
+            [
+              "bot_speed_ms",
+              "Viteza configurată pentru boți, în milisecunde; 1000 înseamnă o secundă."
+            ],
+            [
+              "maintenance",
+              "Comutatorul de mentenanță; efectul exact este explicat separat."
+            ],
+            [
+              "backup_retention, dacă apare",
+              "Numărul copiilor păstrate pe server: întreg între 1 și 50. Copiile mai vechi pot fi eliminate la crearea uneia noi."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Chei precum sounds_enabled sau animations_enabled pot fi prezente, dar simpla salvare a unei chei nu dovedește că toate ecranele o aplică imediat. Pentru controalele neexplicate aici, verifică utilizarea lor înainte să promiți un efect utilizatorilor."
+        ]
+      },
+      {
+        "id": "game-settings-salvare",
+        "title": "Schimbă un parametru și verifică rezultatul",
+        "steps": [
+          {
+            "title": "Notează valoarea curentă",
+            "text": "Pentru parametrul pe care îl schimbi, păstrează valoarea inițială și unitatea ei. Aceasta îți permite revenirea explicită dacă rezultatul nu este cel dorit."
+          },
+          {
+            "title": "Modifică numai ce ai stabilit",
+            "text": "Corectează valoarea în câmpul potrivit. Dacă vezi un obiect sau o listă lungă, nu o rescrie ca text obișnuit: formularul nu este un editor complet pentru date structurate."
+          },
+          {
+            "title": "Apasă Save settings",
+            "text": "Așteaptă confirmarea Settings saved. Dacă apare o eroare de validare la Cash Drop sau la numărul copiilor, corectează câmpul înainte să consideri operațiunea reușită."
+          },
+          {
+            "title": "Verifică locul în care se aplică",
+            "text": "O valoare salvată nu înseamnă neapărat schimbare instantanee la o masă activă. Viteza boților și parametrii de rake sunt preluați la construirea mesei; nu presupune actualizarea tuturor meselor deja pornite."
+          }
+        ]
+      },
+      {
+        "id": "game-settings-maintenance",
+        "title": "Ce face, exact, maintenance",
+        "paragraphs": [
+          "Cu maintenance = true, verificarea din fluxul obișnuit de intrare blochează așezarea la mesele cash pentru jucătorii non-admin care nu au deja un loc. Administratorii sunt exceptați. Pentru reactivarea acestei căi de acces, revii la false și salvezi.",
+          "Observarea meselor și reconectarea unui jucător care are deja un loc sunt tratate înaintea acestui blocaj. Fluxul locurilor de turneu este tratat separat. De aceea nu poți folosi acest câmp ca dovadă că toată activitatea s-a oprit."
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Nu este oprirea completă a platformei",
+          "text": "maintenance nu închide automat mesele, nu evacuează toți jucătorii, nu anulează turnee și nu repornește serverul. Pentru o intervenție care necesită oprire completă, stabilește operațiunile necesare împreună cu operatorul tehnic; nu le înlocui cu simpla schimbare a acestui câmp."
+        }
+      },
+      {
+        "id": "game-settings-cashdrop",
+        "title": "Fast Fold Cash Drop: două valori diferite",
+        "table": {
+          "headers": [
+            "Control",
+            "Unitate"
+          ],
+          "rows": [
+            [
+              "Drop chance per Rush hand (0–1)",
+              "Probabilitate între 0 și 1. 0,12 înseamnă 12%; 0 înseamnă fără drop."
+            ],
+            [
+              "Drop amount (big blinds, flat per stake)",
+              "Număr întreg de big blinduri, între 0 și 1000. Nu este un preț în cenți și nu este procent din pot."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Regula DanGG acordă drop-ul unui jucător uman eligibil, în funcție de probabilitatea configurată. Valoarea este big blindul mesei înmulțit cu numărul de big blinduri ales. De exemplu, un big blind afișat $1.00 și multiplicatorul 5 înseamnă un drop de $5.00 virtual.",
+          "O șansă de 12% nu promite exact 12 premii la fiecare 100 de mâini. Dacă mărești probabilitatea sau multiplicatorul, schimbi economia recompenselor, nu viteza cu care se joacă mâna. Controalele se salvează tot prin Save settings, aflat în prima parte a paginii."
+        ]
+      },
+      {
+        "id": "game-settings-revenire",
+        "title": "Revenirea la o valoare anterioară",
+        "paragraphs": [
+          "Pentru anularea unei schimbări deja salvate, reintrodu valoarea pe care ai notat-o și apasă din nou Save settings. Refresh din alte pagini nu anulează setările. Dacă o modificare afecta numai conturile viitoare, revenirea nu rescrie conturile create între timp.",
+          "Pentru a confirma cine a schimbat o setare și când, consultă Audit log. Pentru efectul asupra soldurilor sau recompenselor, consultă Transactions; jurnalul setărilor și registrul operațiunilor explică aspecte diferite ale aceleiași intervenții."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Formularul Game settings",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx#L818"
+      },
+      {
+        "label": "Chei, unități și validare Cash Drop",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/cashDrop.ts"
+      },
+      {
+        "label": "Regula Fast Fold Cash Drop",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/rush-pool.js"
+      },
+      {
+        "label": "Aplicarea mentenanței și citirea setărilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/index.js"
+      },
+      {
+        "label": "Limita copiilor păstrate",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/admin-snapshots.js"
+      }
+    ]
+  }
+]
