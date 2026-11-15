@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import "./fonts.css";
 import "./globals.css";
 import { Nav } from "@/components/danslab/Nav";
 import { Footer } from "@/components/danslab/Footer";
@@ -8,26 +8,6 @@ import { PRODUCTS } from "@/lib/danslab-data";
 
 const productionSurfaceCount = PRODUCTS.length;
 const flagshipProjectCount = PRODUCTS.filter((product) => product.id !== "youtube").length;
-
-const sans = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-const serif = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -94,7 +74,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang="en">
+      <head>
+        <link rel="preload" href="/fonts/inter-e4af272ccee01ff0.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/newsreader-4b9bb515ce6d026f.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/newsreader-5611c55482296524.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/jetbrains-mono-558ca1a6aa3cb55e.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body>
         <script
           type="application/ld+json"

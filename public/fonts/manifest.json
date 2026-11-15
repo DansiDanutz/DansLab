@@ -1,0 +1,192 @@
+[
+  {
+    "file": "inter-ba9851c3c22cd980.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "ba9851c3c22cd980-s.woff2",
+    "bytes": 25844,
+    "sha256": "fccca918fea40089dacadc7045861314d1a6bc91f1f323cc1eeb22ebcdb321b5",
+    "unicodeRange": "u+0460-052f,u+1c80-1c8a,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f"
+  },
+  {
+    "file": "inter-21350d82a1f187e9.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "21350d82a1f187e9-s.woff2",
+    "bytes": 18744,
+    "sha256": "aebf2ab4a4ce6810d73c1ac7be7cafb4e5ec4cee2d6db5fb3e09691747ec4bd6",
+    "unicodeRange": "u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116"
+  },
+  {
+    "file": "inter-c5fe6dc8356a8c31.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "c5fe6dc8356a8c31-s.woff2",
+    "bytes": 11272,
+    "sha256": "a2e2c783ca6f9c20486e81e72a279203e86730bbf8f01ff6a5ee9dbd09e1c271",
+    "unicodeRange": "u+1f??"
+  },
+  {
+    "file": "inter-19cfc7226ec3afaa.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "19cfc7226ec3afaa-s.woff2",
+    "bytes": 19044,
+    "sha256": "46dd4cdca58c26ae87cc6927657bf83b2e8abfc39ffd0ab176e301a8d28d22bf",
+    "unicodeRange": "u+0370-0377,u+037a-037f,u+0384-038a,u+038c,u+038e-03a1,u+03a3-03ff"
+  },
+  {
+    "file": "inter-df0a9ae256c0569c.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "df0a9ae256c0569c-s.woff2",
+    "bytes": 10280,
+    "sha256": "8db00ff46c67b22cda8bed865acf7077651cac8d2841d5b40980556b48961931",
+    "unicodeRange": "u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+0300-0301,u+0303-0304,u+0308-0309,u+0323,u+0329,u+1ea0-1ef9,u+20ab"
+  },
+  {
+    "file": "inter-8e9860b6e62d6359.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "8e9860b6e62d6359-s.woff2",
+    "bytes": 85272,
+    "sha256": "a28eb6d3ccb534ae0c94ca999371df024aab60b08c3c8a5720ee9e32fa0faaa2",
+    "unicodeRange": "u+0100-02ba,u+02bd-02c5,u+02c7-02cc,u+02ce-02d7,u+02dd-02ff,u+0304,u+0308,u+0329,u+1d00-1dbf,u+1e00-1e9f,u+1ef2-1eff,u+2020,u+20a0-20ab,u+20ad-20c4,u+2113,u+2c60-2c7f,u+a720-a7ff"
+  },
+  {
+    "file": "inter-e4af272ccee01ff0.woff2",
+    "family": "Inter",
+    "style": "normal",
+    "version": "Version 4.001;git-66647c0bb",
+    "sourceBuildFile": "e4af272ccee01ff0-s.p.woff2",
+    "bytes": 48432,
+    "sha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "unicodeRange": "u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+0304,u+0308,u+0329,u+2000-206f,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd"
+  },
+  {
+    "file": "newsreader-eb251072d3b5478c.woff2",
+    "family": "Newsreader",
+    "style": "italic",
+    "version": "Version 1.003",
+    "sourceBuildFile": "eb251072d3b5478c-s.woff2",
+    "bytes": 12024,
+    "sha256": "ecc0a860ff459daa2983d2778a97feffcb56a766608a9a865454c30ebdae1ac5",
+    "unicodeRange": "u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+0300-0301,u+0303-0304,u+0308-0309,u+0323,u+0329,u+1ea0-1ef9,u+20ab"
+  },
+  {
+    "file": "newsreader-e92f802bb57ccffe.woff2",
+    "family": "Newsreader",
+    "style": "italic",
+    "version": "Version 1.003",
+    "sourceBuildFile": "e92f802bb57ccffe-s.woff2",
+    "bytes": 39708,
+    "sha256": "0a65822f4b1cb1a4500f3940406efda5839c1b34160a87af0a65b4d5b0a36c3b",
+    "unicodeRange": "u+0100-02ba,u+02bd-02c5,u+02c7-02cc,u+02ce-02d7,u+02dd-02ff,u+0304,u+0308,u+0329,u+1d00-1dbf,u+1e00-1e9f,u+1ef2-1eff,u+2020,u+20a0-20ab,u+20ad-20c4,u+2113,u+2c60-2c7f,u+a720-a7ff"
+  },
+  {
+    "file": "newsreader-4b9bb515ce6d026f.woff2",
+    "family": "Newsreader",
+    "style": "italic",
+    "version": "Version 1.003",
+    "sourceBuildFile": "4b9bb515ce6d026f-s.p.woff2",
+    "bytes": 64500,
+    "sha256": "19a83cc7ce02aab990c0f5fb8bd8f12f2f8e4f56430d5a3459521cabd852a51c",
+    "unicodeRange": "u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+0304,u+0308,u+0329,u+2000-206f,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd"
+  },
+  {
+    "file": "newsreader-7088c2b12ccac062.woff2",
+    "family": "Newsreader",
+    "style": "normal",
+    "version": "Version 1.003",
+    "sourceBuildFile": "7088c2b12ccac062-s.woff2",
+    "bytes": 11852,
+    "sha256": "a61f9c4ae3b99795bd673ff0204b8f4e9adad39931e1da9470f216099771db34",
+    "unicodeRange": "u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+0300-0301,u+0303-0304,u+0308-0309,u+0323,u+0329,u+1ea0-1ef9,u+20ab"
+  },
+  {
+    "file": "newsreader-665e920483964785.woff2",
+    "family": "Newsreader",
+    "style": "normal",
+    "version": "Version 1.003",
+    "sourceBuildFile": "665e920483964785-s.woff2",
+    "bytes": 36328,
+    "sha256": "fe52554ab1cd7dd9704db81572f45ef0eb122679c35bbbbc728baf701033b727",
+    "unicodeRange": "u+0100-02ba,u+02bd-02c5,u+02c7-02cc,u+02ce-02d7,u+02dd-02ff,u+0304,u+0308,u+0329,u+1d00-1dbf,u+1e00-1e9f,u+1ef2-1eff,u+2020,u+20a0-20ab,u+20ad-20c4,u+2113,u+2c60-2c7f,u+a720-a7ff"
+  },
+  {
+    "file": "newsreader-5611c55482296524.woff2",
+    "family": "Newsreader",
+    "style": "normal",
+    "version": "Version 1.003",
+    "sourceBuildFile": "5611c55482296524-s.p.woff2",
+    "bytes": 58152,
+    "sha256": "2a69ec1c0fb79a464de0e19957cdb3a65b5f626d85fffd164f9de557d3a64878",
+    "unicodeRange": "u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+0304,u+0308,u+0329,u+2000-206f,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd"
+  },
+  {
+    "file": "jetbrains-mono-edc640959b0c7826.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "edc640959b0c7826-s.woff2",
+    "bytes": 1664,
+    "sha256": "9343de2ca5d9549f792e7962375af8efb0f320c7643bfd36c884b5a30e5c396f",
+    "unicodeRange": "u+0460-052f,u+1c80-1c8a,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f"
+  },
+  {
+    "file": "jetbrains-mono-ac0e76ddaeeb7981.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "ac0e76ddaeeb7981-s.woff2",
+    "bytes": 8892,
+    "sha256": "4995a9a43ac659ec32fcd8b463755cd6a07b31a6e6b3894a6a153b661cf490e2",
+    "unicodeRange": "u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116"
+  },
+  {
+    "file": "jetbrains-mono-64d784ea54a4acde.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "64d784ea54a4acde-s.woff2",
+    "bytes": 6800,
+    "sha256": "49c3da6c9a2b279b0f1f860f5cfb1f5dc38d88a5c7be9c9b1837bbc4e3db6111",
+    "unicodeRange": "u+0370-0377,u+037a-037f,u+0384-038a,u+038c,u+038e-03a1,u+03a3-03ff"
+  },
+  {
+    "file": "jetbrains-mono-ff71da380fbe67dd.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "ff71da380fbe67dd-s.woff2",
+    "bytes": 5872,
+    "sha256": "d44eb1936043a56038eb02dd70b243f379bef65783f94ec12f277550720411f1",
+    "unicodeRange": "u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+0300-0301,u+0303-0304,u+0308-0309,u+0323,u+0329,u+1ea0-1ef9,u+20ab"
+  },
+  {
+    "file": "jetbrains-mono-6d831b18ae5b01dc.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "6d831b18ae5b01dc-s.woff2",
+    "bytes": 11596,
+    "sha256": "9c38cb2d0d2d93c1ee6e21fa78db76f13ea7e15e15cc64214c7ca89b6aaa35c4",
+    "unicodeRange": "u+0100-02ba,u+02bd-02c5,u+02c7-02cc,u+02ce-02d7,u+02dd-02ff,u+0304,u+0308,u+0329,u+1d00-1dbf,u+1e00-1e9f,u+1ef2-1eff,u+2020,u+20a0-20ab,u+20ad-20c4,u+2113,u+2c60-2c7f,u+a720-a7ff"
+  },
+  {
+    "file": "jetbrains-mono-558ca1a6aa3cb55e.woff2",
+    "family": "JetBrains Mono",
+    "style": "normal",
+    "version": "Version 2.211",
+    "sourceBuildFile": "558ca1a6aa3cb55e-s.p.woff2",
+    "bytes": 31340,
+    "sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+    "unicodeRange": "u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+0304,u+0308,u+0329,u+2000-206f,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd"
+  }
+]

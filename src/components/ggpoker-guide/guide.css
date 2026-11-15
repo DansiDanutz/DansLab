@@ -1,3 +1,11 @@
+/* Keep the guide navigation sticky without making the page shell scroll. */
+@media screen {
+  .dl-app:has(.gg-guide) {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+}
+
 .gg-guide {
   --gg-bg: #101011;
   --gg-panel: #171617;
