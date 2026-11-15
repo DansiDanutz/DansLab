@@ -1,0 +1,264 @@
+[
+  {
+    "id": "start",
+    "title": "Bun venit în ghidul DanGG",
+    "kicker": "ÎNCEPE AICI",
+    "summary": "Înțelege panoul, găsește acțiunea potrivită și învață să verifici rezultatul. Un manual practic pentru toate cele 18 secțiuni de administrare.",
+    "minutes": 5,
+    "group": "inceput",
+    "sections": [
+      {
+        "id": "orientare",
+        "title": "Două direcții, același panou",
+        "paragraphs": [
+          "DanGG se administrează prin consola existentă a aplicației. Partea de joc cuprinde conturile, mesele, turneele, comunitatea și evidența soldurilor virtuale. Marketplace gestionează ofertele, cererile clienților și registrul manual de acces la servicii.",
+          "Acest site este manualul de utilizare. În meniul din stânga găsești capitolele, iar în interiorul lor păstrăm numele butoanelor exact cum apar în DanGG. Explicațiile sunt în română, inclusiv când interfața folosește denumiri în engleză."
+        ],
+        "table": {
+          "headers": ["Vrei să…", "Deschide în admin"],
+          "rows": [
+            ["Vezi cum funcționează aplicația acum", "Platform"],
+            ["Găsești un cont și verifici rolul său", "Users"],
+            ["Configurezi o masă sau un turneu", "Cash tables / Tournaments"],
+            ["Publici o ofertă și răspunzi unui client", "Marketplace"],
+            ["Schimbi un banner sau logo-ul", "Promotions / Branding"],
+            ["Verifici o operațiune sau o modificare", "Transactions / Audit log"],
+            ["Creezi o copie a bazei de date", "Snapshots sau Download backup din Dashboard"]
+          ]
+        }
+      },
+      {
+        "id": "prima-sesiune",
+        "title": "Prima sesiune de lucru, în cinci pași",
+        "steps": [
+          { "title": "Pregătește accesul privat", "text": "Folosește conexiunea configurată pentru instanța ta și păstreaz-o activă cât timp lucrezi. Contul trebuie să aibă rol de administrator. Ghidul și consola sunt două pagini separate." },
+          { "title": "Intră în administrare", "text": "În configurația locală documentată, consola se deschide la http://127.0.0.1:5198/admin. Autentifică-te în DanGG, apoi selectează Dashboard sau Platform." },
+          { "title": "Verifică starea curentă", "text": "În Platform, citește Uptime, Disk free, Identified users și listele de mese sau turnee. Refresh actualizează datele. Dacă apare o eroare, păstrează mesajul exact pentru diagnostic." },
+          { "title": "Alege o singură operațiune", "text": "Pentru primul exercițiu, deschide Marketplace și creează o Ciornă. Capitolul de exerciții îți oferă un exemplu complet, cu valori fictive." },
+          { "title": "Verifică ce s-a salvat", "text": "Urmărește mesajul de rezultat și redeschide înregistrarea. Pentru modificările administrative înregistrate, consultă Audit log. Bifează capitolul ca parcurs când ai înțeles pașii." }
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Adresa locală depinde de conexiunea ta",
+          "text": "127.0.0.1 indică propriul computer. Deschide adminul pe computerul unde este configurată conexiunea privată; aceeași adresă pe telefon sau pe alt dispozitiv nu ajunge automat la server."
+        }
+      },
+      {
+        "id": "foloseste-manualul",
+        "title": "Cum folosești manualul",
+        "bullets": [
+          "Caută o funcție în română sau numele butonului în engleză. Căutarea acceptă și cuvinte fără diacritice. Cmd/Ctrl + K te duce la căutare.",
+          "Alege capitolul din cuprins. Pe ecrane mici, deschide cuprinsul folosind butonul dedicat.",
+          "În tabele găsești câmpul și efectul său; în pașii numerotați, ordinea de lucru și rezultatul așteptat.",
+          "Marchează capitolele parcurse. Progresul se păstrează local în acest browser, dacă stocarea este disponibilă.",
+          "Poți tipări ghidul complet sau îl poți salva ca PDF din dialogul de imprimare al browserului.",
+          "Exercițiile interactive din manual sunt simulări locale. Pentru operațiuni reale, folosește consola DanGG."
+        ]
+      },
+      {
+        "id": "versiune-si-surse",
+        "title": "Ce versiune documentează ghidul",
+        "paragraphs": [
+          "Instrucțiunile au fost verificate în codul DanGG/OpenPoker, versiunea 1.1.0, build 20261115204956, commit 2b0d25ed6ddf1f8dd7885d83d97588371d30ad31. Fiecare capitol include surse pentru funcțiile explicate.",
+          "Manualul descrie această versiune și nu se actualizează automat odată cu aplicația. După o actualizare, verifică versiunea din Platform dacă numele sau comportamentul unui control diferă.",
+          "Limitările cunoscute sunt explicate lângă acțiunea afectată. O etichetă sau un formular existent nu reprezintă, singur, dovada că o funcție comercială ori un flux complet este implementat."
+        ],
+        "callout": {
+          "tone": "success",
+          "title": "Obiectivul primei lecții",
+          "text": "Să găsești secțiunea potrivită, să creezi o ciornă în Marketplace și să verifici rezultatul. Apoi treci la cereri, acces, utilizatori și operarea jocurilor."
+        }
+      }
+    ],
+    "sources": [
+      { "label": "Structura consolei de administrare", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx" },
+      { "label": "Documentația Marketplace și accesul operatorului", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/docs/MARKETPLACE.md" }
+    ]
+  },
+  {
+    "id": "rutina-zilnica",
+    "title": "Rutina ta de administrare",
+    "kicker": "LUCRU ZILNIC",
+    "summary": "O ordine practică pentru verificarea platformei, clienților și comunității, cu pași de urmat înainte și după o modificare.",
+    "minutes": 6,
+    "group": "inceput",
+    "sections": [
+      {
+        "id": "la-inceput",
+        "title": "La începutul sesiunii",
+        "steps": [
+          { "title": "Platform: starea reală a aplicației", "text": "Verifică datele serverului și conexiunile. Pentru conturi distincte conectate, folosește Identified users. Pentru desfășurarea jocului, citește listele Live tables și Live tournament rooms." },
+          { "title": "Marketplace: solicitările care așteaptă", "text": "Deschide Solicitări și filtrul În așteptare. Citește mesajul înainte de a răspunde. Decizia și eventuala acordare a accesului sunt două operațiuni separate." },
+          { "title": "Comunitate: problemele raportate", "text": "Verifică Player reports și, când este cazul, Chat moderation sau Verifications. Lucrează pe înregistrarea potrivită și consemnează rezoluția disponibilă în interfață." },
+          { "title": "Audit log: schimbările recente", "text": "Consultă cine a operat modificări și ce acțiuni au fost înregistrate. Pentru o sumă, verifică și Transactions, cu utilizatorul și perioada corecte." }
+        ]
+      },
+      {
+        "id": "o-modificare",
+        "title": "Cum faci o modificare verificabilă",
+        "steps": [
+          { "title": "Identifică obiectul", "text": "Confirmă numele și identificatorul contului, mesei, turneului sau produsului. Păstrează contextul: configurație, activitate în desfășurare, solicitare sau registru de acces." },
+          { "title": "Citește efectul controlului", "text": "Edit, Close, Disable, Archive, Revoke și Restore au efecte diferite. Folosește explicația din capitolul respectiv, în special când există jucători sau acces deja acordat." },
+          { "title": "Completează și salvează", "text": "Schimbă numai câmpurile necesare. Folosește motivul sau nota unde formularul o cere. Așteaptă răspunsul aplicației înainte să repeți o acțiune." },
+          { "title": "Verifică rezultatul", "text": "Redeschide înregistrarea sau actualizează lista. O cerere aprobată poate dispărea din filtrul În așteptare: schimbă filtrul înainte să presupui că s-a pierdut." }
+        ]
+      },
+      {
+        "id": "copii-si-final",
+        "title": "Copii de siguranță și încheierea sesiunii",
+        "paragraphs": [
+          "Înaintea unor operațiuni asupra datelor care ar necesita revenire, consultă capitolul Snapshots și creează sau descarcă o copie potrivită. Verifică numele, momentul creării și faptul că fișierul a fost obținut.",
+          "La sfârșit, verifică formularele nesalvate, solicitările rămase și operațiunile recente. Conexiunea privată poate fi închisă după ce ai terminat lucrul."
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "O restaurare este o operațiune de recuperare",
+          "text": "Restore nu este o metodă de a anula un singur câmp. Poate readuce baza de date la starea copiei selectate. Urmează integral capitolul Snapshots înainte să pregătești o restaurare."
+        }
+      }
+    ],
+    "sources": [
+      { "label": "Console: Platform, Dashboard, Users și celelalte zone", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx" },
+      { "label": "Regulile de operare Marketplace", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/docs/MARKETPLACE.md" }
+    ]
+  },
+  {
+    "id": "exercitii",
+    "title": "Atelier interactiv",
+    "kicker": "ÎNVAȚĂ PRIN EXEMPLE",
+    "summary": "Exersează conversia sumelor și traseul unei cereri. Instrumentele de aici folosesc date demonstrative și rămân în acest ghid.",
+    "minutes": 8,
+    "group": "practica",
+    "sections": [
+      {
+        "id": "converter",
+        "title": "Exercițiul 1: suma corectă în câmpul potrivit",
+        "paragraphs": [
+          "În editorii de mese, câmpurile monetare sb, bb, ante, min_buyin și max_buyin folosesc cenți. La turnee, aceeași regulă se aplică sumelor buyin, fee, gtd și bounty. Pentru 10 unități monetare virtuale, valoarea introdusă în aceste câmpuri este 1000.",
+          "În Marketplace, Preț afișat primește suma normală. Pentru 10 EUR, RON sau USD introduci 10; formularul face conversia internă. Această regulă nu se aplică numărului de locuri, stackului sau duratelor."
+        ],
+        "table": {
+          "headers": ["Valoare dorită", "Câmp monetar în joc", "Preț afișat în Marketplace"],
+          "rows": [
+            ["0,50", "50", "0,50"],
+            ["1", "100", "1"],
+            ["10", "1000", "10"],
+            ["49,90", "4990", "49,90"]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "Un calculator de introducere, fără conversie valutară",
+          "text": "Exercițiul explică unitățile formularului. Nu schimbă moneda și nu transferă bani între conturi. Sumele din joc sunt virtuale."
+        }
+      },
+      {
+        "id": "flow",
+        "title": "Exercițiul 2: separă oferta, cererea și accesul",
+        "steps": [
+          { "title": "Catalog", "text": "Operatorul descrie un serviciu și decide vizibilitatea lui. O Ciornă rămâne privată; un produs Disponibil poate fi selectat pentru acces." },
+          { "title": "Solicitare", "text": "Clientul autentificat își exprimă interesul. Cererea intră în lista administratorului; trimiterea ei nu reprezintă o plată." },
+          { "title": "Aprobare", "text": "Administratorul scrie răspunsul și aprobă cererea. Clientul poate vedea decizia, dar accesul se acordă separat." },
+          { "title": "Acces", "text": "Administratorul înregistrează utilizatorul, produsul și eventuala expirare. În această versiune, înregistrarea nu instalează module și nu deblochează automat funcții premium." }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Plata nu este o etapă automată implementată",
+          "text": "Fluxul documentat nu include checkout, facturare recurentă sau procesare de încasări. Nu interpreta o cerere aprobată ori un acces activ ca dovadă de plată."
+        }
+      },
+      {
+        "id": "primele-sarcini",
+        "title": "Trei sarcini practice în consola ta",
+        "steps": [
+          { "title": "Găsește propriul cont", "text": "În Users, caută contul cu care lucrezi și verifică eticheta Admin. Rezultatul exercițiului este identificarea contului, fără schimbarea rolurilor sau soldurilor." },
+          { "title": "Salvează o ciornă Marketplace", "text": "Folosește capitolul Scenarii Marketplace. Completează o ofertă fictivă și salveaz-o ca Ciornă. Verifică eticheta și faptul că oferta nu apare pe pagina publică." },
+          { "title": "Urmărește o modificare", "text": "Deschide Audit log și caută acțiunea de creare a produsului. Identifică momentul, actorul și tipul acțiunii. Închei astfel un ciclu: acțiune, rezultat, verificare." }
+        ]
+      }
+    ],
+    "sources": [
+      { "label": "Câmpurile monetare în admin", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx" },
+      { "label": "Formularul de preț și acces Marketplace", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminMarketplace.tsx" }
+    ]
+  },
+  {
+    "id": "glosar",
+    "title": "Dicționarul panoului",
+    "kicker": "TERMENI ȘI BUTOANE",
+    "summary": "Traduceri scurte pentru etichetele în engleză și diferențele care contează când lucrezi în admin.",
+    "minutes": 6,
+    "group": "practica",
+    "sections": [
+      {
+        "id": "butoane",
+        "title": "Comenzile pe care le întâlnești des",
+        "table": {
+          "headers": ["Termen", "Explicație"],
+          "rows": [
+            ["Refresh / Reîncarcă", "Cere din nou datele pentru lista sau ecranul afișat."],
+            ["Edit / Editează", "Deschide formularul unei înregistrări. Verifică dacă valorile corespund obiectului selectat."],
+            ["Save / Salvează", "Trimite modificările formularului. Așteaptă confirmarea și verifică rezultatul."],
+            ["Cancel / Anulează", "Închide sau abandonează formularul curent; nu inversează automat o operațiune deja salvată."],
+            ["Enable / Disable", "Activează sau dezactivează configurația indicată. La mese, Disable nu este același lucru cu închiderea unei mese active."],
+            ["Close", "În lista meselor active din Dashboard, închide efectiv masa."],
+            ["Delete", "Șterge obiectul indicat, cu efectele descrise în capitolul lui."],
+            ["Archive / Arhivează", "În Marketplace, retrage oferta din catalogul public și păstrează istoricul."],
+            ["Revoke / Revocă", "Retrage dreptul indicat: rolul de admin sau înregistrarea de acces la serviciu, în funcție de ecran."],
+            ["Export CSV", "Descarcă un tabel pentru analiză; verifică filtrele și limitele exportului."],
+            ["JSON", "Format structurat de date, util pentru raportul tehnic al platformei."],
+            ["Restore", "Pregătește recuperarea datelor dintr-o copie. Citește capitolul Snapshots înainte de folosire."]
+          ]
+        }
+      },
+      {
+        "id": "joc-si-cont",
+        "title": "Joc, conturi și solduri",
+        "table": {
+          "headers": ["Termen", "Explicație"],
+          "rows": [
+            ["Login / Nickname", "Identificatorul de autentificare / numele afișat jucătorului."],
+            ["Admin", "Rol cu acces complet la consola de administrare."],
+            ["VIP", "Nivel de jucător; este diferit de rolul de administrator."],
+            ["Balance / Play chips / Tickets", "Solduri virtuale distincte ale contului. Modificarea unui câmp nu este o încasare Marketplace."],
+            ["Mute / Unmute", "Restricționează sau permite chatul contului."],
+            ["SB / BB", "Small blind / big blind: cele două mize obligatorii ale mesei."],
+            ["Ante", "Contribuție obligatorie configurată separat de blinduri."],
+            ["Buy-in", "Suma de intrare configurată pentru masă sau turneu."],
+            ["Fee", "Taxa configurată a turneului, în unitățile virtuale ale jocului."],
+            ["GTD", "Fondul de premii garantat configurat pentru turneu."],
+            ["Stack", "Jetoanele cu care joacă participantul."],
+            ["Seats", "Numărul de locuri la masă; se introduce ca număr de persoane/locuri, nu în cenți."],
+            ["Wait list", "Coada de jucători care așteaptă un loc."],
+            ["Late reg", "Parametrul pentru perioada de înscriere târzie; verifică unitatea și limitările din capitolul Tournaments."]
+          ]
+        }
+      },
+      {
+        "id": "platforma-si-marketplace",
+        "title": "Platformă și Marketplace",
+        "table": {
+          "headers": ["Termen", "Explicație"],
+          "rows": [
+            ["Uptime", "Timpul scurs de la pornirea procesului aplicației."],
+            ["WS clients", "Conexiuni WebSocket deschise; nu reprezintă automat persoane distincte."],
+            ["Identified users", "Conturi distincte identificate în conexiunile urmărite de server."],
+            ["Snapshot de turneu", "Punct de recuperare al stării unui turneu, realizabil când starea mâinii permite."],
+            ["Snapshot al bazei / Backup", "Copie a bazei de date, gestionată separat de punctele de recuperare ale turneelor."],
+            ["Audit log", "Jurnalul acțiunilor administrative înregistrate."],
+            ["Solicitare", "Interesul exprimat de un utilizator pentru o ofertă."],
+            ["Aprobată", "Decizia administratorului asupra cererii; nu reprezintă singură plată sau acordare de acces."],
+            ["Acces", "În Marketplace-ul documentat, o înregistrare manuală a utilizatorului, serviciului și valabilității."],
+            ["Notă internă", "Informație administrativă a accesului, separată de răspunsul vizibil solicitantului."],
+            ["În pregătire", "Ofertă publică pentru care se poate înregistra interesul."],
+            ["Disponibil", "Ofertă publică ce poate fi selectată la acordarea manuală a accesului."]
+          ]
+        }
+      }
+    ],
+    "sources": [
+      { "label": "Etichetele și acțiunile consolei", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Admin.tsx" },
+      { "label": "Comportamentul Marketplace", "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/docs/MARKETPLACE.md" }
+    ]
+  }
+]

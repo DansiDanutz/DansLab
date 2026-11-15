@@ -1,0 +1,513 @@
+[
+  {
+    "id": "marketplace",
+    "title": "Marketplace: de la ofertă la acces",
+    "kicker": "CATALOG ȘI RELAȚIA CU CLIENȚII",
+    "summary": "Învață să publici servicii, să răspunzi solicitărilor și să ții evidența accesului, cu prețuri și condiții explicate clar.",
+    "minutes": 15,
+    "group": "marketplace",
+    "sections": [
+      {
+        "id": "marketplace-orientare",
+        "title": "Unde începi și ce administrezi",
+        "paragraphs": [
+          "Din meniul admin selectează Marketplace. Dacă vezi Platform, ești în zona de monitorizare a serverului; schimbă secțiunea folosind meniul. Marketplace are patru file: Catalog, Solicitări, Acces și Conținut. Acest ghid explică operațiunile din aplicație; pagina ghidului nu se conectează la administrare și nu execută acțiuni.",
+          "Catalogul prezintă ofertele. Solicitările păstrează conversația și decizia administrativă. Accesul înregistrează dreptul unui utilizator la o ofertă. Conținutul controlează mesajele generale ale paginii publice. Modificările salvate sunt păstrate și însoțite de înregistrări în jurnalul de administrare."
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Trei acțiuni diferite",
+          "text": "Aprobă cererea salvează decizia. Acordă acces înregistrează dreptul și valabilitatea. Încasarea unei plăți nu este implementată în acest marketplace. Nici aprobarea, nici accesul nu activează automat funcții premium."
+        }
+      },
+      {
+        "id": "marketplace-indicatori",
+        "title": "Citește indicatorii de sus",
+        "table": {
+          "headers": [
+            "Indicator",
+            "Ce numără"
+          ],
+          "rows": [
+            [
+              "Produse",
+              "Toate ofertele din administrare, inclusiv ciorne și arhivate."
+            ],
+            [
+              "Publicate",
+              "Ofertele Disponibil și În pregătire, vizibile comunității."
+            ],
+            [
+              "Solicitări în așteptare",
+              "Cererile care încă necesită o decizie."
+            ],
+            [
+              "Acces activ",
+              "Înregistrările active care nu au expirat."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Vezi pagina ↗ deschide pagina publică într-o filă separată. Reîncarcă aduce din nou datele salvate; devine indisponibil cât timp ai modificări nesalvate. Indicatorii nu reprezintă încasări, abonamente facturate sau numărul funcțiilor implementate."
+        ]
+      },
+      {
+        "id": "marketplace-catalog-campuri",
+        "title": "Catalog: fiecare câmp și efectul lui",
+        "paragraphs": [
+          "Apasă ＋ Adaugă produs pentru o ofertă nouă sau Editează pe un produs existent. Formularul nou pornește ca Ciornă, cu Ofertă la cerere. Folosește descrieri concrete: ce livrezi, cui, în ce condiții și cu ce limitări."
+        ],
+        "table": {
+          "headers": [
+            "Câmp",
+            "Cum îl completezi și ce schimbă"
+          ],
+          "rows": [
+            [
+              "Numele produsului",
+              "Titlul afișat clienților, între 2 și 120 de caractere."
+            ],
+            [
+              "Identificator public",
+              "Nume unic, cu litere mici, cifre și cratime, maximum 80 de caractere. Se propune automat din nume la creare; nu este o cheie de licență."
+            ],
+            [
+              "Descriere scurtă",
+              "Rezumat obligatoriu în formular, maximum 240 de caractere; apare pe cardul ofertei."
+            ],
+            [
+              "Descriere completă",
+              "Detaliile afișate la deschiderea produsului, maximum 6.000 de caractere. Precizează livrarea și condițiile."
+            ],
+            [
+              "Categorie",
+              "Găzduire, Organizare, Personalizare sau Extensii. Stabilește încadrarea și filtrarea publică."
+            ],
+            [
+              "Tipul produsului",
+              "Serviciu DanGG, Extensie open-source sau Modul comercial. Explică tipul livrării; nu schimbă licența codului."
+            ],
+            [
+              "Vizibilitate",
+              "Ciornă, În pregătire, Disponibil sau Arhivat. Controlează publicarea și posibilitatea acordării accesului."
+            ],
+            [
+              "Poziție în catalog",
+              "Număr întreg între −10.000 și 10.000; valorile mai mici au prioritate în grupul lor. Public, produsele evidențiate apar înaintea celorlalte."
+            ],
+            [
+              "Modalitate de tarifare",
+              "Alege prezentarea prețului: Ofertă la cerere, Gratuit, Plată unică, Lunar sau Anual."
+            ],
+            [
+              "Monedă",
+              "EUR, RON sau USD. Schimbă moneda afișată; nu efectuează conversii valutare."
+            ],
+            [
+              "Preț afișat",
+              "Apare pentru Plată unică, Lunar și Anual. Introdu suma în unități monetare normale, cu cel mult două zecimale, mai mare decât zero."
+            ],
+            [
+              "Beneficii incluse",
+              "Un beneficiu pe rând, maximum 12, fiecare de maximum 160 de caractere. Cardul public arată primele trei; detaliile prezintă lista completă."
+            ],
+            [
+              "Evidențiază produsul în catalog",
+              "Marchează oferta pentru evidențiere vizuală și prioritate în catalogul public."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "Prețul se introduce ca într-o ofertă obișnuită",
+          "text": "Exemplu fictiv: pentru 49,90 EUR introdu 49.90 dacă browserul cere punct zecimal, nu 4990. Pentru o ofertă fără plată selectează Gratuit. Beneficiile scrise în formular sunt descrieri, nu comutatoare care implementează funcționalități."
+        }
+      },
+      {
+        "id": "marketplace-publicare",
+        "title": "Publică, organizează sau retrage o ofertă",
+        "table": {
+          "headers": [
+            "Vizibilitate",
+            "Rezultat"
+          ],
+          "rows": [
+            [
+              "Ciornă",
+              "Oferta rămâne vizibilă numai administratorilor, pentru pregătire."
+            ],
+            [
+              "În pregătire",
+              "Oferta apare public, iar utilizatorii pot înregistra interesul. Nu poate primi acces activ nou."
+            ],
+            [
+              "Disponibil",
+              "Oferta apare public, primește solicitări și poate fi selectată la acordarea accesului."
+            ],
+            [
+              "Arhivat",
+              "Oferta dispare din catalogul public. Solicitările și accesul deja acordat se păstrează."
+            ]
+          ]
+        },
+        "steps": [
+          {
+            "title": "Salvează oferta",
+            "text": "Folosește Creează produsul la prima salvare, apoi Salvează produsul la modificări. Publică drept Disponibil numai ceea ce poți furniza efectiv."
+          },
+          {
+            "title": "Verifică pagina publică",
+            "text": "Deschide Vezi pagina ↗ și verifică numele, categoria, descrierea, tariful și starea. Reîncarcă pagina publică dacă era deja deschisă."
+          },
+          {
+            "title": "Găsește produsele ulterior",
+            "text": "Caută în catalog după nume, rezumat sau identificator și folosește Toate stările ori starea dorită. Editează redeschide formularul."
+          },
+          {
+            "title": "Retrage oferta",
+            "text": "Arhivează cere confirmare. Pentru republicare, găsește produsul cu filtrul Arhivat, schimbă Vizibilitate și salvează."
+          }
+        ],
+        "callout": {
+          "tone": "warning",
+          "title": "Arhivarea nu revocă accesul",
+          "text": "Dacă trebuie retras și dreptul unui utilizator, gestionează separat înregistrarea din Acces. Ascunderea produsului nu anulează livrările sau obligațiile convenite cu clienții."
+        }
+      },
+      {
+        "id": "marketplace-client",
+        "title": "Ce face utilizatorul pe pagina publică",
+        "paragraphs": [
+          "Vizitatorul poate consulta catalogul fără cont. Are căutare și filtrele Toate, Găzduire, Organizare, Personalizare și Extensii. Apasă numele produsului sau săgeata de pe card pentru descriere, beneficii, preț și condițiile tipului de livrare.",
+          "Pentru a trimite cererea, folosește Intră în cont. După autentificare revine la marketplace. Mesajul este opțional, cu maximum 2.000 de caractere. Pentru Disponibil apasă Trimite solicitarea; pentru În pregătire, Înregistrează interesul. Cererea nu reprezintă achiziție sau abonament.",
+          "În Contul meu găsește Solicitări și acces, cu Solicitările mele și Accesul meu. Actualizează încarcă răspunsurile și drepturile recente. O cerere aflată deja în evaluare este semnalată în produs; nu este necesară retrimiterea ei."
+        ]
+      },
+      {
+        "id": "marketplace-solicitari",
+        "title": "Solicitări: răspunde și ia o decizie",
+        "steps": [
+          {
+            "title": "Alege cererea",
+            "text": "Fila Solicitări pornește cu În așteptare. Caută după utilizator, produs sau mesaj; pentru istoricul complet selectează Toate solicitările."
+          },
+          {
+            "title": "Scrie răspunsul",
+            "text": "Răspuns pentru utilizator este obligatoriu înaintea deciziei și acceptă maximum 2.000 de caractere. Explică disponibilitatea, condițiile și următorul pas."
+          },
+          {
+            "title": "Salvează decizia",
+            "text": "Alege Aprobă cererea sau Refuză cererea. Starea devine Aprobată ori Refuzată; utilizatorul vede răspunsul în cont. Pentru o cerere deja aprobată, Salvează răspunsul actualizează explicația."
+          },
+          {
+            "title": "Continuă către acces",
+            "text": "Pregătește accesul ↗ apare când cererea este aprobată și produsul este Disponibil. Deschide formularul de acces cu utilizatorul și produsul deja selectate; nu îl salvează automat."
+          }
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Cererea a dispărut după aprobare?",
+          "text": "Filtrul implicit afișează doar În așteptare. Alege Aprobată sau Toate solicitările pentru a regăsi cererea. În contul clientului, starea inițială se numește În evaluare."
+        }
+      },
+      {
+        "id": "marketplace-acces",
+        "title": "Acces: înregistrează un drept de utilizare",
+        "table": {
+          "headers": [
+            "Câmp",
+            "Utilizare"
+          ],
+          "rows": [
+            [
+              "Utilizator existent",
+              "Caută după nume sau cont, minimum două caractere, apoi selectează rezultatul corect. Sunt căutați utilizatori activi; simpla tastare nu face selecția. Schimbă permite altă alegere."
+            ],
+            [
+              "Produs disponibil",
+              "Alege o ofertă cu starea Disponibil. Ciornele, ofertele În pregătire și cele Arhivate nu pot primi acces nou."
+            ],
+            [
+              "Expiră la (ora locală)",
+              "Opțional. Alege o dată și oră viitoare în ora locală a browserului; gol înseamnă acces fără termen."
+            ],
+            [
+              "Notă internă",
+              "Maximum 2.000 de caractere, vizibile doar administratorilor. Notează contextul necesar furnizării serviciului; clientul nu primește acest text."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Apasă Acordă acces și verifică înregistrarea în Registrul de acces. Poți folosi formularul direct, fără o cerere prealabilă, dacă ai deja condițiile convenite. În contul clientului apare Acordat și termenul, sau Fără dată de expirare.",
+          "Răspuns pentru utilizator este comunicarea către client. Notă internă este contextul pentru administratori. Confirmarea unei plăți, dacă există într-un proces separat, nu trebuie dedusă din niciunul dintre aceste câmpuri."
+        ]
+      },
+      {
+        "id": "marketplace-valabilitate",
+        "title": "Urmărește, prelungește sau revocă accesul",
+        "paragraphs": [
+          "Registrul de acces are filtrele Toate înregistrările, Active, Expirate și Revocate. Fiecare intrare arată produsul, utilizatorul, starea, momentul acordării și expirarea. O dată de expirare trecută determină afișarea Expirat; reîncarcă datele pentru situația actualizată.",
+          "Pentru prelungire sau reactivare, folosește din nou Acordă acces pentru același utilizator și același produs Disponibil, cu termenul dorit. Se actualizează înregistrarea existentă, inclusiv nota internă; nu se creează un abonament recurent.",
+          "Revocă accesul cere confirmare și păstrează înregistrarea ca Revocat. Aceasta nu emite rambursări și nu dezinstalează module. Furnizarea sau oprirea unui serviciu real trebuie urmărită separat, potrivit modului în care acel serviciu este implementat."
+        ]
+      },
+      {
+        "id": "marketplace-continut",
+        "title": "Conținut: explică oferta generală",
+        "table": {
+          "headers": [
+            "Control",
+            "Efect"
+          ],
+          "rows": [
+            [
+              "Titlul paginii",
+              "Titlul principal public, obligatoriu, maximum 140 de caractere."
+            ],
+            [
+              "Introducere",
+              "Textul introductiv public, maximum 1.000 de caractere."
+            ],
+            [
+              "Instrucțiuni pentru solicitări",
+              "Explicațiile publice despre pașii următori, maximum 1.000 de caractere. Precizează cum se confirmă disponibilitatea și condițiile."
+            ],
+            [
+              "Primește solicitări noi",
+              "Permite sau oprește temporar trimiterea cererilor. Catalogul și solicitările existente rămân disponibile."
+            ],
+            [
+              "Salvează conținutul",
+              "Aplică modificările formularului, inclusiv starea primirii solicitărilor."
+            ],
+            [
+              "Resetează",
+              "După confirmare, renunță la modificările nesalvate și revine la ultima variantă salvată; nu șterge marketplace-ul."
+            ]
+          ]
+        },
+        "paragraphs": [
+          "Aceste câmpuri modifică mesajele generale. Descrierile ofertelor se editează în Catalog; explicațiile generale despre Community și licențiere nu au editor dedicat în această filă."
+        ]
+      },
+      {
+        "id": "marketplace-salvare",
+        "title": "Salvare, verificare și erori",
+        "bullets": [
+          "Nu există salvare automată a formularelor. Așteaptă confirmarea după butonul de salvare; Se salvează… indică operațiunea în curs.",
+          "Schimbarea filei sau părăsirea unei forme modificate poate cere confirmarea renunțării. Anulează plecarea dacă vrei să revii și să salvezi.",
+          "Vezi pagina ↗ deschide altă filă și păstrează formularul nesalvat. Previzualizarea arată numai datele deja salvate.",
+          "Dacă produsul nu apare public, verifică Vizibilitate, salvarea, filtrele și căutarea publică, apoi reîncarcă pagina.",
+          "Dacă salvarea eșuează, citește mesajul și corectează câmpul indicat: identificator duplicat, preț invalid, text prea lung sau expirare trecută. O eroare de conexiune nu confirmă salvarea.",
+          "Dacă administrarea nu încarcă date, verifică accesul cu un cont autorizat și conexiunea configurată pentru instanță. Nu publica date de autentificare pentru diagnostic."
+        ]
+      },
+      {
+        "id": "marketplace-faq-comercial",
+        "title": "Întrebări comerciale: ce poate face versiunea actuală",
+        "table": {
+          "headers": [
+            "Întrebare",
+            "Răspuns"
+          ],
+          "rows": [
+            [
+              "Pot încasa prin această pagină?",
+              "Nu încă. Există catalog, prețuri, solicitări și acces manual. Checkout-ul, încasările recurente, facturile și rambursările nu sunt implementate aici."
+            ],
+            [
+              "Dacă aleg Lunar, pornește abonamentul?",
+              "Nu. Este modul de afișare a tarifului. Nu se debitează bani și nu se prelungește automat accesul."
+            ],
+            [
+              "Acordă acces deblochează toate beneficiile?",
+              "Nu. Salvează o înregistrare de acces. Activarea efectivă a funcțiilor și integrarea lor cu aceste drepturi trebuie implementate separat."
+            ],
+            [
+              "Pot vinde servicii bazate pe proiectul open-source?",
+              "Documentația proiectului permite folosire comercială și găzduire contra cost, cu respectarea licenței aplicabile. Plata pentru serviciu este separată de drepturile asupra codului."
+            ],
+            [
+              "Pot oamenii copia și îmbunătăți proiectul?",
+              "Da, în condițiile licenței. Versiunea analizată folosește AGPL-3.0-only; documentația precizează obligațiile privind sursa și versiunile MIT istorice. Licența permite și fork-uri comerciale conforme."
+            ],
+            [
+              "Modul comercial face automat codul proprietar?",
+              "Nu. Este o etichetă de catalog, fără efect juridic asupra codului. Condițiile unei licențe comerciale separate depind de drepturile deținute; verifică documentația înaintea promisiunii către client."
+            ],
+            [
+              "Se trimit automat răspunsurile prin email?",
+              "Fluxul implementat afișează răspunsul în Solicitările mele. Nu te baza pe un email automat din acest modul."
+            ],
+            [
+              "Pot vinde jetoane sau activa retrageri de aici?",
+              "Acest modul nu schimbă soldurile jocului și nu implementează cumpărarea ori retragerea de bani sau jetoane."
+            ]
+          ]
+        },
+        "callout": {
+          "tone": "note",
+          "title": "O ofertă publicată trebuie să descrie livrarea reală",
+          "text": "Pentru servicii încă neimplementate, folosește În pregătire și explică ce colectezi: interes, cerințe sau propuneri. Starea Disponibil este potrivită când poți furniza oferta descrisă."
+        }
+      }
+    ],
+    "sources": [
+      {
+        "label": "Admin Marketplace — formulare, filtre și acțiuni",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminMarketplace.tsx"
+      },
+      {
+        "label": "Marketplace public — catalog, solicitări și cont",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Marketplace.tsx"
+      },
+      {
+        "label": "Comportamentul serverului — validare și acces manual",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/marketplace.js"
+      },
+      {
+        "label": "Categorii, tipuri și afișarea prețurilor",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/lib/marketplace-api.ts"
+      },
+      {
+        "label": "Licențierea OpenPoker și implementarea DanGG",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/docs/LICENSING.md"
+      }
+    ]
+  },
+  {
+    "id": "scenarii-marketplace",
+    "title": "Exersează un ciclu complet de Marketplace",
+    "kicker": "EXERCIȚII GHIDATE",
+    "summary": "Pregătește o ofertă fictivă, înțelege traseul unei cereri și verifică separat publicarea, răspunsul și accesul.",
+    "minutes": 10,
+    "group": "practica",
+    "sections": [
+      {
+        "id": "scenarii-marketplace-context",
+        "title": "Cum folosești exercițiile",
+        "paragraphs": [
+          "Player's — Atelier demonstrativ este un exemplu fictiv creat pentru învățare, fără preț sau serviciu comercial real. Primul exercițiu rămâne Ciornă. Pentru pașii publici și acces, folosește un mediu de test și un cont de test autorizat, fără date personale reale. Ghidul nu salvează și nu publică nimic în locul tău.",
+          "Fiecare exercițiu are un rezultat verificabil. Dacă rezultatul lipsește, verifică filtrele și confirmarea salvării înainte de a repeta operațiunea."
+        ]
+      },
+      {
+        "id": "scenarii-marketplace-ciorna",
+        "title": "Exercițiul 1 — pregătește o ciornă",
+        "steps": [
+          {
+            "title": "Deschide formularul",
+            "text": "Intră în Marketplace → Catalog → ＋ Adaugă produs. Completează Numele produsului cu Player's — Atelier demonstrativ și Identificator public cu players-atelier-demo."
+          },
+          {
+            "title": "Descrie exemplul",
+            "text": "La Descriere scurtă scrie: Exemplu fictiv pentru învățarea administrării; fără serviciu comercial oferit. În Descriere completă explică faptul că testezi doar prezentarea unei oferte."
+          },
+          {
+            "title": "Configurează încadrarea",
+            "text": "Alege Organizare, Serviciu DanGG, Ciornă și Ofertă la cerere. Păstrează EUR, poziția 10 și evidențierea debifată. Aceste valori sunt exemple de configurare."
+          },
+          {
+            "title": "Adaugă beneficii de demonstrație",
+            "text": "Scrie pe două rânduri: Exemplu de descriere a serviciului și Exemplu de condiții de livrare. Apasă Creează produsul."
+          },
+          {
+            "title": "Verifică rezultatul",
+            "text": "Găsește produsul în Catalog și confirmă eticheta Ciornă. Redeschide Editează și verifică textele. În Vezi pagina ↗ produsul nu trebuie să apară, nici după reîncărcare."
+          }
+        ],
+        "callout": {
+          "tone": "success",
+          "title": "Rezultat corect",
+          "text": "Oferta există în administrare și este invizibilă publicului. Ai învățat formularul fără a promite un serviciu disponibil."
+        }
+      },
+      {
+        "id": "scenarii-marketplace-interes",
+        "title": "Exercițiul 2 — interes și răspuns, în mediul de test",
+        "steps": [
+          {
+            "title": "Publică pentru interes",
+            "text": "Editează exemplul, alege În pregătire și Salvează produsul. În pagina publică de test caută numele și deschide detaliile."
+          },
+          {
+            "title": "Trimite o cerere demonstrativă",
+            "text": "Din contul de test, apasă Înregistrează interesul. Mesaj propus: Doresc detalii despre exemplul demonstrativ. Verifică În evaluare în Solicitările mele."
+          },
+          {
+            "title": "Răspunde ca administrator",
+            "text": "În Solicitări găsește cererea și completează Răspuns pentru utilizator: Mulțumim. Oferta este un exercițiu; disponibilitatea nu este confirmată. Alege Aprobă cererea pentru a observa diferența față de acces."
+          },
+          {
+            "title": "Verifică ambele perspective",
+            "text": "În admin selectează Aprobată pentru a regăsi cererea. În contul de test apasă Actualizează și citește răspunsul. Nu trebuie să apară un acces nou, iar Pregătește accesul ↗ nu apare pentru produsul În pregătire."
+          }
+        ]
+      },
+      {
+        "id": "scenarii-marketplace-acces",
+        "title": "Exercițiul 3 — acordare, termen și revocare",
+        "steps": [
+          {
+            "title": "Pregătește produsul de test",
+            "text": "În mediul de test, schimbă oferta la Disponibil și salvează. Revino la cererea aprobată și apasă Pregătește accesul ↗."
+          },
+          {
+            "title": "Completează valabilitatea",
+            "text": "Verifică utilizatorul și produsul preselectate. Alege o dată viitoare la Expiră la (ora locală). La Notă internă scrie Exercițiu demonstrativ, apoi Acordă acces."
+          },
+          {
+            "title": "Compară afișarea",
+            "text": "În Registrul de acces trebuie să apară Activ și termenul ales. În contul de test, Actualizează trebuie să afișeze Acordat și valabilitatea. Nota internă nu trebuie să fie vizibilă clientului."
+          },
+          {
+            "title": "Testează revocarea",
+            "text": "Apasă Revocă accesul pentru înregistrarea demonstrativă și confirmă. Verifică Revocat în registru și în contul de test. Cererea rămâne Aprobată: decizia și accesul sunt evidențe distincte."
+          },
+          {
+            "title": "Închide exercițiul",
+            "text": "Arhivează oferta demonstrativă. Verifică dispariția ei din catalogul public și păstrarea cererii și accesului revocat în administrare."
+          }
+        ],
+        "callout": {
+          "tone": "note",
+          "title": "Ce ai verificat efectiv",
+          "text": "Ai verificat persistarea stărilor, răspunsului și valabilității. Nu ai verificat o plată sau deblocarea unei funcții de joc; aceste mecanisme nu fac parte din fluxul actual."
+        }
+      },
+      {
+        "id": "scenarii-marketplace-continut",
+        "title": "Exercițiul 4 — pauză pentru cereri noi",
+        "paragraphs": [
+          "În mediul de test, deschide Conținut și notează setarea inițială. Debifează Primește solicitări noi și apasă Salvează conținutul. Reîncarcă pagina publică și deschide o ofertă fără cerere în așteptare și fără acces activ pentru contul de test: formularul trebuie înlocuit cu mesajul că solicitările sunt închise.",
+          "Catalogul și cererile existente trebuie să rămână vizibile. Revino la setarea inițială, salvează din nou și verifică rezultatul public. Debifarea fără salvare nu modifică pagina."
+        ]
+      },
+      {
+        "id": "scenarii-marketplace-rutina",
+        "title": "Rutina zilnică în cinci verificări",
+        "bullets": [
+          "Solicitări: răspunde cererilor În așteptare și stabilește următorul pas concret.",
+          "Acces: verifică termenele și registrul înainte de a promite activarea sau prelungirea unui serviciu.",
+          "Catalog: păstrează Disponibil doar pentru ofertele pe care le poți furniza și corectează descrierile când condițiile se schimbă.",
+          "Conținut: menține instrucțiunile actuale; folosește oprirea cererilor când ai nevoie de o pauză de preluare.",
+          "Pagina publică: verifică ceea ce vede clientul după modificări. Pentru o problemă, descrie oferta, acțiunea și mesajul de eroare, fără parole sau date personale."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Pașii și etichetele adminului, la versiunea documentată",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/components/AdminMarketplace.tsx"
+      },
+      {
+        "label": "Rezultatele vizibile utilizatorului în marketplace",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/src/pages/Marketplace.tsx"
+      },
+      {
+        "label": "Regulile de publicare, cereri, acces și expirare",
+        "url": "https://github.com/OpenPoker4all/OpenPoker/blob/2b0d25ed6ddf1f8dd7885d83d97588371d30ad31/app/server/marketplace.js"
+      }
+    ]
+  }
+]

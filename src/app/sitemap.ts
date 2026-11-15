@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/ecosystem`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/lab`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/semeclaw`, lastModified, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/GGPokerAdmin`, lastModified, changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/story`, lastModified, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/contact`, lastModified, changeFrequency: "yearly", priority: 0.6 },
   ];
