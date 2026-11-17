@@ -29,6 +29,7 @@ test("the rendered footer links every page except Home, Contact included", () =>
     { href: "/ecosystem", label: "Ecosystem" },
     { href: "/lab", label: "Lab" },
     { href: "/semeclaw", label: "SemeClaw" },
+    { href: "/OpenPoker-roadmap", label: "OpenPoker" },
     { href: "/GGPokerAdmin", label: "Ghid DanGG" },
     { href: "/story", label: "Story" },
     { href: "/contact", label: "Contact" },
