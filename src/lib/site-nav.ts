@@ -8,5 +8,6 @@ export const SITE_PAGES = [
   { label: "OpenPoker", href: "/OpenPoker-roadmap" },
   { label: "Ghid DanGG", href: "/GGPokerAdmin" },
   { label: "Story", href: "/story" },
+  { label: "Tasks", href: "/tasks" },
   { label: "Contact", href: "/contact" },
 ] as const;

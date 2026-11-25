@@ -32,6 +32,7 @@ test("the rendered footer links every page except Home, Contact included", () =>
     { href: "/OpenPoker-roadmap", label: "OpenPoker" },
     { href: "/GGPokerAdmin", label: "Ghid DanGG" },
     { href: "/story", label: "Story" },
+    { href: "/tasks", label: "Tasks" },
     { href: "/contact", label: "Contact" },
   ]);
 });
