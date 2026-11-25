@@ -3,8 +3,8 @@
 import type { Session } from "@supabase/supabase-js";
 import { useCallback, useEffect, useState } from "react";
 import { matchesFilter, taskPath, type Task, type TaskFilter } from "@/lib/tasks/model";
-import { loadTask, loadTasks, PAGE_TASKS, tasksClient } from "@/lib/tasks/store";
-import { SignIn, takeAskedTask } from "./SignIn";
+import { canRead, loadTask, loadTasks, PAGE_TASKS, tasksClient } from "@/lib/tasks/store";
+import { NoAccess, SignIn, takeAskedTask } from "./SignIn";
 import { TaskFeed } from "./TaskFeed";
 import { TaskStory } from "./TaskStory";
 
@@ -31,13 +31,15 @@ function useSession(): { session: Session | null; isReady: boolean } {
 }
 
 /** The list and the open task, kept fresh while the page is visible. An old open task is not in the list. */
-function useTasks(userId: string | undefined, openId: string | null, count: number): { tasks: Task[] | null; linked: Task | null; isMissing: boolean; hasMore: boolean; error: string } {
+function useTasks(userId: string | undefined, openId: string | null, count: number): { tasks: Task[] | null; linked: Task | null; isMissing: boolean; hasMore: boolean; isRefused: boolean; error: string } {
   const [tasks, setTasks] = useState<Task[] | null>(null);
   const [linked, setLinked] = useState<Task | null>(null);
   const [missingId, setMissingId] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(false);
+  const [isRefused, setRefused] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
+    setRefused(false);
     setTasks(null);
     setLinked(null);
   }, [userId]);
@@ -47,6 +49,10 @@ function useTasks(userId: string | undefined, openId: string | null, count: numb
     const refresh = async () => {
       if (document.hidden) return;
       try {
+        const isAllowed = await canRead();
+        if (!isLive) return;
+        setRefused(!isAllowed);
+        if (!isAllowed) return;
         const next = await loadTasks(count);
         const found = openId && !next.tasks.some((task) => task.id === openId) ? await loadTask(openId) : null;
         if (!isLive) return;
@@ -68,7 +74,7 @@ function useTasks(userId: string | undefined, openId: string | null, count: numb
       document.removeEventListener("visibilitychange", refresh);
     };
   }, [userId, openId, count]);
-  return { tasks, linked, isMissing: openId !== null && missingId === openId, hasMore, error };
+  return { tasks, linked, isMissing: openId !== null && missingId === openId, hasMore, isRefused, error };
 }
 
 function useOpenTask(isSignedIn: boolean): [string | null, (id: string | null) => void] {
@@ -94,11 +100,12 @@ export function TaskNewsroom() {
   const { session, isReady } = useSession();
   const [openId, open] = useOpenTask(Boolean(session));
   const [count, setCount] = useState(PAGE_TASKS);
-  const { tasks, linked, isMissing, hasMore, error } = useTasks(session?.user.id, openId, count);
+  const { tasks, linked, isMissing, hasMore, isRefused, error } = useTasks(session?.user.id, openId, count);
   const [filter, setFilter] = useState<TaskFilter>("all");
 
   if (!isReady) return <main className="dl-wrap tk-page"><p className="tk-quiet">Se deschide…</p></main>;
   if (!session) return <main className="dl-wrap tk-page"><SignIn /></main>;
+  if (isRefused) return <main className="dl-wrap tk-page"><NoAccess email={session.user.email} /></main>;
 
   const story = tasks?.find((task) => task.id === openId) ?? (linked?.id === openId ? linked : undefined);
   return (

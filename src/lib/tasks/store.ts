@@ -17,6 +17,13 @@ export function tasksClient(): SupabaseClient {
 
 const isPresent = <T,>(value: T | null): value is T => value !== null;
 
+/** Whether this account is one of those let in; the database decides, and shows nothing to the others. */
+export async function canRead(): Promise<boolean> {
+  const { data, error } = await tasksClient().rpc("dl_tasks_can_read");
+  if (error) throw new Error(error.message);
+  return data === true;
+}
+
 /** The newest tasks, as many as asked for; the server gives at most a thousand rows at a time. */
 export async function loadTasks(count: number): Promise<{ tasks: Task[]; hasMore: boolean }> {
   let rows: Record<string, unknown>[] = [];
