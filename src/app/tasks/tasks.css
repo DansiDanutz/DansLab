@@ -1,0 +1,48 @@
+.tk-page.dl-wrap { padding: 40px 0 96px; min-height: 70vh; }
+.tk-page button { font: inherit; color: inherit; cursor: pointer; }
+.tk-page :is(a, button):focus-visible, .tk-page video:focus-visible { outline: 2px solid var(--gold-hot); outline-offset: 3px; }
+.tk-mast { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 3px double var(--dl-accent-line-2); padding-bottom: 14px; }
+.tk-mast h1, .tk-signin h1 { font-family: var(--serif); font-size: clamp(36px, 6vw, 60px); line-height: 1; letter-spacing: -0.02em; margin: 0; }
+.tk-link { background: none; border: 0; padding: 12px 0; color: var(--ink-dim); }
+.tk-link:hover { color: var(--dl-accent-hot); }
+.tk-filters { display: flex; gap: 8px; margin: 20px 0 8px; flex-wrap: wrap; }
+.tk-filters button { min-height: 44px; padding: 0 16px; border: 1px solid var(--dl-accent-line-2); border-radius: 999px; background: none; color: var(--ink-dim); }
+.tk-filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #000; }
+.tk-day h2 { font-family: var(--serif); font-size: 20px; color: var(--gold); margin: 36px 0 0; }
+.tk-day h2::first-letter { text-transform: uppercase; }
+.tk-day ol, .tk-events, .tk-files { list-style: none; margin: 0; padding: 0; }
+.tk-card { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--dl-accent-line); }
+.tk-card time, .tk-events time, .tk-dateline { font-family: var(--mono); font-size: 13px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.tk-card h3 { font-family: var(--serif); font-size: 22px; line-height: 1.25; margin: 8px 0 6px; overflow-wrap: anywhere; }
+.tk-card.is-lead h3 { font-size: clamp(28px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.01em; }
+.tk-card h3 a:hover { color: var(--dl-accent-hot); }
+.tk-dek { color: var(--ink-dim); max-width: 68ch; margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; overflow-wrap: anywhere; }
+.tk-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 10px 0 0; font-size: 13px; color: var(--ink-dim); }
+.tk-status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; border: 1px solid currentColor; color: var(--gold-hot); }
+.tk-status.is-done { color: #4ade80; }
+.tk-status.is-unfinished, .tk-status.is-stopped { color: #ff8a7a; }
+.tk-story { max-width: 820px; margin: 12px auto 0; }
+.tk-story h2 { font-family: var(--serif); font-size: clamp(32px, 5vw, 52px); line-height: 1.08; letter-spacing: -0.02em; margin: 8px 0 14px; overflow-wrap: anywhere; outline: none; }
+.tk-story h3 { font-family: var(--serif); font-size: 22px; margin: 36px 0 10px; }
+.tk-confirm { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; color: var(--ink-dim); }
+.tk-body { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; max-width: 68ch; margin: 0; }
+.tk-film { display: block; width: 100%; max-height: 70vh; margin-top: 22px; border-radius: var(--r); background: #000; border: 1px solid var(--dl-accent-line-2); }
+.tk-files li + li { margin-top: 8px; }
+.tk-files { margin-top: 12px; }
+.tk-file { display: flex; justify-content: space-between; gap: 16px; width: 100%; min-height: 52px; align-items: center; padding: 10px 16px; text-align: left; background: var(--bg-2); border: 1px solid var(--dl-accent-line-2); border-radius: var(--r); }
+.tk-file strong { overflow-wrap: anywhere; }
+.tk-file span { color: var(--ink-dim); font-size: 13px; white-space: nowrap; }
+.tk-file:hover { border-color: var(--dl-accent-hot); }
+.tk-events li { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--dl-accent-line); }
+.tk-events p { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.tk-quiet { color: var(--ink-dim); margin: 28px 0; }
+.tk-error { color: #ff8a7a; margin: 16px 0; }
+.tk-signin { max-width: 520px; margin: 8vh auto 0; }
+.tk-signin p { color: var(--ink-dim); line-height: 1.6; }
+.tk-signin-ways { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.tk-signin-ways button { min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #000; font-weight: 600; }
+.tk-signin-ways button + button { background: none; color: var(--ink); }
+@media (max-width: 560px) {
+  .tk-card { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .tk-file { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
