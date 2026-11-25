@@ -51,6 +51,12 @@ test("every status has its own words, and the filters follow it", () => {
   assert.deepEqual(shown, ["101", "101", "101", "011", "001", "001"]);
 });
 
+test("tasks with a video can be listed alone", () => {
+  const film = { kind: "video", name: "film.mp4", path: "x/film.mp4" };
+  const shown = [[film], [{ ...film, kind: "file" }], []].map((files) => matchesFilter(task({ files }), "video"));
+  assert.deepEqual(shown, [true, false, false]);
+});
+
 test("durations and sizes are short", () => {
   const from = "2026-11-25T10:00:00Z";
   const ends = ["2026-11-25T10:00:42Z", "2026-11-25T10:05:00Z", "2026-11-25T12:05:00Z", "2026-11-25T09:00:00Z"];
