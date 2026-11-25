@@ -2,7 +2,9 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { TASKS_BUCKET, TASKS_PUBLIC_KEY, TASKS_URL } from "./config";
 import { parseEvent, parseTask, type Task, type TaskEvent } from "./model";
 
-const MAX_TASKS = 200;
+export const PAGE_TASKS = 100;
+const MAX_ROWS = 1000;
+const TASK_ID = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i;
 const MAX_EVENTS = 500;
 /** Long enough to watch a film, short enough that a copied link soon stops working. */
 const LINK_SECONDS = 3600;
@@ -15,10 +17,25 @@ export function tasksClient(): SupabaseClient {
 
 const isPresent = <T,>(value: T | null): value is T => value !== null;
 
-export async function loadTasks(): Promise<Task[]> {
-  const { data, error } = await tasksClient().from("dl_tasks").select("*").order("opened_at", { ascending: false }).limit(MAX_TASKS);
+/** The newest tasks, as many as asked for; the server gives at most a thousand rows at a time. */
+export async function loadTasks(count: number): Promise<{ tasks: Task[]; hasMore: boolean }> {
+  let rows: Record<string, unknown>[] = [];
+  while (rows.length <= count) {
+    const last = Math.min(rows.length + MAX_ROWS, count + 1) - 1;
+    const { data, error } = await tasksClient().from("dl_tasks").select("*").order("opened_at", { ascending: false }).order("id").range(rows.length, last);
+    if (error) throw new Error(error.message);
+    if (!data.length) break;
+    rows = [...rows, ...data];
+  }
+  return { tasks: rows.slice(0, count).map(parseTask).filter(isPresent), hasMore: rows.length > count };
+}
+
+/** One task by its link, however old. */
+export async function loadTask(id: string): Promise<Task | null> {
+  if (!TASK_ID.test(id)) return null;
+  const { data, error } = await tasksClient().from("dl_tasks").select("*").eq("id", id).maybeSingle();
   if (error) throw new Error(error.message);
-  return (data ?? []).map(parseTask).filter(isPresent);
+  return data ? parseTask(data) : null;
 }
 
 /** The latest events, oldest first. */
