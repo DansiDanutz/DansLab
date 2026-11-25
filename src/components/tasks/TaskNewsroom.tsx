@@ -61,16 +61,17 @@ function useTasks(userId: string | undefined): { tasks: Task[] | null; error: st
   return { tasks, error };
 }
 
-function useOpenTask(): [string | null, (id: string | null) => void] {
+function useOpenTask(isSignedIn: boolean): [string | null, (id: string | null) => void] {
   const [openId, setOpenId] = useState<string | null>(null);
   useEffect(() => {
     const read = () => setOpenId(openFromUrl());
-    const asked = takeAskedTask();
+    // Not before signing in: until then the address holds the code that signs in.
+    const asked = isSignedIn ? takeAskedTask() : null;
     if (asked && !openFromUrl()) window.history.replaceState(null, "", taskPath(asked));
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
-  }, []);
+  }, [isSignedIn]);
   const open = useCallback((id: string | null) => {
     window.history.pushState(null, "", id ? taskPath(id) : "/tasks");
     setOpenId(id);
@@ -82,7 +83,7 @@ function useOpenTask(): [string | null, (id: string | null) => void] {
 export function TaskNewsroom() {
   const { session, isReady } = useSession();
   const { tasks, error } = useTasks(session?.user.id);
-  const [openId, open] = useOpenTask();
+  const [openId, open] = useOpenTask(Boolean(session));
   const [filter, setFilter] = useState<TaskFilter>("all");
 
   if (!isReady) return <main className="dl-wrap tk-page"><p className="tk-quiet">Se deschide…</p></main>;
