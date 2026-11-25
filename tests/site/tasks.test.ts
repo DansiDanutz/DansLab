@@ -66,6 +66,19 @@ test("the page is never indexed and the site key can only be the public one", ()
   assert.equal(JSON.parse(Buffer.from(payload, "base64url").toString()).role, "anon");
 });
 
+test("only listed accounts read, and the list itself stays out of this public repository", () => {
+  const sql = readFileSync(new URL("../../supabase/tasks/readers.sql", import.meta.url), "utf8");
+  assert.doesNotMatch(sql, /[\w.]+@[\w-]+\.\w+|github:\d/);
+  const rules = sql.split("create policy").slice(1);
+  assert.equal(rules.length, 3);
+  for (const rule of rules) assert.match(rule, /dl_private\.readable_owners\(\)/);
+  for (const dropped of ["dl_tasks read own", "dl_task_events read own", "dl_tasks files read own"]) assert.ok(sql.includes(`drop policy "${dropped}"`));
+  // A password or a mailed link proves nothing here, and neither does an address the token merely claims.
+  assert.match(sql, /a->>'method' = 'oauth'/);
+  assert.doesNotMatch(sql, /jwt\(\)->>?'email'/);
+  assert.match(sql, /'email_verified' = 'true'/);
+});
+
 test("nothing a task says is read as SQL", () => {
   const nasty = "'); drop table public.dl_tasks; -- $$";
   const sql = statement(["open", "k1", "--title", nasty, "--request", nasty]);
