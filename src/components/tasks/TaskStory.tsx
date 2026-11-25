@@ -5,7 +5,9 @@ import { StatusMark } from "./TaskFeed";
 
 const RENEW_MS = 60_000;
 
-function Film({ file }: { file: TaskFile }) {
+function Film({ file, isWatching }: { file: TaskFile; isWatching: boolean }) {
+  const video = useRef<HTMLVideoElement>(null);
+  const [hasStarted, setStarted] = useState(false);
   const [src, setSrc] = useState("");
   const [signedAt, setSignedAt] = useState(0);
   const [error, setError] = useState("");
@@ -23,7 +25,13 @@ function Film({ file }: { file: TaskFile }) {
     else setError("Videoul nu se deschide acum.");
   };
   if (error) return <p className="tk-error" role="status">{error}</p>;
-  return src ? <video className="tk-film" src={src} controls playsInline preload="metadata" onError={renew} aria-label={file.name} /> : <p className="tk-quiet">Se deschide videoul…</p>;
+  if (!src) return <p className="tk-quiet">Se deschide videoul…</p>;
+  return (
+    <div className="tk-film">
+      <video ref={video} src={src} controls={hasStarted} autoPlay={isWatching} playsInline preload="metadata" onPlay={() => setStarted(true)} onError={renew} aria-label={file.name} />
+      {!hasStarted && <button type="button" onClick={() => void video.current?.play().catch(renew)}><span className="tk-watch"><span aria-hidden="true">▶</span> Pornește videoul</span></button>}
+    </div>
+  );
 }
 
 function Attachment({ file }: { file: TaskFile }) {
@@ -71,7 +79,7 @@ function Timeline({ task }: { task: Task }) {
   );
 }
 
-export function TaskStory({ task, onBack }: { task: Task; onBack: () => void }) {
+export function TaskStory({ task, isWatching, onBack }: { task: Task; isWatching: boolean; onBack: () => void }) {
   const title = useRef<HTMLHeadingElement>(null);
   useEffect(() => title.current?.focus(), [task.id]);
   const films = task.files.filter((file) => file.kind === "video");
@@ -86,7 +94,7 @@ export function TaskStory({ task, onBack }: { task: Task; onBack: () => void }) 
         <StatusMark task={task} />
         {task.finishedAt && <span>la {clock(task.finishedAt)}, după {duration(task.openedAt, task.finishedAt)}</span>}
       </p>
-      {films.map((file) => <Film key={file.path} file={file} />)}
+      {films.map((file, at) => <Film key={file.path} file={file} isWatching={isWatching && at === 0} />)}
       {task.result && <section><h3>Rezultat</h3><p className="tk-body">{task.result}</p></section>}
       {(task.skillName || skillFiles.length > 0) && (
         <section>

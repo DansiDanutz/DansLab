@@ -13,6 +13,7 @@ const FILTERS: { id: TaskFilter; label: string }[] = [
   { id: "all", label: "Toate" },
   { id: "running", label: "În lucru" },
   { id: "done", label: "Gata" },
+  { id: "video", label: "Cu video" },
 ];
 
 const openFromUrl = (): string | null => new URLSearchParams(window.location.search).get("t");
@@ -101,6 +102,7 @@ export function TaskNewsroom() {
   const [openId, open] = useOpenTask(Boolean(session));
   const [count, setCount] = useState(PAGE_TASKS);
   const { tasks, linked, isMissing, hasMore, isRefused, error } = useTasks(session?.user.id, openId, count);
+  const [watchId, setWatchId] = useState<string | null>(null);
   const [filter, setFilter] = useState<TaskFilter>("all");
 
   if (!isReady) return <main className="dl-wrap tk-page"><p className="tk-quiet">Se deschide…</p></main>;
@@ -115,7 +117,7 @@ export function TaskNewsroom() {
         <button type="button" className="tk-link" onClick={() => void tasksClient().auth.signOut({ scope: "local" })}>Ieși din cont</button>
       </header>
       {error && <p className="tk-error" role="status">{error}</p>}
-      {story ? <TaskStory task={story} onBack={() => open(null)} /> : (
+      {story ? <TaskStory key={story.id} task={story} isWatching={watchId === story.id} onBack={() => open(null)} /> : (
         <>
           {isMissing && <p className="tk-error" role="status">Taskul din link nu există sau nu e al acestui cont.</p>}
           <div className="tk-filters" role="group" aria-label="Arată">
@@ -123,7 +125,7 @@ export function TaskNewsroom() {
               <button key={id} type="button" aria-pressed={filter === id} onClick={() => setFilter(id)}>{label}</button>
             ))}
           </div>
-          <TaskFeed tasks={tasks?.filter((task) => matchesFilter(task, filter)) ?? null} onOpen={open} />
+          <TaskFeed tasks={tasks?.filter((task) => matchesFilter(task, filter)) ?? null} onOpen={(id, isWatching) => { setWatchId(isWatching ? id : null); open(id); }} />
           {hasMore && <button type="button" className="tk-link" onClick={() => setCount((shown) => shown + PAGE_TASKS)}>Arată taskuri mai vechi</button>}
         </>
       )}

@@ -111,6 +111,7 @@ export function fileSize(bytes: number): string {
   return `${Math.max(1, Math.round(bytes / 1000))} KB`;
 }
 
-export type TaskFilter = "all" | "running" | "done";
+export type TaskFilter = "all" | "running" | "done" | "video";
+export const hasVideo = (task: Task): boolean => task.files.some((file) => file.kind === "video");
 export const matchesFilter = (task: Task, filter: TaskFilter): boolean =>
-  filter === "all" || (filter === "done" ? task.status === "done" : isRunning(task.status));
+  ({ all: true, running: isRunning(task.status), done: task.status === "done", video: hasVideo(task) })[filter];
