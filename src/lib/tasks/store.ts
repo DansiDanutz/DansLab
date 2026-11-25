@@ -23,7 +23,7 @@ export async function loadTasks(): Promise<Task[]> {
 
 /** The latest events, oldest first. */
 export async function loadEvents(taskId: string): Promise<TaskEvent[]> {
-  const { data, error } = await tasksClient().from("dl_task_events").select("id, at, status, who, text").eq("task_id", taskId).order("id", { ascending: false }).limit(MAX_EVENTS);
+  const { data, error } = await tasksClient().from("dl_task_events").select("id, at, status, who, text").eq("task_id", taskId).order("at", { ascending: false }).order("id", { ascending: false }).limit(MAX_EVENTS);
   if (error) throw new Error(error.message);
   return (data ?? []).map(parseEvent).filter(isPresent).reverse();
 }

@@ -1,4 +1,4 @@
-import { byDay, clock, duration, statusLabel, type Task } from "@/lib/tasks/model";
+import { byDay, clock, duration, statusLabel, taskPath, type Task } from "@/lib/tasks/model";
 
 export function StatusMark({ task }: { task: Task }) {
   return <span className={`tk-status is-${task.status}`}>{statusLabel(task.status)}</span>;
@@ -12,7 +12,7 @@ function Card({ task, isLead, onOpen }: { task: Task; isLead: boolean; onOpen: (
       <div>
         <StatusMark task={task} />
         <h3>
-          <a href={`/tasks?t=${encodeURIComponent(task.id)}`} onClick={(event) => {
+          <a href={taskPath(task.id)} onClick={(event) => {
             if (event.metaKey || event.ctrlKey || event.shiftKey) return;
             event.preventDefault();
             onOpen(task.id);

@@ -2,9 +2,9 @@
 
 import type { Session } from "@supabase/supabase-js";
 import { useCallback, useEffect, useState } from "react";
-import { matchesFilter, type Task, type TaskFilter } from "@/lib/tasks/model";
+import { matchesFilter, taskPath, type Task, type TaskFilter } from "@/lib/tasks/model";
 import { loadTasks, tasksClient } from "@/lib/tasks/store";
-import { SignIn } from "./SignIn";
+import { SignIn, takeAskedTask } from "./SignIn";
 import { TaskFeed } from "./TaskFeed";
 import { TaskStory } from "./TaskStory";
 
@@ -65,12 +65,14 @@ function useOpenTask(): [string | null, (id: string | null) => void] {
   const [openId, setOpenId] = useState<string | null>(null);
   useEffect(() => {
     const read = () => setOpenId(openFromUrl());
+    const asked = takeAskedTask();
+    if (asked && !openFromUrl()) window.history.replaceState(null, "", taskPath(asked));
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
   }, []);
   const open = useCallback((id: string | null) => {
-    window.history.pushState(null, "", id ? `/tasks?t=${encodeURIComponent(id)}` : "/tasks");
+    window.history.pushState(null, "", id ? taskPath(id) : "/tasks");
     setOpenId(id);
     window.scrollTo({ top: 0 });
   }, []);
@@ -91,7 +93,7 @@ export function TaskNewsroom() {
     <main className="dl-wrap tk-page">
       <header className="tk-mast">
         <h1>Taskuri</h1>
-        <button type="button" className="tk-link" onClick={() => void tasksClient().auth.signOut()}>Ieși din cont</button>
+        <button type="button" className="tk-link" onClick={() => void tasksClient().auth.signOut({ scope: "local" })}>Ieși din cont</button>
       </header>
       {error && <p className="tk-error" role="status">{error}</p>}
       {story ? <TaskStory task={story} onBack={() => open(null)} /> : (

@@ -31,6 +31,7 @@ const ZONE = "Europe/Bucharest";
 const DAY_MS = 86_400_000;
 const KINDS: readonly string[] = ["video", "skill", "file"];
 
+export const taskPath = (id: string): string => `/tasks?t=${encodeURIComponent(id)}`;
 export const statusLabel = (status: TaskStatus): string => LABELS[status];
 export const isRunning = (status: TaskStatus): boolean => status === "open" || status === "working" || status === "waiting";
 

@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { byDay, dayLabel, duration, fileSize, matchesFilter, parseEvent, parseTask, statusLabel, STATUSES, type Task } from "../../src/lib/tasks/model";
-import { readCommand, redact, safeName, statementFor } from "../../scripts/task.mjs";
+import { checkedPath, readCommand, redact, safeName, statementFor } from "../../scripts/task.mjs";
 
 const OWNER = "11111111-2222-3333-4444-555555555555";
 const row = { id: "a", title: "Bilet de avion", opened_at: "2026-11-25T10:00:00Z", status: "working" };
@@ -78,6 +80,7 @@ test("each action writes only its own part, and only to this account's task", ()
   assert.match(update, /update public\.dl_tasks t set status/);
   assert.match(update, /insert into public\.dl_task_events/);
   assert.ok(!update.includes("result ="));
+  assert.match(update, /t\.status in \('open','working','waiting'\)/);
   const finish = statement(["finish", "k1", "--result", "420 lei", "--skill", "Find a flight", "--skill-new"], [{ kind: "video", path: "p" }]);
   assert.deepEqual([sent(finish).status, sent(finish).skill, sent(finish).isSkillNew, sent(finish).files.length], ["done", "Find a flight", true, 1]);
   const attach = statement(["attach", "k1"]);
@@ -89,7 +92,7 @@ test("a wrong command is refused before anything is sent", () => {
   const wrong = [
     [], ["drop", "k"], ["open", "k"], ["open", "a b", "--title", "x"], ["update", "k"], ["update", "k", "--text", "x", "--status", "done"],
     ["finish", "k"], ["finish", "k", "--result", "x", "--status", "working"], ["open", "k", "--title", "x", "--source", "x"],
-    ["open", "k", "--title", "x", "--at", "soon"], ["open", "k", "extra", "--title", "x"],
+    ["open", "k", "--title", "x", "--at", "soon"], ["open", "k", "extra", "--title", "x"], ["open", "..", "--title", "x"], ["update", "k", "--text", "x", "--file", "a.txt"],
   ];
   for (const argv of wrong) assert.throws(() => readCommand(argv), undefined, argv.join(" "));
   const { files, task: finished } = readCommand(["finish", "k", "--result", "ok", "--video", "a.mp4", "--skill-file", "s.json", "--file", "b.txt", "--at", "2026-11-25T10:00:00+02:00"]);
@@ -103,11 +106,23 @@ test("secrets never leave the Mac and long text is cut", () => {
     ["sb_secret_", "abc123"], ["sk_live_", "a".repeat(24)], ["123456789:", `AA${"b".repeat(33)}`], ["-----BEGIN ", "PRIVATE KEY-----\nabc"],
   ];
   for (const secret of parts.map((pair) => pair.join(""))) assert.equal(redact(`cheia ${secret}`), "cheia [cheie ascunsă]");
+  for (const [text, kept] of [["password=hunter22", "password="], ["API_KEY: \"abcdefgh\"", "API_KEY: \""], ["parola: abcdef1", "parola: "], ["Authorization: Bearer abcdefghijklmnop", "Authorization: Bearer "], ["postgres://user:pass@host/db", "postgres://"]]) {
+    assert.ok(redact(text).startsWith(`${kept}[cheie ascunsă]`), redact(text));
+  }
   const plain = "skill nou, task-uri, sk-9 și 420 lei";
   assert.equal(redact(plain), plain);
   assert.equal(readCommand(["open", "k", "--title", "x".repeat(500)]).task.title!.length, 200);
+  assert.equal(readCommand(["open", "k", "--title", `a\u0000${"x".repeat(198)}😀y`]).task.title, `a${"x".repeat(198)}😀`);
 });
 
 test("a stored file name is plain", () => {
   assert.deepEqual(["/a/Cameră de ședință.mp4", "../../x", "/tmp/.hidden.JSON", "/a/***"].map(safeName), ["Camera-de-sedinta.mp4", "x", "hidden.json", "fisier"]);
+});
+
+test("only plain, visible files of a known kind are sent", async () => {
+  const dir = realpathSync(mkdtempSync(join(tmpdir(), "task-")));
+  mkdirSync(join(dir, ".ssh"));
+  for (const name of ["ok.md", ".env", "id_rsa", "key.pem", ".ssh/a.txt"]) writeFileSync(join(dir, name), "x");
+  assert.equal(await checkedPath(join(dir, "ok.md")), join(dir, "ok.md"));
+  for (const name of [".env", "id_rsa", "key.pem", ".ssh/a.txt", "missing.md"]) await assert.rejects(checkedPath(join(dir, name)), undefined, name);
 });

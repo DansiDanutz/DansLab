@@ -10,9 +10,9 @@
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream, realpathSync } from "node:fs";
-import { mkdtemp, readFile, rm, stat } from "node:fs/promises";
+import { mkdtemp, readFile, realpath, rm, stat, writeFile } from "node:fs/promises";
 import { homedir, tmpdir } from "node:os";
-import { basename, extname, join } from "node:path";
+import { basename, extname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs, promisify } from "node:util";
 
@@ -21,18 +21,24 @@ const CONFIG = join(homedir(), ".config/danslab-tasks/config.json");
 const BUCKET = "dl-tasks";
 const MAX_FILE = 50 * 1024 * 1024;
 const CLI_MS = 10 * 60_000;
-const KEY = /^[\w.:-]{1,120}$/;
+const KEY = /^(?=.*\w)[\w.:-]{1,120}$/;
 const UUID = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/;
 const REF = /^[a-z]{20}$/;
 const LIMITS = { title: 200, request: 4000, result: 20000, text: 4000, who: 80, skill: 200, kind: 40 };
 const STATES = { open: ["open"], update: ["working", "waiting"], finish: ["done", "unfinished", "stopped"] };
-const TYPES = { ".mp4": "video/mp4", ".webm": "video/webm", ".mov": "video/quicktime", ".json": "application/json", ".md": "text/markdown", ".txt": "text/plain", ".pdf": "application/pdf", ".png": "image/png", ".jpg": "image/jpeg", ".html": "text/plain", ".zip": "application/zip" };
+const TYPES = { ".mp4": "video/mp4", ".webm": "video/webm", ".mov": "video/quicktime", ".json": "application/json", ".md": "text/markdown", ".txt": "text/plain", ".pdf": "application/pdf", ".png": "image/png", ".jpg": "image/jpeg", ".html": "text/plain" };
+const TEXT_TYPES = [".json", ".md", ".txt", ".html"];
 const SECRET = /\b(?:sk|rk|pk)[-_](?:live|test|proj|ant|or)?[-_]?[A-Za-z0-9_-]{16,}|\bgh[pousr]_[A-Za-z0-9]{20,}|\bgithub_pat_\w{20,}|\bAKIA[0-9A-Z]{16}\b|\bsb_secret_\w+|\beyJ[\w-]{10,}\.[\w-]{10,}\.[\w-]*|\bxox[abprs]-[\w-]{10,}|\bAIza[\w-]{30,}|\b\d{8,10}:AA[\w-]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?(?:-----END [A-Z ]*PRIVATE KEY-----|$)/g;
 
-export const redact = (text) => text.replace(SECRET, "[cheie ascunsă]");
+const NAMED = /\b((?:[\w-]*(?:password|passwd|parola|secret|token|api[_-]?key|private[_-]?key)[\w-]*)["']?\s*[:=]\s*["']?)[^\s"',;]{6,}/gi;
+const BEARER = /\b(Bearer|Basic)\s+[\w.~+/=-]{12,}/g;
+const IN_URL = /\b([a-z][a-z0-9+.-]*:\/\/)[^\s/@:]*:[^\s/@]+@/gi;
+const HIDDEN = "[cheie ascunsă]";
 
-/** Text for one field: without secrets, never longer than its column. */
-const field = (name, value) => value === undefined ? undefined : redact(String(value)).trim().slice(0, LIMITS[name]);
+export const redact = (text) => text.replace(SECRET, HIDDEN).replace(NAMED, `$1${HIDDEN}`).replace(BEARER, `$1 ${HIDDEN}`).replace(IN_URL, `$1${HIDDEN}@`);
+
+/** Text for one field: without secrets, never longer than its column, and nothing Postgres refuses. */
+const field = (name, value) => value === undefined ? undefined : Array.from(redact(String(value).replaceAll("\0", "")).trim()).slice(0, LIMITS[name]).join("").toWellFormed();
 
 export function readCommand(argv) {
   const { values, positionals } = parseArgs({
@@ -64,6 +70,7 @@ export function readCommand(argv) {
   if (action === "finish" && !task.result) throw new Error("finish needs --result");
   const files = [["video", values.video], ["skill", values["skill-file"]], ["file", values.file]]
     .flatMap(([kind, paths]) => (paths ?? []).map((path) => ({ kind, path })));
+  if (files.length && action !== "finish" && action !== "attach") throw new Error("Files go with finish or attach");
   return { task, files };
 }
 
@@ -87,7 +94,7 @@ export function statementFor(task, ownerId) {
     finish: `status = p.j->>'status', result = p.j->>'result', finished_at = (p.j->>'at')::timestamptz, updated_at = now(), ${extras}`,
     attach: `updated_at = now(), ${extras}`,
   }[task.action];
-  const written = `${head}, w as (update public.dl_tasks t set ${sets} from p where ${mine} returning t.id)`;
+  const written = `${head}, w as (update public.dl_tasks t set ${sets} from p where ${mine}${task.action === "update" ? ` and t.status in ('open','working','waiting')` : ""} returning t.id)`;
   return `${written}${task.action === "attach" ? "" : event("w")} select id from w`;
 }
 
@@ -103,9 +110,23 @@ async function hashOf(path) {
   return hash.digest("hex").slice(0, 16);
 }
 
+/** Only a plain, visible file of a kind the page shows: never a key, a config or anything in a hidden folder. */
+export async function checkedPath(path) {
+  const real = await realpath(path);
+  if (real.split(sep).some((part) => part.startsWith("."))) throw new Error(`${basename(real)} is hidden or in a hidden folder`);
+  if (!TYPES[extname(real).toLowerCase()]) throw new Error(`${basename(real)} is not a kind of file the page shows`);
+  if (!(await stat(real)).isFile()) throw new Error(`${basename(real)} is not a file`);
+  return real;
+}
+
 /** A film over the limit is made smaller; anything else over it is refused. */
 async function fitted(file, dir) {
   const { size } = await stat(file.path);
+  if (TEXT_TYPES.includes(extname(file.path).toLowerCase()) && size <= MAX_FILE) {
+    const copy = join(dir, safeName(file.path));
+    await writeFile(copy, redact(await readFile(file.path, "utf8")), { mode: 0o600 });
+    return copy;
+  }
   if (size <= MAX_FILE) return file.path;
   if (file.kind !== "video") throw new Error(`${basename(file.path)} is over 50 MB`);
   const small = join(dir, `${basename(file.path, extname(file.path))}.mp4`);
@@ -121,6 +142,19 @@ async function readConfig() {
 }
 
 const supabase = (args, dir) => run("supabase", [...args, "--workdir", dir], { timeout: CLI_MS, maxBuffer: 4 * 1024 * 1024, cwd: dir });
+
+/** The statement goes through a private file, so it is not in the process list. */
+async function query(sql, { projectRef }, dir) {
+  const file = join(dir, "statement.sql");
+  await writeFile(file, sql, { mode: 0o600 });
+  const { stdout } = await supabase(["db", "query", "--file", file, "--linked", "--project-ref", projectRef, "--output-format", "json"], dir);
+  return ROW_ID.test(stdout);
+}
+
+const existsSql = (key, ownerId) => {
+  const name = Buffer.from(key).toString("base64");
+  return `select id from public.dl_tasks where key = convert_from(decode('${name}','base64'),'utf8') and owner_id = '${ownerId}'`;
+};
 
 async function upload(file, key, { projectRef, ownerId }, dir) {
   const path = await fitted(file, dir);
@@ -138,19 +172,27 @@ async function upload(file, key, { projectRef, ownerId }, dir) {
 
 async function main() {
   const { task, files } = readCommand(process.argv.slice(2));
+  const paths = [];
+  for (const file of files) paths.push({ ...file, path: await checkedPath(file.path) });
   const config = await readConfig();
   const dir = await mkdtemp(join(process.env.DANSLAB_TASKS_TMP || tmpdir(), "danslab-task-"));
   try {
     const kept = [];
-    for (const file of files) kept.push(await upload(file, task.key, config, dir));
-    const { stdout } = await supabase(["db", "query", statementFor({ ...task, files: kept }, config.ownerId), "--linked", "--project-ref", config.projectRef, "--output-format", "json"], dir);
-    if (!UUID_ANYWHERE.test(stdout)) throw new Error(task.action === "open" ? "This key is already used by another task" : "No task has this key");
+    // Nothing is uploaded for a task that is not there.
+    if (paths.length && !(await query(existsSql(task.key, config.ownerId), config, dir))) throw new Error("No task has this key");
+    for (const file of paths) {
+      const stored = await upload(file, task.key, config, dir);
+      if (!kept.some(({ path }) => path === stored.path)) kept.push(stored);
+    }
+    if (!(await query(statementFor({ ...task, files: kept }, config.ownerId), config, dir))) {
+      throw new Error({ open: "A task with this key is already there", update: "No unfinished task has this key" }[task.action] ?? "No task has this key");
+    }
     console.log(`${task.action}: ${task.key}${task.status ? ` (${task.status})` : ""}${kept.length ? `, ${kept.length} files` : ""}`);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
 }
-const UUID_ANYWHERE = /"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}"/;
+const ROW_ID = /"id": ?"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}"/;
 
 if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch((error) => {

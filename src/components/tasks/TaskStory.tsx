@@ -3,19 +3,27 @@ import { clock, dayLabel, duration, fileSize, statusLabel, type Task, type TaskE
 import { fileLink, loadEvents } from "@/lib/tasks/store";
 import { StatusMark } from "./TaskFeed";
 
+const RENEW_MS = 60_000;
+
 function Film({ file }: { file: TaskFile }) {
   const [src, setSrc] = useState("");
+  const [signedAt, setSignedAt] = useState(0);
   const [error, setError] = useState("");
   useEffect(() => {
     let isLive = true;
     fileLink(file.path).then(
-      (link) => { if (isLive) setSrc(link); },
+      (link) => { if (isLive) { setSrc(link); setError(""); } },
       () => { if (isLive) setError("Videoul nu se deschide acum."); },
     );
     return () => { isLive = false; };
-  }, [file.path]);
+  }, [file.path, signedAt]);
+  // The link has run out on a page left open: ask for a new one, at most once a minute.
+  const renew = () => {
+    if (Date.now() - signedAt > RENEW_MS) setSignedAt(Date.now());
+    else setError("Videoul nu se deschide acum.");
+  };
   if (error) return <p className="tk-error" role="status">{error}</p>;
-  return src ? <video className="tk-film" src={src} controls playsInline preload="metadata" aria-label={file.name} /> : <p className="tk-quiet">Se deschide videoul…</p>;
+  return src ? <video className="tk-film" src={src} controls playsInline preload="metadata" onError={renew} aria-label={file.name} /> : <p className="tk-quiet">Se deschide videoul…</p>;
 }
 
 function Attachment({ file }: { file: TaskFile }) {
@@ -89,7 +97,7 @@ export function TaskStory({ task, onBack }: { task: Task; onBack: () => void }) 
       )}
       {others.length > 0 && <section><h3>Fișiere</h3><ul className="tk-files">{others.map((file) => <Attachment key={file.path} file={file} />)}</ul></section>}
       {task.request && <section><h3>Ce ai cerut</h3><p className="tk-body">{task.request}</p></section>}
-      <section><h3>Cum a mers</h3><Timeline task={task} /></section>
+      <section><h3>Cum a mers</h3><Timeline key={task.id} task={task} /></section>
     </article>
   );
 }
